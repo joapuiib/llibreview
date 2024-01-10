@@ -1,0 +1,6 @@
+db:
+  host: localhost
+  port: 3306
+  name: llibreview
+  username: root
+  password: 1234
