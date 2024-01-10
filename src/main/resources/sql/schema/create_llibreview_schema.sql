@@ -1,7 +1,3 @@
-drop database if exists llibreview;
-create database llibreview;
-use llibreview;
-
 create table llibre (
     isbn varchar(50) primary key,
     titol varchar(100) not null,
