@@ -1,0 +1,111 @@
+:root {
+    --cafe-50: #f9f6f1;
+    --cafe-100: #efe4d6;
+    --cafe-200: #ddc7aa;
+    --cafe-300: #cba67e;
+    --cafe-400: #be8d61;
+    --cafe-500: #b4764f;
+    --cafe-600: #9e5c41;
+    --cafe-700: #844739;
+    --cafe-800: #6d3b33;
+    --cafe-900: #5a322d;
+    --cafe-950: #321916;
+    --white: var(--cafe-50);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+.bg-cafe-50 {
+    background-color: var(--cafe-50);
+}
+.bg-cafe-100 {
+    background-color: var(--cafe-100);
+}
+.bg-cafe-200 {
+    background-color: var(--cafe-200);
+}
+.bg-cafe-300 {
+    background-color: var(--cafe-300);
+}
+.bg-cafe-400 {
+    background-color: var(--cafe-400);
+}
+.bg-cafe-500 {
+    background-color: var(--cafe-500);
+}
+.bg-cafe-600 {
+    background-color: var(--cafe-600);
+}
+.bg-cafe-700 {
+    background-color: var(--cafe-700);
+}
+.bg-cafe-800 {
+    background-color: var(--cafe-800);
+}
+.bg-cafe-900 {
+    background-color: var(--cafe-900);
+}
+.bg-cafe-950 {
+    background-color: var(--cafe-950);
+}
+
+.white {
+    color: var(--white);
+}
+.cafe-50 {
+    color: var(--cafe-50);
+}
+.cafe-100 {
+    color: var(--cafe-100);
+}
+.cafe-200 {
+    color: var(--cafe-200);
+}
+.cafe-300 {
+    color: var(--cafe-300);
+}
+.cafe-400 {
+    color: var(--cafe-400);
+}
+.cafe-500 {
+    color: var(--cafe-500);
+}
+.cafe-600 {
+    color: var(--cafe-600);
+}
+.cafe-700 {
+    color: var(--cafe-700);
+}
+.cafe-800 {
+    color: var(--cafe-800);
+}
+.cafe-900 {
+    color: var(--cafe-900);
+}
+.cafe-950 {
+    color: var(--cafe-950);
+}
+
+.navbar {
+    background-color: var(--cafe-800);
+}
+.nav-link {
+    color: var(--white);
+}
+.nav-link:hover {
+    color: var(--cafe-200);
+}
+.footer {
+    background-color: var(--cafe-900);
+    font-size: 10px;
+    color: var(--white);
+}
+
+body {
+    background-color: var(--white);
+}
+
+p {
+    margin-bottom: 0.7em;
+}

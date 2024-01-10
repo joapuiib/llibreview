@@ -6,28 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link th:rel="stylesheet" th:href="@{/css/site.css}">
+    <link th:rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title th:text="${title}">Document</title>
 </head>
 <body>
 
-<nav th:fragment="menu" class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <!--a class="navbar-brand" href="/">
-            <img th:src="@{${'/images/shop-icon.png'}}" alt="" height="60px">
-        </a-->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<nav th:fragment="menu" class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <span class="cafe-500 fw-bold">llib<span class="cafe-200">Review</span></span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav me-auto">
-                <a class="nav-link" href=".">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a class="nav-link" href="/category">Categories</a>
+                <a class="nav-link" href="/llibre">Llibres</a>
+                <a class="nav-link" href="/genere">Gèneres</a>
+                <a class="nav-link" href="/autor">Autors</a>
             </div>
         </div>
     </div>
 </nav>
 
-<footer th:fragment="footer" class="text-center mb-5 fixed-bottom">
-    &copy;2024 Copyright
+<footer th:fragment="footer" class="footer text-center p-3 fixed-bottom">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">
+        <img th:src="@{/img/license.png}" alt="Llicènia Reconeixement-NoComercial-CompartirIgual 4.0 Internacional">
+    </a>
+    <p>Llicència Reconeixement-NoComercial-CompartirIgual 4.0 Internacional</p>
 </footer>
 
 <script th:fragment="jquery" th:src="@{/js/jquery.min.js}"></script>
