@@ -16,17 +16,18 @@ public class LlibreRepostoryImpl extends Repository implements LlibreRepository 
     }
 
     @Override
-    public List<Llibre> findLatest() {
+    public List<Llibre> findLatest(int n) {
+        String sql = "SELECT * FROM " + tableName + " ORDER BY data_publicacio DESC LIMIT ?";
+        return jdbcTemplate.query(sql, new LlibreRowMapper(), n);
+    }
+
+    @Override
+    public List<Llibre> findMostRead(int n) {
         return null;
     }
 
     @Override
-    public List<Llibre> findMostRead() {
-        return null;
-    }
-
-    @Override
-    public List<Llibre> findBestReview() {
+    public List<Llibre> findBestReview(int n) {
         return null;
     }
 }

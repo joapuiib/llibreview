@@ -24,6 +24,7 @@ public class Repository {
     private static DataSource defaultDatasource;
     private static DataSource getDataSource(){
         if(defaultDatasource == null){
+            System.out.println("DBHOST: " + DB_HOST);
             DriverManagerDataSource dataSource = new DriverManagerDataSource();
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://" + DB_HOST + "/" + DB_NAME);

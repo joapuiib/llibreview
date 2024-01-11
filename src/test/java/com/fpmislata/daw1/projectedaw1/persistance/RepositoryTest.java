@@ -12,14 +12,18 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 public class RepositoryTest {
-    protected DataSource testDataSource;
+    private static DataSource testDataSource;
 
-    public RepositoryTest() {
-        this.testDataSource = new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .setName("testdb;MODE=MYSQL")
-                .addScript("sql/schema/create_llibreview_schema.sql")
-                .addScript("sql/data/insert_data_test.sql")
-                .build();
+    public static DataSource getTestDatasource(){
+        if (testDataSource == null){
+            testDataSource = new EmbeddedDatabaseBuilder()
+                    .setType(EmbeddedDatabaseType.H2)
+                    .setName("testdb;MODE=MYSQL")
+                    .addScript("sql/schema/create_llibreview_schema.sql")
+                    .addScript("sql/data/insert_data_test.sql")
+                    .build();
+
+        }
+        return testDataSource;
     }
 }

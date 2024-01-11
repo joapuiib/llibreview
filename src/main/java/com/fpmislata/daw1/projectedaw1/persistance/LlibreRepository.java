@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LlibreRepository {
     List<Llibre> findAll();
-    List<Llibre> findLatest();
-    List<Llibre> findMostRead();
-    List<Llibre> findBestReview();
+    List<Llibre> findLatest(int n);
+    List<Llibre> findMostRead(int n);
+    List<Llibre> findBestReview(int n);
 }
