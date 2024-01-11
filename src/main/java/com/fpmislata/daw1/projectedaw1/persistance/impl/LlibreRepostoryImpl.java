@@ -6,19 +6,19 @@ import com.fpmislata.daw1.projectedaw1.persistance.impl.rowmapper.LlibreRowMappe
 
 import java.util.List;
 
-public class LlibreRepostoryImpl extends Repository implements LlibreRepository {
+public class LlibreRepostoryImpl extends MyRepository implements LlibreRepository {
     private final String tableName = "llibre";
 
     @Override
     public List<Llibre> findAll() {
         String sql = "SELECT * FROM " + tableName;
-        return jdbcTemplate.query(sql, new LlibreRowMapper());
+        return connection.getJdbcTemplate().query(sql, new LlibreRowMapper());
     }
 
     @Override
     public List<Llibre> findLatest(int n) {
         String sql = "SELECT * FROM " + tableName + " ORDER BY data_publicacio DESC LIMIT ?";
-        return jdbcTemplate.query(sql, new LlibreRowMapper(), n);
+        return connection.getJdbcTemplate().query(sql, new LlibreRowMapper(), n);
     }
 
     @Override

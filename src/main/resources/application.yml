@@ -1,6 +1,3 @@
-db:
-  host: localhost
-  port: 3306
-  name: llibreview
-  user: root
-  passwd: 1234
+spring:
+  profiles:
+    active: dev
