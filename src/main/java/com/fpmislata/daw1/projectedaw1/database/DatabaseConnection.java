@@ -1,45 +1,54 @@
 package com.fpmislata.daw1.projectedaw1.database;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
+@Component
 public class DatabaseConnection {
-    @Value("${db.host}")
-    public String DB_HOST;
+    @Value("${spring.datasource.url}")
+    public String dbUrl;
 
-    @Value("${db.name}")
-    public String DB_NAME;
+    @Value("${spring.datasource.username}")
+    public String dbUser;
 
-    @Value("${db.user}")
-    public String DB_USER;
+    @Value("${spring.datasource.password}")
+    public String dbPassword;
 
-    @Value("${db.passwd}")
-    public String DB_PASSWD;
+    protected Connection connection;
 
-    protected JdbcTemplate jdbcTemplate;
-    public DatabaseConnection() {
-        this.jdbcTemplate = new JdbcTemplate(defaultDatasource());
-    }
-    public void setDatasource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public Connection getConnection() {
+        return connection;
     }
 
-    public JdbcTemplate getJdbcTemplate(){
-        return jdbcTemplate;
+    @PostConstruct
+    // Esta anotación sirve para asegurarnos que el método se ejecuta después de que las propiedades hayan sido inyectadas
+    private void init() {
+        System.out.println("Estableciendo conexión....");
+        try {
+            connection = DriverManager.getConnection(
+                    dbUrl,
+                    dbUser,
+                    dbPassword
+            );
+            System.out.println("Conexión establecida con la bbdd con los parámetros: ");
+            System.out.println(this.getParameters());
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            throw new RuntimeException("Connection paramaters :\n\n" + getParameters() + "\nOriginal exception message: " + e.getMessage());
+        }
     }
 
-    public DataSource defaultDatasource(){
-        System.out.println("DBHOST: " + DB_HOST);
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://" + DB_HOST + "/" + DB_NAME);
-        dataSource.setUsername(DB_USER);
-        dataSource.setPassword(DB_PASSWD);
-        return dataSource;
+
+    private String getParameters (){
+        return String.format("url: %s\nUser: %s\nPassword: %s\n",
+                dbUrl,
+                dbUser,
+                dbPassword
+        );
     }
 }

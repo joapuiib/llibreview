@@ -1,36 +1,29 @@
 package com.fpmislata.daw1.projectedaw1.persistance.impl;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.persistance.RepositoryTest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static com.fpmislata.daw1.projectedaw1.persistance.RepositoryTest.getTestDatasource;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 class LlibreRepostoryImplTest {
-    private static LlibreRepostoryImpl llibreRepostory;
 
-    @BeforeAll
-    static void setup(){
-        llibreRepostory = new LlibreRepostoryImpl();
-        llibreRepostory.setDatasource(getTestDatasource());
-    }
-
+    @Autowired
+    private LlibreRepostoryImpl llibreRepostory;
 
     @Test
     public void findAll_shouldReturnAllLlibres() {
-        // Call method under test
         List<Llibre> llibres = llibreRepostory.findAll();
         assertEquals(6, llibres.size());
     }
 
     @Test
     public void findLatest_1_shouldReturnLatestBook() {
-        // Call method under test
         List<Llibre> llibres = llibreRepostory.findLatest(1);
         assertAll(
             () -> assertEquals(1, llibres.size()),
@@ -40,7 +33,6 @@ class LlibreRepostoryImplTest {
 
     @Test
     public void findLatest_3_shouldReturnThreeLatestBooks() {
-        // Call method under test
         List<Llibre> llibres = llibreRepostory.findLatest(3);
         assertAll(
                 () -> assertEquals(3, llibres.size()),

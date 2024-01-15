@@ -4,11 +4,15 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.persistance.LlibreRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.impl.LlibreRepostoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class LlibreServiceImpl implements LlibreService {
-    private LlibreRepository llibreRepository = new LlibreRepostoryImpl();
+    @Autowired
+    private LlibreRepository llibreRepository;
     @Override
     public List<Llibre> findAll() {
         return llibreRepository.findAll();
