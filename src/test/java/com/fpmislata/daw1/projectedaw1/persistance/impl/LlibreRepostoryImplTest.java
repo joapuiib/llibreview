@@ -3,7 +3,9 @@ package com.fpmislata.daw1.projectedaw1.persistance.impl;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
