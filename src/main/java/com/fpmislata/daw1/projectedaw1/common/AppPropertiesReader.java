@@ -8,7 +8,7 @@ import java.util.Properties;
 
 @Log4j2
 public class AppPropertiesReader {
-    private static Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
     static {
         loadProperties("application.properties"); // Carga las propiedades por defecto

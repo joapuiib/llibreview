@@ -12,12 +12,13 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private LlibreService llibreService;
+    private final LlibreService llibreService;
 
     public MainController() {
         this.llibreService = LlibreFactory.createLlibreService();
     }
 
+    @SuppressWarnings("SameReturnValue")
     @GetMapping("/")
     public String index(Model model) {
         List<Llibre> ultimsLlibres = llibreService.findLatest(4);

@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 

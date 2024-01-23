@@ -1,7 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.persistance.database;
 
 /*
- * Source: https://gist.github.com/joe776/831762#file-scriptrunner-java
  * Added additional null checks when closing the ResultSet and Statements.
  *
  * Thanks to pihug12 and Grzegorz Oledzki at stackoverflow.com
@@ -44,6 +43,7 @@ import java.util.regex.Pattern;
  * Tool to run database scripts. This version of the script can be found at
  * https://gist.github.com/gists/831762/
  */
+@SuppressWarnings("all")
 public class ScriptRunner {
 
     private static final String DEFAULT_DELIMITER = ";";

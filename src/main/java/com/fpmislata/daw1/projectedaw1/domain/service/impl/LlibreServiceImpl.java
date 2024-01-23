@@ -7,7 +7,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
 import java.util.List;
 
 public class LlibreServiceImpl implements LlibreService {
-    private LlibreRepository llibreRepository;
+    private final LlibreRepository llibreRepository;
 
     public LlibreServiceImpl(LlibreRepository llibreRepository) {
         this.llibreRepository = llibreRepository;

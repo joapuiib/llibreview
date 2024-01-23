@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.persistance.database;
 import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import lombok.extern.log4j.Log4j2;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

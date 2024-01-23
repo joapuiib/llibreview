@@ -6,7 +6,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
 import java.util.List;
 
 public class LlibreRepositoryImpl implements LlibreRepository {
-    private LlibreDao llibreDao;
+    private final LlibreDao llibreDao;
 
     public LlibreRepositoryImpl(LlibreDao llibreDao) {
         this.llibreDao = llibreDao;

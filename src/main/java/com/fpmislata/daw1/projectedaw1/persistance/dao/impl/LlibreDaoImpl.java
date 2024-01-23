@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class LlibreDaoImpl implements LlibreDao {
-    private DatabaseConnection databaseConnection;
-    private LlibreRowMapper llibreRowMapper;
+    private final DatabaseConnection databaseConnection;
+    private final LlibreRowMapper llibreRowMapper;
 
     public LlibreDaoImpl(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
@@ -21,9 +21,8 @@ public class LlibreDaoImpl implements LlibreDao {
 
     @Override
     public List<Llibre> findAll() {
-        try {
-            String sql = "SELECT * FROM llibre";
-            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql);
+        String sql = "SELECT * FROM llibre";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.toLlibreList(rs);
         } catch (SQLException e) {
@@ -33,9 +32,8 @@ public class LlibreDaoImpl implements LlibreDao {
 
     @Override
     public Llibre findByIsbn(String isbn) {
-        try {
-            String sql = "SELECT * FROM llibre WHERE isbn = ?";
-            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql);
+        String sql = "SELECT * FROM llibre WHERE isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -47,9 +45,8 @@ public class LlibreDaoImpl implements LlibreDao {
 
     @Override
     public List<Llibre> findLatest(int n) {
-        try {
-            String sql = "SELECT * FROM llibre ORDER BY data_publicacio DESC LIMIT ?";
-            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql);
+        String sql = "SELECT * FROM llibre ORDER BY data_publicacio DESC LIMIT ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.toLlibreList(rs);
