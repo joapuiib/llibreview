@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface LlibreDao {
     List<Llibre> findAll();
-
-    Llibre find(int id);
+    Llibre findByIsbn(String isbn);
+    List<Llibre> findLatest(int n);
+    List<Llibre> findMostRead(int n);
+    List<Llibre> findBestReview(int n);
 }

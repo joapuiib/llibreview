@@ -3,6 +3,10 @@ package com.fpmislata.daw1.projectedaw1.persistance.database;
 import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import lombok.extern.log4j.Log4j2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -52,5 +56,20 @@ public class DatabaseConnection {
                 dbUser,
                 dbPassword
         );
+    }
+
+    public void executeScript(String scriptPath) {
+        try {
+            ScriptRunner scriptRunner = new ScriptRunner(connection, false, false);
+
+            InputStream scriptStream = getClass().getClassLoader().getResourceAsStream(scriptPath);
+            if (scriptStream == null)
+                throw new RuntimeException("Script not found: " + scriptPath);
+
+            scriptRunner.runScript(new InputStreamReader(scriptStream));
+        } catch (IOException | SQLException e) {
+            log.error(String.format("Error executing script %s:\n    %s\n", scriptPath, e.getMessage()));
+            throw new RuntimeException(e);
+        }
     }
 }

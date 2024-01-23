@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<Llibre> ultimsLlibres = llibreService.findAll();
+        List<Llibre> ultimsLlibres = llibreService.findLatest(4);
         System.out.println(ultimsLlibres);
         model.addAttribute("ultimsLlibres", ultimsLlibres);
         return "index";

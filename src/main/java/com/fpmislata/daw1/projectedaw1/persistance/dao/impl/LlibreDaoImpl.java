@@ -32,15 +32,39 @@ public class LlibreDaoImpl implements LlibreDao {
     }
 
     @Override
-    public Llibre find(int id) {
+    public Llibre findByIsbn(String isbn) {
         try {
-            String sql = "SELECT * FROM llibre WHERE id = ?";
+            String sql = "SELECT * FROM llibre WHERE isbn = ?";
             PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
             return llibreRowMapper.toLlibre(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public List<Llibre> findLatest(int n) {
+        try {
+            String sql = "SELECT * FROM llibre ORDER BY data_publicacio DESC LIMIT ?";
+            PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, n);
+            ResultSet rs = preparedStatement.executeQuery();
+            return llibreRowMapper.toLlibreList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Llibre> findMostRead(int n) {
+        return null;
+    }
+
+    @Override
+    public List<Llibre> findBestReview(int n) {
+        return null;
     }
 }

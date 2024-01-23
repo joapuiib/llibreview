@@ -19,17 +19,16 @@ public class LlibreRepositoryImpl implements LlibreRepository {
 
     @Override
     public List<Llibre> findLatest(int n) {
-        // return llibreDao.findLatest(n);
-        return null;
+        return llibreDao.findLatest(n);
     }
 
     @Override
     public List<Llibre> findMostRead(int n) {
-        return null;
+        return llibreDao.findMostRead(n);
     }
 
     @Override
     public List<Llibre> findBestReview(int n) {
-        return null;
+        return llibreDao.findBestReview(n);
     }
 }
