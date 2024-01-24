@@ -1,0 +1,16 @@
+<div th:fragment="llibre-card" class="llibre-overview">
+    <!--/*@thymesVar id="llibre" type="Llibre"*/-->
+    <a th:href="'/llibre/' + ${llibre.getIsbn()}">
+        <img th:src="@{/img/llibre_placeholder.png}" alt="" class="d-block mw-100 llibre-overview-img mx-auto">
+        <div class="llibre-overview-description">
+            <p th:text="${llibre.getTitol()}" class=""></p>
+        </div>
+    </a>
+</div>
+
+<div th:fragment="llibre-card-container" class="card-container d-flex justify-content-center gap-3">
+    <!--/*@thymesVar id="llibres" type="List<Llibre>"*/-->
+    <div th:each="llibre: ${llibres}" class="">
+        <div th:replace="~{components/cards :: llibre-card(llibre=${llibre})}"></div>
+    </div>
+</div>

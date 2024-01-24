@@ -4,9 +4,12 @@
     </head>
     <body>
         <nav th:replace="~{components/base:: menu}"></nav>
-        <h3 class="text-center mt-5">Últims llibres</h3>
-        <h3 class="text-center mt-5">Més llegits</h3>
-        <h3 class="text-center mt-5">Millor valorats</h3>
+        <main class="container">
+            <h3 class="text-center my-4 ">Últims llibres</h3>
+            <div th:replace="~{components/cards :: llibre-card-container(llibres=${ultimsLlibres})}"></div>
+            <h3 class="text-center my-4">Més llegits</h3>
+            <h3 class="text-center my-4">Millor valorats</h3>
+        </main>
         <footer th:replace="~{components/base :: footer}"></footer>
         <script th:replace="~{components/base :: jquery}"></script>
         <script th:replace="~{components/base :: popper}"></script>

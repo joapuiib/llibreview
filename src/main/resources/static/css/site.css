@@ -109,3 +109,30 @@ body {
 p {
     margin-bottom: 0.7em;
 }
+
+.llibre-overview {
+    position: relative;
+}
+
+img.llibre-overview-img {
+    max-height: 150px;
+}
+
+.llibre-overview-description {
+    display: block;
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    width: 100%;
+    background: rgba(var(--cafe-500), 0.7);
+    text-wrap: wrap;
+    margin: 0;
+    padding: 4px;
+}
+
+.llibre-overview-description p {
+    margin: 0;
+}
