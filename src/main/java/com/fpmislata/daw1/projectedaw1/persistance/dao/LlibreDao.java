@@ -10,4 +10,6 @@ public interface LlibreDao {
     List<Llibre> findLatest(int n);
     List<Llibre> findMostRead(int n);
     List<Llibre> findBestReview(int n);
+    boolean insert(Llibre llibre);
+    Llibre delete(String isbn);
 }
