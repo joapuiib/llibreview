@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +64,9 @@ public class Llibre {
 
     public LocalDate getDataPublicacio() {
         return dataPublicacio;
+    }
+    public String getPrettyDataPublicacio() {
+        return dataPublicacio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public void setDataPublicacio(LocalDate dataPublicacio) {

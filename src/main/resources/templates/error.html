@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+    <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+        <head>
+            <title>Error</title>
+        </head>
+    <body>
+        <main class="container">
+            <h3 class="text-center my-4 ">Error</h3>
+            <p>Ha ocorregut un error inesperat</p>
+            <p th:text="${error}"></p>
+        </main>
+    </body>
+</html>

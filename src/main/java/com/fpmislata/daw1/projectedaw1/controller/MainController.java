@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.factory.LlibreFactory;
+import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,17 @@ public class MainController {
     @SuppressWarnings("SameReturnValue")
     @GetMapping("/")
     public String index(Model model) {
-        List<Llibre> ultimsLlibres = llibreService.findLatest(4);
-        System.out.println(ultimsLlibres);
+        List<CardItem> ultimsLlibres = llibreService.findLatest(4).stream().map(
+                llibre -> {
+                     CardItem card = new CardItem();
+                     card.setTitol(llibre.getTitol());
+                     card.setSubtitol(llibre.getPrettyDataPublicacio());
+                     card.setUrl("/llibre/" + llibre.getIsbn());
+                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "fallback.png"));
+                     return card;
+                }).toList();
         model.addAttribute("ultimsLlibres", ultimsLlibres);
+
         return "index";
     }
 }

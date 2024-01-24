@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html th:fragment="layout (title, content)">
+    <head th:replace="~{components/base :: head(~{::title})}"></head>
+
+    <body>
+        <nav th:replace="~{components/base:: menu}"></nav>
+
+        <main th:replace="${content}"> </main>
+
+        <footer th:replace="~{components/base :: footer}"></footer>
+        <script th:replace="~{components/base :: jquery}"></script>
+        <script th:replace="~{components/base :: popper}"></script>
+        <script th:replace="~{components/base :: bootstrap}"></script>
+    </body>
+</html>
