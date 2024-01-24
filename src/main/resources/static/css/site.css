@@ -115,7 +115,8 @@ p {
 }
 
 img.llibre-overview-img {
-    max-height: 150px;
+    height: 300px;
+    min-width: 130px;
 }
 
 .llibre-overview-description {
@@ -125,9 +126,10 @@ img.llibre-overview-img {
     bottom: 20px;
     left: 0;
     right: 0;
-    height: 40px;
     width: 100%;
-    background: rgba(var(--cafe-500), 0.7);
+    height: 60px;
+    background: var(--cafe-600);
+    opacity: 0.9;
     text-wrap: wrap;
     margin: 0;
     padding: 4px;
@@ -135,4 +137,9 @@ img.llibre-overview-img {
 
 .llibre-overview-description p {
     margin: 0;
+}
+.llibre-overview a {
+    text-decoration: unset;
+    color: var(--white);
+    font-weight: bold;
 }

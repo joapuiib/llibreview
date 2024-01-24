@@ -1,7 +1,7 @@
 <div th:fragment="llibre-card" class="llibre-overview">
     <!--/*@thymesVar id="llibre" type="Llibre"*/-->
     <a th:href="'/llibre/' + ${llibre.getIsbn()}">
-        <img th:src="@{/img/llibre_placeholder.png}" alt="" class="d-block mw-100 llibre-overview-img mx-auto">
+        <img th:src="'/img/llibre/' + ${llibre.getRutaImatge()}" alt="" class="d-block mw-100 llibre-overview-img mx-auto">
         <div class="llibre-overview-description">
             <p th:text="${llibre.getTitol()}" class=""></p>
         </div>

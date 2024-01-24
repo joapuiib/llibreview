@@ -17,6 +17,7 @@ public class LlibreRowMapper {
         llibre.setResum(rs.getString("resum"));
         llibre.setDataPublicacio(rs.getDate("data_publicacio").toLocalDate());
         llibre.setNombrePagines(rs.getInt("nombre_pagines"));
+        llibre.setRutaImatge(rs.getString("ruta_imatge"));
         return llibre;
     }
 

@@ -11,6 +11,7 @@ public class Llibre {
     private String resum;
     private LocalDate dataPublicacio;
     private int nombrePagines;
+    private String rutaImatge;
 
     private List<Autor> autors;
     private List<Genere> generes;
@@ -74,6 +75,14 @@ public class Llibre {
 
     public void setNombrePagines(int nombrePagines) {
         this.nombrePagines = nombrePagines;
+    }
+
+    public String getRutaImatge() {
+        return rutaImatge;
+    }
+
+    public void setRutaImatge(String rutaImatge) {
+        this.rutaImatge = rutaImatge;
     }
 
     public List<Autor> getAutors() {
