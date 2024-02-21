@@ -9,7 +9,7 @@
     </a>
 </div>
 
-<div th:fragment="llibre-card-container" class="card-container d-flex justify-content-center gap-3">
+<div th:fragment="llibre-card-container" class="card-container d-flex flex-wrap justify-content-center gap-3">
     <!--/*@thymesVar id="llibres" type="List<Llibre>"*/-->
     <div th:each="card: ${cards}" class="">
         <div th:replace="~{components/cards :: llibre-card(card=${card})}"></div>
