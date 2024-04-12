@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+    <head>
+        <title>Llibres</title>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="text-center my-4 ">Llibres</h1>
+            <!--/*@thymesVar id="llibres" type="List<Card-Item>"*/-->
+            <div th:replace="~{components/cards :: llibre-card-container(cards=${llibres})}"></div>
+        </main>
+    </body>
+</html>

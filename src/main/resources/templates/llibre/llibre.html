@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+    <head>
+        <title th:text="${llibre.getTitol()}"></title>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="text-center my-4" th:text="${llibre.getTitol()}"></h1>
+            <div class="left-sidebar">
+                <div>
+                    <img th:src="|/img/llibre/${llibre.getRutaImatge()}|" alt="" class="d-block mx-auto w-100">
+                </div>
+                <div>
+                    <dl class="llibre-info">
+                        <dt>ISBN</dt>
+                        <dd th:text="${llibre.getIsbn()}"></dd>
+                        <dt>Data de publicació</dt>
+                        <dd th:text="${llibre.getPrettyDataPublicacio()}"></dd>
+                        <dt>Nombre de pàgines</dt>
+                        <dd th:text="${llibre.getNombrePagines()}"></dd>
+                        <dt>Resum</dt>
+                        <dd th:text="${llibre.getResum()}"></dd>
+                    </dl>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

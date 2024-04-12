@@ -150,3 +150,28 @@ img.card-item-img {
 .card-item-subtitol {
     font-size: 0.8em;
 }
+
+.left-sidebar {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.left-sidebar > * {
+    width:100%;
+    padding:1rem;
+}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+    .left-sidebar > *:nth-child(1) {
+        width:calc(100% / 3 );
+    }
+    .left-sidebar > * {
+        width:calc(100% / 3 * 2);
+        order:-1;
+    }
+}
+
+.text-justify {
+    text-align: justify !important;
+}
