@@ -1,6 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
+import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.LlibreDaoMock;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
@@ -11,31 +13,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LlibreRepostoryImplTest {
 
-    private LlibreRepositoryImpl llibreRepostory;
+    private final LlibreRepositoryImpl llibreRepostory = new LlibreRepositoryImpl(new LlibreDaoMock());
+    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
 
     @Test
     public void findAll_shouldReturnAllLlibres() {
-        List<Llibre> llibres = llibreRepostory.findAll();
-        assertEquals(6, llibres.size());
+        List<Llibre> result = llibreRepostory.findAll();
+        assertEquals(expectedLlibreList, result);
     }
 
     @Test
     public void findLatest_1_shouldReturnLatestBook() {
-        List<Llibre> llibres = llibreRepostory.findLatest(1);
+        List<Llibre> result = llibreRepostory.findLatest(1);
         assertAll(
-            () -> assertEquals(1, llibres.size()),
-            () -> assertEquals("3", llibres.get(0).getIsbn())
+                () -> assertEquals(1, result.size()),
+                () -> assertEquals(expectedLlibreList.get(5), result.get(0))
         );
     }
 
     @Test
     public void findLatest_3_shouldReturnThreeLatestBooks() {
-        List<Llibre> llibres = llibreRepostory.findLatest(3);
+        List<Llibre> result = llibreRepostory.findLatest(3);
         assertAll(
-                () -> assertEquals(3, llibres.size()),
-                () -> assertEquals("3", llibres.get(0).getIsbn()),
-                () -> assertEquals("2", llibres.get(1).getIsbn()),
-                () -> assertEquals("1", llibres.get(2).getIsbn())
+                () -> assertEquals(3, result.size()),
+                () -> assertEquals(expectedLlibreList.get(5), result.get(0)),
+                () -> assertEquals(expectedLlibreList.get(4), result.get(1)),
+                () -> assertEquals(expectedLlibreList.get(3), result.get(2))
         );
     }
 }

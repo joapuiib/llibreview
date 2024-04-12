@@ -2,6 +2,8 @@ package com.fpmislata.daw1.projectedaw1.unit.domain.service.impl;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
+import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
+import com.fpmislata.daw1.projectedaw1.mock.persistance.repository.LlibreRepositoryMock;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,27 +20,13 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LlibreServiceImplTest {
-    @Mock
-    private LlibreRepository llibreRepository;
+    private final LlibreServiceImpl llibreService = new LlibreServiceImpl(new LlibreRepositoryMock());
 
-    @InjectMocks
-    private LlibreServiceImpl llibreService;
-
-    private static List<Llibre> expectedAllLlibres;
-
-
-    @BeforeAll
-    static void setup(){
-        expectedAllLlibres = new ArrayList<>();
-        expectedAllLlibres.add(new Llibre("1", "Llibre 1"));
-        expectedAllLlibres.add(new Llibre("2", "Llibre 2"));
-        expectedAllLlibres.add(new Llibre("3", "Llibre 3"));
-    }
+    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
 
     @Test
     void findAll_shouldReturnAllLlibres() {
-        when(llibreRepository.findAll()).thenReturn(expectedAllLlibres);
-        List<Llibre> llibres = llibreService.findAll();
-        assertEquals(expectedAllLlibres, llibres);
+        List<Llibre> result = llibreService.findAll();
+        assertEquals(expectedLlibreList, result);
     }
 }

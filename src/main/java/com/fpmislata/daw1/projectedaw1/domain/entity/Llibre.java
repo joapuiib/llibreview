@@ -28,13 +28,14 @@ public class Llibre {
         this.titol = titol;
     }
 
-    public Llibre(String isbn, String titol, String resum, LocalDate dataPublicacio, int nombrePagines) {
+    public Llibre(String isbn, String titol, String resum, LocalDate dataPublicacio, int nombrePagines, String rutaImatge) {
         this();
         this.isbn = isbn;
         this.titol = titol;
         this.resum = resum;
         this.dataPublicacio = dataPublicacio;
         this.nombrePagines = nombrePagines;
+        this.rutaImatge = rutaImatge;
     }
 
     public String getIsbn() {

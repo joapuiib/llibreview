@@ -1,8 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import com.fpmislata.daw1.projectedaw1.common.factory.LlibreFactory;
+import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ public class MainController {
     private final LlibreService llibreService;
 
     public MainController() {
-        this.llibreService = LlibreFactory.createLlibreService();
+        this.llibreService = LlibreIoc.createLlibreService();
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -34,5 +33,10 @@ public class MainController {
         model.addAttribute("ultimsLlibres", ultimsLlibres);
 
         return "index";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
     }
 }

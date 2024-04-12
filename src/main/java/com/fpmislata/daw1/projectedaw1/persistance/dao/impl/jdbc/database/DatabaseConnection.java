@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.persistance.database;
+package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database;
 
 import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import lombok.extern.log4j.Log4j2;

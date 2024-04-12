@@ -3,7 +3,8 @@ create table llibre (
     titol varchar(100) not null,
     resum text,
     nombre_pagines int unsigned,
-    data_publicacio date not null
+    data_publicacio date not null,
+    ruta_imatge varchar(200) not null
 );
 
 create table autor (

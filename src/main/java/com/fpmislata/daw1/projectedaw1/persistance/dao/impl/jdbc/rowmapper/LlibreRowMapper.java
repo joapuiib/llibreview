@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
+package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import org.springframework.stereotype.Component;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class LlibreRowMapper {
-    public Llibre toLlibre(ResultSet rs) throws SQLException {
+public class LlibreRowMapper implements RowMapper<Llibre> {
+    public Llibre mapItem(ResultSet rs) throws SQLException {
         Llibre llibre = new Llibre();
         llibre.setIsbn(rs.getString("isbn"));
         llibre.setTitol(rs.getString("titol"));
@@ -21,18 +21,14 @@ public class LlibreRowMapper {
         return llibre;
     }
 
-    public List<Llibre> toLlibreList(ResultSet resultSet) {
+    public List<Llibre> map(ResultSet resultSet) throws SQLException {
         if(resultSet ==  null) {
             return null;
         }
-        List<Llibre> llibreList = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                llibreList.add(toLlibre(resultSet));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Algo no ha funcionado: " + e.getMessage());
+        List<Llibre> llibreRecordList = new ArrayList<>();
+        while (resultSet.next()) {
+            llibreRecordList.add(mapItem(resultSet));
         }
-        return llibreList;
+        return llibreRecordList;
     }
 }
