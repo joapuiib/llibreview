@@ -9,6 +9,15 @@ import java.util.List;
 public class LlibreRepositoryMock implements LlibreRepository {
 
     private final List<Llibre> llibreList = LlibreData.llibreList;
+
+    @Override
+    public Llibre findByIsbn(String isbn) {
+        return llibreList.stream()
+                .filter(llibre -> llibre.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
+    }
+
     @Override
     public List<Llibre> findAll() {
         return llibreList;
@@ -16,7 +25,10 @@ public class LlibreRepositoryMock implements LlibreRepository {
 
     @Override
     public List<Llibre> findLatest(int n) {
-        return llibreList.stream().sorted((l1, l2) -> l2.getDataPublicacio().compareTo(l1.getDataPublicacio())).limit(n).toList();
+        return llibreList.stream()
+                .sorted((l1, l2) -> l2.getDataPublicacio().compareTo(l1.getDataPublicacio()))
+                .limit(n)
+                .toList();
     }
 
     @Override

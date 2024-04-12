@@ -13,6 +13,11 @@ public class LlibreRepositoryImpl implements LlibreRepository {
     }
 
     @Override
+    public Llibre findByIsbn(String isbn) {
+        return llibreDao.findByIsbn(isbn);
+    }
+
+    @Override
     public List<Llibre> findAll() {
         return llibreDao.findAll();
     }

@@ -5,6 +5,7 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import java.util.List;
 
 public interface LlibreService {
+    Llibre findByIsbn(String isbn);
     List<Llibre> findAll();
     List<Llibre> findLatest(int n);
     List<Llibre> findMostRead(int n);

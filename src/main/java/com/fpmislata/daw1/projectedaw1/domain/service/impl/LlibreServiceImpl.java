@@ -13,6 +13,11 @@ public class LlibreServiceImpl implements LlibreService {
         this.llibreRepository = llibreRepository;
     }
 
+    @Override
+    public Llibre findByIsbn(String isbn) {
+        return llibreRepository.findByIsbn(isbn);
+    }
+
     public List<Llibre> findAll() {
         return llibreRepository.findAll();
     }
