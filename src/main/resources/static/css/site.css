@@ -110,16 +110,16 @@ p {
     margin-bottom: 0.7em;
 }
 
-.llibre-overview {
+.card-item {
     position: relative;
 }
 
-img.llibre-overview-img {
+img.card-item-img {
     height: 300px;
     min-width: 130px;
 }
 
-.llibre-overview-description {
+.card-item-description {
     display: block;
     position: absolute;
     text-align: center;
@@ -130,23 +130,23 @@ img.llibre-overview-img {
     min-height: 60px;
     background: var(--cafe-600);
     opacity: 0.9;
-    text-wrap: wrap;
+    text-wrap: pretty;
     margin: 0;
     padding: 4px;
 }
 
-.llibre-overview-description p {
+.card-item-description p {
     margin: 0;
 }
-.llibre-overview a {
+.card-item a {
     text-decoration: unset;
     color: var(--white);
 }
-.card-titol {
+.card-item-titol {
     font-size: 1em;
     font-weight: bold;
     margin-bottom: 0.5em;
 }
-.card-subtitol {
+.card-item-subtitol {
     font-size: 0.8em;
 }
