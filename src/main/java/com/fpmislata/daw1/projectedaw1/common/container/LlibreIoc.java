@@ -31,7 +31,8 @@ public class LlibreIoc {
 
     public static LlibreDao createLlibreDao() {
         if (llibreDao == null) {
-            llibreDao = new LlibreDaoJdbc();
+            // llibreDao = new LlibreDaoJdbc();
+            llibreDao = new LlibreDaoMemory();
         }
         return llibreDao;
     }

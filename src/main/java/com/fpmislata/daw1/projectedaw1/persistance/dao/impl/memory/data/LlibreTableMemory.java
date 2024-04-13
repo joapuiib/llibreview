@@ -69,16 +69,7 @@ public class LlibreTableMemory {
             )
     );
 
-    public List<LlibreRecord> selectAll(){
+    public List<LlibreRecord> get(){
         return llibreRecordList;
-    }
-
-    public LlibreRecord select(String isbn) {
-        for(LlibreRecord llibreRecord : llibreRecordList) {
-            if(llibreRecord.getIsbn().equals(isbn)) {
-                return llibreRecord;
-            }
-        }
-        return null;
     }
 }

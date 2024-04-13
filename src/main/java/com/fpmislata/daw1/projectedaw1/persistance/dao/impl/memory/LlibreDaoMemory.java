@@ -15,13 +15,20 @@ public class LlibreDaoMemory implements LlibreDao {
 
     @Override
     public List<Llibre> findAll() {
-        List<LlibreRecord> llibreRecordList = llibreTableMemory.selectAll();
+        List<LlibreRecord> llibreRecordList = llibreTableMemory.get();
         return llibreMapper.map(llibreRecordList);
     }
 
     @Override
     public Llibre findByIsbn(String isbn) {
-        LlibreRecord llibreRecord = llibreTableMemory.select(isbn);
+        LlibreRecord llibreRecord = llibreTableMemory.get().stream()
+                .filter(llibreRecord1 -> llibreRecord1.getIsbn().equals(isbn))
+                .findFirst()
+                .orElse(null);
+
+        if (llibreRecord == null) {
+            return null;
+        }
         return llibreMapper.map(llibreRecord);
     }
 

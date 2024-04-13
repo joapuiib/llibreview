@@ -1,21 +1,32 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+@Setter
+@Getter
 public class Autor {
+    private int id;
     private String nom;
-    private Date dataNaixement;
+    private String biografia;
+    private LocalDate dataNaixement;
+    private String rutaImatge;
 
-    public Autor(String nom, Date dataNaixement) {
+    public Autor(int id, String nom, String biografia, LocalDate dataNaixement, String rutaImatge) {
+        this.id = id;
         this.nom = nom;
+        this.biografia = biografia;
         this.dataNaixement = dataNaixement;
+        this.rutaImatge = rutaImatge;
     }
 
-    public String getNom() {
-        return nom;
+    public Autor() {
     }
 
-    public Date getDataNaixement() {
-        return dataNaixement;
+    public String getPrettyDataNaixement() {
+        return dataNaixement.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }

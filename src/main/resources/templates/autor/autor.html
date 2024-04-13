@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+    <head>
+        <!--/*@thymesVar id="autor" type="Autor"*/-->
+        <title th:text="${autor.getNom()}"></title>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="text-center my-4" th:text="${autor.getNom()}"></h1>
+            <div class="left-sidebar">
+                <div>
+                    <img th:src="|/img/autor/${autor.getRutaImatge()}|" alt="" class="d-block mx-auto w-100">
+                </div>
+                <div>
+                    <dl class="llibre-info">
+                        <dt>Data de naixement</dt>
+                        <dd th:text="${autor.getPrettyDataNaixement()}"></dd>
+                        <dt>Biografia</dt>
+                        <dd th:text="${autor.getBiografia()}"></dd>
+                    </dl>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
