@@ -12,15 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
 public class AutorController {
 
     private final AutorService autorService;
+    private final LlibreService llibreService;
 
     public AutorController() {
         this.autorService = AutorIoc.createService();
+        this.llibreService = LlibreIoc.createService();
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -43,6 +46,19 @@ public class AutorController {
     public String autor(Model model, @PathVariable(value = "id") int id) {
         Autor autor = autorService.findById(id);
         model.addAttribute("autor", autor);
+
+        List<CardItem> llibres = llibreService.findByAutor(autor).stream()
+                .sorted(Comparator.comparing(Llibre::getDataPublicacio).reversed())
+                .map(
+                    llibre -> {
+                        CardItem card = new CardItem();
+                        card.setTitol(llibre.getTitol());
+                        card.setSubtitol(Integer.toString(llibre.getDataPublicacio().getYear()));
+                        card.setUrl("/llibre/" + llibre.getIsbn());
+                        card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "fallback.png"));
+                        return card;
+                    }).toList();
+        model.addAttribute("llibres", llibres);
         return "autor/autor";
     }
 }

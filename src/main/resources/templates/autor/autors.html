@@ -7,7 +7,7 @@
         <main class="container">
             <h1 class="text-center my-4 ">Autors</h1>
             <!--/*@thymesVar id="autors" type="List<Card-Item>"*/-->
-            <div th:replace="~{components/cards :: llibre-card-container(cards=${autors})}"></div>
+            <div th:replace="~{components/cards :: card-container(cards=${autors}, classes=justify-content-center)}"></div>
         </main>
     </body>
 </html>

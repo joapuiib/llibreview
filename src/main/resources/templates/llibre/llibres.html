@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}" lang="ca">
     <head>
         <title>Llibres</title>
     </head>
@@ -7,7 +7,7 @@
         <main class="container">
             <h1 class="text-center my-4 ">Llibres</h1>
             <!--/*@thymesVar id="llibres" type="List<Card-Item>"*/-->
-            <div th:replace="~{components/cards :: llibre-card-container(cards=${llibres})}"></div>
+            <div th:replace="~{components/cards :: card-container(cards=${llibres}, classes=justify-content-center)}"></div>
         </main>
     </body>
 </html>
