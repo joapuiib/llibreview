@@ -20,6 +20,14 @@
                         <dd th:text="${llibre.getNombrePagines()}"></dd>
                         <dt>Resum</dt>
                         <dd th:text="${llibre.getResum()}"></dd>
+                        <dt>Autors</dt>
+                        <dd>
+                            <ul>
+                                <li th:each="autor : ${llibre.getAutors()}">
+                                    <a th:href="|/autor/${autor.getId()}|" th:text="${autor.getNom()}"></a>
+                                </li>
+                            </ul>
+                        </dd>
                     </dl>
                 </div>
             </div>

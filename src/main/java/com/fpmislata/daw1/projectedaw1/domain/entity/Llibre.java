@@ -1,11 +1,18 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
+import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
+import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Llibre {
     private String isbn;
     private String titol;
@@ -18,18 +25,14 @@ public class Llibre {
     private List<Genere> generes;
 
     public Llibre() {
-        autors = new ArrayList<>();
-        generes = new ArrayList<>();
     }
 
     public Llibre(String isbn, String titol){
-        this();
         this.isbn = isbn;
         this.titol = titol;
     }
 
     public Llibre(String isbn, String titol, String resum, LocalDate dataPublicacio, int nombrePagines, String rutaImatge) {
-        this();
         this.isbn = isbn;
         this.titol = titol;
         this.resum = resum;
@@ -38,59 +41,15 @@ public class Llibre {
         this.rutaImatge = rutaImatge;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getTitol() {
-        return titol;
-    }
-
-
-    public void setTitol(String titol) {
-        this.titol = titol;
-    }
-
-    public String getResum() {
-        return resum;
-    }
-
-    public void setResum(String resum) {
-        this.resum = resum;
-    }
-
-    public LocalDate getDataPublicacio() {
-        return dataPublicacio;
-    }
     public String getPrettyDataPublicacio() {
         return dataPublicacio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public void setDataPublicacio(LocalDate dataPublicacio) {
-        this.dataPublicacio = dataPublicacio;
-    }
-
-    public int getNombrePagines() {
-        return nombrePagines;
-    }
-
-    public void setNombrePagines(int nombrePagines) {
-        this.nombrePagines = nombrePagines;
-    }
-
-    public String getRutaImatge() {
-        return rutaImatge;
-    }
-
-    public void setRutaImatge(String rutaImatge) {
-        this.rutaImatge = rutaImatge;
-    }
-
     public List<Autor> getAutors() {
+        if (autors == null) {
+            AutorService autorService = AutorIoc.createService();
+            autors = autorService.findByLlibre(this);
+        }
         return autors;
     }
 

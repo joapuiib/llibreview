@@ -17,6 +17,14 @@
                         <dd th:text="${autor.getPrettyDataNaixement()}"></dd>
                         <dt>Biografia</dt>
                         <dd th:text="${autor.getBiografia()}"></dd>
+                        <dt>Llibres</dt>
+                        <dd>
+                            <ul>
+                                <li th:each="llibre : ${autor.getLlibres()}">
+                                    <a th:href="|/llibre/${llibre.getIsbn()}|" th:text="${llibre.getTitol()}"></a>
+                                </li>
+                            </ul>
+                        </dd>
                     </dl>
                 </div>
             </div>

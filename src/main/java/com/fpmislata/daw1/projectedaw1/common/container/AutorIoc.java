@@ -3,6 +3,7 @@ package com.fpmislata.daw1.projectedaw1.common.container;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.AutorServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.AutorDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.AutorRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.AutorRepositoryImpl;
@@ -23,13 +24,14 @@ public class AutorIoc {
 
     public static AutorRepository createRepository() {
         if (autorRepository == null) {
-            AutorDao autorDao = createAutorDao();
-            autorRepository = new AutorRepositoryImpl(autorDao);
+            AutorDao autorDao = createDao();
+            EscriuDao escriuDao = EscriuIoc.createDao();
+            autorRepository = new AutorRepositoryImpl(autorDao, escriuDao);
         }
         return autorRepository;
     }
 
-    public static AutorDao createAutorDao() {
+    public static AutorDao createDao() {
         if (autorDao == null) {
             autorDao = new AutorDaoMemory();
         }

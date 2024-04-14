@@ -8,11 +8,18 @@ import java.util.List;
 public class AutorTableMemory {
     private final List<AutorRecord> autorRecordList = List.of(
             new AutorRecord(
-                    1,
+                    0,
                     "Irene Solà",
                     "Irene Solà (Malla, 1990) és escriptora i traductora. Ha publicat les novel·les Canto jo i la muntanya balla (2019) i Míriam (2021), a més de diversos llibres de poesia i contes. La seva obra ha estat traduïda a més de vint idiomes i ha rebut diversos premis, com el Documenta, el Llibres Anagrama de Novel·la i el Premi de la Crítica de narrativa catalana. Ha traduït al català obres de Virginia Woolf, Ali Smith, W. G. Sebald, Joan Didion i Anne Carson, entre d'altres. És doctora en Humanitats per la Universitat Pompeu Fabra i ha viscut a Londres, París, Berlín i Brussel·les. Actualment resideix a Barcelona.",
                     LocalDate.parse("1990-08-17"),
                     "irene_sola.jpg"
+            ),
+            new AutorRecord(
+                    1,
+                    "Sara Mesa",
+                    "Sara Mesa (Madrid, 1976) és escriptora i traductora. Ha publicat les novel·les Un incendi arran de terra (2008), El trencanous (2011), Cicatriz (2015) i Mala letra (2016), a més de diversos llibres de relats i poesia. La seva obra ha estat traduïda a més de vint idiomes i ha rebut diversos premis, com el Ojo Crítico de Narrativa, el Premio Málaga de Ensayo i el Premio Nacional de Narrativa. Ha traduït al castellà obres de Virginia Woolf, Ali Smith, W. G. Sebald, Joan Didion i Anne Carson, entre d'altres. És llicenciada en Filologia Hispànica per la Universitat Complutense de Madrid i ha viscut a Londres, París, Berlín i Brussel·les. Actualment resideix a Barcelona.",
+                    LocalDate.parse("1976-06-30"),
+                    "sara_mesa.jpg"
             ),
             new AutorRecord(
                     2,

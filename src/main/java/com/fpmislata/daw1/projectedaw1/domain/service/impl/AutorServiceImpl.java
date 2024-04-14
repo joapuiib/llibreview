@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.AutorRepository;
 
@@ -20,5 +21,10 @@ public class AutorServiceImpl implements AutorService {
     @Override
     public List<Autor> findAll() {
         return this.autorRepository.findAll();
+    }
+
+    @Override
+    public List<Autor> findByLlibre(Llibre llibre) {
+        return this.autorRepository.findByIsbn(llibre.getIsbn());
     }
 }

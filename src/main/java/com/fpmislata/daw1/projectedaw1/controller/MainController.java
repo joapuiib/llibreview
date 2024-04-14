@@ -15,7 +15,7 @@ public class MainController {
     private final LlibreService llibreService;
 
     public MainController() {
-        this.llibreService = LlibreIoc.createLlibreService();
+        this.llibreService = LlibreIoc.createService();
     }
 
     @SuppressWarnings("SameReturnValue")

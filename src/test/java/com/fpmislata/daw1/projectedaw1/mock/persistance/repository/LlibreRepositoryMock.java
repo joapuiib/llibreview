@@ -24,6 +24,11 @@ public class LlibreRepositoryMock implements LlibreRepository {
     }
 
     @Override
+    public List<Llibre> findByAutorId(int idAutor) {
+        return null;
+    }
+
+    @Override
     public List<Llibre> findLatest(int n) {
         return llibreList.stream()
                 .sorted((l1, l2) -> l2.getDataPublicacio().compareTo(l1.getDataPublicacio()))

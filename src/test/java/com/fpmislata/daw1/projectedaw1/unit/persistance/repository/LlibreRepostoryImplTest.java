@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LlibreRepostoryImplTest {
 
-    private final LlibreRepositoryImpl llibreRepostory = new LlibreRepositoryImpl(new LlibreDaoMock());
+    private final LlibreRepositoryImpl llibreRepostory = new LlibreRepositoryImpl(new LlibreDaoMock(), null);
     private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
 
     @Test
