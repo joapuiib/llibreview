@@ -26,7 +26,7 @@ public class AutorTableMemory {
                     "Issac Asimov",
                     "Isaac Asimov (Petróvichi, 1920 - Nova York, 1992) va néixer a Rússia i va emigrar als Estats Units amb la seva família quan era un nen. Va estudiar a la Universitat de Columbia i es va doctorar en química. Va ser professor de bioquímica a la Universitat de Boston i va publicar més de cinc-cents llibres, entre els quals destaquen les seves obres de divulgació científica i les seves novel·les de ciència-ficció. Va ser un dels autors més prolífics de la història de la literatura i va rebre nombrosos premis, com el Hugo, el Nebula i el Bram Stoker. La seva obra més coneguda és la sèrie de la Fundació, que va ser escollida com la millor sèrie de ciència-ficció de tots els temps per la World Science Fiction Society.",
                     LocalDate.parse("1920-01-02"),
-                    "isaac_asimov.webp"
+                    "isaac_asimov.jpg"
             )
     );
 

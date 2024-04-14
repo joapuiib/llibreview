@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+<!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
     <head>
         <title th:text="${llibre.getTitol()}"></title>
     </head>
@@ -22,11 +23,7 @@
                         <dd th:text="${llibre.getResum()}"></dd>
                         <dt>Autors</dt>
                         <dd>
-                            <ul>
-                                <li th:each="autor : ${llibre.getAutors()}">
-                                    <a th:href="|/autor/${autor.getId()}|" th:text="${autor.getNom()}"></a>
-                                </li>
-                            </ul>
+                            <div th:replace="~{components/cards :: card-container(cards=${autors}, classes=justify-content-start)}"></div>
                         </dd>
                     </dl>
                 </div>

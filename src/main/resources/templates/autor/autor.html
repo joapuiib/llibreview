@@ -19,7 +19,7 @@
                         <dd th:text="${autor.getBiografia()}"></dd>
                         <dt>Llibres</dt>
                         <dd>
-                            <div class="justify-content-start" th:replace="~{components/cards :: card-container(cards=${llibres}, classes=justify-content-start)}"></div>
+                            <div th:replace="~{components/cards :: card-container(cards=${llibres}, classes=justify-content-start)}"></div>
                         </dd>
                     </dl>
                 </div>

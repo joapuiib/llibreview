@@ -112,11 +112,21 @@ p {
 
 .card-item {
     position: relative;
+    height: 300px;
+    width: 200px;
+    overflow: hidden;
 }
 
 img.card-item-img {
-    height: 300px;
-    min-width: 130px;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .card-item-description {
