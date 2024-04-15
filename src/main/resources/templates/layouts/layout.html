@@ -5,7 +5,7 @@
     <body>
         <nav th:replace="~{components/base:: menu}"></nav>
 
-        <main th:replace="${content}"> </main>
+        <main class="flex-grow-1" th:insert="${content}"> </main>
 
         <footer th:replace="~{components/base :: footer}"></footer>
         <script th:replace="~{components/base :: jquery}"></script>
