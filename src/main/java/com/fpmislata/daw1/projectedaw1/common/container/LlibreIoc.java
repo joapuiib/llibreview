@@ -1,6 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.common.container;
 
+import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.LlibreDaoMemory;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
@@ -32,8 +34,10 @@ public class LlibreIoc {
 
     public static LlibreDao createDao() {
         if (llibreDao == null) {
-            // llibreDao = new LlibreDaoJdbc();
-            llibreDao = new LlibreDaoMemory();
+            if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
+                llibreDao = new LlibreDaoJdbc();
+            else
+                llibreDao = new LlibreDaoMemory();
         }
         return llibreDao;
     }

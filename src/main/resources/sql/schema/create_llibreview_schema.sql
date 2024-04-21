@@ -1,16 +1,29 @@
+drop table if exists segueix_llista;
+drop table if exists llista;
+drop table if exists review;
+drop table if exists usuari;
+drop table if exists rol;
+drop table if exists llibre_genere;
+drop table if exists genere;
+drop table if exists escriu;
+drop table if exists autor;
+drop table if exists llibre;
+
 create table llibre (
     isbn varchar(50) primary key,
     titol varchar(100) not null,
     resum text,
-    nombre_pagines int unsigned,
     data_publicacio date not null,
+    nombre_pagines int unsigned,
     ruta_imatge varchar(200) not null
 );
 
 create table autor (
     id_autor int primary key,
     nom varchar(200) not null,
-    data_naixement date not null
+    biografia text not null,
+    data_naixement date not null,
+    ruta_imatge varchar(200) not null
 );
 
 create table escriu (
