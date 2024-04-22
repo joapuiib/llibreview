@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Log4j2
@@ -55,6 +56,11 @@ public class DatabaseConnection {
                 dbUser,
                 dbPassword
         );
+    }
+
+    @SuppressWarnings("SqlSourceToSinkFlow")
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return connection.prepareStatement(sql);
     }
 
     public void executeScript(String scriptPath) {

@@ -24,7 +24,7 @@ public class AutorDaoJdbc implements AutorDao {
     @Override
     public List<Autor> findAll() {
         String sql = "SELECT * FROM autor";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             ResultSet rs = preparedStatement.executeQuery();
             return autorRowMapper.map(rs);
         } catch (SQLException e) {
@@ -35,7 +35,7 @@ public class AutorDaoJdbc implements AutorDao {
     @Override
     public Autor findById(int id) {
         String sql = "SELECT * FROM autor where id_autor = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             List<Autor> autorList = autorRowMapper.map(rs);
