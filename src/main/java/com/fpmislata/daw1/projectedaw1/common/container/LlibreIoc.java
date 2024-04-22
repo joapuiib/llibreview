@@ -15,6 +15,7 @@ public class LlibreIoc {
     private static LlibreService llibreService;
     private static LlibreRepository llibreRepository;
     private static LlibreDao llibreDao;
+    private static LlibreTableMemory llibreTableMemory;
 
     public static LlibreService createService() {
         if (llibreService == null) {
@@ -37,9 +38,18 @@ public class LlibreIoc {
         if (llibreDao == null) {
             if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
                 llibreDao = new LlibreDaoJdbc();
-            else
-                llibreDao = new LlibreDaoMemory(new LlibreTableMemory());
+            else {
+                LlibreTableMemory llibreTableMemory = createTableMemory();
+                llibreDao = new LlibreDaoMemory(llibreTableMemory);
+            }
         }
         return llibreDao;
+    }
+
+    public static LlibreTableMemory createTableMemory() {
+        if (llibreTableMemory == null) {
+            llibreTableMemory = new LlibreTableMemory();
+        }
+        return llibreTableMemory;
     }
 }

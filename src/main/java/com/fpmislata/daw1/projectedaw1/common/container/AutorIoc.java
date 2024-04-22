@@ -16,6 +16,7 @@ public class AutorIoc {
 
     private static AutorRepository autorRepository;
     private static AutorDao autorDao;
+    private static AutorTableMemory autorTableMemory;
 
     public static AutorService createService() {
         if (autorService == null) {
@@ -38,9 +39,18 @@ public class AutorIoc {
         if (autorDao == null) {
             if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
                 autorDao = new AutorDaoJdbc();
-            else
-                autorDao = new AutorDaoMemory(new AutorTableMemory());
+            else {
+                AutorTableMemory autorTableMemory = createTableMemory();
+                autorDao = new AutorDaoMemory(autorTableMemory);
+            }
         }
         return autorDao;
+    }
+
+    public static AutorTableMemory createTableMemory() {
+        if (autorTableMemory == null) {
+            autorTableMemory = new AutorTableMemory();
+        }
+        return autorTableMemory;
     }
 }
