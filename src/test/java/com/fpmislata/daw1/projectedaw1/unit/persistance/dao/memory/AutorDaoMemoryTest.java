@@ -1,6 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.dao.memory;
 
-import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.AutorDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.AutorTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.AutorRecord;
