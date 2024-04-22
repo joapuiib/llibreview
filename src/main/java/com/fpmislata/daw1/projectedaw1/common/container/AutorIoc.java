@@ -7,6 +7,8 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.AutorDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.AutorDaoMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.AutorTableMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.EscriuTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.AutorRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.AutorRepositoryImpl;
 
@@ -38,7 +40,7 @@ public class AutorIoc {
             if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
                 autorDao = new AutorDaoJdbc();
             else
-                autorDao = new AutorDaoMemory();
+                autorDao = new AutorDaoMemory(new AutorTableMemory());
         }
         return autorDao;
     }
