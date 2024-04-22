@@ -7,6 +7,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.LlibreDaoMemo
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.LlibreTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 
@@ -37,7 +38,7 @@ public class LlibreIoc {
             if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
                 llibreDao = new LlibreDaoJdbc();
             else
-                llibreDao = new LlibreDaoMemory();
+                llibreDao = new LlibreDaoMemory(new LlibreTableMemory());
         }
         return llibreDao;
     }

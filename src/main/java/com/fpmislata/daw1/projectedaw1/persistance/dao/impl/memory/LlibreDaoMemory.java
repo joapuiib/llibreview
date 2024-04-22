@@ -10,8 +10,12 @@ import java.util.List;
 
 public class LlibreDaoMemory implements LlibreDao {
 
-    private final LlibreTableMemory llibreTableMemory = new LlibreTableMemory();
+    private final LlibreTableMemory llibreTableMemory;
     private final LlibreMapper llibreMapper = new LlibreMapper();
+
+    public LlibreDaoMemory(LlibreTableMemory llibreTableMemory) {
+        this.llibreTableMemory = llibreTableMemory;
+    }
 
     @Override
     public List<Llibre> findAll() {

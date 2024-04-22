@@ -13,6 +13,7 @@ public class AutorServiceImpl implements AutorService {
     public AutorServiceImpl(AutorRepository autorRepository) {
         this.autorRepository = autorRepository;
     }
+
     @Override
     public Autor findById(int id) {
         return this.autorRepository.findById(id);

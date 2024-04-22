@@ -13,7 +13,11 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.E
 import java.util.List;
 
 public class EscriuDaoMemory implements EscriuDao {
-    private final EscriuTableMemory escriuTableMemory = new EscriuTableMemory();
+    private final EscriuTableMemory escriuTableMemory;
+
+    public EscriuDaoMemory(EscriuTableMemory escriuTableMemory) {
+        this.escriuTableMemory = escriuTableMemory;
+    }
 
     @Override
     public List<Autor> findAutorsByIsbn(String isbn) {
