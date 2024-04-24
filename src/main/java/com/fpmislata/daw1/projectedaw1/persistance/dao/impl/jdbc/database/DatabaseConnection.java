@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database;
 
 import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
@@ -24,11 +25,8 @@ public class DatabaseConnection {
     private final String dbUrl;
     private final String dbUser;
     private final String dbPassword;
+    @Getter
     private final Connection connection;
-
-    public Connection getConnection() {
-        return connection;
-    }
 
     private DatabaseConnection () {
         dbUrl = AppPropertiesReader.getProperty("app.datasource.url");

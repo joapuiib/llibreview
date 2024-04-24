@@ -19,7 +19,7 @@ public class AppPropertiesReader {
             log.info("Perfilactivactiuo: " + activeProfile);
             loadProperties("application-" + activeProfile + ".properties");
         } else {
-            log.error("No s'ha especificat cap perfil actiu");
+            log.warn("No s'ha especificat cap perfil actiu");
         }
 
     }
