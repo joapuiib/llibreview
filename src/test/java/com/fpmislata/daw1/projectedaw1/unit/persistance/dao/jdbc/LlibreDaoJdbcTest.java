@@ -1,7 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.dao.jdbc;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
@@ -15,16 +14,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LlibreDaoJdbcTest {
     private final LlibreDao llibreDao = new LlibreDaoJdbc();
-    private final DatabaseConnection connection = DatabaseConnection.getInstance();
+    private static final DatabaseConnection connection = DatabaseConnection.getInstance();
 
-    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
+    public final List<Llibre> expectedLlibreList = List.of(
+            new Llibre( "1", "Llibre 1", "Resum 1", LocalDate.parse("2024-01-01"), 100, "imatge1.png" ),
+            new Llibre( "2", "Llibre 2", "Resum 2", LocalDate.parse("2024-01-02"), 200, "imatge2.png" ),
+            new Llibre( "3", "Llibre 3", "Resum 3", LocalDate.parse("2024-01-03"), 300, "imatge3.png" ),
+            new Llibre( "4", "Llibre 4", "Resum 4", LocalDate.parse("2024-01-04"), 400, "imatge4.png" ),
+            new Llibre( "5", "Llibre 5", "Resum 5", LocalDate.parse("2024-01-05"), 500, "imatge5.png" ),
+            new Llibre( "6", "Llibre 6", "Resum 6", LocalDate.parse("2024-01-06"), 600, "imatge6.png" )
+    );
 
     @BeforeAll
     static void setup() throws SQLException {
-        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
-        databaseConnection.executeScript("schema.sql");
-        databaseConnection.executeScript("data.sql");
-        databaseConnection.getConnection().setAutoCommit(false);
+        connection.executeScript("schema.sql");
+        connection.executeScript("data.sql");
+        connection.getConnection().setAutoCommit(false);
     }
 
     @AfterEach

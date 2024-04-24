@@ -21,7 +21,7 @@ public class LlibreDaoJdbc implements LlibreDao {
     @Override
     public List<Llibre> findAll() {
         String sql = "SELECT * FROM llibre";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.map(rs);
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class LlibreDaoJdbc implements LlibreDao {
     @Override
     public Llibre findByIsbn(String isbn) {
         String sql = "SELECT * FROM llibre where isbn = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             List<Llibre> llibreList = llibreRowMapper.map(rs);
@@ -45,7 +45,7 @@ public class LlibreDaoJdbc implements LlibreDao {
     @Override
     public List<Llibre> findLatest(int n) {
         String sql = "SELECT * FROM llibre order by data_publicacio desc limit ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.map(rs);
