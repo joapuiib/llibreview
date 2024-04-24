@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -41,5 +42,29 @@ public class Autor {
 
     public String getPrettyDataNaixement() {
         return dataNaixement.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor autor = (Autor) o;
+        return id == autor.id && Objects.equals(nom, autor.nom) && Objects.equals(biografia, autor.biografia) && Objects.equals(dataNaixement, autor.dataNaixement) && Objects.equals(rutaImatge, autor.rutaImatge);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, biografia, dataNaixement, rutaImatge);
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", biografia='" + biografia + '\'' +
+                ", dataNaixement=" + dataNaixement +
+                ", rutaImatge='" + rutaImatge + '\'' +
+                '}';
     }
 }

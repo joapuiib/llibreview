@@ -6,15 +6,12 @@ insert into llibre (isbn, titol, resum, nombre_pagines, data_publicacio, ruta_im
     ('5', 'Llibre 5', 'Resum 5', 500, '2024-01-05', 'imatge5.png'),
     ('6', 'Llibre 6', 'Resum 6', 600, '2024-01-06', 'imatge6.png');
 
-insert into autor(id_autor, nom, data_naixement) values
-    (0, 'Autor 0', '1990-01-01'),
-    (1, 'Autor 1', '1991-01-01'),
-    (2, 'Autor 2', '1992-01-01');
+insert into autor(id_autor, nom, biografia, data_naixement, ruta_imatge) values
+    (1, 'Autor 1', 'Biografia 1', '2000-01-01', 'imatge1.png'),
+    (2, 'Autor 2', 'Biografia 2', '2000-01-02', 'imatge2.png'),
+    (3, 'Autor 3', 'Biografia 3', '2000-01-03', 'imatge3.png');
 
 insert into escriu(isbn, id_autor) values
-    ('1', 0),
     ('2', 1),
     ('3', 1),
-    ('4', 2),
-    ('5', 2),
-    ('6', 2);
+    ('3', 2);

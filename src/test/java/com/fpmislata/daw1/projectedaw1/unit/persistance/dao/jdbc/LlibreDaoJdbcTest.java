@@ -50,6 +50,18 @@ public class LlibreDaoJdbcTest {
     }
 
     @Test
+    void findByDifferentIsbn_shouldReturnDifferentLlibre() {
+        Llibre result = llibreDao.findByIsbn("2");
+        assertEquals(expectedLlibreList.get(1), result);
+    }
+
+    @Test
+    void findByNonExistingIsbn_shouldReturnNull() {
+        Llibre result = llibreDao.findByIsbn("7");
+        assertNull(result);
+    }
+
+    @Test
     public void findLatest_1_shouldReturnLatestBook() {
         List<Llibre> result = llibreDao.findLatest(1);
         assertAll(

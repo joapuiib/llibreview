@@ -10,7 +10,9 @@ create table llibre (
 create table autor (
     id_autor int primary key,
     nom varchar(200) not null,
-    data_naixement date not null
+    biografia text not null,
+    data_naixement date not null,
+    ruta_imatge varchar(200) not null
 );
 
 create table escriu (
