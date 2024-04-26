@@ -1,10 +1,9 @@
 package com.fpmislata.daw1.projectedaw1.mock.persistance.dao;
 
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class LlibreDaoMock implements LlibreDao {

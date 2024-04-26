@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
-import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.mock.persistance.repository.LlibreRepositoryMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class LlibreServiceImplTest {
     private final LlibreServiceImpl llibreService = new LlibreServiceImpl(new LlibreRepositoryMock());
 
-    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
+    private final List<Llibre> llibreList = LlibreData.llibreList;
 
     @Test
     void findAll_shouldReturnAllLlibres() {
         List<Llibre> result = llibreService.findAll();
-        assertEquals(expectedLlibreList, result);
+        assertEquals(llibreList, result);
     }
 }

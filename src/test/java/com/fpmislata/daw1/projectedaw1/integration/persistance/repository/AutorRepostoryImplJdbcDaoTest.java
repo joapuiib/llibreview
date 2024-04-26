@@ -51,7 +51,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
 
     @Test
     public void findByIsbn_givenLlibreWithNoActors_shouldReturnEmptyList() {
-        String isbn = "1";
+        String isbn = "isbn1";
         List<Autor> expectedAutorList = List.of();
 
         List<Autor> result = autorRepository.findByIsbn(isbn);
@@ -60,7 +60,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
 
     @Test
     public void findByIsbn_givenLlibreWithSingleActor_shouldReturnListWithSingleActor() {
-        String isbn = "2";
+        String isbn = "isbn2";
         List<Autor> expectedAutorList = List.of(
                 this.expectedAutorList.get(0)
         );
@@ -71,7 +71,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
 
     @Test
     public void findByIsbn_givenLlibreWithMultipleActors_shouldReturnListWithMultipleActors() {
-        String isbn = "3";
+        String isbn = "isbn3";
         List<Autor> expectedAutorList = List.of(
                 this.expectedAutorList.get(0),
                 this.expectedAutorList.get(1)

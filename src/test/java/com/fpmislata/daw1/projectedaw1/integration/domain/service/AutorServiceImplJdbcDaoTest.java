@@ -55,7 +55,7 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
     @Test
     void findByLlibre_givenLlibreWithNoActors_shouldReturnEmptyList() {
         Llibre llibre = new Llibre();
-        llibre.setIsbn("1");
+        llibre.setIsbn("isbn1");
 
         List<Autor> result = autorService.findByLlibre(llibre);
         assertEquals(List.of(), result);
@@ -64,7 +64,7 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
     @Test
     void findByLlibre_givenLlibreWithSingleActor_shouldReturnSingleActor() {
         Llibre llibre = new Llibre();
-        llibre.setIsbn("2");
+        llibre.setIsbn("isbn2");
 
         List<Autor> expectedAutorList = List.of(
                 this.expectedAutorList.get(0)
@@ -77,7 +77,7 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
     @Test
     void findByLlibre_givenLlibreWithMultipleActors_shouldReturnMultipleActors() {
         Llibre llibre = new Llibre();
-        llibre.setIsbn("3");
+        llibre.setIsbn("isbn3");
 
         List<Autor> expectedAutorList = List.of(
                 this.expectedAutorList.get(0),

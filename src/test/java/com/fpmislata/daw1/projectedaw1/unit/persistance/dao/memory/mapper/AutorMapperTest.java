@@ -29,8 +29,7 @@ class AutorMapperTest {
 
     @Test
     void map_shouldReturnNull() {
-        AutorRecord autorRecord = null;
-        Autor result = autorMapper.map(autorRecord);
+        Autor result = autorMapper.map((AutorRecord) null);
         assertNull(result);
     }
 

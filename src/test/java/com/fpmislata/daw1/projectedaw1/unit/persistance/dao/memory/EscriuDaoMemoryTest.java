@@ -1,8 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.dao.memory;
 
+import com.fpmislata.daw1.projectedaw1.data.AutorData;
+import com.fpmislata.daw1.projectedaw1.data.EscriuData;
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.AutorDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.EscriuDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.AutorTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.EscriuTableMemory;
@@ -11,13 +13,13 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.A
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.EscriuRecord;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.LlibreRecord;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -36,49 +38,88 @@ class EscriuDaoMemoryTest {
     @InjectMocks
     private EscriuDaoMemory escriuDao;
 
-    private final List<EscriuRecord> expectedEscriuRecordList = List.of(
-            new EscriuRecord("isbn1", 1),
-            new EscriuRecord("isbn1", 2),
-            new EscriuRecord("isbn2", 1),
-            new EscriuRecord("isbn3", 2)
-    );
-    private final List<AutorRecord> expectedAutorRecordList = List.of(
-            new AutorRecord(1, "Autor 1", "Biografia 1", LocalDate.parse("2000-01-01"), "rutaImatge1"),
-            new AutorRecord(2, "Autor 2", "Biografia 2", LocalDate.parse("2000-01-02"), "rutaImatge2"),
-            new AutorRecord(3, "Autor 3", "Biografia 3", LocalDate.parse("2000-01-03"), "rutaImatge3")
-    );
+    private final List<EscriuRecord> escriuRecordList = EscriuData.escriuRecordList;
+    private final List<AutorRecord> autorRecordList = AutorData.autorRecordList;
+    private final List<LlibreRecord> llibreRecordList = LlibreData.llibreRecordList;
 
-    private final List<LlibreRecord> expectedLlibreRecordList = List.of(
-            new LlibreRecord("isbn1", "Titol 1", "Title 1", "Resum 1", "Summary 1", LocalDate.parse("2000-01-01"), 100, "rutaPortada1.jpg"),
-            new LlibreRecord("isbn2", "Titol 2", "Title 2", "Resum 2", "Summary 2", LocalDate.parse("2000-01-02"), 200, "rutaPortada2.jpg"),
-            new LlibreRecord("isbn3", "Titol 3", "Title 3", "Resum 3", "Summary 3", LocalDate.parse("2000-01-03"), 300, "rutaPortada3.jpg")
-    );
+    @Nested
+    class FindAuthorsByIsbn {
+        @BeforeEach
+        void setup(){
+            when(escriuTableMemory.get()).thenReturn(escriuRecordList);
+            when(autorTableMemory.get()).thenReturn(autorRecordList);
+        }
+        @Test
+        void givenBookWithNoAuthors_whenFindAuthorsByIsbn_thenEmptyList() {
+            List<Autor> expectedAutorList = List.of();
+            List<Autor> autorList = escriuDao.findAutorsByIsbn("isbn1");
+            assertEquals(expectedAutorList, autorList);
+        }
 
-    @Test
-    void findAutorsByIsbn() {
-        when(autorTableMemory.get()).thenReturn(expectedAutorRecordList);
-        when(escriuTableMemory.get()).thenReturn(expectedEscriuRecordList);
+        @Test
+        void givenBookWithSingleAuthor_whenFindAuthorsByIsbn_thenListWithSingleAuthor() {
+            List<Autor> result = escriuDao.findAutorsByIsbn("isbn2");
+            assertAll(
+                    () -> assertEquals(1, result.size()),
+                    () -> assertEquals(autorRecordList.get(0).getId(), result.get(0).getId()),
+                    () -> assertEquals(autorRecordList.get(0).getNom(), result.get(0).getNom()),
+                    () -> assertEquals(autorRecordList.get(0).getBiografia(), result.get(0).getBiografia()),
+                    () -> assertEquals(autorRecordList.get(0).getDataNaixement(), result.get(0).getDataNaixement()),
+                    () -> assertEquals(autorRecordList.get(0).getRutaImatge(), result.get(0).getRutaImatge())
+            );
+        }
 
-        List<Autor> result = escriuDao.findAutorsByIsbn("isbn1");
-
-        assertAll(
-                () -> assertEquals(2, result.size()),
-                () -> assertEquals(expectedAutorRecordList.get(0).getId(), result.get(0).getId()),
-                () -> assertEquals(expectedAutorRecordList.get(1).getId(), result.get(1).getId())
-        );
+        @Test
+        void givenBookWithMultipleAuthors_whenFindAuthorsByIsbn_thenListWithMultipleAuthors() {
+            List<Autor> result = escriuDao.findAutorsByIsbn("isbn3");
+            assertAll(
+                    () -> assertEquals(2, result.size()),
+                    () -> assertEquals(autorRecordList.get(0).getId(), result.get(0).getId()),
+                    () -> assertEquals(autorRecordList.get(0).getNom(), result.get(0).getNom()),
+                    () -> assertEquals(autorRecordList.get(0).getBiografia(), result.get(0).getBiografia()),
+                    () -> assertEquals(autorRecordList.get(0).getDataNaixement(), result.get(0).getDataNaixement()),
+                    () -> assertEquals(autorRecordList.get(0).getRutaImatge(), result.get(0).getRutaImatge()),
+                    () -> assertEquals(autorRecordList.get(1).getId(), result.get(1).getId()),
+                    () -> assertEquals(autorRecordList.get(1).getNom(), result.get(1).getNom()),
+                    () -> assertEquals(autorRecordList.get(1).getBiografia(), result.get(1).getBiografia()),
+                    () -> assertEquals(autorRecordList.get(1).getDataNaixement(), result.get(1).getDataNaixement()),
+                    () -> assertEquals(autorRecordList.get(1).getRutaImatge(), result.get(1).getRutaImatge())
+            );
+        }
     }
 
-    @Test
-    void findLlibresByAutor() {
-        when(llibreTableMemory.get()).thenReturn(expectedLlibreRecordList);
-        when(escriuTableMemory.get()).thenReturn(expectedEscriuRecordList);
+    @Nested
+    class FindBooksByAuthor {
+        @BeforeEach
+        void setup(){
+            when(escriuTableMemory.get()).thenReturn(escriuRecordList);
+            when(llibreTableMemory.get()).thenReturn(llibreRecordList);
+        }
 
-        List<Llibre> result = escriuDao.findLlibresByAutor(2);
+        @Test
+        void givenAuthorWithNoBooks_whenFindBooksByAuthor_thenEmptyList() {
+            List<Llibre> expectedLlibreList = List.of();
+            List<Llibre> result = escriuDao.findLlibresByAutor(3);
+            assertEquals(expectedLlibreList, result);
+        }
 
-        assertAll(
-                () -> assertEquals(2, result.size()),
-                () -> assertEquals(expectedLlibreRecordList.get(0).getIsbn(), result.get(0).getIsbn()),
-                () -> assertEquals(expectedLlibreRecordList.get(2).getIsbn(), result.get(1).getIsbn())
-        );
+        @Test
+        void givenAuthorWithSingleBook_whenFindBooksByAuthor_thenListWithSingleBook() {
+            List<Llibre> result = escriuDao.findLlibresByAutor(2);
+            assertAll(
+                    () -> assertEquals(1, result.size()),
+                    () -> assertEquals(llibreRecordList.get(2).getIsbn(), result.get(0).getIsbn())
+            );
+        }
+
+        @Test
+        void givenAuthorWithMultipleBooks_whenFindBooksByAuthor_thenListWithMultipleBooks() {
+            List<Llibre> result = escriuDao.findLlibresByAutor(1);
+            assertAll(
+                    () -> assertEquals(2, result.size()),
+                    () -> assertEquals(llibreRecordList.get(1).getIsbn(), result.get(0).getIsbn()),
+                    () -> assertEquals(llibreRecordList.get(2).getIsbn(), result.get(1).getIsbn())
+            );
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.mock.persistance.repository;
 
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.mock.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
 
 import java.util.List;

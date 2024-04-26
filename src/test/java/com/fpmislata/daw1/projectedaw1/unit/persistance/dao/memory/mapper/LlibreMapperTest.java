@@ -30,8 +30,7 @@ class LlibreMapperTest {
 
     @Test
     void map_shouldReturnNull() {
-        LlibreRecord llibreRecord = null;
-        Llibre result = llibreMapper.map(llibreRecord);
+        Llibre result = llibreMapper.map((LlibreRecord) null);
         assertNull(result);
     }
 
