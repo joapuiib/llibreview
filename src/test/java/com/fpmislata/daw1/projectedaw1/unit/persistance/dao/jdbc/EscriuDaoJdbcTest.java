@@ -4,21 +4,15 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EscriuDaoJdbcTest {
+public class EscriuDaoJdbcTest extends JdbcTest {
     private final EscriuDao escriuDao = new EscriuDaoJdbc();
-    private static final DatabaseConnection connection = DatabaseConnection.getInstance();
-
     public final List<Autor> expectedAutorList = List.of(
             new Autor(1, "Autor 1", "Biografia 1", LocalDate.parse("2000-01-01"), "imatge1.png"),
             new Autor(2, "Autor 2", "Biografia 2", LocalDate.parse("2000-01-02"), "imatge2.png"),
@@ -33,18 +27,6 @@ public class EscriuDaoJdbcTest {
             new Llibre( "5", "Llibre 5", "Resum 5", LocalDate.parse("2024-01-05"), 500, "imatge5.png" ),
             new Llibre( "6", "Llibre 6", "Resum 6", LocalDate.parse("2024-01-06"), 600, "imatge6.png" )
     );
-
-    @BeforeAll
-    static void setup() throws SQLException {
-        connection.executeScript("schema.sql");
-        connection.executeScript("data.sql");
-        connection.getConnection().setAutoCommit(false);
-    }
-
-    @AfterEach
-    void tearDown() throws SQLException {
-        connection.getConnection().rollback();
-    }
 
     @Test
     void givenBookWithNoAuthors_whenFindAuthorsByIsbn_thenEmptyList() {
