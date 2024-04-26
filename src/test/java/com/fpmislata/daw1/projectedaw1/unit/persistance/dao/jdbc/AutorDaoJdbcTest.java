@@ -3,6 +3,7 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.dao.jdbc;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.AutorDaoJdbc;
+import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

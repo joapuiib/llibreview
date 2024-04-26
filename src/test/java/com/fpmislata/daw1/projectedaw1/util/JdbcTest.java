@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.unit.persistance.dao.jdbc;
+package com.fpmislata.daw1.projectedaw1.util;
 
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
 import org.junit.jupiter.api.AfterEach;

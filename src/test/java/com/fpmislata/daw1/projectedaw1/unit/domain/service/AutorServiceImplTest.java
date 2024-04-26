@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.unit.domain.service.impl;
+package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
