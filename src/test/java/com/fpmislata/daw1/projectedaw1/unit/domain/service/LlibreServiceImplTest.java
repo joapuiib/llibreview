@@ -14,7 +14,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LlibreServiceImplTest {
-    private final LlibreServiceImpl llibreService = new LlibreServiceImpl(new LlibreRepositoryMock());
+    private final LlibreServiceImpl llibreService = new LlibreServiceImpl(
+            new LlibreRepositoryMock()
+    );
 
     private final List<Llibre> llibreList = LlibreData.llibreList;
     private final List<Autor> autorList = AutorData.autorList;
