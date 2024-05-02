@@ -1,13 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
-import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,10 +43,6 @@ public class Llibre {
     }
 
     public List<Autor> getAutors() {
-        if (autors == null) {
-            AutorService autorService = AutorIoc.createService();
-            autors = autorService.findByLlibre(this);
-        }
         return autors;
     }
 

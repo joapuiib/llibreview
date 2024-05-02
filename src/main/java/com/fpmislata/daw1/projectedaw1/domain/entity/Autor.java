@@ -1,7 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
-import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,10 +31,6 @@ public class Autor {
     }
 
     public List<Llibre> getLlibres() {
-        if (llibres == null) {
-            LlibreService llibreService = LlibreIoc.createService();
-            llibres = llibreService.findByAutor(this);
-        }
         return llibres;
     }
 

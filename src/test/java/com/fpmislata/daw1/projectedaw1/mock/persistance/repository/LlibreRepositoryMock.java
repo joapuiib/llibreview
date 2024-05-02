@@ -12,10 +12,13 @@ public class LlibreRepositoryMock implements LlibreRepository {
 
     @Override
     public Llibre findByIsbn(String isbn) {
-        return llibreList.stream()
-                .filter(llibre -> llibre.getIsbn().equals(isbn))
-                .findFirst()
-                .orElse(null);
+        if(isbn.equals("isbn1")) {
+            return llibreList.get(0);
+        } else if(isbn.equals("isbn2")) {
+            return llibreList.get(1);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -24,16 +27,23 @@ public class LlibreRepositoryMock implements LlibreRepository {
     }
 
     @Override
-    public List<Llibre> findByAutorId(int idAutor) {
-        return null;
+    public List<Llibre> findLatest(int n) {
+        if (n == 1) {
+            return List.of(llibreList.get(5));
+        } else if (n == 2) {
+            return List.of(llibreList.get(5), llibreList.get(4));
+        }
+        return List.of();
     }
 
     @Override
-    public List<Llibre> findLatest(int n) {
-        return llibreList.stream()
-                .sorted((l1, l2) -> l2.getDataPublicacio().compareTo(l1.getDataPublicacio()))
-                .limit(n)
-                .toList();
+    public List<Llibre> findByAutorId(int idAutor) {
+        if (idAutor == 1) {
+            return List.of(llibreList.get(1), llibreList.get(2));
+        } else if (idAutor == 2) {
+            return List.of(llibreList.get(2));
+        }
+        return List.of();
     }
 
     @Override

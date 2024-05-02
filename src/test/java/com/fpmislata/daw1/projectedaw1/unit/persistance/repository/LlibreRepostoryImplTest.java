@@ -2,6 +2,7 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.EscriuDaoMock;
 import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.LlibreDaoMock;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import org.junit.jupiter.api.Nested;
@@ -16,7 +17,7 @@ class LlibreRepostoryImplTest {
 
     private final LlibreRepositoryImpl llibreRepostory = new LlibreRepositoryImpl(
             new LlibreDaoMock(),
-            null
+            new EscriuDaoMock()
     );
     private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
 
@@ -70,6 +71,30 @@ class LlibreRepostoryImplTest {
         void findLatest_3_shouldReturnThreeLatestBooks() {
             List<Llibre> expected = List.of(expectedLlibreList.get(5), expectedLlibreList.get(4), expectedLlibreList.get(3));
             List<Llibre> result = llibreRepostory.findLatest(3);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindByAutorId {
+        @Test
+        void givenAutorIdWithNoLlibres_shouldReturnEmptyList() {
+            List<Llibre> expected = List.of();
+            List<Llibre> result = llibreRepostory.findByAutorId(3);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenAutorIdWithSingleLlibre_shouldReturnListWithSingleLlibre() {
+            List<Llibre> expected = List.of(expectedLlibreList.get(2));
+            List<Llibre> result = llibreRepostory.findByAutorId(2);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenAutorIdWithMultipleLlibres_shouldReturnListWithMultipleLlibres() {
+            List<Llibre> expected = List.of(expectedLlibreList.get(1), expectedLlibreList.get(2));
+            List<Llibre> result = llibreRepostory.findByAutorId(1);
             assertEquals(expected, result);
         }
     }
