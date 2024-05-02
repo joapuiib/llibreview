@@ -23,8 +23,12 @@ import static org.mockito.Mockito.when;
 class AutorServiceImplRepositoryTest {
     private final AutorDao autorDao = Mockito.mock(AutorDao.class);
     private final EscriuDao escriuDao = Mockito.mock(EscriuDao.class);
-    private final AutorRepositoryImpl autorRepository = new AutorRepositoryImpl(autorDao, escriuDao);
-    private final AutorService autorService = new AutorServiceImpl(autorRepository);
+    private final AutorService autorService = new AutorServiceImpl(
+            new AutorRepositoryImpl(
+                    autorDao,
+                    escriuDao
+            )
+    );
 
     public final List<Autor> expectedAutorList = AutorData.autorList;
 
