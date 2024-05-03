@@ -85,9 +85,9 @@ class AutorRepostoryImplTest {
         @Test
         void findByIsbn_givenLlibreWithNoAutors_shouldReturnEmptyList() {
             String isbn = "0";
-            when(escriuDao.findAutorsByIsbn(isbn)).thenReturn(List.of());
+            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(List.of());
 
-            List<Autor> result = autorRepository.findByIsbn(isbn);
+            List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertTrue(result.isEmpty());
         }
 
@@ -95,9 +95,9 @@ class AutorRepostoryImplTest {
         void findByIsbn_givenLlibreWithSingleAutor_shouldReturnAutors() {
             String isbn = "1";
             List<Autor> expectedAutors = List.of(autorList.get(0));
-            when(escriuDao.findAutorsByIsbn(isbn)).thenReturn(expectedAutors);
+            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
 
-            List<Autor> result = autorRepository.findByIsbn(isbn);
+            List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedAutors, result);
         }
 
@@ -105,9 +105,9 @@ class AutorRepostoryImplTest {
         void findByIsbn_givenLlibreWithMultipleAutors_shouldReturnAutors() {
             String isbn = "2";
             List<Autor> expectedAutors = List.of(autorList.get(0), autorList.get(1));
-            when(escriuDao.findAutorsByIsbn(isbn)).thenReturn(expectedAutors);
+            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
 
-            List<Autor> result = autorRepository.findByIsbn(isbn);
+            List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedAutors, result);
         }
     }

@@ -54,7 +54,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
         String isbn = "isbn1";
         List<Autor> expectedAutorList = List.of();
 
-        List<Autor> result = autorRepository.findByIsbn(isbn);
+        List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
         assertEquals(expectedAutorList, result);
     }
 
@@ -65,7 +65,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
                 this.expectedAutorList.get(0)
         );
 
-        List<Autor> result = autorRepository.findByIsbn(isbn);
+        List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
         assertEquals(expectedAutorList, result);
     }
 
@@ -77,7 +77,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
                 this.expectedAutorList.get(1)
         );
 
-        List<Autor> result = autorRepository.findByIsbn(isbn);
+        List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
         assertEquals(expectedAutorList, result);
     }
 }

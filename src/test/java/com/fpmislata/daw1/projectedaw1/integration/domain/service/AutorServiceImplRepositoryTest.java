@@ -71,7 +71,7 @@ class AutorServiceImplRepositoryTest {
         Llibre llibre = new Llibre();
         llibre.setIsbn("1");
 
-        when(escriuDao.findAutorsByIsbn(llibre.getIsbn())).thenReturn(List.of());
+        when(escriuDao.findAutorsByLlibreIsbn(llibre.getIsbn())).thenReturn(List.of());
 
         List<Autor> result = autorService.findByLlibre(llibre);
         assertEquals(List.of(), result);
@@ -86,7 +86,7 @@ class AutorServiceImplRepositoryTest {
         List<Autor> expectedAutorList = List.of(
                 this.expectedAutorList.get(0)
         );
-        when(escriuDao.findAutorsByIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
+        when(escriuDao.findAutorsByLlibreIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
 
         List<Autor> result = autorService.findByLlibre(llibre);
         assertEquals(expectedAutorList, result);
@@ -101,7 +101,7 @@ class AutorServiceImplRepositoryTest {
                 this.expectedAutorList.get(0),
                 this.expectedAutorList.get(1)
         );
-        when(escriuDao.findAutorsByIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
+        when(escriuDao.findAutorsByLlibreIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
 
         List<Autor> result = autorService.findByLlibre(llibre);
         assertEquals(expectedAutorList, result);

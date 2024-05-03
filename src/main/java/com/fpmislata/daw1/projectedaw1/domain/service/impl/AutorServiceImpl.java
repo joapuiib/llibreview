@@ -26,6 +26,6 @@ public class AutorServiceImpl implements AutorService {
 
     @Override
     public List<Autor> findByLlibre(Llibre llibre) {
-        return this.autorRepository.findByIsbn(llibre.getIsbn());
+        return this.autorRepository.findByLlibreIsbn(llibre.getIsbn());
     }
 }

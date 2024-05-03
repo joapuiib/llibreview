@@ -11,12 +11,12 @@ public class EscriuDaoMock implements EscriuDao {
 
     private final List<Llibre> llibreList = LlibreData.llibreList;
     @Override
-    public List<Autor> findAutorsByIsbn(String isbn) {
+    public List<Autor> findAutorsByLlibreIsbn(String isbn) {
         return null;
     }
 
     @Override
-    public List<Llibre> findLlibresByAutor(int idAutor) {
+    public List<Llibre> findLlibresByAutorId(int idAutor) {
         if (idAutor == 1) {
             return List.of(llibreList.get(1), llibreList.get(2));
         } else if (idAutor == 2) {

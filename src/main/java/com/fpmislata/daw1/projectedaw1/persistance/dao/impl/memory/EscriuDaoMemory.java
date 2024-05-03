@@ -30,7 +30,7 @@ public class EscriuDaoMemory implements EscriuDao {
     }
 
     @Override
-    public List<Autor> findAutorsByIsbn(String isbn) {
+    public List<Autor> findAutorsByLlibreIsbn(String isbn) {
         List<EscriuRecord> escriuRecordList = escriuTableMemory.get();
         List<AutorRecord> result =  autorTableMemory.get().stream()
                 .filter(
@@ -41,7 +41,7 @@ public class EscriuDaoMemory implements EscriuDao {
     }
 
     @Override
-    public List<Llibre> findLlibresByAutor(int idAutor) {
+    public List<Llibre> findLlibresByAutorId(int idAutor) {
         List<EscriuRecord> escriuRecordList = escriuTableMemory.get();
         List<LlibreRecord> result = llibreTableMemory.get().stream()
                 .filter(llibre -> escriuRecordList.stream()

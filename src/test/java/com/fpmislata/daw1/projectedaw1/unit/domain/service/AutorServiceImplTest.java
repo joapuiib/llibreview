@@ -83,7 +83,7 @@ class AutorServiceImplTest {
             Llibre llibre = new Llibre();
             llibre.setIsbn("isbn");
 
-            when(autorRepository.findByIsbn(llibre.getIsbn())).thenReturn(List.of());
+            when(autorRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(List.of());
 
             List<Autor> result = autorService.findByLlibre(llibre);
             assertTrue(result.isEmpty());
@@ -98,7 +98,7 @@ class AutorServiceImplTest {
                     autorList.get(0),
                     autorList.get(1)
             );
-            when(autorRepository.findByIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
+            when(autorRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expectedAutorList);
 
             List<Autor> result = autorService.findByLlibre(llibre);
             assertSame(expectedAutorList, result);

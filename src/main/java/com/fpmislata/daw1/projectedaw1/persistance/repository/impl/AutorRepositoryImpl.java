@@ -27,7 +27,7 @@ public class AutorRepositoryImpl implements AutorRepository {
     }
 
     @Override
-    public List<Autor> findByIsbn(String isbn) {
-        return escriuDao.findAutorsByIsbn(isbn);
+    public List<Autor> findByLlibreIsbn(String isbn) {
+        return escriuDao.findAutorsByLlibreIsbn(isbn);
     }
 }

@@ -27,7 +27,7 @@ public class LlibreRepositoryImpl implements LlibreRepository {
 
     @Override
     public List<Llibre> findByAutorId(int idAutor) {
-        return escriuDao.findLlibresByAutor(idAutor);
+        return escriuDao.findLlibresByAutorId(idAutor);
     }
 
     @Override

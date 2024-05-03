@@ -52,13 +52,13 @@ class EscriuDaoMemoryTest {
         @Test
         void givenBookWithNoAuthors_whenFindAuthorsByIsbn_thenEmptyList() {
             List<Autor> expectedAutorList = List.of();
-            List<Autor> autorList = escriuDao.findAutorsByIsbn("isbn1");
+            List<Autor> autorList = escriuDao.findAutorsByLlibreIsbn("isbn1");
             assertEquals(expectedAutorList, autorList);
         }
 
         @Test
         void givenBookWithSingleAuthor_whenFindAuthorsByIsbn_thenListWithSingleAuthor() {
-            List<Autor> result = escriuDao.findAutorsByIsbn("isbn2");
+            List<Autor> result = escriuDao.findAutorsByLlibreIsbn("isbn2");
             assertAll(
                     () -> assertEquals(1, result.size()),
                     () -> assertEquals(autorRecordList.get(0).getId(), result.get(0).getId()),
@@ -71,7 +71,7 @@ class EscriuDaoMemoryTest {
 
         @Test
         void givenBookWithMultipleAuthors_whenFindAuthorsByIsbn_thenListWithMultipleAuthors() {
-            List<Autor> result = escriuDao.findAutorsByIsbn("isbn3");
+            List<Autor> result = escriuDao.findAutorsByLlibreIsbn("isbn3");
             assertAll(
                     () -> assertEquals(2, result.size()),
                     () -> assertEquals(autorRecordList.get(0).getId(), result.get(0).getId()),
@@ -99,13 +99,13 @@ class EscriuDaoMemoryTest {
         @Test
         void givenAuthorWithNoBooks_whenFindBooksByAuthor_thenEmptyList() {
             List<Llibre> expectedLlibreList = List.of();
-            List<Llibre> result = escriuDao.findLlibresByAutor(3);
+            List<Llibre> result = escriuDao.findLlibresByAutorId(3);
             assertEquals(expectedLlibreList, result);
         }
 
         @Test
         void givenAuthorWithSingleBook_whenFindBooksByAuthor_thenListWithSingleBook() {
-            List<Llibre> result = escriuDao.findLlibresByAutor(2);
+            List<Llibre> result = escriuDao.findLlibresByAutorId(2);
             assertAll(
                     () -> assertEquals(1, result.size()),
                     () -> assertEquals(llibreRecordList.get(2).getIsbn(), result.get(0).getIsbn())
@@ -114,7 +114,7 @@ class EscriuDaoMemoryTest {
 
         @Test
         void givenAuthorWithMultipleBooks_whenFindBooksByAuthor_thenListWithMultipleBooks() {
-            List<Llibre> result = escriuDao.findLlibresByAutor(1);
+            List<Llibre> result = escriuDao.findLlibresByAutorId(1);
             assertAll(
                     () -> assertEquals(2, result.size()),
                     () -> assertEquals(llibreRecordList.get(1).getIsbn(), result.get(0).getIsbn()),

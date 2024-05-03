@@ -24,7 +24,7 @@ public class EscriuDaoJdbc implements EscriuDao {
     }
 
     @Override
-    public List<Autor> findAutorsByIsbn(String isbn) {
+    public List<Autor> findAutorsByLlibreIsbn(String isbn) {
         String sql = "SELECT * FROM autor a inner join escriu e on a.id_autor = e.id_autor where e.isbn = ?";
         try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
@@ -36,7 +36,7 @@ public class EscriuDaoJdbc implements EscriuDao {
     }
 
     @Override
-    public List<Llibre> findLlibresByAutor(int idAutor) {
+    public List<Llibre> findLlibresByAutorId(int idAutor) {
         String sql = "SELECT * FROM llibre l inner join escriu e on l.isbn = e.isbn where e.id_autor = ?";
         try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setInt(1, idAutor);

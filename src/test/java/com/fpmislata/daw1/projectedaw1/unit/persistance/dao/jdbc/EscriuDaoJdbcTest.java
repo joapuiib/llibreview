@@ -23,13 +23,13 @@ public class EscriuDaoJdbcTest extends JdbcTest {
     class FindAuthorsByIsbn {
         @Test
         void givenBookWithNoAuthors_whenFindAuthorsByIsbn_thenEmptyList() {
-            List<Autor> autorList = escriuDao.findAutorsByIsbn("isbn1");
+            List<Autor> autorList = escriuDao.findAutorsByLlibreIsbn("isbn1");
             assertEquals(0, autorList.size());
         }
 
         @Test
         void givenBookWithSingleAuthor_whenFindAuthorsByIsbn_thenListWithSingleAuthor() {
-            List<Autor> autorList = escriuDao.findAutorsByIsbn("isbn2");
+            List<Autor> autorList = escriuDao.findAutorsByLlibreIsbn("isbn2");
             assertAll(
                     () -> assertEquals(1, autorList.size()),
                     () -> assertEquals(EscriuDaoJdbcTest.this.autorList.get(0), autorList.get(0))
@@ -38,7 +38,7 @@ public class EscriuDaoJdbcTest extends JdbcTest {
 
         @Test
         void givenBookWithMultipleAuthors_whenFindAuthorsByIsbn_thenListWithMultipleAuthors() {
-            List<Autor> autorList = escriuDao.findAutorsByIsbn("isbn3");
+            List<Autor> autorList = escriuDao.findAutorsByLlibreIsbn("isbn3");
             assertAll(
                     () -> assertEquals(2, autorList.size()),
                     () -> assertEquals(EscriuDaoJdbcTest.this.autorList.get(0), autorList.get(0)),
@@ -51,13 +51,13 @@ public class EscriuDaoJdbcTest extends JdbcTest {
     class FindBooksByAuthor {
         @Test
         void givenAuthorWithNoBooks_whenFindBooksByAuthor_thenEmptyList() {
-            List<Llibre> autorList = escriuDao.findLlibresByAutor(3);
+            List<Llibre> autorList = escriuDao.findLlibresByAutorId(3);
             assertEquals(0, autorList.size());
         }
 
         @Test
         void givenAuthorWithSingleBook_whenFindBooksByAuthor_thenListWithSingleBook() {
-            List<Llibre> autorList = escriuDao.findLlibresByAutor(2);
+            List<Llibre> autorList = escriuDao.findLlibresByAutorId(2);
             assertAll(
                     () -> assertEquals(1, autorList.size()),
                     () -> assertEquals(llibreList.get(2), autorList.get(0))
@@ -66,7 +66,7 @@ public class EscriuDaoJdbcTest extends JdbcTest {
 
         @Test
         void givenAuthorWithMultipleBooks_whenFindBooksByAuthor_thenListWithMultipleBooks() {
-            List<Llibre> autorList = escriuDao.findLlibresByAutor(1);
+            List<Llibre> autorList = escriuDao.findLlibresByAutorId(1);
             assertAll(
                     () -> assertEquals(2, autorList.size()),
                     () -> assertEquals(llibreList.get(1), autorList.get(0)),

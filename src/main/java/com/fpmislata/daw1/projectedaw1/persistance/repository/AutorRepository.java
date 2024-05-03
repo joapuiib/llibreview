@@ -7,5 +7,5 @@ import java.util.List;
 public interface AutorRepository {
     Autor findById(int id);
     List<Autor> findAll();
-    List<Autor> findByIsbn(String isbn);
+    List<Autor> findByLlibreIsbn(String isbn);
 }
