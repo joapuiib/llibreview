@@ -25,10 +25,10 @@ public class LlibreRowMapper implements RowMapper<Llibre> {
         if(resultSet ==  null) {
             return null;
         }
-        List<Llibre> llibreRecordList = new ArrayList<>();
+        List<Llibre> llibreList = new ArrayList<>();
         while (resultSet.next()) {
-            llibreRecordList.add(mapItem(resultSet));
+            llibreList.add(mapItem(resultSet));
         }
-        return llibreRecordList;
+        return llibreList;
     }
 }

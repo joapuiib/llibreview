@@ -1,13 +1,21 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-public class Genere {
-    private String nom;
+import lombok.Getter;
+import lombok.Setter;
 
-    public Genere(String nom) {
+@Getter
+@Setter
+public class Genere {
+    private int id;
+    private String nom;
+    private String rutaImatge;
+
+    public Genere(int id, String nom, String rutaImatge) {
+        this.id = id;
         this.nom = nom;
+        this.rutaImatge = rutaImatge;
     }
 
-    public String getNom() {
-        return nom;
+    public Genere() {
     }
 }
