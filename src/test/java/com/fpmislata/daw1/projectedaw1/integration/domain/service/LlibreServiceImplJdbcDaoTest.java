@@ -6,7 +6,6 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
-import com.fpmislata.daw1.projectedaw1.mock.persistance.repository.LlibreRepositoryMock;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;

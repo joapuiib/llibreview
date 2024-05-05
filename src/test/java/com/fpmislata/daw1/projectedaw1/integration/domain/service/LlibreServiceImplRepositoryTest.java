@@ -8,13 +8,10 @@ import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
 import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.EscriuDaoMock;
 import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.LlibreDaoMock;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 
