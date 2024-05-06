@@ -19,7 +19,7 @@ class LlibreRepostoryImplTest {
             new LlibreDaoMock(),
             new EscriuDaoMock()
     );
-    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
+    private final List<Llibre> expectedLlibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindAll {

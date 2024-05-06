@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LlibreDaoJdbcTest extends JdbcTest {
     private final LlibreDao llibreDao = new LlibreDaoJdbc();
-    public final List<Llibre> expectedLlibreList = LlibreData.llibreList;
+    public final List<Llibre> expectedLlibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindAll {

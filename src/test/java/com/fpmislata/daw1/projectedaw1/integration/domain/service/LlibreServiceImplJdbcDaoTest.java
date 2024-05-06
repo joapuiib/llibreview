@@ -26,15 +26,15 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
             )
     );
 
-    private final List<Llibre> llibreList = LlibreData.llibreList;
-    private final List<Autor> autorList = AutorData.autorList;
+    private final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
+    private final List<Autor> AUTOR_LIST = AutorData.AUTOR_LIST;
 
     @Nested
     class FindAll {
         @Test
         void givenAllLlibres_shouldReturnAllLlibres() {
             List<Llibre> result = llibreService.findAll();
-            assertEquals(llibreList, result);
+            assertEquals(LLIBRE_LIST, result);
         }
     }
 
@@ -42,14 +42,14 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
     class FindById {
         @Test
         void givenLlibreIsbn_shouldReturnLlibre() {
-            Llibre expectedLlibre = llibreList.get(0);
+            Llibre expectedLlibre = LLIBRE_LIST.get(0);
             Llibre result = llibreService.findByIsbn("isbn1");
             assertEquals(expectedLlibre, result);
         }
 
         @Test
         void givenDifferentLlibreIsbn_shouldReturnDifferentLlibre() {
-            Llibre expectedLlibre = llibreList.get(1);
+            Llibre expectedLlibre = LLIBRE_LIST.get(1);
             Llibre result = llibreService.findByIsbn("isbn2");
             assertEquals(expectedLlibre, result);
         }
@@ -72,14 +72,14 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
         @Test
         void givenN1_shouldReturn1MostRecentLlibres() {
             List<Llibre> result = llibreService.findLatest(1);
-            List<Llibre> expected = List.of(llibreList.get(5));
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(5));
             assertEquals(expected, result);
         }
 
         @Test
         void givenN2_shouldReturn2MostRecentLlibres() {
             List<Llibre> result = llibreService.findLatest(2);
-            List<Llibre> expected = List.of(llibreList.get(5), llibreList.get(4));
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(5), LLIBRE_LIST.get(4));
             assertEquals(expected, result);
         }
     }
@@ -88,24 +88,24 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
     class FindByAutor {
         @Test
         void givenAutorWithNoLlibres_shouldReturnEmptyList() {
-            Autor autor = autorList.get(2);
+            Autor autor = AUTOR_LIST.get(2);
             List<Llibre> result = llibreService.findByAutor(autor);
             assertEquals(List.of(), result);
         }
 
         @Test
         void givenAutorWithSingleLlibre_shouldReturnSingleLlibreByAutor() {
-            Autor autor = autorList.get(1);
+            Autor autor = AUTOR_LIST.get(1);
             List<Llibre> result = llibreService.findByAutor(autor);
-            List<Llibre> expected = List.of(llibreList.get(2));
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(2));
             assertEquals(expected, result);
         }
 
         @Test
         void givenAutorWithMultipleLlibres_shouldReturnMultipleLlibresByAutor() {
-            Autor autor = autorList.get(0);
+            Autor autor = AUTOR_LIST.get(0);
             List<Llibre> result = llibreService.findByAutor(autor);
-            List<Llibre> expected = List.of(llibreList.get(1), llibreList.get(2));
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(1), LLIBRE_LIST.get(2));
             assertEquals(expected, result);
         }
     }

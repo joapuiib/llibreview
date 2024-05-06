@@ -29,7 +29,7 @@ class AutorRepostoryImplTest {
     @InjectMocks
     private AutorRepositoryImpl autorRepository;
 
-    private final List<Autor> autorList = AutorData.autorList;
+    private final List<Autor> autorList = AutorData.AUTOR_LIST;
 
     @Nested
     class FindAll {

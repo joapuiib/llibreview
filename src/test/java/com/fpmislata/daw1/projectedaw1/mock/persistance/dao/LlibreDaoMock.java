@@ -7,7 +7,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
 import java.util.List;
 
 public class LlibreDaoMock implements LlibreDao {
-    private final List<Llibre> llibreList = LlibreData.llibreList;
+    private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
 
     @Override
     public List<Llibre> findAll() {

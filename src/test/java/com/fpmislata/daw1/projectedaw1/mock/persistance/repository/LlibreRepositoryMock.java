@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LlibreRepositoryMock implements LlibreRepository {
 
-    private final List<Llibre> llibreList = LlibreData.llibreList;
+    private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
 
     @Override
     public Llibre findByIsbn(String isbn) {

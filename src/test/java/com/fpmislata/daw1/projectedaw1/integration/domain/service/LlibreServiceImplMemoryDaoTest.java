@@ -1,33 +1,50 @@
 package com.fpmislata.daw1.projectedaw1.integration.domain.service;
 
 import com.fpmislata.daw1.projectedaw1.data.AutorData;
+import com.fpmislata.daw1.projectedaw1.data.EscriuData;
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
-import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.EscriuDaoMock;
-import com.fpmislata.daw1.projectedaw1.mock.persistance.dao.LlibreDaoMock;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.EscriuDaoMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.LlibreDaoMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.EscriuTableMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.LlibreTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
-import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.when;
 
-class LlibreServiceImplRepositoryTest extends JdbcTest {
+@ExtendWith(MockitoExtension.class)
+class LlibreServiceImplMemoryDaoTest {
+    private final LlibreTableMemory llibreTableMemory = Mockito.mock(LlibreTableMemory.class);
+    private final EscriuTableMemory escriuTableMemory = Mockito.mock(EscriuTableMemory.class);
+
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
-                    new LlibreDaoMock(),
-                    new EscriuDaoMock()
+                    new LlibreDaoMemory(llibreTableMemory),
+                    new EscriuDaoMemory(escriuTableMemory, llibreTableMemory, null)
             )
     );
 
     private final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
     private final List<Autor> AUTOR_LIST = AutorData.AUTOR_LIST;
+
+    @BeforeEach
+    void setup() {
+        when(llibreTableMemory.get()).thenReturn(LlibreData.LLIBRE_RECORD_LIST);
+        when(escriuTableMemory.get()).thenReturn(EscriuData.ESCRIU_RECORD_LIST);
+    }
 
     @Nested
     class FindAll {

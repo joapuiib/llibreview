@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EscriuDaoMock implements EscriuDao {
 
-    private final List<Llibre> llibreList = LlibreData.llibreList;
+    private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
     @Override
     public List<Autor> findAutorsByLlibreIsbn(String isbn) {
         return null;

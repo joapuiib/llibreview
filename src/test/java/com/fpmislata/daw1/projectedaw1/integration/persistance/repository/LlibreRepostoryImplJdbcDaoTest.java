@@ -20,7 +20,7 @@ class LlibreRepostoryImplJdbcDaoTest extends JdbcTest {
             new LlibreDaoJdbc(),
             new EscriuDaoJdbc()
     );
-    private final List<Llibre> expectedLlibreList = LlibreData.llibreList;
+    private final List<Llibre> expectedLlibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindAll {

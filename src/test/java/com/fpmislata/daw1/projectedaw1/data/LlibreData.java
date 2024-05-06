@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class LlibreData {
-    public static final List<Llibre> llibreList = List.of(
+    public static final List<Llibre> LLIBRE_LIST = List.of(
             new Llibre( "isbn1", "Llibre 1", "Resum 1", LocalDate.parse("2024-01-01"), 100, "imatge1.png" ),
             new Llibre( "isbn2", "Llibre 2", "Resum 2", LocalDate.parse("2024-01-02"), 200, "imatge2.png" ),
             new Llibre( "isbn3", "Llibre 3", "Resum 3", LocalDate.parse("2024-01-03"), 300, "imatge3.png" ),
@@ -16,7 +16,7 @@ public class LlibreData {
             new Llibre( "isbn6", "Llibre 6", "Resum 6", LocalDate.parse("2024-01-06"), 600, "imatge6.png" )
     );
 
-    public static final List<LlibreRecord> llibreRecordList = List.of(
+    public static final List<LlibreRecord> LLIBRE_RECORD_LIST = List.of(
             new LlibreRecord( "isbn1", "Llibre 1", "Book 1", "Resum 1", "Summary 1", LocalDate.parse("2024-01-01"), 100, "imatge1.png" ),
             new LlibreRecord( "isbn2", "Llibre 2", "Book 2", "Resum 2", "Summary 2", LocalDate.parse("2024-01-02"), 200, "imatge2.png" ),
             new LlibreRecord( "isbn3", "Llibre 3", "Book 3", "Resum 3", "Summary 3", LocalDate.parse("2024-01-03"), 300, "imatge3.png" ),

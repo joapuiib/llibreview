@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class AutorDaoJdbcTest extends JdbcTest {
     private final AutorDao autorDao = new AutorDaoJdbc();
 
-    public final List<Autor> expectedAutorList = AutorData.autorList;
+    public final List<Autor> expectedAutorList = AutorData.AUTOR_LIST;
 
     @Nested
     class FindAll {

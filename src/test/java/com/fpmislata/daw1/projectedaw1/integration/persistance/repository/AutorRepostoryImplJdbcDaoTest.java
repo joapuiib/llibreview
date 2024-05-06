@@ -19,7 +19,7 @@ class AutorRepostoryImplJdbcDaoTest extends JdbcTest {
             new AutorDaoJdbc(), new EscriuDaoJdbc()
     );
 
-    private final List<Autor> expectedAutorList = AutorData.autorList;
+    private final List<Autor> expectedAutorList = AutorData.AUTOR_LIST;
 
     @Test
     public void findAll_shouldReturnAllLlibres() {

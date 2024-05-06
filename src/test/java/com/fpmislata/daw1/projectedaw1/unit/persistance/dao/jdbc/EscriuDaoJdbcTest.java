@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EscriuDaoJdbcTest extends JdbcTest {
     private final EscriuDao escriuDao = new EscriuDaoJdbc();
-    public final List<Autor> autorList = AutorData.autorList;
-    public final List<Llibre> llibreList = LlibreData.llibreList;
+    public final List<Autor> autorList = AutorData.AUTOR_LIST;
+    public final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindAuthorsByIsbn {

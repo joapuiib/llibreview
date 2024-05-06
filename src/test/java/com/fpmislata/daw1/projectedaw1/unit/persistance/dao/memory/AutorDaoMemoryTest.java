@@ -26,7 +26,7 @@ class AutorDaoMemoryTest {
     @InjectMocks
     private AutorDaoMemory autorDao;
 
-    private final List<AutorRecord> autorRecordList = AutorData.autorRecordList;
+    private final List<AutorRecord> autorRecordList = AutorData.AUTOR_RECORD_LIST;
 
     @BeforeEach
     void setUp() {

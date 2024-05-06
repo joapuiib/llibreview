@@ -38,9 +38,9 @@ class EscriuDaoMemoryTest {
     @InjectMocks
     private EscriuDaoMemory escriuDao;
 
-    private final List<EscriuRecord> escriuRecordList = EscriuData.escriuRecordList;
-    private final List<AutorRecord> autorRecordList = AutorData.autorRecordList;
-    private final List<LlibreRecord> llibreRecordList = LlibreData.llibreRecordList;
+    private final List<EscriuRecord> escriuRecordList = EscriuData.ESCRIU_RECORD_LIST;
+    private final List<AutorRecord> autorRecordList = AutorData.AUTOR_RECORD_LIST;
+    private final List<LlibreRecord> llibreRecordList = LlibreData.LLIBRE_RECORD_LIST;
 
     @Nested
     class FindAuthorsByIsbn {

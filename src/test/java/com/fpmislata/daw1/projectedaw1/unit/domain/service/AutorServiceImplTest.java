@@ -25,7 +25,7 @@ class AutorServiceImplTest {
     @InjectMocks
     private AutorServiceImpl autorService;
 
-    final List<Autor> autorList = AutorData.autorList;
+    final List<Autor> autorList = AutorData.AUTOR_LIST;
 
     @Nested
     class FindAll {

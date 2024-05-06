@@ -18,8 +18,8 @@ class LlibreServiceImplTest {
             new LlibreRepositoryMock()
     );
 
-    private final List<Llibre> llibreList = LlibreData.llibreList;
-    private final List<Autor> autorList = AutorData.autorList;
+    private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
+    private final List<Autor> autorList = AutorData.AUTOR_LIST;
 
     @Nested
     class FindAll {

@@ -22,17 +22,17 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
                     new AutorDaoJdbc(), new EscriuDaoJdbc()
             )
     );
-    public final List<Autor> expectedAutorList = AutorData.autorList;
+    public final List<Autor> AUTOR_LIST = AutorData.AUTOR_LIST;
 
     @Test
     void findAll_shouldReturnAllLlibres() {
         List<Autor> result = autorService.findAll();
-        assertEquals(expectedAutorList, result);
+        assertEquals(AUTOR_LIST, result);
     }
 
     @Test
     void findById_shouldReturnLlibre() {
-        Autor expectedAutor = expectedAutorList.get(0);
+        Autor expectedAutor = AUTOR_LIST.get(0);
 
         Autor result = autorService.findById(expectedAutor.getId());
         assertEquals(expectedAutor, result);
@@ -40,7 +40,7 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
 
     @Test
     void findByDifferentId_shouldReturnDifferentAutor() {
-        Autor expectedAutor = expectedAutorList.get(1);
+        Autor expectedAutor = AUTOR_LIST.get(1);
 
         Autor result = autorService.findById(expectedAutor.getId());
         assertEquals(expectedAutor, result);
@@ -67,7 +67,7 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
         llibre.setIsbn("isbn2");
 
         List<Autor> expectedAutorList = List.of(
-                this.expectedAutorList.get(0)
+                this.AUTOR_LIST.get(0)
         );
 
         List<Autor> result = autorService.findByLlibre(llibre);
@@ -80,8 +80,8 @@ class AutorServiceImplJdbcDaoTest extends JdbcTest {
         llibre.setIsbn("isbn3");
 
         List<Autor> expectedAutorList = List.of(
-                this.expectedAutorList.get(0),
-                this.expectedAutorList.get(1)
+                this.AUTOR_LIST.get(0),
+                this.AUTOR_LIST.get(1)
         );
 
         List<Autor> result = autorService.findByLlibre(llibre);
