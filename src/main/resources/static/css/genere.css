@@ -1,0 +1,12 @@
+.genere {
+    text-decoration: none;
+}
+.genere-1 /* Ficció literària */{
+    background-color: #AAD7D9;
+}
+.genere-2 /* Narrativa */{
+    background-color: #75A47F;
+}
+.genere-3 /* Ciència ficció */{
+    background-color: #AD88C6;
+}

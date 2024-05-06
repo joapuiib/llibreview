@@ -4,6 +4,7 @@ import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.GenereServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreGenereDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.GenereDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.GenereDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.GenereTableMemory;
@@ -27,7 +28,8 @@ public class GenereIoc {
     public static GenereRepository createRepository() {
         if (genereRepository == null) {
             GenereDao genereDao = createDao();
-            genereRepository = new GenereRepositoryImpl(genereDao, null);
+            LlibreGenereDao llibreGenereDao = LlibreGenereIoc.createDao();
+            genereRepository = new GenereRepositoryImpl(genereDao, llibreGenereDao);
         }
         return genereRepository;
     }

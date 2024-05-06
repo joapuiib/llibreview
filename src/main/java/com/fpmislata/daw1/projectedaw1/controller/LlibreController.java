@@ -1,10 +1,13 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
+import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +21,12 @@ public class LlibreController {
 
     private final LlibreService llibreService;
     private final AutorService autorService;
+    private final GenereService genereService;
 
     public LlibreController() {
         this.llibreService = LlibreIoc.createService();
         this.autorService = AutorIoc.createService();
+        this.genereService = GenereIoc.createService();
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -56,8 +61,10 @@ public class LlibreController {
                             card.setImatgeUrl("/img/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "placeholder.png"));
                             return card;
                         }).toList();
-
         model.addAttribute("autors", autors);
+
+        List<Genere> generes = genereService.findByLlibre(llibre);
+        model.addAttribute("generes", generes);
         return "llibre/llibre";
     }
 }

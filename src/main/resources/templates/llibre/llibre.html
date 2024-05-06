@@ -21,6 +21,10 @@
                         <dd th:text="${llibre.getNombrePagines()}"></dd>
                         <dt>Resum</dt>
                         <dd th:text="${llibre.getResum()}"></dd>
+                        <dt>Gèneres</dt>
+                        <dd class="d-flex flex-wrap gap-2">
+                            <a th:each="genere: ${generes}" th:text="${genere.nom}" th:href="|/genere/${genere.id}|" th:classappend="|genere-${genere.id}|" class="badge genere" style="font-size: 0.8rem"></a>
+                        </dd>
                         <dt>Autors</dt>
                         <dd>
                             <div th:replace="~{components/cards :: card-container(cards=${autors}, classes=justify-content-start)}"></div>

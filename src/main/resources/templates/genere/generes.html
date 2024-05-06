@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}" lang="ca">
     <head>
-        <title>Llibres</title>
+        <title>Gèneres</title>
     </head>
     <body>
         <main class="container">
             <h1 class="text-center my-4 ">Gèneres</h1>
-            <!--/*@thymesVar id="generes" type="List<Card-Item>"*/-->
-            <div th:replace="~{components/cards :: card-container(cards=${generes}, classes=justify-content-center)}"></div>
+            <!--/*@thymesVar id="generes" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Genere>"*/-->
+            <div class="d-flex flex-wrap gap-3 flex-row justify-content-center">
+                <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.domain.entity.Genere"*/-->
+                <a th:each="genere: ${generes}" th:text="${genere.nom}" th:href="|/genere/${genere.id}|" th:classappend="|genere-${genere.id}|" class="badge genere" style="font-size: 1rem"></a>
+            </div>
         </main>
     </body>
 </html>
