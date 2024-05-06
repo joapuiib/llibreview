@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+<!--/*@thymesVar id="genere" type="com.fpmislata.daw1.projectedaw1.domain.entity.Genere"*/-->
+    <head>
+        <title th:text="${genere.nom}"></title>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="text-center my-4" th:text="${genere.nom}"></h1>
+            <!--/*@thymesVar id="llibres" type="List<Card-Item>"*/-->
+            <div th:replace="~{components/cards :: card-container(cards=${llibres}, classes=justify-content-center)}"></div>
+        </main>
+    </body>
+</html>
