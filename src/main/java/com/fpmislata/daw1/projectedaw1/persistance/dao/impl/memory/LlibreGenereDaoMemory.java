@@ -28,7 +28,7 @@ public class LlibreGenereDaoMemory implements LlibreGenereDao {
     }
 
     @Override
-    public List<Llibre> findLlibreByGenereId(int id) {
+    public List<Llibre> findLlibresByGenereId(int id) {
         List<LlibreGenereRecord> llibreGenereRecords = llibreGenereTableMemory.get().stream()
                 .filter(llibreGenereRecord -> llibreGenereRecord.getGenereId() == id)
                 .toList();

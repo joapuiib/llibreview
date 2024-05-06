@@ -47,6 +47,11 @@ public class LlibreRepositoryMock implements LlibreRepository {
     }
 
     @Override
+    public List<Llibre> findByGenereId(int idGenere) {
+        return List.of();
+    }
+
+    @Override
     public List<Llibre> findMostRead(int n) {
         return null;
     }

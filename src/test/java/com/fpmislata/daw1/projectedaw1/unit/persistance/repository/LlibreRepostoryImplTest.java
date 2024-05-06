@@ -17,7 +17,8 @@ class LlibreRepostoryImplTest {
 
     private final LlibreRepositoryImpl llibreRepostory = new LlibreRepositoryImpl(
             new LlibreDaoMock(),
-            new EscriuDaoMock()
+            new EscriuDaoMock(),
+            null
     );
     private final List<Llibre> expectedLlibreList = LlibreData.LLIBRE_LIST;
 

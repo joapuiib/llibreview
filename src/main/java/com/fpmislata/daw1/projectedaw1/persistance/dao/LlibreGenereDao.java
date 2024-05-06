@@ -6,6 +6,6 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import java.util.List;
 
 public interface LlibreGenereDao {
-    List<Llibre> findLlibreByGenereId(int id);
+    List<Llibre> findLlibresByGenereId(int id);
     List<Genere> findGeneresByLlibreIsbn(String isbn);
 }

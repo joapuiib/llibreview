@@ -22,7 +22,8 @@ class LlibreServiceImplRepositoryTest extends JdbcTest {
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
                     new LlibreDaoMock(),
-                    new EscriuDaoMock()
+                    new EscriuDaoMock(),
+                    null
             )
     );
 

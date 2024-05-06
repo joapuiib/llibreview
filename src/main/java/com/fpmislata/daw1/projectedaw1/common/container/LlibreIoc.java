@@ -2,6 +2,7 @@ package com.fpmislata.daw1.projectedaw1.common.container;
 
 import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreGenereDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.LlibreDaoMemory;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
@@ -29,7 +30,8 @@ public class LlibreIoc {
         if (llibreRepository == null) {
             LlibreDao llibreDao = createDao();
             EscriuDao escriuDao = EscriuIoc.createDao();
-            llibreRepository = new LlibreRepositoryImpl(llibreDao, escriuDao);
+            LlibreGenereDao llibreGenereDao = LlibreGenereIoc.createDao();
+            llibreRepository = new LlibreRepositoryImpl(llibreDao, escriuDao, llibreGenereDao);
         }
         return llibreRepository;
     }

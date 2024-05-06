@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
@@ -26,6 +27,11 @@ public class LlibreServiceImpl implements LlibreService {
     @Override
     public List<Llibre> findByAutor(Autor autor) {
         return llibreRepository.findByAutorId(autor.getId());
+    }
+
+    @Override
+    public List<Llibre> findByGenere(Genere genere) {
+        return llibreRepository.findByGenereId(genere.getId());
     }
 
     public List<Llibre> findLatest(int n) {

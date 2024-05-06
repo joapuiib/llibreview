@@ -18,7 +18,7 @@ public class LlibreGenereDaoJdbc implements LlibreGenereDao {
     }
 
     @Override
-    public List<Llibre> findLlibreByGenereId(int id) {
+    public List<Llibre> findLlibresByGenereId(int id) {
         return List.of();
     }
 

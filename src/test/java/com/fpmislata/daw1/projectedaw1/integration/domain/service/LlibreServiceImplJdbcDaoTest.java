@@ -8,6 +8,7 @@ import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreGenereDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
@@ -22,7 +23,8 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
                     new LlibreDaoJdbc(),
-                    new EscriuDaoJdbc()
+                    new EscriuDaoJdbc(),
+                    new LlibreGenereDaoJdbc()
             )
     );
 
