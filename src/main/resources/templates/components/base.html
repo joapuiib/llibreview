@@ -6,6 +6,10 @@
     <link th:rel="stylesheet" th:href="@{/css/site.css}">
     <link th:replace="~{components/base :: generes}">
     <link th:rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script th:replace="~{components/base :: jquery}"></script>
+    <script th:replace="~{components/base :: popper}"></script>
+    <script th:src="@{/js/form.js}"></script>
     <!--/*@thymesVar id="title" type="String"*/-->
     <title th:replace="${title}">Document</title>
 </head>
