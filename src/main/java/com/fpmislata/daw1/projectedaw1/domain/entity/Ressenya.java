@@ -1,20 +1,20 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
 public class Ressenya {
-    private Usuari usuari;
+    private User user;
     private Llibre llibre;
     private String text;
     private int puntuacio;
 
-    public Ressenya(Usuari usuari, Llibre llibre, String text, int puntuacio) {
-        this.usuari = usuari;
+    public Ressenya(User user, Llibre llibre, String text, int puntuacio) {
+        this.user = user;
         this.llibre = llibre;
         this.text = text;
         this.puntuacio = puntuacio;
     }
 
-    public Usuari getUsuari() {
-        return usuari;
+    public User getUsuari() {
+        return user;
     }
 
     public Llibre getLlibre() {

@@ -29,7 +29,7 @@ public class AutorMapper implements Mapper<AutorRecord, Autor> {
 
         return autorRecordList.stream().collect(
                 ArrayList::new,
-                (list, llibreRecord) -> list.add(map(llibreRecord)),
+                (list, autorRecord) -> list.add(map(autorRecord)),
                 ArrayList::addAll
         );
     }

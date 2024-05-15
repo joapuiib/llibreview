@@ -41,40 +41,39 @@ create table rol (
     nom varchar(100) not null
 );
 
-create table usuari (
-    id_usuari int primary key,
+create table user (
+    username varchar(100) primary key,
+    correu_electronic varchar(100) not null unique key,
+    data_registre date not null,
     id_rol int,
-    username varchar(100) not null unique,
-    correu_electronic varchar(100) not null,
-    data_alta date not null,
     foreign key (id_rol) references rol (id_rol)
 );
 
 create table review (
     isbn varchar(50),
-    id_usuari int,
+    username varchar(100),
     data_review date not null,
     data_lectura date not null,
     puntuacio int not null,
     comentari text,
-    primary key (isbn, id_usuari),
+    primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
-    foreign key (id_usuari) references usuari (id_usuari)
+    foreign key (username) references user (username)
 );
 
 create table llista (
-    id_usuari_propietari int,
+    username_propietari varchar(100),
     id_llista int,
     nom varchar(100) not null,
-    primary key (id_usuari_propietari, id_llista),
-    foreign key (id_usuari_propietari) references usuari (id_usuari)
+    primary key (username_propietari, id_llista),
+    foreign key (username_propietari) references user (username)
 );
 
 create table segueix_llista (
-    id_usuari_propietari int,
+    username_propietari varchar(100),
     id_llista int,
-    id_usuari int,
-    primary key (id_usuari, id_usuari_propietari, id_llista),
-    foreign key (id_usuari) references usuari (id_usuari),
-    foreign key (id_usuari_propietari, id_llista) references llista (id_usuari_propietari, id_llista)
+    username_seguidor varchar(100),
+    primary key (username_propietari, id_llista, username_seguidor),
+    foreign key (username_seguidor) references user (username),
+    foreign key (username_propietari, id_llista) references llista (username_propietari, id_llista)
 );

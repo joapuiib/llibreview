@@ -1,7 +1,7 @@
 drop table if exists segueix_llista;
 drop table if exists llista;
 drop table if exists review;
-drop table if exists usuari;
+drop table if exists user;
 drop table if exists rol;
 drop table if exists llibre_genere;
 drop table if exists genere;
@@ -52,7 +52,7 @@ create table rol (
     nom varchar(100) not null
 );
 
-create table usuari (
+create table user (
     id_usuari int primary key,
     id_rol int,
     username varchar(100) not null unique,
@@ -70,7 +70,7 @@ create table review (
     comentari text,
     primary key (isbn, id_usuari),
     foreign key (isbn) references llibre (isbn),
-    foreign key (id_usuari) references usuari (id_usuari)
+    foreign key (id_usuari) references user (id_usuari)
 );
 
 create table llista (
@@ -78,7 +78,7 @@ create table llista (
     id_llista int,
     nom varchar(100) not null,
     primary key (id_usuari_propietari, id_llista),
-    foreign key (id_usuari_propietari) references usuari (id_usuari)
+    foreign key (id_usuari_propietari) references user (id_usuari)
 );
 
 create table segueix_llista (
@@ -86,6 +86,6 @@ create table segueix_llista (
     id_llista int,
     id_usuari int,
     primary key (id_usuari, id_usuari_propietari, id_llista),
-    foreign key (id_usuari) references usuari (id_usuari),
+    foreign key (id_usuari) references user (id_usuari),
     foreign key (id_usuari_propietari, id_llista) references llista (id_usuari_propietari, id_llista)
 );
