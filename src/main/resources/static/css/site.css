@@ -1,16 +1,28 @@
 :root {
     --cafe-50: #f9f6f1;
+    --cafe-50-rgb: 249, 246, 241;
     --cafe-100: #efe4d6;
+    --cafe-100-rgb: 239, 228, 214;
     --cafe-200: #ddc7aa;
+    --cafe-200-rgb: 221, 199, 170;
     --cafe-300: #cba67e;
+    --cafe-300-rgb: 203, 166, 126;
     --cafe-400: #be8d61;
+    --cafe-400-rgb: 190, 141, 97;
     --cafe-500: #b4764f;
+    --cafe-500-rgb: 180, 118, 79;
     --cafe-600: #9e5c41;
+    --cafe-600-rgb: 158, 92, 65;
     --cafe-700: #844739;
+    --cafe-700-rgb: 132, 71, 57;
     --cafe-800: #6d3b33;
+    --cafe-800-rgb: 109, 59, 51;
     --cafe-900: #5a322d;
+    --cafe-900-rgb: 90, 50, 45;
     --cafe-950: #321916;
     --white: var(--cafe-50);
+    --bs-link-color-rgb: var(--cafe-500-rgb);
+    --bs-link-hover-color-rgb: var(--cafe-700-rgb);
 }
 
 .bg-white {
@@ -85,6 +97,30 @@
 }
 .cafe-950 {
     color: var(--cafe-950);
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--cafe-500);
+    --bs-btn-border-color: var(--cafe-500);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--cafe-600);
+    --bs-btn-hover-border-color: var(--cafe-600);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--cafe-700);
+    --bs-btn-active-border-color: var(--cafe-700);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--cafe-300);
+    --bs-btn-disabled-border-color: var(--cafe-400);
+}
+.form-control:focus {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: var(--cafe-400);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(var(--cafe-700), 0.25);
 }
 
 .navbar {

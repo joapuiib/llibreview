@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+<!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
+    <head>
+        <title th:text="Login"></title>
+    </head>
+    <body>
+        <main class="container">
+            <div class="d-flex justify-content-center p-5">
+                <form>
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="email" id="form2Example1" class="form-control" />
+                        <label class="form-label" for="form2Example1">Nom d'usuari</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-2">
+                        <input type="password" id="form2Example2" class="form-control" />
+                        <label class="form-label" for="form2Example2">Contrasenya</label>
+                    </div>
+
+
+                    <div class="text-center mb-3">
+                        <!-- Simple link -->
+                        <a href="#!">Has oblidat la contrasenya?</a>
+                    </div>
+
+                    <div class="text-center">
+                        <!-- Submit button -->
+                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-3">Inicia sessió</button>
+                    </div>
+
+                    <div class="text-center">
+                        <p>No eres membre? <a href="/register">Registra't</a>!</p>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
