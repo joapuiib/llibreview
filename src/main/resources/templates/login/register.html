@@ -5,33 +5,33 @@
         <title>Registra't</title>
     </head>
     <body>
-        <main class="container">
-            <div class="d-flex justify-content-center p-5">
-                <form action="." class="needs-validation" novalidate>
+        <main class="">
+            <div class="d-flex justify-content-center">
+                <form th:action="@{/register}" method="post" class="needs-validation" novalidate>
                     <!-- Username input -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <label class="form-label" for="username">Nom d'usuari</label>
-                        <input type="text" id="username" class="form-control" required/>
+                        <input type="text" id="username" name="username" class="form-control" required/>
                         <div class="invalid-feedback">Camp necessari.</div>
                     </div>
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <label class="form-label" for="email">Correu electrònic</label>
-                        <input type="email" id="email" class="form-control" required/>
+                        <input type="email" id="email" name="email" class="form-control" required/>
                         <div class="invalid-feedback">Camp necessari.</div>
                     </div>
 
                     <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <label class="form-label" for="password">Contrasenya</label>
-                        <input type="password" id="password" class="form-control" required/>
+                        <input type="password" id="password" name="password" class="form-control" required/>
                         <div class="invalid-feedback">Camp necessari.</div>
                     </div>
                     <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <label class="form-label" for="password-confirmation">Repeteix la contrasenya</label>
-                        <input type="password" id="password-confirmation" class="form-control" required/>
+                        <input type="password" id="password-confirmation" name="password-confirmation" class="form-control" required/>
                         <div class="invalid-feedback">Camp necessari.</div>
                     </div>
 

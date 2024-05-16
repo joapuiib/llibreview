@@ -5,7 +5,12 @@
     <body>
         <nav th:replace="~{components/base:: menu}"></nav>
 
-        <main class="flex-grow-1" th:insert="${content}"> </main>
+
+        <!--/*@thymesVar id="alerts" type="List<com.fpmislata.daw1.projectedaw1.controller.components.Alert>"*/-->
+        <main class="container flex-grow-1">
+            <div th:if="${alerts != null}" th:replace="~{components/alerts :: alert-container(alerts=${alerts})}"></div>
+            <div th:replace="${content}"></div>
+        </main>
 
         <footer th:replace="~{components/base :: footer}"></footer>
         <script th:replace="~{components/base :: bootstrap}"></script>

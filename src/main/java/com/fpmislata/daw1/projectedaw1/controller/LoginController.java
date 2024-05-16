@@ -1,12 +1,19 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.container.UserIoc;
+import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.User;
 import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -32,13 +39,15 @@ public class LoginController {
     public String register(@RequestParam("username") String username,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password,
-                           @RequestParam("passwordConfirmation") String passwordConfirmation) {
+                           @RequestParam("password-confirmation") String passwordConfirmation,
+                           RedirectAttributes redirectAttributes) {
 
-        System.out.println("username: " + username);
-        System.out.println("email: " + email);
-        System.out.println("password: " + password);
-        System.out.println("password confirm: " + passwordConfirmation);
-        // userService.register(username, password, email);
-        return "redirect:/login/register";
+        List<Alert> alerts = new ArrayList<>();
+        if (!password.equals(passwordConfirmation)) {
+            alerts.add(new Alert("danger", "Les contrasenyes no coincideixen"));
+        }
+
+        redirectAttributes.addFlashAttribute("alerts", alerts);
+        return "redirect:/register";
     }
 }
