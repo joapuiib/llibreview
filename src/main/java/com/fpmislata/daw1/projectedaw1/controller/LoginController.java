@@ -86,4 +86,10 @@ public class LoginController {
         redirectAttributes.addFlashAttribute("alerts", alerts);
         return "redirect:/register";
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        UserSession.clear();
+        return "redirect:/";
+    }
 }

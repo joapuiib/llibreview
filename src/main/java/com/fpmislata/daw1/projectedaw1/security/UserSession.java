@@ -9,7 +9,7 @@ public class UserSession {
     @Getter
     @Setter
     private static HttpSession session;
-    private final static String USER_KEY = "username";
+    private final static String USER_KEY = "user";
 
     public static void setAttribute(String key, Object value) {
         session.setAttribute(key, value);
@@ -22,11 +22,11 @@ public class UserSession {
     }
 
     public static void setUser(User user) {
-        session.setAttribute(USER_KEY, user);
+        setAttribute(USER_KEY, user);
     }
     public static User getUser() {
         try {
-            return (User) session.getAttribute(USER_KEY);
+            return (User) getAttribute(USER_KEY);
         } catch(RuntimeException e) {
             session.invalidate();
         }

@@ -27,8 +27,13 @@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-right">
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/login">Login</a>
+            <!--/*@thymesVar id="user" type="com.fpmislata.daw1.projectedaw1.domain.entity.User"*/-->
+            <div class="navbar-nav ms-auto" th:if="${session.user==null}">
+                <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> Inicia sessió</a>
+            </div>
+            <div class="navbar-nav ms-auto" th:unless="${session.user==null}">
+                <a class="nav-link" th:href="|/user/${session.user.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${session.user.username}"></span></a>
+                <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Tanca sessió</a>
             </div>
         </div>
     </div>
