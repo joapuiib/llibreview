@@ -3,6 +3,7 @@ package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 import com.fpmislata.daw1.projectedaw1.domain.entity.User;
 import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.UserRepository;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -39,7 +40,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void login(String username, String password) {
-        userRepository.login(username, password);
+        boolean logged = userRepository.login(username, password);
+        if (logged){
+            User currentUser = findByUsername(username);
+            UserSession.setUser(currentUser);
+        }
     }
 
 }

@@ -11,6 +11,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.A
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.UserRecord;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.AutorMapper;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.UserMapper;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -53,18 +54,20 @@ public class UserDaoMemory implements UserDao {
     }
 
     @Override
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         UserRecord user = userTableMemory.get().stream()
                 .filter(userRecord -> userRecord.getUsername().equals(username))
                 .findFirst()
                 .orElse(null);
 
+        String errorMessage = "No s'ha trobat l'usuari o la contrasenya és incorrecta.";
         if (user == null) {
-            throw new RuntimeException("No s'ha trobat l'usuari.");
+            throw new RuntimeException(errorMessage);
         }
-        boolean logged = Utils.checkPassword(password, user.getHashedPassword());
-        if (!logged) {
-            throw new RuntimeException("Contrasenya incorrecta.");
+        boolean passwordMatch = Utils.checkPassword(password, user.getHashedPassword());
+        if (!passwordMatch) {
+            throw new RuntimeException(errorMessage);
         }
+        return true;
     }
 }

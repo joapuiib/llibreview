@@ -3,6 +3,7 @@ package com.fpmislata.daw1.projectedaw1.controller;
 import com.fpmislata.daw1.projectedaw1.common.container.UserIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
 import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +25,41 @@ public class LoginController {
     @SuppressWarnings("SameReturnValue")
     @GetMapping("/login")
     public String login() {
+        if (UserSession.isUserLoggedIn()) {
+            return "redirect:/";
+        }
+
         return "login/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        RedirectAttributes redirectAttributes) {
+
+        if (UserSession.isUserLoggedIn()) {
+            return "redirect:/";
+        }
+
+        List<Alert> alerts = new ArrayList<>();
+
+        try {
+            userService.login(username, password);
+            return "redirect:/";
+        } catch (RuntimeException exception) {
+            alerts.add(new Alert("danger", exception.getMessage()));
+        }
+
+        redirectAttributes.addFlashAttribute("alerts", alerts);
+        return "redirect:/login";
     }
 
     @GetMapping("/register")
     public String register() {
+        if (UserSession.isUserLoggedIn()) {
+            return "redirect:/";
+        }
+
         return "login/register";
     }
 
@@ -38,6 +69,10 @@ public class LoginController {
                            @RequestParam("password") String password,
                            @RequestParam("password-confirmation") String passwordConfirmation,
                            RedirectAttributes redirectAttributes) {
+
+        if (UserSession.isUserLoggedIn()) {
+            return "redirect:/";
+        }
 
         List<Alert> alerts = new ArrayList<>();
 

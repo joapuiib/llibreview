@@ -82,30 +82,4 @@ class UserServiceImplMemoryDaoTest {
         }
     }
 
-    @Nested
-    class CheckLogin {
-        @Test
-        void givenCorrectUsernameAndPassword_shouldReturnTrue() {
-            boolean result = userService.checkLogin("admin", "admin");
-            assertTrue(result);
-        }
-
-        @Test
-        void givenCorrectUsernameAndIncorrectPassword_shouldReturnFalse() {
-            boolean result = userService.checkLogin("admin", "incorrectPassword");
-            assertFalse(result);
-        }
-
-        @Test
-        void givenIncorrectUsernameAndCorrectPassword_shouldReturnFalse() {
-            boolean result = userService.checkLogin("incorrectUsername", "admin");
-            assertFalse(result);
-        }
-
-        @Test
-        void givenIncorrectUsernameAndIncorrectPassword_shouldReturnFalse() {
-            boolean result = userService.checkLogin("incorrectUsername", "incorrectPassword");
-            assertFalse(result);
-        }
-    }
 }

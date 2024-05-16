@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void login(String username, String password) {
-        userDao.login(username, password);
+    public boolean login(String username, String password) {
+        return userDao.login(username, password);
     }
 }
