@@ -26,7 +26,10 @@ public class UserDaoJdbc implements UserDao {
     }
 
     @Override
-    public boolean checkLogin(String username, String password) {
-        return false;
+    public void create(User user, String password) {
+    }
+
+    @Override
+    public void login(String username, String password) {
     }
 }

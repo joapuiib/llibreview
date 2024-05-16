@@ -12,6 +12,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.U
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.AutorMapper;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.UserMapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserDaoMemory implements UserDao {
@@ -42,16 +43,28 @@ public class UserDaoMemory implements UserDao {
     }
 
     @Override
-    public boolean checkLogin(String username, String password) {
+    public void create(User user, String password) {
+        UserRecord userRecord = new UserRecord();
+        userRecord.setUsername(user.getUsername());
+        userRecord.setHashedPassword(Utils.hashPassword(password));
+        userRecord.setEmail(user.getEmail());
+        userRecord.setDataRegistre(LocalDate.now());
+        userTableMemory.add(userRecord);
+    }
+
+    @Override
+    public void login(String username, String password) {
         UserRecord user = userTableMemory.get().stream()
                 .filter(userRecord -> userRecord.getUsername().equals(username))
                 .findFirst()
                 .orElse(null);
 
-        if (user != null) {
-            return Utils.checkPassword(password, user.getHashedPassword());
-        } else {
-            return false;
+        if (user == null) {
+            throw new RuntimeException("No s'ha trobat l'usuari.");
+        }
+        boolean logged = Utils.checkPassword(password, user.getHashedPassword());
+        if (!logged) {
+            throw new RuntimeException("Contrasenya incorrecta.");
         }
     }
 }

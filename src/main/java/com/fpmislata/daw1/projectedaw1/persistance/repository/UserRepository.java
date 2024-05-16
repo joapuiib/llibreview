@@ -5,5 +5,6 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.User;
 public interface UserRepository {
     User findByUsername(String username);
     User findByEmail(String email);
-    boolean checkLogin(String username, String password);
+    void create(User user, String password);
+    void login(String username, String password);
 }

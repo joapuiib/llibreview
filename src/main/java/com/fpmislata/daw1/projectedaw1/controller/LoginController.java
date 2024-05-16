@@ -40,8 +40,12 @@ public class LoginController {
                            RedirectAttributes redirectAttributes) {
 
         List<Alert> alerts = new ArrayList<>();
-        if (!password.equals(passwordConfirmation)) {
-            alerts.add(new Alert("danger", "Les contrasenyes no coincideixen"));
+
+        try {
+            userService.create(username, email, password, passwordConfirmation);
+            alerts.add(new Alert("success", "L'usuari s'ha registrat correctament."));
+        } catch (RuntimeException exception) {
+            alerts.add(new Alert("danger", exception.getMessage()));
         }
 
         redirectAttributes.addFlashAttribute("alerts", alerts);

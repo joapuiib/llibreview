@@ -22,7 +22,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkLogin(String username, String password) {
-        return userRepository.checkLogin(username, password);
+    public void create(String username, String email, String password, String passwordConfirmation) {
+        if (!password.equals(passwordConfirmation)) {
+            throw new RuntimeException("Les contrasenyes no coincideixen.");
+        } else if (findByUsername(username) != null) {
+            throw new RuntimeException("Ja hi ha un usuari amb aquest nom d'usuari.");
+        } else if (findByEmail(email) != null) {
+            throw new RuntimeException("Ja hi ha un usuari associat a aquest correu electrònic.");
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        userRepository.create(user, password);
     }
+
+    @Override
+    public void login(String username, String password) {
+        userRepository.login(username, password);
+    }
+
 }

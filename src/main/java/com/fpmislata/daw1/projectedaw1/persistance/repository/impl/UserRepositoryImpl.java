@@ -22,7 +22,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean checkLogin(String username, String password) {
-        return userDao.checkLogin(username, password);
+    public void create(User user, String password) {
+        userDao.create(user, password);
+    }
+
+    @Override
+    public void login(String username, String password) {
+        userDao.login(username, password);
     }
 }
