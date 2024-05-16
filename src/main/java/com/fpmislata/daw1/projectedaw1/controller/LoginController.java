@@ -2,12 +2,9 @@ package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.container.UserIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
-import com.fpmislata.daw1.projectedaw1.domain.entity.User;
 import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,12 +23,12 @@ public class LoginController {
 
     @SuppressWarnings("SameReturnValue")
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "login/login";
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register() {
         return "login/register";
     }
 
