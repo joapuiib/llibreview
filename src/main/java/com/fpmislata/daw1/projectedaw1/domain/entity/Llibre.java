@@ -1,5 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
+import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,6 +45,7 @@ public class Llibre {
     }
 
     public List<Autor> getAutors() {
+        autors =  AutorIoc.createService().findByLlibre(this);
         return autors;
     }
 
@@ -51,6 +54,7 @@ public class Llibre {
     }
 
     public List<Genere> getGeneres() {
+        generes = GenereIoc.createService().findByLlibre(this);
         return generes;
     }
 
