@@ -12,17 +12,17 @@ import java.time.LocalDate;
 public class Rating {
     private String isbn;
     private String username;
-    private LocalDate ratingDate;
+    private LocalDate date;
     private int rating;
 
     private Llibre llibre;
     private User user;
 
-    public Rating(String isbn, String username, int rating, LocalDate ratingDate) {
+    public Rating(String isbn, String username, int rating, LocalDate date) {
         this.isbn = isbn;
         this.username = username;
         this.rating = rating;
-        this.ratingDate = ratingDate;
+        this.date = date;
     }
 
     public Rating() {
@@ -44,7 +44,7 @@ public class Rating {
     public String toString() {
         return "Rating{" +
                 "grade=" + rating +
-                ", ratingDate=" + ratingDate +
+                ", ratingDate=" + date +
                 ", userame='" + username + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';

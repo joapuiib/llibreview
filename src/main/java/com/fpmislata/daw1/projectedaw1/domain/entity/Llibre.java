@@ -42,10 +42,6 @@ public class Llibre {
         this.rutaImatge = rutaImatge;
     }
 
-    public String getPrettyDataPublicacio() {
-        return dataPublicacio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-
     public List<Autor> getAutors() {
         if (autors == null)
             autors =  AutorIoc.createService().findByLlibre(this);

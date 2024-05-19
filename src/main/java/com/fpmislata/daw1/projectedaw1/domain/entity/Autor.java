@@ -36,10 +36,6 @@ public class Autor {
         return llibres;
     }
 
-    public String getPrettyDataNaixement() {
-        return dataNaixement.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

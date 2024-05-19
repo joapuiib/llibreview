@@ -293,7 +293,6 @@ img.card-item-img {
     color: var(--cafe-800);
 }
 
-.my-rating-choice {
-    padding: 0.25em;
-    background-color: red;
+.my-rating-date {
+    font-size: 0.8em;
 }

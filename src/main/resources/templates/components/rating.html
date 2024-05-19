@@ -14,22 +14,24 @@
 </div>
 
 <div th:fragment="my-rating(isbn, rating)" class="my-rating-container bg-cafe-100 border border-cafe-500 rounded-3 text-center p-2">
+    <!--/*@thymesVar id="rating" type="com.fpmislata.daw1.projectedaw1.domain.entity.Rating"*/-->
     <form th:action="@{/rating}" method="post">
         <input type="hidden" name="isbn" th:value="${isbn}">
         <label class="cafe-800 mb-2" for="my-rating">La teua valoració</label>
-        <select class="form-select" name="my-rating" id="my-rating">
-            <option value="-1" th:selected="${rating == null}">No vista</option>
-            <option value="10" th:selected="${rating == 10}">10 - Excel·lent</option>
-            <option value="9" th:selected="${rating == 9}">9 - Molt bona</option>
-            <option value="8" th:selected="${rating == 8}">8 - Notable</option>
-            <option value="7" th:selected="${rating == 7}">7 - Bona</option>
-            <option value="6" th:selected="${rating == 6}">6 - Interessant</option>
-            <option value="5" th:selected="${rating == 5}">5 - Acceptable</option>
-            <option value="4" th:selected="${rating == 4}">4 - Regular</option>
-            <option value="3" th:selected="${rating == 3}">3 - Fluixa</option>
-            <option value="2" th:selected="${rating == 2}">2 - Roïn</option>
-            <option value="0" th:selected="${rating == 1}">1 - Molt roïn</option>
+        <select class="form-select" name="my-rating" id="my-rating" th:with="ratingNumber=${rating?.rating}">
+            <option value="-1" th:selected="${ratingNumber == null}">No vista</option>
+            <option value="10" th:selected="${ratingNumber == 10}">10 - Excel·lent</option>
+            <option value="9" th:selected="${ratingNumber == 9}">9 - Molt bona</option>
+            <option value="8" th:selected="${ratingNumber == 8}">8 - Notable</option>
+            <option value="7" th:selected="${ratingNumber == 7}">7 - Bona</option>
+            <option value="6" th:selected="${ratingNumber == 6}">6 - Interessant</option>
+            <option value="5" th:selected="${ratingNumber == 5}">5 - Acceptable</option>
+            <option value="4" th:selected="${ratingNumber == 4}">4 - Regular</option>
+            <option value="3" th:selected="${ratingNumber == 3}">3 - Fluixa</option>
+            <option value="2" th:selected="${ratingNumber == 2}">2 - Roïn</option>
+            <option value="0" th:selected="${ratingNumber == 1}">1 - Molt roïn</option>
         </select>
+        <div class="my-rating-date mt-2" th:if="${rating != null}" th:text="|${#temporals.format(rating?.date, 'dd/MM/yyyy')}|"></div>
         <button class="btn btn-primary mt-2" type="submit">Valora</button>
     </form>
 </div>

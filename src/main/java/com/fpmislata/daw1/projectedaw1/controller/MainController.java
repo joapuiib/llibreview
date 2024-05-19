@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MainController {
                 llibre -> {
                      CardItem card = new CardItem();
                      card.setTitol(llibre.getTitol());
-                     card.setSubtitol(llibre.getPrettyDataPublicacio());
+                     card.setSubtitol(llibre.getDataPublicacio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                      card.setUrl("/llibre/" + llibre.getIsbn());
                      card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                      return card;

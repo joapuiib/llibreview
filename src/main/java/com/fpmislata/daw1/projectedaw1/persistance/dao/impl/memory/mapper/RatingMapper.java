@@ -15,7 +15,7 @@ public class RatingMapper implements Mapper<RatingRecord, Rating> {
         Rating rating = new Rating();
         rating.setIsbn(ratingRecord.getIsbn());
         rating.setUsername(ratingRecord.getUsername());
-        rating.setRatingDate(ratingRecord.getRatingDate());
+        rating.setDate(ratingRecord.getDate());
         rating.setRating(ratingRecord.getRating());
 
         return rating;

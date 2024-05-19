@@ -41,12 +41,15 @@ public class RatingController {
         String username = Objects.requireNonNull(UserSession.getUser()).getUsername();
         if (rating == -1) {
             ratingService.delete(isbn, username);
+            alerts.add(new Alert("info", "S'ha eliminat la valoració"));
+            redirectAttributes.addFlashAttribute("alerts", alerts);
             return "redirect:/llibre/" + isbn;
         }
 
         LocalDate now = LocalDate.now();
         Rating ratingObject = new Rating(isbn, username, rating, now);
         ratingService.save(ratingObject);
+        alerts.add(new Alert("success", "S'ha guardat la valoració"));
 
         redirectAttributes.addFlashAttribute("alerts", alerts);
         return "redirect:/llibre/" + isbn;

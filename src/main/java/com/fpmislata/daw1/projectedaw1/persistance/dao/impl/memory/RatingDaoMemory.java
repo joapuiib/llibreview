@@ -56,7 +56,7 @@ public class RatingDaoMemory implements RatingDao {
         ratingRecord.setIsbn(rating.getIsbn());
         ratingRecord.setUsername(rating.getUsername());
         ratingRecord.setRating(rating.getRating());
-        ratingRecord.setRatingDate(rating.getRatingDate());
+        ratingRecord.setDate(rating.getDate());
         ratingTableMemory.add(ratingRecord);
     }
 
@@ -66,7 +66,7 @@ public class RatingDaoMemory implements RatingDao {
                 .findFirst()
                 .orElseThrow();
         ratingRecord.setRating(rating.getRating());
-        ratingRecord.setRatingDate(rating.getRatingDate());
+        ratingRecord.setDate(rating.getDate());
     }
 
     @Override

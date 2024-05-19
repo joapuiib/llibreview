@@ -10,14 +10,14 @@ import java.time.LocalDate;
 public class RatingRecord {
     private String isbn;
     private String username;
-    private LocalDate ratingDate;
+    private LocalDate date;
     private int rating;
 
-    public RatingRecord(String isbn, String username, int rating, LocalDate ratingDate) {
+    public RatingRecord(String isbn, String username, int rating, LocalDate date) {
         this.isbn = isbn;
         this.username = username;
         this.rating = rating;
-        this.ratingDate = ratingDate;
+        this.date = date;
     }
 
     public RatingRecord() {
