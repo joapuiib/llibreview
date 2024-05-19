@@ -280,7 +280,6 @@ img.card-item-img {
     justify-content: center;
     font-size: 1.25em;
     padding: 0.25em;
-    background-color: var(--cafe-500);
     color: var(--white);
     width: 50px;
 }

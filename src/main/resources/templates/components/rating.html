@@ -7,7 +7,7 @@
 <div th:fragment="rating(numberRatings, averageRating, roundedAverageRating)" class="rating-container bg-cafe-100 border border-cafe-500 rounded-3">
     <div th:replace="~{components/rating :: rating-stars(roundedAverageRating=${roundedAverageRating})}"></div>
     <div class="d-flex justify-content-center mt-2 gap-3">
-        <div class="rating-value fw-bold" th:text="${numberRatings > 0} ? ${#numbers.formatDecimal(averageRating, 1, 1)} : '-'"></div>
+        <div class="rating-value bg-cafe-500 fw-bold rounded-3" th:text="${numberRatings > 0} ? ${#numbers.formatDecimal(averageRating, 1, 1)} : '-'"></div>
         <div class="rating-count " th:if="${numberRatings > 0}" th:text="|${numberRatings} valoracions|"></div>
         <div class="rating-count " th:unless="${numberRatings > 0}">No hi ha valoracions</div>
     </div>
@@ -29,7 +29,7 @@
             <option value="4" th:selected="${ratingNumber == 4}">4 - Regular</option>
             <option value="3" th:selected="${ratingNumber == 3}">3 - Fluixa</option>
             <option value="2" th:selected="${ratingNumber == 2}">2 - Roïn</option>
-            <option value="0" th:selected="${ratingNumber == 1}">1 - Molt roïn</option>
+            <option value="1" th:selected="${ratingNumber == 1}">1 - Molt roïn</option>
         </select>
         <div class="my-rating-date mt-2" th:if="${rating != null}" th:text="|${#temporals.format(rating?.date, 'dd/MM/yyyy')}|"></div>
         <button class="btn btn-primary mt-2" type="submit">Valora</button>

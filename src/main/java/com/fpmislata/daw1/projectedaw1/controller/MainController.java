@@ -37,7 +37,7 @@ public class MainController {
                 llibre -> {
                     CardItem card = new CardItem();
                     card.setTitol(llibre.getTitol());
-                    card.setSubtitol("Lectures: " + llibre.getNombreRatings());
+                    card.setSubtitol("Lectors: " + llibre.getNombreRatings());
                     card.setUrl("/llibre/" + llibre.getIsbn());
                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                     return card;
