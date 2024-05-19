@@ -1,14 +1,35 @@
 <div th:fragment="rating-stars(averageRating)" class="d-flex justify-content-center align-content-center">
-    <div class="rating-star-container">
+    <div class="rating-star-container border border-cafe-500">
         <i class="fa fa-star" th:each="i : ${#numbers.sequence(0, 9)}" th:classappend="${i < averageRating } ? 'rating-star-color'"></i>
     </div>
 </div>
 
-<div th:fragment="rating(numberReviews, averageRating)" class="rating-container">
+<div th:fragment="rating(numberReviews, averageRating)" class="rating-container bg-cafe-100 border border-cafe-500 rounded-3">
     <div th:replace="~{components/rating :: rating-stars(averageRating=${averageRating})}"></div>
     <div class="d-flex justify-content-center mt-2 gap-3">
         <div class="rating-value fw-bold" th:text="${numberReviews > 0} ? ${averageRating} : '-'"></div>
         <div class="rating-count " th:if="${numberReviews > 0}" th:text="|${numberReviews} valoracions|"></div>
         <div class="rating-count " th:unless="${numberReviews > 0}">No hi ha valoracions</div>
     </div>
+</div>
+
+<div th:fragment="my-rating(isbn, rating)" class="my-rating-container bg-cafe-100 border border-cafe-500 rounded-3 text-center p-2">
+    <form th:action="@{/rating}">
+        <input type="hidden" name="isbn" th:value="${isbn}">
+        <label class="cafe-800 mb-2" for="my-rating">La teua valoració</label>
+        <select class="form-select" name="my-rating" id="my-rating">
+            <option value="0" th:selected="${rating == null}">No vista</option>
+            <option value="10" th:selected="${rating == 10}">10 - Excel·lent</option>
+            <option value="9" th:selected="${rating == 9}">9 - Molt bona</option>
+            <option value="8" th:selected="${rating == 8}">8 - Notable</option>
+            <option value="7" th:selected="${rating == 7}">7 - Bona</option>
+            <option value="6" th:selected="${rating == 6}">6 - Interessant</option>
+            <option value="5" th:selected="${rating == 5}">5 - Acceptable</option>
+            <option value="4" th:selected="${rating == 4}">4 - Regular</option>
+            <option value="3" th:selected="${rating == 3}">3 - Fluixa</option>
+            <option value="2" th:selected="${rating == 2}">2 - Roïn</option>
+            <option value="0" th:selected="${rating == 1}">1 - Molt roïn</option>
+        </select>
+        <button class="btn btn-primary mt-2" type="submit">Valora</button>
+    </form>
 </div>
