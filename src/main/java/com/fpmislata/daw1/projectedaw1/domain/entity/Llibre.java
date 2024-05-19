@@ -2,7 +2,7 @@ package com.fpmislata.daw1.projectedaw1.domain.entity;
 
 import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.ReviewIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.RatingIoc;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +23,7 @@ public class Llibre {
 
     private List<Autor> autors;
     private List<Genere> generes;
-    private List<Review> reviews;
+    private List<Rating> ratings;
 
     public Llibre() {
     }
@@ -66,22 +66,22 @@ public class Llibre {
         generes.add(genere);
     }
 
-    public List<Review> getReviews() {
-        if (reviews == null)
-            reviews = ReviewIoc.createService().findByLlibre(this);
-        return reviews;
+    public List<Rating> getRatings() {
+        if (ratings == null)
+            ratings = RatingIoc.createService().findByLlibre(this);
+        return ratings;
     }
 
-    public int getNombreReviews() {
-        return getReviews().size();
+    public int getNombreRatings() {
+        return getRatings().size();
     }
 
     public double getAverageRating() {
-        return getReviews().stream().mapToDouble(Review::getRating).average().orElse(0);
+        return getRatings().stream().mapToDouble(Rating::getRating).average().orElse(0);
     }
 
-    public Review getReviewFromUser(User user){
-        return ReviewIoc.createService().findByLlibreAndUser(this, user);
+    public Rating getRatingFromUser(User user){
+        return RatingIoc.createService().findByLlibreAndUser(this, user);
     }
 
     @Override

@@ -13,5 +13,5 @@ public interface LlibreService {
     List<Llibre> findByAutor(Autor autor);
     List<Llibre> findByGenere(Genere genere);
     List<Llibre> findMostRead(int n);
-    List<Llibre> findBestReview(int n);
+    List<Llibre> findBestRating(int n);
 }

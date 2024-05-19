@@ -50,7 +50,7 @@ public class LlibreDaoMemory implements LlibreDao {
     }
 
     @Override
-    public List<Llibre> findBestReview(int n) {
+    public List<Llibre> findBestRating(int n) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

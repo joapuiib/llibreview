@@ -60,8 +60,8 @@ public class LlibreDaoJdbc implements LlibreDao {
     }
 
     @Override
-    public List<Llibre> findBestReview(int n) {
-        throw new UnsupportedOperationException("LlibreDaoJdbc::findBestReview no s'ha implementat encara");
+    public List<Llibre> findBestRating(int n) {
+        throw new UnsupportedOperationException("LlibreDaoJdbc::findBestRating no s'ha implementat encara");
     }
 
     @Override

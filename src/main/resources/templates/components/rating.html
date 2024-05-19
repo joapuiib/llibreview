@@ -4,12 +4,12 @@
     </div>
 </div>
 
-<div th:fragment="rating(numberReviews, averageRating)" class="rating-container bg-cafe-100 border border-cafe-500 rounded-3">
+<div th:fragment="rating(numberRatings, averageRating)" class="rating-container bg-cafe-100 border border-cafe-500 rounded-3">
     <div th:replace="~{components/rating :: rating-stars(averageRating=${averageRating})}"></div>
     <div class="d-flex justify-content-center mt-2 gap-3">
-        <div class="rating-value fw-bold" th:text="${numberReviews > 0} ? ${averageRating} : '-'"></div>
-        <div class="rating-count " th:if="${numberReviews > 0}" th:text="|${numberReviews} valoracions|"></div>
-        <div class="rating-count " th:unless="${numberReviews > 0}">No hi ha valoracions</div>
+        <div class="rating-value fw-bold" th:text="${numberRatings > 0} ? ${averageRating} : '-'"></div>
+        <div class="rating-count " th:if="${numberRatings > 0}" th:text="|${numberRatings} valoracions|"></div>
+        <div class="rating-count " th:unless="${numberRatings > 0}">No hi ha valoracions</div>
     </div>
 </div>
 

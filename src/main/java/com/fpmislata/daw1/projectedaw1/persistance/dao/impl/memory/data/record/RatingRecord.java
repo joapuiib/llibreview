@@ -7,19 +7,19 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class ReviewRecord {
+public class RatingRecord {
     private String isbn;
     private String username;
-    private LocalDate reviewDate;
+    private LocalDate ratingDate;
     private int rating;
 
-    public ReviewRecord(String isbn, String username, LocalDate reviewDate, int rating) {
+    public RatingRecord(String isbn, String username, LocalDate ratingDate, int rating) {
         this.isbn = isbn;
         this.username = username;
-        this.reviewDate = reviewDate;
+        this.ratingDate = ratingDate;
         this.rating = rating;
     }
 
-    public ReviewRecord() {
+    public RatingRecord() {
     }
 }

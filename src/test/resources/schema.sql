@@ -49,10 +49,10 @@ create table user (
     foreign key (id_rol) references rol (id_rol)
 );
 
-create table review (
+create table rating (
     isbn varchar(50),
     username varchar(100),
-    data_review date not null,
+    data_rating date not null,
     data_lectura date not null,
     puntuacio int not null,
     comentari text,

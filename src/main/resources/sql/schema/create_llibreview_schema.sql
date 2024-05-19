@@ -1,6 +1,6 @@
 drop table if exists segueix_llista;
 drop table if exists llista;
-drop table if exists review;
+drop table if exists rating;
 drop table if exists user;
 drop table if exists rol;
 drop table if exists llibre_genere;
@@ -61,10 +61,10 @@ create table user (
     foreign key (id_rol) references rol (id_rol)
 );
 
-create table review (
+create table rating (
     isbn varchar(50),
     id_usuari int,
-    data_review date not null,
+    data_rating date not null,
     data_lectura date not null,
     puntuacio int not null,
     comentari text,

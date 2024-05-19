@@ -57,7 +57,7 @@ public class LlibreRepositoryMock implements LlibreRepository {
     }
 
     @Override
-    public List<Llibre> findBestReview(int n) {
+    public List<Llibre> findBestRating(int n) {
         return null;
     }
 }

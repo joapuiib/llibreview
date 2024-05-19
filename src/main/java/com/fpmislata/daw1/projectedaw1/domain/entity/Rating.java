@@ -9,23 +9,23 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class Review {
+public class Rating {
     private String isbn;
     private String userame;
-    private LocalDate reviewDate;
+    private LocalDate ratingDate;
     private int rating;
 
     private Llibre llibre;
     private User user;
 
-    public Review(String isbn, String userame, LocalDate reviewDate, int rating) {
+    public Rating(String isbn, String userame, LocalDate ratingDate, int rating) {
         this.isbn = isbn;
         this.userame = userame;
-        this.reviewDate = reviewDate;
+        this.ratingDate = ratingDate;
         this.rating = rating;
     }
 
-    public Review() {
+    public Rating() {
     }
 
     public Llibre getLlibre(){
@@ -42,9 +42,9 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "Rating{" +
                 "grade=" + rating +
-                ", reviewDate=" + reviewDate +
+                ", ratingDate=" + ratingDate +
                 ", userame='" + userame + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
