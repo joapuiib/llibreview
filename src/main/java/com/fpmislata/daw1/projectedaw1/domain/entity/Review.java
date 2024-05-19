@@ -13,16 +13,16 @@ public class Review {
     private String isbn;
     private String userame;
     private LocalDate reviewDate;
-    private int grade;
+    private int rating;
 
     private Llibre llibre;
     private User user;
 
-    public Review(String isbn, String userame, LocalDate reviewDate, int grade) {
+    public Review(String isbn, String userame, LocalDate reviewDate, int rating) {
         this.isbn = isbn;
         this.userame = userame;
         this.reviewDate = reviewDate;
-        this.grade = grade;
+        this.rating = rating;
     }
 
     public Review() {
@@ -43,7 +43,7 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "grade=" + grade +
+                "grade=" + rating +
                 ", reviewDate=" + reviewDate +
                 ", userame='" + userame + '\'' +
                 ", isbn='" + isbn + '\'' +

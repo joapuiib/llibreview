@@ -16,7 +16,7 @@ public class ReviewMapper implements Mapper<ReviewRecord, Review> {
         review.setIsbn(reviewRecord.getIsbn());
         review.setUserame(reviewRecord.getUsername());
         review.setReviewDate(reviewRecord.getReviewDate());
-        review.setGrade(reviewRecord.getGrade());
+        review.setRating(reviewRecord.getRating());
 
         return review;
     }

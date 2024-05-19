@@ -11,13 +11,13 @@ public class ReviewRecord {
     private String isbn;
     private String username;
     private LocalDate reviewDate;
-    private int grade;
+    private int rating;
 
-    public ReviewRecord(String isbn, String username, LocalDate reviewDate, int grade) {
+    public ReviewRecord(String isbn, String username, LocalDate reviewDate, int rating) {
         this.isbn = isbn;
         this.username = username;
         this.reviewDate = reviewDate;
-        this.grade = grade;
+        this.rating = rating;
     }
 
     public ReviewRecord() {

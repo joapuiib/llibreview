@@ -57,11 +57,11 @@ public class LlibreController {
         model.addAttribute("autors", autors);
 
         List<Genere> generes = llibre.getGeneres();
-        List<Review> reviews = llibre.getReviews();
-        System.out.println(reviews);
-
         model.addAttribute("generes", generes);
+
+        List<Review> reviews = llibre.getReviews();
         model.addAttribute("reviews", reviews);
+
         return "llibre/llibre";
     }
 }

@@ -72,6 +72,14 @@ public class Llibre {
         return reviews;
     }
 
+    public int getNombreReviews() {
+        return getReviews().size();
+    }
+
+    public double getAverageRating() {
+        return getReviews().stream().mapToDouble(Review::getRating).average().orElse(0);
+    }
+
     public Review getReviewFromUser(User user){
         return ReviewIoc.createService().findByLlibreAndUser(this, user);
     }

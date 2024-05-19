@@ -1,0 +1,14 @@
+<div th:fragment="rating-stars(averageRating)" class="d-flex justify-content-center align-content-center">
+    <div class="rating-star-container">
+        <i class="fa fa-star" th:each="i : ${#numbers.sequence(0, 9)}" th:classappend="${i < averageRating } ? 'rating-star-color'"></i>
+    </div>
+</div>
+
+<div th:fragment="rating(numberReviews, averageRating)" class="rating-container">
+    <div th:replace="~{components/rating :: rating-stars(averageRating=${averageRating})}"></div>
+    <div class="d-flex justify-content-center mt-2 gap-3">
+        <div class="rating-value fw-bold" th:text="${numberReviews > 0} ? ${averageRating} : '-'"></div>
+        <div class="rating-count " th:if="${numberReviews > 0}" th:text="|${numberReviews} valoracions|"></div>
+        <div class="rating-count " th:unless="${numberReviews > 0}">No hi ha valoracions</div>
+    </div>
+</div>
