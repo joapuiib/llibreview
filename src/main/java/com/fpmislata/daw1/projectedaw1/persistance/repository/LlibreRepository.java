@@ -12,5 +12,5 @@ public interface LlibreRepository {
     List<Llibre> findByGenereId(int idGenere);
     List<Llibre> findLatest(int n);
     List<Llibre> findMostRead(int n);
-    List<Llibre> findBestRating(int n);
+    List<Llibre> findBestRated(int n);
 }

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -34,14 +33,26 @@ public class MainController {
                 }).toList();
         model.addAttribute("ultimsLlibres", ultimsLlibres);
 
-        CardItem placeholder = new CardItem();
-        placeholder.setTitol("Placeholder");
-        placeholder.setSubtitol("Autor Placeholder");
-        placeholder.setUrl("/llibre/1");
-        placeholder.setImatgeUrl("/img/llibre/placeholder.png");
-        List<CardItem> mesLlegits = Collections.nCopies(4, placeholder);
+        List<CardItem> mesLlegits = llibreService.findMostRead(4).stream().map(
+                llibre -> {
+                    CardItem card = new CardItem();
+                    card.setTitol(llibre.getTitol());
+                    card.setSubtitol("Lectures: " + llibre.getNombreRatings());
+                    card.setUrl("/llibre/" + llibre.getIsbn());
+                    card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                    return card;
+                }).toList();
         model.addAttribute("mesLlegits", mesLlegits);
-        List<CardItem> millorValorats = Collections.nCopies(4, placeholder);
+
+        List<CardItem> millorValorats = llibreService.findBestRated(4).stream().map(
+                llibre -> {
+                    CardItem card = new CardItem();
+                    card.setTitol(llibre.getTitol());
+                    card.setSubtitol("Valoració: " + String.format("%.2f", llibre.getAverageRating()));
+                    card.setUrl("/llibre/" + llibre.getIsbn());
+                    card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                    return card;
+                }).toList();
         model.addAttribute("millorValorats", millorValorats);
 
         return "index";

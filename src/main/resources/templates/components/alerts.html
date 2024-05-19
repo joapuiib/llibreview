@@ -1,7 +1,7 @@
 <!--/*@thymesVar id="alert" type="com.fpmislata.daw1.projectedaw1.controller.components.Alert"*/-->
 <div th:fragment="alert(alert)" class="alert" th:classappend="|alert-${alert.type}|" th:text="${alert.message}"></div>
 
-<div th:fragment="alert-container(alerts)" class="alert-container my-3">
+<div th:fragment="alert-container(alerts)" class="alert-container">
     <!--/*@thymesVar id="alerts" type="List<com.fpmislata.daw1.projectedaw1.controller.components.Alert>"*/-->
     <div th:each="alert: ${alerts}" class="">
         <div th:replace="~{components/alerts :: alert(alert=${alert})}"></div>

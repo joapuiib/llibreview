@@ -7,7 +7,7 @@
 
 
         <!--/*@thymesVar id="alerts" type="List<com.fpmislata.daw1.projectedaw1.controller.components.Alert>"*/-->
-        <main class="container flex-grow-1">
+        <main class="container flex-grow-1 p-3">
             <div th:if="${alerts != null}" th:replace="~{components/alerts :: alert-container(alerts=${alerts})}"></div>
             <div th:replace="${content}"></div>
         </main>

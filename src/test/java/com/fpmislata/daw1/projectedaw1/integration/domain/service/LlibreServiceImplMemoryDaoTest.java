@@ -32,7 +32,7 @@ class LlibreServiceImplMemoryDaoTest {
 
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
-                    new LlibreDaoMemory(llibreTableMemory),
+                    new LlibreDaoMemory(llibreTableMemory, null),
                     new EscriuDaoMemory(escriuTableMemory, llibreTableMemory, null),
                     null
             )

@@ -42,7 +42,7 @@ public class LlibreServiceImpl implements LlibreService {
         return llibreRepository.findMostRead(n);
     }
 
-    public List<Llibre> findBestRating(int n) {
-        return llibreRepository.findBestRating(n);
+    public List<Llibre> findBestRated(int n) {
+        return llibreRepository.findBestRated(n);
     }
 }

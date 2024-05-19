@@ -9,7 +9,7 @@ public interface LlibreDao {
     Llibre findByIsbn(String isbn);
     List<Llibre> findLatest(int n);
     List<Llibre> findMostRead(int n);
-    List<Llibre> findBestRating(int n);
+    List<Llibre> findBestRated(int n);
     boolean insert(Llibre llibre);
     Llibre delete(String isbn);
 }

@@ -36,7 +36,7 @@ public class LlibreDaoMock implements LlibreDao {
     }
 
     @Override
-    public List<Llibre> findBestRating(int n) {
+    public List<Llibre> findBestRated(int n) {
         return null;
     }
 

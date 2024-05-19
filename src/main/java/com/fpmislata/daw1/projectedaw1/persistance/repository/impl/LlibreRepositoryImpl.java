@@ -49,7 +49,7 @@ public class LlibreRepositoryImpl implements LlibreRepository {
     }
 
     @Override
-    public List<Llibre> findBestRating(int n) {
-        return llibreDao.findBestRating(n);
+    public List<Llibre> findBestRated(int n) {
+        return llibreDao.findBestRated(n);
     }
 }

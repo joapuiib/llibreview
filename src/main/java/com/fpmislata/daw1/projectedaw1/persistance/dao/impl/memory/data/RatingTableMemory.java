@@ -13,7 +13,8 @@ public class RatingTableMemory {
             new RatingRecord("9788433915689", "admin", 10, LocalDate.parse("2024-05-01")),
             new RatingRecord("9788433999030", "user1", 8, LocalDate.parse("2024-05-01")),
             new RatingRecord("9788433999542", "user1", 7, LocalDate.parse("2024-05-01")),
-            new RatingRecord("9788433999542", "user2", 8, LocalDate.parse("2024-05-01"))
+            new RatingRecord("9788433999542", "user2", 8, LocalDate.parse("2024-05-01")),
+            new RatingRecord("9788499309255", "user1", 3, LocalDate.parse("2024-05-01"))
     ));
 
     public List<RatingRecord> get(){
