@@ -26,4 +26,14 @@ public class RatingRepositoryImpl implements RatingRepository {
     public List<Rating> findByUsername(String username) {
         return ratingDao.findByUsername(username);
     }
+
+    @Override
+    public void save(Rating rating) {
+        ratingDao.save(rating);
+    }
+
+    @Override
+    public void delete(String isbn, String username) {
+        ratingDao.delete(isbn, username);
+    }
 }

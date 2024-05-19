@@ -8,4 +8,6 @@ public interface RatingDao {
     Rating findByLlibreIsbnAndUsername(String isbn, String username);
     List<Rating> findByLlibreIsbn(String isbn);
     List<Rating> findByUsername(String username);
+    void save(Rating rating);
+    void delete(String isbn, String username);
 }

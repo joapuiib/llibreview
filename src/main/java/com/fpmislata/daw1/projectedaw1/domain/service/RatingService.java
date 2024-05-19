@@ -10,4 +10,6 @@ public interface RatingService {
     Rating findByLlibreAndUser(Llibre llibre, User user);
     List<Rating> findByLlibre(Llibre llibre);
     List<Rating> findByUser(User user);
+    void save(Rating rating);
+    void delete(String isbn, String username);
 }

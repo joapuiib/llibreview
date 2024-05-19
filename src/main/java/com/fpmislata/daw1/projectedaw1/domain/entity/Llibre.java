@@ -80,6 +80,10 @@ public class Llibre {
         return getRatings().stream().mapToDouble(Rating::getRating).average().orElse(0);
     }
 
+    public int getRoundedAverageRating() {
+        return (int) Math.round(getAverageRating());
+    }
+
     public Rating getRatingFromUser(User user){
         return RatingIoc.createService().findByLlibreAndUser(this, user);
     }

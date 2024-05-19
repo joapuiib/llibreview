@@ -29,4 +29,14 @@ public class RatingServiceImpl implements RatingService {
     public List<Rating> findByUser(User user) {
         return ratingRepository.findByUsername(user.getUsername());
     }
+
+    @Override
+    public void save(Rating rating) {
+        ratingRepository.save(rating);
+    }
+
+    @Override
+    public void delete(String isbn, String username) {
+        ratingRepository.delete(isbn, username);
+    }
 }

@@ -11,18 +11,18 @@ import java.time.LocalDate;
 @Setter
 public class Rating {
     private String isbn;
-    private String userame;
+    private String username;
     private LocalDate ratingDate;
     private int rating;
 
     private Llibre llibre;
     private User user;
 
-    public Rating(String isbn, String userame, LocalDate ratingDate, int rating) {
+    public Rating(String isbn, String username, int rating, LocalDate ratingDate) {
         this.isbn = isbn;
-        this.userame = userame;
-        this.ratingDate = ratingDate;
+        this.username = username;
         this.rating = rating;
+        this.ratingDate = ratingDate;
     }
 
     public Rating() {
@@ -36,7 +36,7 @@ public class Rating {
 
     public User getUser(){
         if (user == null)
-            user =  UserIoc.getUserService().findByUsername(userame);
+            user =  UserIoc.getUserService().findByUsername(username);
         return user;
     }
 
@@ -45,7 +45,7 @@ public class Rating {
         return "Rating{" +
                 "grade=" + rating +
                 ", ratingDate=" + ratingDate +
-                ", userame='" + userame + '\'' +
+                ", userame='" + username + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
     }

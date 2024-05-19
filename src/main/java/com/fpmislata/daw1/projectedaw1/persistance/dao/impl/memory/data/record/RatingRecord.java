@@ -13,11 +13,11 @@ public class RatingRecord {
     private LocalDate ratingDate;
     private int rating;
 
-    public RatingRecord(String isbn, String username, LocalDate ratingDate, int rating) {
+    public RatingRecord(String isbn, String username, int rating, LocalDate ratingDate) {
         this.isbn = isbn;
         this.username = username;
-        this.ratingDate = ratingDate;
         this.rating = rating;
+        this.ratingDate = ratingDate;
     }
 
     public RatingRecord() {
