@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,18 +12,18 @@ import java.util.Objects;
 public class User {
     private String username;
     private String email;
-    private List<Rol> roles;
     private LocalDate dataRegistre;
+    private String hashedPassword;
+
+    private List<Rol> roles;
 
     public User(String username, String email, LocalDate dataRegistre) {
-        this();
         this.username = username;
         this.email = email;
         this.dataRegistre = dataRegistre;
     }
 
     public User() {
-        roles = new ArrayList<>();
     }
 
     @Override

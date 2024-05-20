@@ -36,7 +36,9 @@ create table escriu (
 
 create table genere (
     id_genere int primary key,
-    nom varchar(100) not null
+    nom_ca varchar(100) not null,
+    nom_en varchar(100) not null,
+    ruta_imatge varchar(200) not null
 );
 
 create table llibre_genere (
@@ -47,45 +49,20 @@ create table llibre_genere (
     foreign key (id_genere) references genere (id_genere)
 );
 
-create table rol (
-    id_rol int primary key,
-    nom varchar(100) not null
-);
-
 create table user (
-    id_usuari int primary key,
-    id_rol int,
-    username varchar(100) not null unique,
-    correu_electronic varchar(100) not null,
-    data_alta date not null,
-    foreign key (id_rol) references rol (id_rol)
+    username varchar(100) primary key,
+    email varchar(100) not null unique,
+    data_registre date not null
+    -- id_rol int,
+    -- foreign key (id_rol) references rol (id_rol)
 );
 
 create table rating (
     isbn varchar(50),
-    id_usuari int,
+    username varchar(100),
     data_rating date not null,
-    data_lectura date not null,
-    puntuacio int not null,
-    comentari text,
-    primary key (isbn, id_usuari),
+    rating int not null,
+    primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
-    foreign key (id_usuari) references user (id_usuari)
-);
-
-create table llista (
-    id_usuari_propietari int,
-    id_llista int,
-    nom varchar(100) not null,
-    primary key (id_usuari_propietari, id_llista),
-    foreign key (id_usuari_propietari) references user (id_usuari)
-);
-
-create table segueix_llista (
-    id_usuari_propietari int,
-    id_llista int,
-    id_usuari int,
-    primary key (id_usuari, id_usuari_propietari, id_llista),
-    foreign key (id_usuari) references user (id_usuari),
-    foreign key (id_usuari_propietari, id_llista) references llista (id_usuari_propietari, id_llista)
+    foreign key (username) references user (username)
 );

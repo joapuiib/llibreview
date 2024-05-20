@@ -31,7 +31,7 @@ public class GenereDaoJdbc implements GenereDao {
 
     @Override
     public Genere findById(int id) {
-        String sql = "SELECT * FROM genere where id = ?";
+        String sql = "SELECT * FROM genere where id_genere = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();

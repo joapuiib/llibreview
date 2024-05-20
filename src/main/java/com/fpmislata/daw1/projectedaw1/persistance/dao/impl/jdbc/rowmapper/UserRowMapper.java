@@ -12,6 +12,7 @@ public class UserRowMapper extends RowMapper<User> {
         user.setUsername(rs.getString("username"));
         user.setEmail(rs.getString("email"));
         user.setDataRegistre(rs.getDate("data_registre").toLocalDate());
+        user.setHashedPassword(rs.getString("password"));
         return user;
     }
 }

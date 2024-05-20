@@ -18,3 +18,17 @@ insert into escriu(isbn, id_autor) values
     ('9788499309255', 2),
     ('9788497937306', 2),
     ('9788497937856', 2);
+
+insert into genere(id_genere, nom_ca, nom_en, ruta_imatge) values
+    (1, 'Ficció literària', 'Literary fiction', 'ficcio_literaria.jpg'),
+    (2, 'Narrativa', 'Narrative', 'narrativa.jpg'),
+    (3, 'Ciència-ficció', 'Science fiction', 'ciencia_ficcio.jpg');
+
+insert into llibre_genere(isbn, id_genere) values
+    ('9788433915689', 1),
+    ('9788433915689', 2),
+    ('9788433999030', 2),
+    ('9788433999542', 2),
+    ('9788499309255', 3),
+    ('9788497937306', 3),
+    ('9788497937856', 3);
