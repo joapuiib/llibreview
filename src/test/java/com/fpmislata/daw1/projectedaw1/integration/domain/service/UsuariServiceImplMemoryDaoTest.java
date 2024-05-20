@@ -1,6 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.integration.domain.service;
 
-import com.fpmislata.daw1.projectedaw1.data.UserData;
+import com.fpmislata.daw1.projectedaw1.data.UsuariData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.UsuariServiceImpl;
@@ -29,11 +29,11 @@ class UsuariServiceImplMemoryDaoTest {
             )
     );
 
-    private final List<Usuari> Usuari_LIST = UserData.USUARI_LIST;
+    private final List<Usuari> Usuari_LIST = UsuariData.USUARI_LIST;
 
     @BeforeEach
     void setup() {
-        when(usuariTableMemory.get()).thenReturn(UserData.USER_RECORD_LIST);
+        when(usuariTableMemory.get()).thenReturn(UsuariData.USER_RECORD_LIST);
     }
 
     @Nested
@@ -41,14 +41,14 @@ class UsuariServiceImplMemoryDaoTest {
         @Test
         void givenUsername_shouldReturnUser() {
             Usuari expectedUsuari = Usuari_LIST.get(0);
-            Usuari result = usuariService.findByUsername("admin");
+            Usuari result = usuariService.findByUsername("user1");
             assertEquals(expectedUsuari, result);
         }
 
         @Test
         void givenDifferentUsername_shouldReturnDifferentUser() {
             Usuari expectedUsuari = Usuari_LIST.get(1);
-            Usuari result = usuariService.findByUsername("user");
+            Usuari result = usuariService.findByUsername("user2");
             assertEquals(expectedUsuari, result);
         }
 
@@ -64,14 +64,14 @@ class UsuariServiceImplMemoryDaoTest {
         @Test
         void givenEmail_shouldReturnUser() {
             Usuari expectedUsuari = Usuari_LIST.get(0);
-            Usuari result = usuariService.findByEmail("admin@localhost");
+            Usuari result = usuariService.findByEmail("user1@localhost");
             assertEquals(expectedUsuari, result);
         }
 
         @Test
         void givenDifferentEmail_shouldReturnDifferentUser() {
             Usuari expectedUsuari = Usuari_LIST.get(1);
-            Usuari result = usuariService.findByEmail("user@localhost");
+            Usuari result = usuariService.findByEmail("user2@localhost");
             assertEquals(expectedUsuari, result);
         }
 

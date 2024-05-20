@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -48,5 +49,18 @@ public class Valoracio {
                 ", userame='" + username + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Valoracio valoracio1 = (Valoracio) o;
+        return valoracio == valoracio1.valoracio && Objects.equals(isbn, valoracio1.isbn) && Objects.equals(username, valoracio1.username) && Objects.equals(data, valoracio1.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn, username, data, valoracio);
     }
 }

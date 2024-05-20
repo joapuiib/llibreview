@@ -26,7 +26,7 @@ class ValoracioServiceImplTest {
     @InjectMocks
     private ValoracioServiceImpl valoracioService;
 
-    private final List<Valoracio> valoracioList = ValoracioData.REVIEW_LIST;
+    private final List<Valoracio> valoracioList = ValoracioData.VALORACIO_LIST;
     private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
