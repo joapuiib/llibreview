@@ -56,7 +56,14 @@ public class LlibreDaoJdbc implements LlibreDao {
 
     @Override
     public List<Llibre> findMostRead(int n) {
-        String sql = "SELECT l.* FROM llibre l inner join valoracio r on l.isbn = r.isbn group by l.isbn order by count(r.isbn) desc limit ?";
+        String sql = """
+            select l.*
+            from llibre l
+            inner join valoracio r on l.isbn = r.isbn
+            group by l.isbn
+            order by count(r.isbn) desc, l.titol, l.isbn
+            limit ?
+        """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
@@ -68,7 +75,14 @@ public class LlibreDaoJdbc implements LlibreDao {
 
     @Override
     public List<Llibre> findBestRated(int n) {
-        String sql = "SELECT l.* FROM llibre l inner join valoracio r on l.isbn = r.isbn group by l.isbn order by avg(r.valoracio) desc limit ?";
+        String sql = """
+            select l.*
+            from llibre l
+            inner join valoracio r on l.isbn = r.isbn
+            group by l.isbn
+            order by avg(r.valoracio) desc, l.titol, l.isbn
+            limit ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
