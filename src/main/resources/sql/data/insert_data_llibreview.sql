@@ -32,3 +32,25 @@ insert into llibre_genere(isbn, id_genere) values
     ('9788499309255', 3),
     ('9788497937306', 3),
     ('9788497937856', 3);
+
+insert into user(username, email, data_registre, password) values
+    ('admin', 'admin@localhost', '2022-03-01', '$2a$10$L1puu5aXVN8bP4Zk1t70fedZajz/mL3doeetBfAYuvna46I2DRL9K'),
+    ('user1', 'user1@localhost', '2024-05-20', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'),
+    ('user2', 'user2@localhost', '2024-05-20', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'),
+    ('user3', 'user3@localhost', '2024-05-20', '$2a$10$il0FptkiuLRtF7swrx7KoudhNtw0VIQHjWtX4.RNFzFA7l5TFIs.i'),
+    ('user4', 'user4@localhost', '2024-05-20', '$2a$10$6vcrnNp68l5RnW6Mh56CV.KBo8oM1xgY/Asb0vIYV/.3TwMVbhX5G');
+
+
+insert into rating(isbn, username, date, rating) values
+    ('9788433915689', 'user1', '2024-05-01', 10),
+    ('9788433915689', 'user2', '2024-05-01', 9),
+    ('9788433915689', 'user3', '2024-05-01', 9),
+    ('9788433915689', 'user4', '2024-05-01', 9),
+    ('9788433999030', 'user1', '2024-05-01', 8),
+    ('9788433999030', 'user2', '2024-05-01', 8),
+    ('9788433999542', 'user1', '2024-05-01', 10),
+    ('9788433999542', 'user3', '2024-05-01', 7),
+    ('9788499309255', 'user2', '2024-05-01', 9),
+    ('9788499309255', 'user3', '2024-05-01', 10),
+    ('9788497937306', 'user4', '2024-05-01', 9);
+

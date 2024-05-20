@@ -50,7 +50,7 @@ public class UserDaoJdbc implements UserDao {
 
     @Override
     public void create(User user, String password) {
-        String sql = "INSERT INTO user (username, email, data-registre, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO user (username, email, data_registre, password) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getEmail());

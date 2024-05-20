@@ -47,9 +47,9 @@ public class UserDaoMemory implements UserDao {
     public void create(User user, String password) {
         UserRecord userRecord = new UserRecord();
         userRecord.setUsername(user.getUsername());
-        userRecord.setHashedPassword(Utils.hashPassword(password));
         userRecord.setEmail(user.getEmail());
-        userRecord.setDataRegistre(LocalDate.now());
+        userRecord.setDataRegistre(user.getDataRegistre());
+        userRecord.setHashedPassword(Utils.hashPassword(password));
         userTableMemory.add(userRecord);
     }
 

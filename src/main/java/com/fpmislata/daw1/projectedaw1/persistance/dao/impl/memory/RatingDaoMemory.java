@@ -51,7 +51,8 @@ public class RatingDaoMemory implements RatingDao {
         }
     }
 
-    private void insert(Rating rating) {
+    @Override
+    public void insert(Rating rating) {
         RatingRecord ratingRecord = new RatingRecord();
         ratingRecord.setIsbn(rating.getIsbn());
         ratingRecord.setUsername(rating.getUsername());
@@ -60,7 +61,7 @@ public class RatingDaoMemory implements RatingDao {
         ratingTableMemory.add(ratingRecord);
     }
 
-    private void update(Rating rating) {
+    public void update(Rating rating) {
         RatingRecord ratingRecord = ratingTableMemory.get().stream()
                 .filter(ratingrecord -> ratingrecord.getIsbn().equals(rating.getIsbn()) && ratingrecord.getUsername().equals(rating.getUsername()))
                 .findFirst()

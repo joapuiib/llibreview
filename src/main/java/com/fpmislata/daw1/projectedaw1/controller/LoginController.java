@@ -84,7 +84,7 @@ public class LoginController {
         }
 
         redirectAttributes.addFlashAttribute("alerts", alerts);
-        return "redirect:/register";
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")

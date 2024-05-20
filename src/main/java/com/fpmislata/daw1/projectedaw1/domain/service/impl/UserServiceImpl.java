@@ -5,6 +5,8 @@ import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.UserRepository;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
+import java.time.LocalDate;
+
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
+        user.setDataRegistre(LocalDate.now());
         userRepository.create(user, password);
     }
 

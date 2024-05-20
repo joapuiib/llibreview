@@ -4,6 +4,7 @@ import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import com.fpmislata.daw1.projectedaw1.domain.service.RatingService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.RatingServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RatingDao;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.RatingDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.RatingDaoMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.RatingTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.RatingRepository;
@@ -34,7 +35,7 @@ public class RatingIoc {
     public static RatingDao createDao() {
         if (ratingDao == null) {
             if (AppPropertiesReader.getProperty("dao").equals("jdbc"))
-                ratingDao = null;
+                ratingDao = new RatingDaoJdbc();
             else {
                 RatingTableMemory ratingTableMemory = createTableMemory();
                 ratingDao = new RatingDaoMemory(ratingTableMemory);

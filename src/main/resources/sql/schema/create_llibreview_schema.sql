@@ -52,7 +52,8 @@ create table llibre_genere (
 create table user (
     username varchar(100) primary key,
     email varchar(100) not null unique,
-    data_registre date not null
+    data_registre date not null,
+    password varchar(200) not null
     -- id_rol int,
     -- foreign key (id_rol) references rol (id_rol)
 );
@@ -60,7 +61,7 @@ create table user (
 create table rating (
     isbn varchar(50),
     username varchar(100),
-    data_rating date not null,
+    date date not null,
     rating int not null,
     primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
