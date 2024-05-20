@@ -24,7 +24,7 @@ public class UsuariDaoJdbc implements UsuariDao {
 
     @Override
     public Usuari findByUsername(String username) {
-        String sql = "SELECT * FROM user where username = ?";
+        String sql = "SELECT * FROM usuari where username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
@@ -37,7 +37,7 @@ public class UsuariDaoJdbc implements UsuariDao {
 
     @Override
     public Usuari findByEmail(String email) {
-        String sql = "SELECT * FROM user where email = ?";
+        String sql = "SELECT * FROM usuari where email = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
@@ -50,7 +50,7 @@ public class UsuariDaoJdbc implements UsuariDao {
 
     @Override
     public void create(Usuari usuari, String password) {
-        String sql = "INSERT INTO user (username, email, data_registre, password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuari (username, email, data_registre, password) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, usuari.getUsername());
             preparedStatement.setString(2, usuari.getEmail());
