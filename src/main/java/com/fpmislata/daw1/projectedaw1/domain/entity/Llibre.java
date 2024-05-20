@@ -2,12 +2,11 @@ package com.fpmislata.daw1.projectedaw1.domain.entity;
 
 import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.RatingIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +22,7 @@ public class Llibre {
 
     private List<Autor> autors;
     private List<Genere> generes;
-    private List<Rating> ratings;
+    private List<Valoracio> valoracios;
 
     public Llibre() {
     }
@@ -62,26 +61,26 @@ public class Llibre {
         generes.add(genere);
     }
 
-    public List<Rating> getRatings() {
-        if (ratings == null)
-            ratings = RatingIoc.createService().findByLlibre(this);
-        return ratings;
+    public List<Valoracio> getValoracios() {
+        if (valoracios == null)
+            valoracios = ValoracioIoc.createService().findByLlibre(this);
+        return valoracios;
     }
 
-    public int getNombreRatings() {
-        return getRatings().size();
+    public int getNombreValoracios() {
+        return getValoracios().size();
     }
 
-    public double getAverageRating() {
-        return getRatings().stream().mapToDouble(Rating::getRating).average().orElse(0);
+    public double getAverageValoracio() {
+        return getValoracios().stream().mapToDouble(Valoracio::getValoracio).average().orElse(0);
     }
 
-    public int getRoundedAverageRating() {
-        return (int) Math.round(getAverageRating());
+    public int getRoundedAverageValoracio() {
+        return (int) Math.round(getAverageValoracio());
     }
 
-    public Rating getRatingFromUser(User user){
-        return RatingIoc.createService().findByLlibreAndUser(this, user);
+    public Valoracio getValoracioFromUser(Usuari usuari){
+        return ValoracioIoc.createService().findByLlibreAndUser(this, usuari);
     }
 
     @Override

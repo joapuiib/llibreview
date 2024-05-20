@@ -259,11 +259,11 @@ img.card-item-img {
     text-align: justify !important;
 }
 
-.rating-container {
+.valoracio-container {
     padding: 0.5em;
 }
 
-.rating-star-container {
+.valoracio-star-container {
     color:#cecece;
     background-color: var(--white);
     padding-left: 5px;
@@ -271,10 +271,10 @@ img.card-item-img {
     font-size: 0.8em;
     border-radius: 10px;
 }
-.rating-star-color {
+.valoracio-star-color {
     color: #fbc634 !important;
 }
-.rating-value {
+.valoracio-value {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -284,7 +284,7 @@ img.card-item-img {
     width: 50px;
 }
 
-.rating-count {
+.valoracio-count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,6 +292,6 @@ img.card-item-img {
     color: var(--cafe-800);
 }
 
-.my-rating-date {
+.my-valoracio-date {
     font-size: 0.8em;
 }

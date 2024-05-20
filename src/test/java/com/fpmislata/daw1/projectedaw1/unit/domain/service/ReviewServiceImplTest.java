@@ -1,11 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
-import com.fpmislata.daw1.projectedaw1.data.RatingData;
+import com.fpmislata.daw1.projectedaw1.data.ValoracioData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Rating;
-import com.fpmislata.daw1.projectedaw1.domain.service.impl.RatingServiceImpl;
-import com.fpmislata.daw1.projectedaw1.persistance.repository.RatingRepository;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.domain.service.impl.ValoracioServiceImpl;
+import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,47 +19,47 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class RatingServiceImplTest {
+class ValoracioServiceImplTest {
     @Mock
-    private RatingRepository ratingRepository;
+    private ValoracioRepository valoracioRepository;
 
     @InjectMocks
-    private RatingServiceImpl ratingService;
+    private ValoracioServiceImpl valoracioService;
 
-    private final List<Rating> ratingList = RatingData.REVIEW_LIST;
+    private final List<Valoracio> valoracioList = ValoracioData.REVIEW_LIST;
     private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindByLlibre {
         @Test
-        void givenBookWithNoRatings_thenReturnEmptyList() {
+        void givenBookWithNoValoracios_thenReturnEmptyList() {
             Llibre llibre = llibreList.get(2);
-            List<Rating> expected = List.of();
-            when(ratingRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            List<Valoracio> expected = List.of();
+            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
 
-            List<Rating> result = ratingService.findByLlibre(llibre);
+            List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
             assertEquals(expected, result);
         }
 
         @Test
-        void givenBookWithSingleRatings_thenReturnRatingList() {
+        void givenBookWithSingleValoracios_thenReturnValoracioList() {
             Llibre llibre = llibreList.get(0);
-            List<Rating> expected = List.of(ratingList.get(0));
-            when(ratingRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            List<Valoracio> expected = List.of(valoracioList.get(0));
+            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
 
-            List<Rating> result = ratingService.findByLlibre(llibre);
+            List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
             assertEquals(expected, result);
         }
 
         @Test
-        void givenBookWithMultipleRatings_thenReturnRatingList() {
+        void givenBookWithMultipleValoracios_thenReturnValoracioList() {
             Llibre llibre = llibreList.get(1);
-            List<Rating> expected = List.of(ratingList.get(1), ratingList.get(2));
-            when(ratingRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            List<Valoracio> expected = List.of(valoracioList.get(1), valoracioList.get(2));
+            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
 
-            List<Rating> result = ratingService.findByLlibre(llibre);
+            List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
             assertEquals(expected, result);
         }

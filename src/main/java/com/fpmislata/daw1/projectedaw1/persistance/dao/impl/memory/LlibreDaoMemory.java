@@ -3,9 +3,9 @@ package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.LlibreTableMemory;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.RatingTableMemory;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.ValoracioTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.LlibreRecord;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.RatingRecord;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.ValoracioRecord;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.LlibreMapper;
 import org.javatuples.Pair;
 
@@ -16,12 +16,12 @@ import java.util.Map;
 public class LlibreDaoMemory implements LlibreDao {
 
     private final LlibreTableMemory llibreTableMemory;
-    private final RatingTableMemory ratingTableMemory;
+    private final ValoracioTableMemory valoracioTableMemory;
     private final LlibreMapper llibreMapper = new LlibreMapper();
 
-    public LlibreDaoMemory(LlibreTableMemory llibreTableMemory, RatingTableMemory ratingTableMemory) {
+    public LlibreDaoMemory(LlibreTableMemory llibreTableMemory, ValoracioTableMemory valoracioTableMemory) {
         this.llibreTableMemory = llibreTableMemory;
-        this.ratingTableMemory = ratingTableMemory;
+        this.valoracioTableMemory = valoracioTableMemory;
     }
 
     @Override
@@ -54,10 +54,10 @@ public class LlibreDaoMemory implements LlibreDao {
     @Override
     public List<Llibre> findMostRead(int n) {
         List<Llibre> llibreList = this.findAll();
-        List<RatingRecord> ratingRecordList = ratingTableMemory.get();
-        Map<String, Integer> countMap = ratingRecordList.stream()
-                .collect(HashMap<String, Integer>::new, (map, ratingRecord) -> {
-                    map.put(ratingRecord.getIsbn(), map.getOrDefault(ratingRecord.getIsbn(), 0) + 1);
+        List<ValoracioRecord> valoracioRecordList = valoracioTableMemory.get();
+        Map<String, Integer> countMap = valoracioRecordList.stream()
+                .collect(HashMap<String, Integer>::new, (map, valoracioRecord) -> {
+                    map.put(valoracioRecord.getIsbn(), map.getOrDefault(valoracioRecord.getIsbn(), 0) + 1);
                 }, Map::putAll);
         return llibreList.stream()
                 .sorted((l1, l2) -> countMap.getOrDefault(l2.getIsbn(), 0).compareTo(countMap.getOrDefault(l1.getIsbn(), 0)))
@@ -68,14 +68,14 @@ public class LlibreDaoMemory implements LlibreDao {
     @Override
     public List<Llibre> findBestRated(int n) {
         List<Llibre> llibreList = this.findAll();
-        List<RatingRecord> ratingRecordList = ratingTableMemory.get();
-        Map<String, Pair<Integer, Double>> averageRatingMap = ratingRecordList.stream()
-                .collect(HashMap<String, Pair<Integer, Double>>::new, (map, ratingRecord) -> {
-                    Pair<Integer, Double> pair = map.getOrDefault(ratingRecord.getIsbn(), new Pair<>(0, 0.0));
-                    map.put(ratingRecord.getIsbn(), new Pair<>(pair.getValue0() + 1, (pair.getValue1() * pair.getValue0() + ratingRecord.getRating()) / (pair.getValue0() + 1)));
+        List<ValoracioRecord> valoracioRecordList = valoracioTableMemory.get();
+        Map<String, Pair<Integer, Double>> averageValoracioMap = valoracioRecordList.stream()
+                .collect(HashMap<String, Pair<Integer, Double>>::new, (map, valoracioRecord) -> {
+                    Pair<Integer, Double> pair = map.getOrDefault(valoracioRecord.getIsbn(), new Pair<>(0, 0.0));
+                    map.put(valoracioRecord.getIsbn(), new Pair<>(pair.getValue0() + 1, (pair.getValue1() * pair.getValue0() + valoracioRecord.getValoracio()) / (pair.getValue0() + 1)));
                 }, Map::putAll);
         return llibreList.stream()
-                .sorted((l1, l2) -> averageRatingMap.getOrDefault(l2.getIsbn(), new Pair<>(0, 0.0)).getValue1().compareTo(averageRatingMap.getOrDefault(l1.getIsbn(), new Pair<>(0, 0.0)).getValue1()))
+                .sorted((l1, l2) -> averageValoracioMap.getOrDefault(l2.getIsbn(), new Pair<>(0, 0.0)).getValue1().compareTo(averageValoracioMap.getOrDefault(l1.getIsbn(), new Pair<>(0, 0.0)).getValue1()))
                 .limit(n)
                 .toList();
     }

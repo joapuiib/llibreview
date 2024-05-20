@@ -37,7 +37,7 @@ public class MainController {
                 llibre -> {
                     CardItem card = new CardItem();
                     card.setTitol(llibre.getTitol());
-                    card.setSubtitol("Lectors: " + llibre.getNombreRatings());
+                    card.setSubtitol("Lectors: " + llibre.getNombreValoracios());
                     card.setUrl("/llibre/" + llibre.getIsbn());
                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                     return card;
@@ -48,7 +48,7 @@ public class MainController {
                 llibre -> {
                     CardItem card = new CardItem();
                     card.setTitol(llibre.getTitol());
-                    card.setSubtitol("Valoració: " + String.format("%.1f", llibre.getAverageRating()));
+                    card.setSubtitol("Valoració: " + String.format("%.1f", llibre.getAverageValoracio()));
                     card.setUrl("/llibre/" + llibre.getIsbn());
                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                     return card;

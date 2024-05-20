@@ -41,7 +41,7 @@ create table rol (
     nom varchar(100) not null
 );
 
-create table user (
+create table usuari (
     username varchar(100) primary key,
     correu_electronic varchar(100) not null unique key,
     data_registre date not null,
@@ -49,16 +49,16 @@ create table user (
     foreign key (id_rol) references rol (id_rol)
 );
 
-create table rating (
+create table valoracio (
     isbn varchar(50),
     username varchar(100),
-    data_rating date not null,
+    data_valoracio date not null,
     data_lectura date not null,
     puntuacio int not null,
     comentari text,
     primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
-    foreign key (username) references user (username)
+    foreign key (username) references usuari (username)
 );
 
 create table llista (
@@ -66,7 +66,7 @@ create table llista (
     id_llista int,
     nom varchar(100) not null,
     primary key (username_propietari, id_llista),
-    foreign key (username_propietari) references user (username)
+    foreign key (username_propietari) references usuari (username)
 );
 
 create table segueix_llista (
@@ -74,6 +74,6 @@ create table segueix_llista (
     id_llista int,
     username_seguidor varchar(100),
     primary key (username_propietari, id_llista, username_seguidor),
-    foreign key (username_seguidor) references user (username),
+    foreign key (username_seguidor) references usuari (username),
     foreign key (username_propietari, id_llista) references llista (username_propietari, id_llista)
 );

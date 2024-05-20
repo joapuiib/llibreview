@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import com.fpmislata.daw1.projectedaw1.common.container.UserIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
-import com.fpmislata.daw1.projectedaw1.domain.service.UserService;
+import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +16,10 @@ import java.util.List;
 @Controller
 public class LoginController {
 
-    private final UserService userService;
+    private final UsuariService usuariService;
 
     public LoginController() {
-        userService = UserIoc.getUserService();
+        usuariService = UsuariIoc.getUserService();
     }
 
     @SuppressWarnings("SameReturnValue")
@@ -44,7 +44,7 @@ public class LoginController {
         List<Alert> alerts = new ArrayList<>();
 
         try {
-            userService.login(username, password);
+            usuariService.login(username, password);
             return "redirect:/";
         } catch (RuntimeException exception) {
             alerts.add(new Alert("danger", exception.getMessage()));
@@ -77,7 +77,7 @@ public class LoginController {
         List<Alert> alerts = new ArrayList<>();
 
         try {
-            userService.create(username, email, password, passwordConfirmation);
+            usuariService.create(username, email, password, passwordConfirmation);
             alerts.add(new Alert("success", "L'usuari s'ha registrat correctament."));
         } catch (RuntimeException exception) {
             alerts.add(new Alert("danger", exception.getMessage()));

@@ -1,7 +1,7 @@
 drop table if exists segueix_llista;
 drop table if exists llista;
-drop table if exists rating;
-drop table if exists user;
+drop table if exists valoracio;
+drop table if exists usuari;
 drop table if exists rol;
 drop table if exists llibre_genere;
 drop table if exists genere;
@@ -49,7 +49,7 @@ create table llibre_genere (
     foreign key (id_genere) references genere (id_genere)
 );
 
-create table user (
+create table usuari (
     username varchar(100) primary key,
     email varchar(100) not null unique,
     data_registre date not null,
@@ -58,12 +58,12 @@ create table user (
     -- foreign key (id_rol) references rol (id_rol)
 );
 
-create table rating (
+create table valoracio (
     isbn varchar(50),
     username varchar(100),
     date date not null,
-    rating int not null,
+    valoracio int not null,
     primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
-    foreign key (username) references user (username)
+    foreign key (username) references usuari (username)
 );

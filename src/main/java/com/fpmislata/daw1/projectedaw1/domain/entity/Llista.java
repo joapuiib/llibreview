@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Llista {
     private String nom;
-    private User user;
+    private Usuari usuari;
     private List<Llibre> llibres;
 
-    public Llista(String nom, User user) {
+    public Llista(String nom, Usuari usuari) {
         this.nom = nom;
-        this.user = user;
+        this.usuari = usuari;
         llibres = new ArrayList<>();
     }
 
@@ -22,7 +22,7 @@ public class Llista {
         return nom;
     }
 
-    public User getUsuari() {
-        return user;
+    public Usuari getUsuari() {
+        return usuari;
     }
 }

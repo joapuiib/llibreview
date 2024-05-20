@@ -1,6 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.security;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.User;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,12 +21,12 @@ public class UserSession {
         session.removeAttribute(key);
     }
 
-    public static void setUser(User user) {
-        setAttribute(USER_KEY, user);
+    public static void setUser(Usuari usuari) {
+        setAttribute(USER_KEY, usuari);
     }
-    public static User getUser() {
+    public static Usuari getUser() {
         try {
-            return (User) getAttribute(USER_KEY);
+            return (Usuari) getAttribute(USER_KEY);
         } catch(RuntimeException e) {
             session.invalidate();
         }
