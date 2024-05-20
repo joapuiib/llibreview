@@ -1,20 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory;
 
-import com.fpmislata.daw1.projectedaw1.common.Utils;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.User;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.UserDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.AutorTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.UserTableMemory;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.AutorRecord;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.UserRecord;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.AutorMapper;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper.UserMapper;
-import com.fpmislata.daw1.projectedaw1.security.UserSession;
-
-import java.time.LocalDate;
-import java.util.List;
 
 public class UserDaoMemory implements UserDao {
 
@@ -49,7 +40,7 @@ public class UserDaoMemory implements UserDao {
         userRecord.setUsername(user.getUsername());
         userRecord.setEmail(user.getEmail());
         userRecord.setDataRegistre(user.getDataRegistre());
-        userRecord.setHashedPassword(Utils.hashPassword(password));
+        userRecord.setHashedPassword(EncryptionUtils.hashPassword(password));
         userTableMemory.add(userRecord);
     }
 
@@ -64,7 +55,7 @@ public class UserDaoMemory implements UserDao {
         if (user == null) {
             throw new RuntimeException(errorMessage);
         }
-        boolean passwordMatch = Utils.checkPassword(password, user.getHashedPassword());
+        boolean passwordMatch = EncryptionUtils.checkPassword(password, user.getHashedPassword());
         if (!passwordMatch) {
             throw new RuntimeException(errorMessage);
         }

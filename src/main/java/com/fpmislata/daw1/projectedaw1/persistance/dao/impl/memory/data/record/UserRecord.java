@@ -1,6 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record;
 
-import com.fpmislata.daw1.projectedaw1.common.Utils;
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ public class UserRecord {
         this.username = username;
         this.email = email;
         this.dataRegistre = dataRegistre;
-        this.hashedPassword = Utils.hashPassword(password);
+        this.hashedPassword = EncryptionUtils.hashPassword(password);
     }
 
     public UserRecord() {

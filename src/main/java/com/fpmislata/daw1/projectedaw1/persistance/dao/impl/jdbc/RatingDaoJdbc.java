@@ -77,7 +77,7 @@ public class RatingDaoJdbc implements RatingDao {
 
     @Override
     public void update(Rating rating) {
-        String sql = "UPDATE rating SET rating = ?, date_rating = ? WHERE isbn = ? and username = ?";
+        String sql = "UPDATE rating SET rating = ?, date = ? WHERE isbn = ? and username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, rating.getRating());
             preparedStatement.setDate(2, java.sql.Date.valueOf(rating.getDate()));

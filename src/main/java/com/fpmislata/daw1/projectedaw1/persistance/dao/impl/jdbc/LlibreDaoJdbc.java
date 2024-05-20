@@ -56,12 +56,26 @@ public class LlibreDaoJdbc implements LlibreDao {
 
     @Override
     public List<Llibre> findMostRead(int n) {
-        throw new UnsupportedOperationException("LlibreDaoJdbc::findMostRead no s'ha implementat encara");
+        String sql = "SELECT l.* FROM llibre l inner join rating r on l.isbn = r.isbn group by l.isbn order by count(r.isbn) desc limit ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, n);
+            ResultSet rs = preparedStatement.executeQuery();
+            return llibreRowMapper.map(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override
     public List<Llibre> findBestRated(int n) {
-        throw new UnsupportedOperationException("LlibreDaoJdbc::findBestRating no s'ha implementat encara");
+        String sql = "SELECT l.* FROM llibre l inner join rating r on l.isbn = r.isbn group by l.isbn order by avg(r.rating) desc limit ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, n);
+            ResultSet rs = preparedStatement.executeQuery();
+            return llibreRowMapper.map(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override

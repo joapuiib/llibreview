@@ -1,6 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import com.fpmislata.daw1.projectedaw1.common.Utils;
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.User;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.UserDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
@@ -55,7 +55,7 @@ public class UserDaoJdbc implements UserDao {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setObject(3, user.getDataRegistre());
-            preparedStatement.setString(4, Utils.hashPassword(password));
+            preparedStatement.setString(4, EncryptionUtils.hashPassword(password));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -70,7 +70,7 @@ public class UserDaoJdbc implements UserDao {
         if (user == null) {
             throw new RuntimeException(errorMessage);
         }
-        boolean passwordMatch = Utils.checkPassword(password, user.getHashedPassword());
+        boolean passwordMatch = EncryptionUtils.checkPassword(password, user.getHashedPassword());
         if (!passwordMatch) {
             throw new RuntimeException(errorMessage);
         }
