@@ -9,20 +9,17 @@ public class GenereTableMemory {
             new GenereRecord(
                     1,
                     "Ficció literària",
-                    "Literary fiction",
-                    "ficcio_literaria.jpg"
+                    "Literary fiction"
             ),
             new GenereRecord(
                     2,
                     "Narrativa",
-                    "Narrative",
-                    "narrativa.jpg"
+                    "Narrative"
             ),
             new GenereRecord(
                     3,
                     "Ciència-ficció",
-                    "Science fiction",
-                    "ciencia_ficcio.jpg"
+                    "Science fiction"
             )
     );
 

@@ -11,7 +11,6 @@ public class GenereRowMapper extends RowMapper<Genere> {
         Genere genere = new Genere();
         genere.setId(rs.getInt("id_genere"));
         genere.setNom(rs.getString("nom_ca"));
-        genere.setRutaImatge(rs.getString("ruta_imatge"));
         return genere;
     }
 }

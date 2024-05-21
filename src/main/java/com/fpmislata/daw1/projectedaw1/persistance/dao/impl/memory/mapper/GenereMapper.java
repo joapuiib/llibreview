@@ -15,7 +15,6 @@ public class GenereMapper implements Mapper<GenereRecord, Genere> {
         Genere genere = new Genere();
         genere.setId(genereRecord.getId());
         genere.setNom(genereRecord.getNom_ca());
-        genere.setRutaImatge(genereRecord.getRutaImatge());
 
         return genere;
     }

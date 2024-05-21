@@ -12,14 +12,12 @@ import java.util.Objects;
 public class Genere {
     private int id;
     private String nom;
-    private String rutaImatge;
 
     private List<Llibre> llibres;
 
-    public Genere(int id, String nom, String rutaImatge) {
+    public Genere(int id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.rutaImatge = rutaImatge;
     }
 
     public Genere() {
@@ -35,11 +33,11 @@ public class Genere {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Genere genere = (Genere) o;
-        return id == genere.id && Objects.equals(nom, genere.nom) && Objects.equals(rutaImatge, genere.rutaImatge);
+        return id == genere.id && Objects.equals(nom, genere.nom);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nom, rutaImatge);
+        return Objects.hash(id, nom);
     }
 }

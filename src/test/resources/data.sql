@@ -16,10 +16,10 @@ insert into escriu(isbn, id_autor) values
     ('isbn3', 1),
     ('isbn3', 2);
 
-insert into genere(id_genere, nom_ca, nom_en, ruta_imatge) values
-    (1, 'Genere 1', 'Genre 1', 'genere1.png'),
-    (2, 'Genere 2', 'Genre 2', 'genere2.png'),
-    (3, 'Genere 3', 'Genre 3', 'genere3.png');
+insert into genere(id_genere, nom_ca, nom_en) values
+    (1, 'Genere 1', 'Genre 1'),
+    (2, 'Genere 2', 'Genre 2'),
+    (3, 'Genere 3', 'Genre 3');
 
 insert into llibre_genere(isbn, id_genere) values
     ('isbn1', 1),

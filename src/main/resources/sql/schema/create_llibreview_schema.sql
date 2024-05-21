@@ -37,8 +37,7 @@ create table escriu (
 create table genere (
     id_genere int primary key,
     nom_ca varchar(100) not null,
-    nom_en varchar(100) not null,
-    ruta_imatge varchar(200) not null
+    nom_en varchar(100) not null
 );
 
 create table llibre_genere (
