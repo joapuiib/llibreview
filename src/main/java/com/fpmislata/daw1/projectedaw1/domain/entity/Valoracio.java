@@ -26,6 +26,13 @@ public class Valoracio {
         this.data = data;
     }
 
+    public Valoracio(Llibre llibre, Usuari usuari, int valoracio, LocalDate data) {
+        this.isbn = llibre.getIsbn();
+        this.username = usuari.getUsername();
+        this.valoracio = valoracio;
+        this.data = data;
+    }
+
     public Valoracio() {
     }
 

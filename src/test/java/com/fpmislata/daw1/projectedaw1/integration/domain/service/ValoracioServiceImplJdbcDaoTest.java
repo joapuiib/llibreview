@@ -14,6 +14,7 @@ import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,9 +32,9 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
     private final List<Valoracio> VALORACIO_LIST = ValoracioData.VALORACIO_LIST;
 
     @Nested
-    class FindByLlibreIsbnAndUsername {
+    class FindByLlibreAndUser {
         @Test
-        void whenLlibreHasNoValoracions_givenIsbnAndUsername_shouldReturnNull() {
+        void whenLlibreHasNoValoracions_givenLlibreAndUser_shouldReturnNull() {
             Llibre llibre = LLIBRE_LIST.get(0);
             Usuari usuari = USUARI_LIST.get(2);
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
@@ -41,7 +42,7 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void whenLlibreValoracions_givenIsbnAndUsername_shouldReturnValoracio() {
+        void whenLlibreValoracions_givenLlibreAndUser_shouldReturnValoracio() {
             Llibre llibre = LLIBRE_LIST.get(0);
             Usuari usuari = USUARI_LIST.get(0);
             Valoracio expectedValoracio = VALORACIO_LIST.get(0);
@@ -63,7 +64,7 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void whenLlibreSingleValoracio_givenIsbn_shouldReturnListWithSingleValoracio() {
+        void whenLlibreSingleValoracio_givenLlibre_shouldReturnListWithSingleValoracio() {
             Llibre llibre = LLIBRE_LIST.get(0);
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(0));
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
@@ -71,7 +72,7 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void whenLlibreMultipleValoracions_givenIsbn_shouldReturnListWithMultipleValoracions() {
+        void whenLlibreMultipleValoracions_givenLlibre_shouldReturnListWithMultipleValoracions() {
             Llibre llibre = LLIBRE_LIST.get(1);
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(1), VALORACIO_LIST.get(2));
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
@@ -92,7 +93,7 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void whenUserSingleValoracio_givenUsername_shouldReturnListWithSingleValoracio() {
+        void whenUserSingleValoracio_givenUser_shouldReturnListWithSingleValoracio() {
             Usuari usuari = USUARI_LIST.get(1);
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(2));
             List<Valoracio> result = valoracioService.findByUser(usuari);
@@ -100,11 +101,55 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void whenUserMultipleValoracions_givenUsername_shouldReturnListWithMultipleValoracions() {
+        void whenUserMultipleValoracions_givenUser_shouldReturnListWithMultipleValoracions() {
             Usuari usuari = USUARI_LIST.get(0);
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(0), VALORACIO_LIST.get(1));
             List<Valoracio> result = valoracioService.findByUser(usuari);
             assertEquals(expectedValoracions, result);
+        }
+    }
+
+    @Nested
+    class Save {
+        @Test
+        void whenValoracioNotExists_givenValoracio_shouldSaveValoracio() {
+            Llibre llibre = LLIBRE_LIST.get(0);
+            Usuari usuari = USUARI_LIST.get(2);
+            Valoracio valoracio = new Valoracio(llibre, usuari, 5, LocalDate.parse("2024-05-01"));
+            valoracioService.save(valoracio);
+            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            assertEquals(valoracio, result);
+        }
+
+        @Test
+        void whenValoracioExists_givenValoracio_shouldUpdateValoracio() {
+            Llibre llibre = LLIBRE_LIST.get(0);
+            Usuari usuari = USUARI_LIST.get(0);
+            Valoracio valoracio = new Valoracio(llibre, usuari, 5, LocalDate.parse("2024-05-01"));
+            valoracioService.save(valoracio);
+            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            assertEquals(valoracio, result);
+        }
+    }
+
+    @Nested
+    class Delete {
+        @Test
+        void whenValoracioExists_givenLlibreAndUser_shouldDeleteValoracio() {
+            Llibre llibre = LLIBRE_LIST.get(0);
+            Usuari usuari = USUARI_LIST.get(0);
+            valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
+            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            assertNull(result);
+        }
+
+        @Test
+        void whenValoracioNotExists_givenLlibreAndUser_shouldDoNothing() {
+            Llibre llibre = LLIBRE_LIST.get(2);
+            Usuari usuari = USUARI_LIST.get(2);
+            valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
+            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            assertNull(result);
         }
     }
 }

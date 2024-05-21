@@ -63,7 +63,7 @@ public class ValoracioDaoJdbc implements ValoracioDao {
 
     @Override
     public void insert(Valoracio valoracio) {
-        String sql = "INSERT INTO valoracio (isbn, username, valoracio, date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO valoracio (isbn, username, valoracio, data) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, valoracio.getIsbn());
             preparedStatement.setString(2, valoracio.getUsername());
@@ -77,7 +77,7 @@ public class ValoracioDaoJdbc implements ValoracioDao {
 
     @Override
     public void update(Valoracio valoracio) {
-        String sql = "UPDATE valoracio SET valoracio = ?, date = ? WHERE isbn = ? and username = ?";
+        String sql = "UPDATE valoracio SET valoracio = ?, data = ? WHERE isbn = ? and username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, valoracio.getValoracio());
             preparedStatement.setDate(2, java.sql.Date.valueOf(valoracio.getData()));
