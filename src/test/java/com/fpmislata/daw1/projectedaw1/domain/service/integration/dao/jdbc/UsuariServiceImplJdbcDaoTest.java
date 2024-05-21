@@ -8,14 +8,12 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.UsuariDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.UsuariRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
-import jakarta.servlet.http.HttpSession;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockHttpSession;
 
 import java.util.List;
 
@@ -110,28 +108,31 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
 
     @Nested
     class Login {
-        @Mock
-        static HttpSession httpSession = Mockito.mock(HttpSession.class);
 
-        @BeforeAll
-        static void setup() {
-            UserSession.setSession(httpSession);
+        @BeforeEach
+        void setup() {
+            UserSession.setSession(new MockHttpSession());
         }
 
         @Test
         void givenCorrectCredentials() {
+            Usuari expectedLoggedUsuari = UsuariData.USUARI_LIST.get(0);
             usuariService.login("user1", "user1");
-            // verify(httpSession).setAttribute("user", UsuariData.USUARI_LIST.get(0));
+
+            Usuari actualLoggedUsuari = UserSession.getUser();
+            assertEquals(expectedLoggedUsuari, actualLoggedUsuari);
         }
 
         @Test
         void givenIncorrectCredentials() {
             assertThrows(RuntimeException.class, () -> usuariService.login("user1", "user2"));
+            assertNull(UserSession.getUser());
         }
 
         @Test
         void givenNonExistentUsername() {
             assertThrows(RuntimeException.class, () -> usuariService.login("nonExistentUsername", "password"));
+            assertNull(UserSession.getUser());
         }
     }
 }
