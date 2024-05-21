@@ -183,6 +183,11 @@ p {
     margin-bottom: 0.7em;
 }
 
+.mx-n3 {
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
 .card-item {
     position: relative;
     height: 300px;
