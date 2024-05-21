@@ -10,11 +10,13 @@ import java.util.List;
 public class GenereData {
     public static final List<Genere> GENERE_LIST = List.of(
             new Genere( 1, "Genere 1", "genere1.png"),
-            new Genere( 2, "Genere 2", "genere2.png")
+            new Genere( 2, "Genere 2", "genere2.png"),
+            new Genere( 3, "Genere 3", "genere3.png")
     );
 
     public static final List<GenereRecord> GENERE_RECORD_LIST = List.of(
             new GenereRecord( 1, "Genere 1", "Genre 1", "genere1.png"),
-            new GenereRecord( 2, "Genere 2", "Genre 2", "genere2.png")
+            new GenereRecord( 2, "Genere 2", "Genre 2", "genere2.png"),
+            new GenereRecord( 3, "Genere 3", "Genre 3", "genere3.png")
     );
 }

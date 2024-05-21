@@ -16,6 +16,16 @@ insert into escriu(isbn, id_autor) values
     ('isbn3', 1),
     ('isbn3', 2);
 
+insert into genere(id_genere, nom_ca, nom_en, ruta_imatge) values
+    (1, 'Genere 1', 'Genre 1', 'genere1.png'),
+    (2, 'Genere 2', 'Genre 2', 'genere2.png'),
+    (3, 'Genere 3', 'Genre 3', 'genere3.png');
+
+insert into llibre_genere(isbn, id_genere) values
+    ('isbn1', 1),
+    ('isbn1', 2),
+    ('isbn2', 1);
+
 insert into usuari(username, email, data_registre, password) values
     ('user1', 'user1@localhost', '2021-01-01', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'),
     ('user2', 'user2@localhost', '2021-01-01', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'),

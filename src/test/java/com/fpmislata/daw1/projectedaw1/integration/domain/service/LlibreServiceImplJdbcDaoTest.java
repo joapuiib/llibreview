@@ -1,8 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.integration.domain.service;
 
 import com.fpmislata.daw1.projectedaw1.data.AutorData;
+import com.fpmislata.daw1.projectedaw1.data.GenereData;
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
@@ -30,6 +32,7 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
 
     private final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
     private final List<Autor> AUTOR_LIST = AutorData.AUTOR_LIST;
+    private final List<Genere> GENERE_LIST = GenereData.GENERE_LIST;
 
     @Nested
     class FindAll {
@@ -108,6 +111,79 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
             Autor autor = AUTOR_LIST.get(0);
             List<Llibre> result = llibreService.findByAutor(autor);
             List<Llibre> expected = List.of(LLIBRE_LIST.get(1), LLIBRE_LIST.get(2));
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindByGenere {
+        @Test
+        void givenGenereWithNoLlibres_shouldReturnEmptyList() {
+            Genere genere = GENERE_LIST.get(2);
+            List<Llibre> result = llibreService.findByGenere(genere);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenGenereWithSingleLlibre_shouldReturnSingleLlibreByAutor() {
+            Genere genere = GENERE_LIST.get(1);
+            List<Llibre> result = llibreService.findByGenere(genere);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(0));
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenGenereWithMultipleLlibres_shouldReturnMultipleLlibresByAutor() {
+            Genere genere = GENERE_LIST.get(0);
+            List<Llibre> result = llibreService.findByGenere(genere);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(0), LLIBRE_LIST.get(1));
+            assertEquals(expected, result);
+        }
+
+    }
+
+    @Nested
+    class FindMostRead {
+        @Test
+        void givenN0_shouldReturnEmptyList() {
+            List<Llibre> result = llibreService.findMostRead(0);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenN1_shouldReturn1MostReadLlibres() {
+            List<Llibre> result = llibreService.findMostRead(1);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(1));
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenN2_shouldReturn2MostReadLlibres() {
+            List<Llibre> result = llibreService.findMostRead(2);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(1), LLIBRE_LIST.get(0));
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindBestRated {
+        @Test
+        void givenN0_shouldReturnEmptyList() {
+            List<Llibre> result = llibreService.findBestRated(0);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenN1_shouldReturn1BestRatedLlibres() {
+            List<Llibre> result = llibreService.findBestRated(1);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(1));
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenN2_shouldReturn2BestRatedLlibres() {
+            List<Llibre> result = llibreService.findBestRated(2);
+            List<Llibre> expected = List.of(LLIBRE_LIST.get(1), LLIBRE_LIST.get(0));
             assertEquals(expected, result);
         }
     }
