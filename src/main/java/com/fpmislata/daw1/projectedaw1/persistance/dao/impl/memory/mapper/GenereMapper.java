@@ -3,10 +3,8 @@ package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.mapper;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.GenereRecord;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class GenereMapper implements Mapper<GenereRecord, Genere> {
+public class GenereMapper extends Mapper<GenereRecord, Genere> {
+    @Override
     public Genere map(GenereRecord genereRecord) {
         if (genereRecord == null) {
             return null;
@@ -17,17 +15,5 @@ public class GenereMapper implements Mapper<GenereRecord, Genere> {
         genere.setNom(genereRecord.getNom_ca());
 
         return genere;
-    }
-
-    public List<Genere> map(List<GenereRecord> genereRecordList){
-        if (genereRecordList == null) {
-            return null;
-        }
-
-        return genereRecordList.stream().collect(
-                ArrayList::new,
-                (list, genereRecord) -> list.add(map(genereRecord)),
-                ArrayList::addAll
-        );
     }
 }

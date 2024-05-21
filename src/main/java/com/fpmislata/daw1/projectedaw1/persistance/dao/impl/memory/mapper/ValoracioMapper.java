@@ -6,7 +6,8 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.record.V
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValoracioMapper implements Mapper<ValoracioRecord, Valoracio> {
+public class ValoracioMapper extends Mapper<ValoracioRecord, Valoracio> {
+    @Override
     public Valoracio map(ValoracioRecord valoracioRecord) {
         if (valoracioRecord == null) {
             return null;
@@ -19,17 +20,5 @@ public class ValoracioMapper implements Mapper<ValoracioRecord, Valoracio> {
         valoracio.setValoracio(valoracioRecord.getValoracio());
 
         return valoracio;
-    }
-
-    public List<Valoracio> map(List<ValoracioRecord> valoracioRecordList){
-        if (valoracioRecordList == null) {
-            return null;
-        }
-
-        return valoracioRecordList.stream().collect(
-                ArrayList::new,
-                (list, llibreRecord) -> list.add(map(llibreRecord)),
-                ArrayList::addAll
-        );
     }
 }
