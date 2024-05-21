@@ -6,16 +6,20 @@ import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.UsuariServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.UsuariDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.UsuariRepositoryImpl;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
+import jakarta.servlet.http.HttpSession;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class UsuariServiceImplJdbcDaoTest extends JdbcTest {
@@ -73,4 +77,61 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
         }
     }
 
+    @Nested
+    class Create {
+        @Test
+        void givenNonExistentUsuari_shouldCreateUsuari() {
+            usuariService.create("newUser", "newUser@localhost", "newUser", "newUser");
+            Usuari result = usuariService.findByUsername("newUser");
+            assertAll(
+                    () -> assertNotNull(result),
+                    () -> assertEquals("newUser", result.getUsername()),
+                    () -> assertEquals("newUser@localhost", result.getEmail())
+            );
+        }
+
+        @Test
+        void givenExistentUsuari_shouldNotCreateUsuari() {
+            Usuari expectedUsuari = Usuari_LIST.get(0);
+            assertThrows(RuntimeException.class, () -> usuariService.create(expectedUsuari.getUsername(), "newUser@localhost", "", ""));
+        }
+
+        @Test
+        void givenExistentEmail_shouldNotCreateUsuari() {
+            Usuari expectedUsuari = Usuari_LIST.get(0);
+            assertThrows(RuntimeException.class, () -> usuariService.create("newUser", expectedUsuari.getEmail(), "", ""));
+        }
+
+        @Test
+        void givenNonMatchingPasswords_shouldNotCreateUsuari() {
+            assertThrows(RuntimeException.class, () -> usuariService.create("newUser", "newUser@localhost", "newUser", "newUser2"));
+        }
+    }
+
+    @Nested
+    class Login {
+        @Mock
+        static HttpSession httpSession = Mockito.mock(HttpSession.class);
+
+        @BeforeAll
+        static void setup() {
+            UserSession.setSession(httpSession);
+        }
+
+        @Test
+        void givenCorrectCredentials() {
+            usuariService.login("user1", "user1");
+            // verify(httpSession).setAttribute("user", UsuariData.USUARI_LIST.get(0));
+        }
+
+        @Test
+        void givenIncorrectCredentials() {
+            assertThrows(RuntimeException.class, () -> usuariService.login("user1", "user2"));
+        }
+
+        @Test
+        void givenNonExistentUsername() {
+            assertThrows(RuntimeException.class, () -> usuariService.login("nonExistentUsername", "password"));
+        }
+    }
 }
