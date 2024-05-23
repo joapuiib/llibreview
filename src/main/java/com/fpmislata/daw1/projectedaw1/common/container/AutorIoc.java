@@ -1,13 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.common.container;
 
-import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.AutorServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.AutorDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.AutorDaoMemory;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.memory.data.AutorTableMemory;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.AutorRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.AutorRepositoryImpl;
 
@@ -16,7 +13,6 @@ public class AutorIoc {
 
     private static AutorRepository autorRepository;
     private static AutorDao autorDao;
-    private static AutorTableMemory autorTableMemory;
 
     public static AutorService createService() {
         if (autorService == null) {
@@ -36,21 +32,8 @@ public class AutorIoc {
     }
 
     public static AutorDao createDao() {
-        if (autorDao == null) {
-            if(AppPropertiesReader.getProperty("dao").equals("jdbc"))
-                autorDao = new AutorDaoJdbc();
-            else {
-                AutorTableMemory autorTableMemory = createTableMemory();
-                autorDao = new AutorDaoMemory(autorTableMemory);
-            }
-        }
+        if (autorDao == null)
+            autorDao = new AutorDaoJdbc();
         return autorDao;
-    }
-
-    public static AutorTableMemory createTableMemory() {
-        if (autorTableMemory == null) {
-            autorTableMemory = new AutorTableMemory();
-        }
-        return autorTableMemory;
     }
 }
