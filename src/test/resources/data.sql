@@ -36,3 +36,7 @@ insert into valoracio(isbn, username, data, valoracio) values
     ('isbn1', 'user1', '2024-05-01', 7),
     ('isbn2', 'user1', '2024-05-01', 7),
     ('isbn2', 'user2', '2024-05-01', 8);
+
+insert into ressenya(isbn, username, data, comentari) values
+    ('isbn1', 'user1', '2024-05-02', 'Ressenya 1'),
+    ('isbn2', 'user1', '2024-05-03', 'Ressenya 2');

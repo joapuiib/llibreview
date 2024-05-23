@@ -54,3 +54,12 @@ insert into valoracio(isbn, username, data, valoracio) values
     ('9788499309255', 'user3', '2024-05-01', 10),
     ('9788497937306', 'user4', '2024-05-01', 9);
 
+insert into ressenya(isbn, username, comentari, data) values
+    ('9788433915689', 'user1', 'Molt bon llibre!', '2024-05-01'),
+    ('9788433915689', 'user2', 'Molt recomanable', '2024-05-01'),
+    ('9788433915689', 'user3', 'Molt interessant', '2024-05-01'),
+    ('9788433999030', 'user1', 'Bona novel·la', '2024-05-01'),
+    ('9788433999030', 'user2', 'Molt recomanable', '2024-05-01'),
+    ('9788433999542', 'user1', 'Molt bo', '2024-05-01'),
+    ('9788433999542', 'user3', 'Interessant', '2024-05-01');
+

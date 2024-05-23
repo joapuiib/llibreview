@@ -1,5 +1,6 @@
 drop table if exists segueix_llista;
 drop table if exists llista;
+drop table if exists ressenya;
 drop table if exists valoracio;
 drop table if exists usuari;
 drop table if exists rol;
@@ -65,4 +66,15 @@ create table valoracio (
     primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
     foreign key (username) references usuari (username)
+);
+
+create table ressenya (
+    isbn varchar(50),
+    username varchar(100),
+    comentari text not null,
+    data date not null,
+    primary key (isbn, username),
+    foreign key (isbn) references llibre (isbn),
+    foreign key (username) references usuari (username),
+    foreign key (isbn, username) references valoracio (isbn, username) on delete cascade
 );

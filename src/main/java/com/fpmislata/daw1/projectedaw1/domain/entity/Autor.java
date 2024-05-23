@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +16,6 @@ public class Autor {
     private String biografia;
     private LocalDate dataNaixement;
     private String rutaImatge;
-
-    private List<Llibre> llibres;
 
     public Autor(int id, String nom, String biografia, LocalDate dataNaixement, String rutaImatge) {
         this.id = id;
@@ -32,8 +29,7 @@ public class Autor {
     }
 
     public List<Llibre> getLlibres() {
-        llibres = LlibreIoc.createService().findByAutor(this);
-        return llibres;
+        return LlibreIoc.createService().findByAutor(this);
     }
 
     @Override
