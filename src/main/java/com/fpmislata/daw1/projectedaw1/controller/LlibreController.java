@@ -4,6 +4,7 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import org.springframework.stereotype.Controller;
@@ -61,6 +62,11 @@ public class LlibreController {
 
         List<Valoracio> valoracios = llibre.getValoracios();
         model.addAttribute("valoracios", valoracios);
+
+        List<Valoracio> valoracionsAmbRessenya = valoracios.stream()
+                .filter(valoracio -> valoracio.getRessenya() != null)
+                .toList();
+        model.addAttribute("valoracionsAmbRessenya", valoracionsAmbRessenya);
 
         return "llibre/llibre";
     }
