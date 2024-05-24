@@ -67,20 +67,16 @@ public class Llibre {
         return valoracios;
     }
 
-    public int getNombreValoracios() {
-        return getValoracios().size();
-    }
-
-    public double getAverageValoracio() {
-        return getValoracios().stream().mapToDouble(Valoracio::getValoracio).average().orElse(0);
-    }
-
-    public int getRoundedAverageValoracio() {
-        return (int) Math.round(getAverageValoracio());
-    }
-
     public Valoracio getValoracioFromUser(Usuari usuari){
         return ValoracioIoc.createService().findByLlibreAndUser(this, usuari);
+    }
+
+    public ValoracioStats getValoracioStats() {
+        ValoracioStats valoracioStats = new ValoracioStats();
+        for (Valoracio valoracio : getValoracios()) {
+            valoracioStats.addValoracio(valoracio);
+        }
+        return valoracioStats;
     }
 
     @Override

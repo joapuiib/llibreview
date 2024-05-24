@@ -295,3 +295,24 @@ img.card-item-img {
 .my-valoracio-date {
     font-size: 0.8em;
 }
+
+.valoracio-chart {
+    min-width: 100px;
+}
+.valoracio-bar {
+    --valoracio-bar-font-size: 10px;
+    --valoracio-bar-height: 12px;
+    font-size: var(--valoracio-bar-font-size);
+    line-height: var(--valoracio-bar-font-size);
+}
+.valoracio-bar .progress {
+    --bs-progress-height: var(--valoracio-bar-height);
+    --bs-progress-font-size: var(--valoracio-bar-font-size);
+    --bs-progress-bar-bg: var(--cafe-500);
+    margin-bottom: 2px;
+    border: var(--cafe-500) 1px solid;
+}
+.valoracio-bar-label {
+    text-align: end;
+    width: 32px;
+}

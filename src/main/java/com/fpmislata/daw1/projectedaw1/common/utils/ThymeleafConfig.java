@@ -21,6 +21,6 @@ public class ThymeleafConfig {
     @PostConstruct
     public void configureTemplateEngine() {
         log.info("Configuring Thymeleaf template engine");
-        viewResolver.setStaticVariables(Map.of("thymeleafUtils", thymeleafUtils));
+        viewResolver.setStaticVariables(Map.of("utils", thymeleafUtils));
     }
 }
