@@ -323,3 +323,10 @@ img.card-item-img {
     text-align: end;
     width: 32px;
 }
+
+.ressenya-util {
+    font-size: 0.8rem;
+}
+.ressenya-util .btn {
+    --bs-btn-font-size: 0.8rem;
+}
