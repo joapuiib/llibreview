@@ -1,5 +1,5 @@
 <!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
-<div th:fragment="ressenya(valoracio)" class="p-3" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user == valoracio.usuari}" th:classappend="${is_owner} ? 'bg-info bg-opacity-25'">
+<div th:fragment="ressenya(valoracio)" class="p-3" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user == valoracio.usuari}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
     <div class="d-flex justify-content-between">
         <div>
             <p class="ressenya-title h6"><i class="fa-solid fa-circle-user"></i> <span th:text="${valoracio.usuari.username}"></span></p>
@@ -24,6 +24,9 @@
     </div>
 </div>
 
-<div th:fragment="ressenya-usuari(valoracio)" class="ressenyes-container mt-4">
+<div th:fragment="ressenya-usuari(valoracio)" class="">
     <p class="h5">La teua ressenya</p>
+    <div th:unless="${valoracio == null}" th:remove="tag">
+        <div th:replace="~{components/ressenyes :: ressenya(valoracio=${valoracio})}" class="mt-3"></div>
+    </div>
 </div>
