@@ -1,5 +1,5 @@
 <div th:fragment="valoracio-stars(valoracio)" th:with="roundedValoracio=${utils.round(valoracio, 0)}" class="d-flex justify-content-center align-content-center">
-    <div class="valoracio-star-container border border-cafe-500">
+    <div class="valoracio-star-container">
         <i class="fa fa-star" th:each="i : ${#numbers.sequence(0, 9)}" th:classappend="${roundedValoracio >= i + 1} ? 'valoracio-star-color'"></i>
     </div>
 </div>
