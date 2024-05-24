@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html th:fragment="layout (title, content)">
-    <head th:replace="~{components/base :: head(~{::title})}"></head>
+<!--/*@thymesVar id="thymeleafUtils" type="com.fpmislata.daw1.projectedaw1.common.utils.ThymeleafUtils"*/-->
+<!--/*@thymesVar id="prefix" type="com.fpmislata.daw1.projectedaw1.common.i18n.Language"*/-->
+<html th:fragment="layout (title, content)" th:with="lang=${thymeleafUtils.getLanguageByPrefix(#locale.language)}" th:lang="${lang.prefix}" lang="">
+    <head th:replace="~{components/base :: head(~{::title})}">
+        <title>Layout</title>
+    </head>
 
     <body>
         <nav th:replace="~{components/base:: menu}"></nav>
-
 
         <!--/*@thymesVar id="alerts" type="List<com.fpmislata.daw1.projectedaw1.controller.components.Alert>"*/-->
         <main class="container flex-grow-1 p-3">

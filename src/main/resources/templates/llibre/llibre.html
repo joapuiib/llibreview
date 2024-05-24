@@ -25,17 +25,17 @@
                     <dl class="llibre-info">
                         <dt>ISBN</dt>
                         <dd th:text="${llibre.isbn}"></dd>
-                        <dt>Data de publicació</dt>
+                        <dt th:text="#{data-publicacio}"></dt>
                         <dd th:text="${#temporals.format(llibre.dataPublicacio, 'dd/MM/yyyy')}"></dd>
-                        <dt>Nombre de pàgines</dt>
+                        <dt th:text="#{nombre-pagines}"></dt>
                         <dd th:text="${llibre.nombrePagines}"></dd>
-                        <dt>Resum</dt>
+                        <dt th:text="#{resum}"></dt>
                         <dd th:text="${llibre.resum}"></dd>
-                        <dt>Gèneres</dt>
+                        <dt th:text="#{generes}"></dt>
                         <dd class="d-flex flex-wrap gap-2">
                             <a th:each="genere: ${generes}" th:text="${genere.nom}" th:href="|/genere/${genere.id}|" th:classappend="|genere-${genere.id}|" class="badge genere" style="font-size: 0.8rem"></a>
                         </dd>
-                        <dt>Autors</dt>
+                        <dt th:text="#{autors}"></dt>
                         <dd>
                             <div th:replace="~{components/cards :: card-container(cards=${autors}, classes=justify-content-start)}"></div>
                         </dd>

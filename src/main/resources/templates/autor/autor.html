@@ -13,11 +13,11 @@
                 </div>
                 <div>
                     <dl class="llibre-info">
-                        <dt>Data de naixement</dt>
+                        <dt th:text="#{data-naixement}"></dt>
                         <dd th:text="${#temporals.format(autor.dataNaixement, 'dd/MM/yyyy')}"></dd>
-                        <dt>Biografia</dt>
+                        <dt th:text="#{biografia}"></dt>
                         <dd th:text="${autor.biografia}"></dd>
-                        <dt>Llibres</dt>
+                        <dt th:text="#{llibres}"></dt>
                         <dd>
                             <div th:replace="~{components/cards :: card-container(cards=${llibres}, classes=justify-content-start)}"></div>
                         </dd>

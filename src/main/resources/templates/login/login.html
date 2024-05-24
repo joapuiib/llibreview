@@ -2,35 +2,35 @@
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
 <!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
     <head>
-        <title th:text="Login"></title>
+        <title th:text="#{login}"></title>
     </head>
     <body>
         <main class="">
             <div class="d-flex justify-content-center">
                 <form th:action="@{/login}" method="post" class="needs-validation" novalidate>
                     <div data-mdb-input-init class="form-outline mb-3">
-                        <label class="form-label" for="username">Nom d'usuari</label>
+                        <label class="form-label" for="username" th:text="#{login}"></label>
                         <input type="text" id="username" name="username" class="form-control" />
                     </div>
 
                     <div data-mdb-input-init class="form-outline mb-3">
-                        <label class="form-label" for="password">Contrasenya</label>
+                        <label class="form-label" for="password" th:text="#{password}"></label>
                         <input type="password" id="password" name="password" class="form-control" />
                     </div>
 
 
                     <div class="text-center mb-3">
                         <!-- Simple link -->
-                        <a href="#!">Has oblidat la contrasenya?</a>
+                        <a href="#!" th:text="#{forgot-password}"></a>
                     </div>
 
                     <div class="text-center">
                         <!-- Submit button -->
-                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-3">Inicia sessió</button>
+                        <button type="submit" th:text="#{login}" class="btn btn-primary btn-block mb-3"></button>
                     </div>
 
                     <div class="text-center">
-                        <p>No eres membre? <a href="/register">Registra't</a>!</p>
+                        <p><span th:text="#{not-member}"></span> <a href="/register" th:text="#{register}">Registra't</a>!</p>
                     </div>
                 </form>
             </div>

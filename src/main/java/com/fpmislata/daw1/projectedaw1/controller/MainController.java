@@ -3,6 +3,8 @@ package com.fpmislata.daw1.projectedaw1.controller;
 import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Log4j2
 @Controller
 public class MainController {
 
@@ -54,6 +57,8 @@ public class MainController {
                     return card;
                 }).toList();
         model.addAttribute("millorValorats", millorValorats);
+
+        log.info("Current language: {}", LocaleContextHolder.getLocale().getLanguage());
 
         return "index";
     }

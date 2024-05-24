@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
     <head>
-        <title>Autors</title>
+        <title th:text="#{autors}"></title>
     </head>
     <body>
         <main class="">
-            <h1 class="text-center my-4 ">Autors</h1>
+            <h1 class="text-center my-4" th:text="#{autors}"></h1>
             <!--/*@thymesVar id="autors" type="List<Card-Item>"*/-->
             <div th:replace="~{components/cards :: card-container(cards=${autors}, classes=justify-content-center)}"></div>
         </main>

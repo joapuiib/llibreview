@@ -3,6 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" th:href="@{/css/flag-icons.css}">
     <link th:rel="stylesheet" th:href="@{/css/site.css}">
     <link th:replace="~{components/base :: generes}">
     <link th:rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -10,7 +11,7 @@
     <script th:replace="~{components/base :: jquery}"></script>
     <script th:src="@{/js/form.js}"></script>
     <!--/*@thymesVar id="title" type="String"*/-->
-    <title th:replace="${title}">Document</title>
+    <title th:replace="${title}"></title>
 </head>
 
 <nav th:fragment="menu" class="navbar navbar-expand-lg">
@@ -20,29 +21,44 @@
         </a>
         <div class="collapse navbar-collapse" id="navbar-left">
             <div class="navbar-nav me-auto">
-                <a class="nav-link" href="/llibre">Llibres</a>
-                <a class="nav-link" href="/genere">Gèneres</a>
-                <a class="nav-link" href="/autor">Autors</a>
+                <a class="nav-link" href="/llibre" th:text="#{llibres}"></a>
+                <a class="nav-link" href="/genere" th:text="#{generes}"></a>
+                <a class="nav-link" href="/autor" th:text="#{autors}"></a>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-right">
             <!--/*@thymesVar id="user" type="com.fpmislata.daw1.projectedaw1.domain.entity.Usuari"*/-->
             <div class="navbar-nav ms-auto" th:if="${session.user==null}">
-                <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> Inicia sessió</a>
+                <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> <span th:text="#{login}"></span></a>
             </div>
             <div class="navbar-nav ms-auto" th:unless="${session.user==null}">
                 <a class="nav-link" th:href="|/usuari/${session.user.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${session.user.username}"></span></a>
-                <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Tanca sessió</a>
+                <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{logout}"></span></a>
             </div>
+            <div th:replace="~{components/base :: lang-picker}"></div>
         </div>
     </div>
 </nav>
+
+<div th:fragment="lang-picker" class="dropdown ms-2">
+    <a class="dropdown-toggle" href="#" id="lang-picker" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span th:class="|m-0 fi fi-${lang.flag}|"></span></a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="lang-picker">
+        <li th:each="avalilableLanguage : ${T(com.fpmislata.daw1.projectedaw1.common.i18n.Language).values()}">
+            <a class="dropdown-item" th:href="|?lang=${avalilableLanguage.prefix}|">
+                <i th:class="|fi fi-${avalilableLanguage.flag} me-1|"></i>
+                <span th:text="${#messages.msgOrNull(avalilableLanguage.prefix)}"></span>
+                <i class="fa fa-check text-success ms-1" th:if="${lang.prefix} == ${avalilableLanguage.prefix}"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
 <footer th:fragment="footer" class="footer text-center p-3">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca">
         <img th:src="@{/img/license.png}" alt="Llicènia Reconeixement-NoComercial-CompartirIgual 4.0 Internacional">
     </a>
-    <p>Llicència Reconeixement-NoComercial-CompartirIgual 4.0 Internacional</p>
+    <p th:text="#{llicencia}"></p>
 </footer>
 
 <link th:fragment="generes" th:rel="stylesheet" th:href="@{/css/genere.css}">
