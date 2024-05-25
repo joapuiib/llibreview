@@ -23,7 +23,7 @@
         </div>
         <div th:if="${is_owner}" th:remove="tag">
             <a th:href="|/ressenya/${valoracio.llibre.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
-            <a th:href="|/ressenya/${valoracio.llibre.isbn}|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
+            <a th:href="|/ressenya/${valoracio.llibre.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
 </div>

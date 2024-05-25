@@ -37,7 +37,7 @@ public class RessenyaController {
     }
 
     @GetMapping("/ressenya/{isbn}")
-    public String llibre(Model model, @PathVariable(value = "isbn") String isbn) {
+    public String ressenya(Model model, @PathVariable(value = "isbn") String isbn) {
         Llibre llibre = llibreService.findByIsbn(isbn);
         model.addAttribute("llibre", llibre);
 
@@ -52,7 +52,7 @@ public class RessenyaController {
     }
 
     @PostMapping("/ressenya")
-    public String login(@RequestParam("isbn") String isbn,
+    public String edit(@RequestParam("isbn") String isbn,
                         @RequestParam("comentari") String comentari,
                         @RequestParam("my-valoracio") int valoracio,
                         RedirectAttributes redirectAttributes) {
@@ -86,6 +86,23 @@ public class RessenyaController {
             alerts.add(new Alert("success", "S'ha guardat la ressenya"));
         }
 
+        redirectAttributes.addFlashAttribute("alerts", alerts);
+        return "redirect:/llibre/" + isbn;
+    }
+
+    @GetMapping("/ressenya/{isbn}/delete")
+    public String delete(Model model,
+                         @PathVariable(value = "isbn") String isbn,
+                         RedirectAttributes redirectAttributes) {
+        List<Alert> alerts = new ArrayList<>();
+
+        if(!UserSession.isUserLoggedIn()) {
+            return "redirect:/llibre/" + isbn;
+        }
+
+        Usuari usuari = Objects.requireNonNull(UserSession.getUser());
+        ressenyaService.delete(isbn, usuari.getUsername());
+        alerts.add(new Alert("success", "S'ha eliminat la ressenya"));
         redirectAttributes.addFlashAttribute("alerts", alerts);
         return "redirect:/llibre/" + isbn;
     }
