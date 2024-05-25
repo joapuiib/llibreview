@@ -3,7 +3,7 @@
 <div th:fragment="ressenya(valoracio)" class="p-3 shadow" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user == valoracio.usuari}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
     <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 align-items-end">
                 <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${valoracio.usuari.username}"></span></div>
                 <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
             </div>
@@ -14,12 +14,15 @@
         </div>
     </div>
     <div class="mt-2" th:text="${ressenya.comentari}"></div>
-    <div th:unless="${is_owner}">
-        <hr class="my cafe-500 opacity-50">
-        <div class="ressenya-util d-flex justify-content-end align-items-center gap-1">
-            <div>T'ha resultat útil?</div>
-            <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
-            <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
+    <hr class="my cafe-500 opacity-50">
+    <div class="ressenya-footer d-flex justify-content-end align-items-center gap-1">
+        <div th:unless="${is_owner}" th:remove="tag">
+                <div>T'ha resultat útil?</div>
+                <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
+                <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div th:if="${is_owner}" th:remove="tag">
+                <a class="d-block text-center text-decoration-none fw-bold" href="" th:text="#{modifica-ressenya}"></a>
         </div>
     </div>
 </div>

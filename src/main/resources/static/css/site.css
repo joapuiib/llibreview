@@ -334,9 +334,12 @@ img.card-item-img {
     width: 32px;
 }
 
-.ressenya-util {
+.ressenya-data {
     font-size: 0.8rem;
 }
-.ressenya-util .btn {
+.ressenya-footer {
+    font-size: 0.8rem;
+}
+.ressenya-footer .btn {
     --bs-btn-font-size: 0.8rem;
 }
