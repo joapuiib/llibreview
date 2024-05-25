@@ -60,10 +60,8 @@ public class LlibreController {
         List<Genere> generes = llibre.getGeneres();
         model.addAttribute("generes", generes);
 
-        List<Valoracio> valoracios = llibre.getValoracios();
-        model.addAttribute("valoracios", valoracios);
-
-        List<Valoracio> valoracionsAmbRessenya = valoracios.stream()
+        List<Valoracio> valoracions = llibre.getValoracios();
+        List<Valoracio> valoracionsAmbRessenya = valoracions.stream()
                 .filter(valoracio -> valoracio.getRessenya() != null)
                 .toList();
         model.addAttribute("valoracionsAmbRessenya", valoracionsAmbRessenya);

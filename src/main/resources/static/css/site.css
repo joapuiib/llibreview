@@ -192,10 +192,22 @@ body {
 p {
     margin-bottom: 0.7em;
 }
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
 
 .mx-n3 {
     margin-left: -1rem;
     margin-right: -1rem;
+}
+.fs-7 {
+    font-size: 0.875rem;
+}
+.fs-8 {
+    font-size: 0.8rem;
 }
 
 .card-item {
@@ -298,7 +310,7 @@ img.card-item-img {
     font-size: 1.25em;
     padding: 0.25em;
     color: var(--white);
-    width: 50px;
+    width: 2.5em;
 }
 
 .valoracio-count {
@@ -342,4 +354,9 @@ img.card-item-img {
 }
 .ressenya-footer .btn {
     --bs-btn-font-size: 0.8rem;
+}
+.ressenya-llibre-cover {
+    max-height: 200px;
+    box-shadow: 2px 3px 4px #BBBBBB;
+    border-radius: 5px;
 }

@@ -38,25 +38,21 @@
     </div>
 </div>
 
-<div th:fragment="my-valoracio(isbn, valoracio)" class="my-valoracio-container bg-cafe-100 border border-cafe-500 rounded-3 text-center p-2">
+<div th:fragment="my-valoracio(valoracio)" class="my-valoracio-container bg-cafe-100 border border-cafe-500 rounded-3 text-center p-2">
     <!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
-    <form th:action="@{/valoracio}" method="post">
-        <input type="hidden" name="isbn" th:value="${isbn}">
-        <label class="cafe-800 mb-2" for="my-valoracio">La teua valoració</label>
-        <select class="form-select" name="my-valoracio" id="my-valoracio" th:with="valoracioNumber=${valoracio?.valoracio}">
-            <option value="-1" th:selected="${valoracioNumber == null}" th:text="#{no-vista}"></option>
-            <option value="10" th:selected="${valoracioNumber == 10}" th:text="|10 - #{excelent}|"></option>
-            <option value="9" th:selected="${valoracioNumber == 9}" th:text="|9 - #{molt-bona}|"></option>
-            <option value="8" th:selected="${valoracioNumber == 8}" th:text="|8 - #{notable}|"></option>
-            <option value="7" th:selected="${valoracioNumber == 7}" th:text="|7 - #{bona}|"></option>
-            <option value="6" th:selected="${valoracioNumber == 6}" th:text="|6 - #{interessant}|"></option>
-            <option value="5" th:selected="${valoracioNumber == 5}" th:text="|5 - #{acceptable}|"></option>
-            <option value="4" th:selected="${valoracioNumber == 4}" th:text="|4 - #{regular}|"></option>
-            <option value="3" th:selected="${valoracioNumber == 3}" th:text="|3 - #{fluixa}|"></option>
-            <option value="2" th:selected="${valoracioNumber == 2}" th:text="|2 - #{roin}|"></option>
-            <option value="1" th:selected="${valoracioNumber == 1}" th:text="|1 - #{pessima}|"></option>
-        </select>
-        <div class="my-valoracio-date mt-2" th:if="${valoracio != null}" th:text="|${#temporals.format(valoracio?.data, 'dd/MM/yyyy')}|"></div>
-        <button class="btn btn-primary mt-2" type="submit">Valora</button>
-    </form>
+    <label class="cafe-800 mb-2" for="my-valoracio">La teua valoració</label>
+    <select class="form-select" name="my-valoracio" id="my-valoracio" th:with="valoracioNumber=${valoracio?.valoracio}">
+        <option value="-1" th:selected="${valoracioNumber == null}" th:text="#{no-vista}"></option>
+        <option value="10" th:selected="${valoracioNumber == 10}" th:text="|10 - #{excelent}|"></option>
+        <option value="9" th:selected="${valoracioNumber == 9}" th:text="|9 - #{molt-bona}|"></option>
+        <option value="8" th:selected="${valoracioNumber == 8}" th:text="|8 - #{notable}|"></option>
+        <option value="7" th:selected="${valoracioNumber == 7}" th:text="|7 - #{bona}|"></option>
+        <option value="6" th:selected="${valoracioNumber == 6}" th:text="|6 - #{interessant}|"></option>
+        <option value="5" th:selected="${valoracioNumber == 5}" th:text="|5 - #{acceptable}|"></option>
+        <option value="4" th:selected="${valoracioNumber == 4}" th:text="|4 - #{regular}|"></option>
+        <option value="3" th:selected="${valoracioNumber == 3}" th:text="|3 - #{fluixa}|"></option>
+        <option value="2" th:selected="${valoracioNumber == 2}" th:text="|2 - #{roin}|"></option>
+        <option value="1" th:selected="${valoracioNumber == 1}" th:text="|1 - #{pessima}|"></option>
+    </select>
+    <div class="my-valoracio-date mt-2" th:if="${valoracio != null}" th:text="|${#temporals.format(valoracio?.data, 'dd/MM/yyyy')}|"></div>
 </div>

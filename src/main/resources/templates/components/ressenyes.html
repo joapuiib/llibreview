@@ -22,7 +22,7 @@
                 <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div th:if="${is_owner}" th:remove="tag">
-                <a class="d-block text-center text-decoration-none fw-bold" href="" th:text="#{modifica-ressenya}"></a>
+                <a class="d-block text-center text-decoration-none fw-bold" th:href="|/ressenya/${valoracio.llibre.isbn}|" th:text="#{modifica-ressenya}"></a>
         </div>
     </div>
 </div>
@@ -42,13 +42,13 @@
 
 
 <!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
-<div th:fragment="ressenya-usuari(valoracio)" th:with="ressenya=${valoracio?.ressenya}" class="">
+<div th:fragment="ressenya-usuari(isbn, valoracio)" th:with="ressenya=${valoracio?.ressenya}" class="">
     <div class="h5" th:text="#{la-teua-ressenya}"></div>
     <div th:unless="${ressenya == null}" th:remove="tag">
         <div th:replace="~{components/ressenyes :: ressenya(valoracio=${valoracio})}" class=""></div>
     </div>
 
     <div th:if="${ressenya == null}" th:remove="tag">
-        <a class="d-block text-center text-decoration-none fw-bold" href="" th:text="#{escriu-resenya}"></a>
+        <a class="d-block text-center text-decoration-none fw-bold"  th:href="|/ressenya/${isbn}|" th:text="#{escriu-resenya}"></a>
     </div>
 </div>
