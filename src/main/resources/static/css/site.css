@@ -149,6 +149,16 @@
     --bs-btn-disabled-bg: var(--cafe-300);
     --bs-btn-disabled-border-color: var(--cafe-400);
 }
+.btn.active.disabled {
+    color: var(--bs-btn-active-color);
+    background-color: var(--bs-btn-active-bg);
+    border-color: var(--bs-btn-active-border-color)
+}
+.btn.disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
 .form-control:focus, .form-select:focus {
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);
