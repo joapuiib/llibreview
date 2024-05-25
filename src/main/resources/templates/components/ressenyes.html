@@ -17,12 +17,13 @@
     <hr class="my cafe-500 opacity-50">
     <div class="ressenya-footer d-flex justify-content-end align-items-center gap-1">
         <div th:unless="${is_owner}" th:remove="tag">
-                <div>T'ha resultat útil?</div>
-                <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
-                <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
+            <div th:text="#{ressenya-es-util}"></div>
+            <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
+            <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div th:if="${is_owner}" th:remove="tag">
-                <a class="d-block text-center text-decoration-none fw-bold" th:href="|/ressenya/${valoracio.llibre.isbn}|" th:text="#{modifica-ressenya}"></a>
+            <a th:href="|/ressenya/${valoracio.llibre.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
+            <a th:href="|/ressenya/${valoracio.llibre.isbn}|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
 </div>

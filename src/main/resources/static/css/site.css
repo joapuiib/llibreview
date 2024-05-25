@@ -149,6 +149,21 @@
     --bs-btn-disabled-bg: var(--cafe-300);
     --bs-btn-disabled-border-color: var(--cafe-400);
 }
+.btn-outline-primary {
+    --bs-btn-color: var(--cafe-500);;
+    --bs-btn-border-color: var(--cafe-500);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--cafe-500);
+    --bs-btn-hover-border-color: var(--cafe-500);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--cafe-500);
+    --bs-btn-active-border-color: var(--cafe-500);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--cafe-500);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--cafe-500);
+}
 .btn.active.disabled {
     color: var(--bs-btn-active-color);
     background-color: var(--bs-btn-active-bg);
