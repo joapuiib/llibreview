@@ -34,8 +34,18 @@ public class ValoracioStats {
         return histogram.getOrDefault(valoracio, 0);
     }
 
+    public int getValoracioMaxima() {
+        return this.histogram.values().stream().max(Integer::compareTo).orElse(0);
+    }
+
+    /**
+     * Retorna el percentatge de valoracions amb la valoració donada respecte
+     * al màxim de registres d'una valoració.
+     * @param valoracio
+     * @return
+     */
     public double getPercentatgeValoracio(int valoracio) {
         if (count == 0) return 0;
-        return (double) getCount(valoracio) / count * 100;
+        return (double) getCount(valoracio) / getValoracioMaxima() * 100;
     }
 }
