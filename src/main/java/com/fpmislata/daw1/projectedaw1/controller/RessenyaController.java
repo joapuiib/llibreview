@@ -71,7 +71,7 @@ public class RessenyaController {
             valoracioService.delete(isbn, usuari.getUsername());
             alerts.add(new Alert("info", "S'ha eliminat la valoració"));
             redirectAttributes.addFlashAttribute("alerts", alerts);
-            return "redirect:/ressenya/" + isbn;
+            return "redirect:/llibre/" + isbn;
         } else if (oldValoracio == null || oldValoracio.getValoracio() != valoracio) {
             LocalDate now = LocalDate.now();
             Valoracio valoracioObject = new Valoracio(isbn, usuari.getUsername(), valoracio, now);
@@ -87,6 +87,6 @@ public class RessenyaController {
         }
 
         redirectAttributes.addFlashAttribute("alerts", alerts);
-        return "redirect:/ressenya/" + isbn;
+        return "redirect:/llibre/" + isbn;
     }
 }
