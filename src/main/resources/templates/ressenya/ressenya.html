@@ -11,7 +11,7 @@
                 <input type="hidden" name="isbn" th:value="${llibre.isbn}">
                 <div class="d-flex gap-3">
                     <a th:href="|/llibre/${llibre.isbn}|">
-                        <img th:src="|/img/llibre/${llibre.getRutaImatge()}|" alt="" class="ressenya-llibre-cover d-block mx-auto">
+                        <img th:src="|/img/llibre/${llibre.getRutaImatge()}|" alt="" class="llibre-cover ressenya-llibre-cover d-block mx-auto">
                     </a>
                     <div class="flex-grow-1">
                         <div class="h5" th:text="${llibre.titol}"></div>

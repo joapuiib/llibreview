@@ -1,5 +1,7 @@
 .genere {
     text-decoration: none;
+    box-shadow: 2px 3px 4px #BBBBBB;
+    border-radius: 5px;
 }
 .genere-1 /* Ficció literària */{
     background-color: #AAD7D9;
