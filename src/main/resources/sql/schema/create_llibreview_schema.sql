@@ -62,7 +62,7 @@ create table valoracio (
     isbn varchar(50),
     username varchar(100),
     data date not null,
-    valoracio int not null,
+    puntuacio int not null,
     primary key (isbn, username),
     foreign key (isbn) references llibre (isbn),
     foreign key (username) references usuari (username)

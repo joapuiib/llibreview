@@ -21,17 +21,18 @@ public class ValoracioStats {
 
     public void addValoracio(Valoracio valoracio) {
         this.count++;
-        this.average = (this.average * (this.count - 1) + valoracio.getValoracio()) / this.count;
-
-        if (histogram.containsKey(valoracio.getValoracio())) {
-            histogram.put(valoracio.getValoracio(), histogram.get(valoracio.getValoracio()) + 1);
-        } else {
-            histogram.put(valoracio.getValoracio(), 1);
-        }
+        this.average = (this.average * (this.count - 1) + valoracio.getPuntuacio()) / this.count;
+        updateHistogram(valoracio);
     }
 
-    public int getCount(int valoracio) {
-        return histogram.getOrDefault(valoracio, 0);
+    private void updateHistogram(Valoracio valoracio) {
+        int puntuacio = valoracio.getPuntuacio();
+        int valoracioCount = getCount(puntuacio);
+        histogram.put(puntuacio, valoracioCount + 1);
+    }
+
+    public int getCount(int puntuacio) {
+        return histogram.getOrDefault(puntuacio, 0);
     }
 
     public int getValoracioMaxima() {
@@ -39,13 +40,13 @@ public class ValoracioStats {
     }
 
     /**
-     * Retorna el percentatge de valoracions amb la valoració donada respecte
-     * al màxim de registres d'una valoració.
-     * @param valoracio
+     * Retorna el percentatge de valoracions amb la puntuació donada respecte
+     * al màxim de registres d'una puntuació.
+     * @param puntuacio
      * @return
      */
-    public double getPercentatgeValoracio(int valoracio) {
+    public double getPercentatgePuntuacio(int puntuacio) {
         if (count == 0) return 0;
-        return (double) getCount(valoracio) / getValoracioMaxima() * 100;
+        return (double) getCount(puntuacio) / getValoracioMaxima() * 100;
     }
 }

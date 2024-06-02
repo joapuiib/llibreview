@@ -78,9 +78,9 @@ public class LlibreDaoJdbc implements LlibreDao {
         String sql = """
             select l.*
             from llibre l
-            inner join valoracio r on l.isbn = r.isbn
+            inner join valoracio v on l.isbn = v.isbn
             group by l.isbn
-            order by avg(r.valoracio) desc, l.titol, l.isbn
+            order by avg(v.puntuacio) desc, l.titol, l.isbn
             limit ?
             """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {

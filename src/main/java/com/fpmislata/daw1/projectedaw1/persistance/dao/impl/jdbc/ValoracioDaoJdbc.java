@@ -63,11 +63,11 @@ public class ValoracioDaoJdbc implements ValoracioDao {
 
     @Override
     public void insert(Valoracio valoracio) {
-        String sql = "INSERT INTO valoracio (isbn, username, valoracio, data) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO valoracio (isbn, username, puntuacio, data) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, valoracio.getIsbn());
             preparedStatement.setString(2, valoracio.getUsername());
-            preparedStatement.setInt(3, valoracio.getValoracio());
+            preparedStatement.setInt(3, valoracio.getPuntuacio());
             preparedStatement.setDate(4, java.sql.Date.valueOf(valoracio.getData()));
             preparedStatement.executeUpdate();
         } catch (Exception e) {
@@ -77,9 +77,9 @@ public class ValoracioDaoJdbc implements ValoracioDao {
 
     @Override
     public void update(Valoracio valoracio) {
-        String sql = "UPDATE valoracio SET valoracio = ?, data = ? WHERE isbn = ? and username = ?";
+        String sql = "UPDATE valoracio SET puntuacio = ?, data = ? WHERE isbn = ? and username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, valoracio.getValoracio());
+            preparedStatement.setInt(1, valoracio.getPuntuacio());
             preparedStatement.setDate(2, java.sql.Date.valueOf(valoracio.getData()));
             preparedStatement.setString(3, valoracio.getIsbn());
             preparedStatement.setString(4, valoracio.getUsername());

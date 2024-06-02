@@ -11,7 +11,7 @@ public class ValoracioRowMapper extends RowMapper<Valoracio> {
         Valoracio valoracio = new Valoracio();
         valoracio.setIsbn(rs.getString("isbn"));
         valoracio.setUsername(rs.getString("username"));
-        valoracio.setValoracio(rs.getInt("valoracio"));
+        valoracio.setPuntuacio(rs.getInt("puntuacio"));
         valoracio.setData(rs.getDate("data").toLocalDate());
         return valoracio;
     }

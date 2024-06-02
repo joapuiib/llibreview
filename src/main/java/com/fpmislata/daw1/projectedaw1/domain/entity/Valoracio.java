@@ -15,23 +15,23 @@ public class Valoracio {
     private String isbn;
     private String username;
     private LocalDate data;
-    private int valoracio;
+    private int puntuacio;
 
     private Llibre llibre;
     private Usuari usuari;
     private Ressenya ressenya;
 
-    public Valoracio(String isbn, String username, int valoracio, LocalDate data) {
+    public Valoracio(String isbn, String username, int puntuacio, LocalDate data) {
         this.isbn = isbn;
         this.username = username;
-        this.valoracio = valoracio;
+        this.puntuacio = puntuacio;
         this.data = data;
     }
 
-    public Valoracio(Llibre llibre, Usuari usuari, int valoracio, LocalDate data) {
+    public Valoracio(Llibre llibre, Usuari usuari, int puntuacio, LocalDate data) {
         this.isbn = llibre.getIsbn();
         this.username = usuari.getUsername();
-        this.valoracio = valoracio;
+        this.puntuacio = puntuacio;
         this.data = data;
     }
 
@@ -59,7 +59,7 @@ public class Valoracio {
     @Override
     public String toString() {
         return "Valoracio{" +
-                "grade=" + valoracio +
+                "grade=" + puntuacio +
                 ", valoracioDate=" + data +
                 ", userame='" + username + '\'' +
                 ", isbn='" + isbn + '\'' +
@@ -71,11 +71,11 @@ public class Valoracio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Valoracio valoracio1 = (Valoracio) o;
-        return valoracio == valoracio1.valoracio && Objects.equals(isbn, valoracio1.isbn) && Objects.equals(username, valoracio1.username) && Objects.equals(data, valoracio1.data);
+        return puntuacio == valoracio1.puntuacio && Objects.equals(isbn, valoracio1.isbn) && Objects.equals(username, valoracio1.username) && Objects.equals(data, valoracio1.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isbn, username, data, valoracio);
+        return Objects.hash(isbn, username, data, puntuacio);
     }
 }

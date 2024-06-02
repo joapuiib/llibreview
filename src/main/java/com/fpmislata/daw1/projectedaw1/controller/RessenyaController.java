@@ -4,7 +4,6 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
-import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
 import com.fpmislata.daw1.projectedaw1.domain.entity.*;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
@@ -72,7 +71,7 @@ public class RessenyaController {
             alerts.add(new Alert("info", "S'ha eliminat la valoració"));
             redirectAttributes.addFlashAttribute("alerts", alerts);
             return "redirect:/llibre/" + isbn;
-        } else if (oldValoracio == null || oldValoracio.getValoracio() != valoracio) {
+        } else if (oldValoracio == null || oldValoracio.getPuntuacio() != valoracio) {
             LocalDate now = LocalDate.now();
             Valoracio valoracioObject = new Valoracio(isbn, usuari.getUsername(), valoracio, now);
             valoracioService.save(valoracioObject);

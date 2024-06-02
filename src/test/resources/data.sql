@@ -32,7 +32,7 @@ insert into usuari(username, email, data_registre, password) values
     ('user3', 'user3@localhost', '2021-01-01', '$2a$10$il0FptkiuLRtF7swrx7KoudhNtw0VIQHjWtX4.RNFzFA7l5TFIs.i'),
     ('user4', 'user4@localhost', '2021-01-01', '$2a$10$6vcrnNp68l5RnW6Mh56CV.KBo8oM1xgY/Asb0vIYV/.3TwMVbhX5G');
 
-insert into valoracio(isbn, username, data, valoracio) values
+insert into valoracio(isbn, username, data, puntuacio) values
     ('isbn1', 'user1', '2024-05-01', 7),
     ('isbn2', 'user1', '2024-05-01', 7),
     ('isbn2', 'user2', '2024-05-01', 8);

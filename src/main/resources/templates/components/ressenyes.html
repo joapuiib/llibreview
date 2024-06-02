@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="d-flex flex-row align-items-center gap-2">
-            <div th:replace="~{components/valoracio :: valoracio-stars(valoracio=${valoracio.valoracio})}"></div>
-            <div class="valoracio-value bg-cafe-500 fw-bold rounded-3" th:text="${valoracio.valoracio}"></div>
+            <div th:replace="~{components/valoracio :: valoracio-stars(valoracio=${valoracio.getPuntuacio})}"></div>
+            <div class="valoracio-value bg-cafe-500 fw-bold rounded-3" th:text="${valoracio.getPuntuacio}"></div>
         </div>
     </div>
     <div class="mt-2" th:text="${ressenya.comentari}"></div>

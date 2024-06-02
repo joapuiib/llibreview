@@ -41,7 +41,7 @@ insert into usuari(username, email, data_registre, password) values
     ('user4', 'user4@localhost', '2024-05-20', '$2a$10$6vcrnNp68l5RnW6Mh56CV.KBo8oM1xgY/Asb0vIYV/.3TwMVbhX5G');
 
 
-insert into valoracio(isbn, username, data, valoracio) values
+insert into valoracio(isbn, username, data, puntuacio) values
     ('9788433915689', 'user1', '2024-05-01', 10),
     ('9788433915689', 'user2', '2024-05-01', 9),
     ('9788433915689', 'user3', '2024-05-01', 9),
