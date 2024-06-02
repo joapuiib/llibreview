@@ -32,6 +32,14 @@ public class Ressenya {
         this.data = data;
     }
 
+    private Ressenya(Ressenya other) {
+        this.isbn = other.isbn;
+        this.username = other.username;
+        this.comentari = other.comentari;
+        this.data = other.data;
+        this.valoracio = other.valoracio;
+    }
+
     public Ressenya() {
     }
 
@@ -56,5 +64,9 @@ public class Ressenya {
     @Override
     public int hashCode() {
         return Objects.hash(isbn, username, comentari, data);
+    }
+
+    public Ressenya clone() {
+        return new Ressenya(this);
     }
 }
