@@ -279,27 +279,6 @@ img.card-item-img {
     font-size: 0.8em;
 }
 
-.left-sidebar {
-    display:flex;
-    flex-wrap:wrap;
-}
-
-.left-sidebar > * {
-    width:100%;
-    padding:1rem;
-}
-
-/* tablet breakpoint */
-@media (min-width:768px) {
-    .left-sidebar > *:nth-child(1) {
-        width:calc(100% / 3 );
-    }
-    .left-sidebar > * {
-        width:calc(100% / 3 * 2);
-        order:-1;
-    }
-}
-
 .text-justify {
     text-align: justify !important;
 }
@@ -359,6 +338,9 @@ img.card-item-img {
     margin-bottom: 2px;
     border: var(--cafe-500) 1px solid;
 }
+.valoracio-bar .progress .progress-bar {
+    border-radius: var(--bs-border-radius)!important;
+}
 .valoracio-bar-label {
     text-align: end;
     width: 32px;
@@ -373,9 +355,8 @@ img.card-item-img {
 .ressenya-footer .btn {
     --bs-btn-font-size: 0.8rem;
 }
-.llibre-cover {
-    box-shadow: 2px 3px 4px #BBBBBB;
-    border-radius: 5px;
+.shadow-sm {
+    box-shadow: 2px 3px 4px #BBBBBB !important;
 }
 .ressenya-llibre-cover {
     max-height: 200px;
