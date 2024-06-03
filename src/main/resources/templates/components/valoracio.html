@@ -41,7 +41,7 @@
 <div th:fragment="my-valoracio(valoracio)" class="my-valoracio-container bg-cafe-100 border border-cafe-500 rounded-3 text-center p-2">
     <!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
     <label class="cafe-800 mb-2" for="my-valoracio">La teua valoració</label>
-    <select class="form-select" name="my-valoracio" id="my-valoracio" th:with="valoracioNumber=${valoracio?.valoracio}">
+    <select class="form-select" name="my-valoracio" id="my-valoracio" th:with="valoracioNumber=${valoracio?.puntuacio}">
         <option value="-1" th:selected="${valoracioNumber == null}" th:text="#{no-vista}"></option>
         <option value="10" th:selected="${valoracioNumber == 10}" th:text="|10 - #{excelent}|"></option>
         <option value="9" th:selected="${valoracioNumber == 9}" th:text="|9 - #{molt-bona}|"></option>
