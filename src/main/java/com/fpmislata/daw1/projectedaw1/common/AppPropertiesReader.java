@@ -14,7 +14,7 @@ public class AppPropertiesReader {
         loadProperties("application.properties"); // Carga las propiedades por defecto
 
         // Detectar el perfil y cargar las propiedades correspondientes
-        String activeProfile = getProperty("app.profiles.active");
+        String activeProfile = getProperty("spring.profiles.active");
         if (activeProfile != null) {
             log.info("Perfilactivactiuo: " + activeProfile);
             loadProperties("application-" + activeProfile + ".properties");
