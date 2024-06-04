@@ -44,7 +44,7 @@ public class GenereController {
                             CardItem card = new CardItem();
                             card.setTitol(llibre.getTitol());
                             card.setUrl("/llibre/" + llibre.getIsbn());
-                            card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                            card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                             return card;
                         }).toList();
         model.addAttribute("llibres", llibres);

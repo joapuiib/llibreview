@@ -31,7 +31,7 @@ public class MainController {
                      card.setTitol(llibre.getTitol());
                      card.setSubtitol(llibre.getDataPublicacio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                      card.setUrl("/llibre/" + llibre.getIsbn());
-                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                     card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                      return card;
                 }).toList();
         model.addAttribute("ultimsLlibres", ultimsLlibres);
@@ -42,7 +42,7 @@ public class MainController {
                     card.setTitol(llibre.getTitol());
                     card.setSubtitol("Lectors: " + llibre.getValoracioStats().getCount());
                     card.setUrl("/llibre/" + llibre.getIsbn());
-                    card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                    card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                     return card;
                 }).toList();
         model.addAttribute("mesLlegits", mesLlegits);
@@ -53,7 +53,7 @@ public class MainController {
                     card.setTitol(llibre.getTitol());
                     card.setSubtitol("Valoració: " + String.format("%.1f", llibre.getValoracioStats().getAverage()));
                     card.setUrl("/llibre/" + llibre.getIsbn());
-                    card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                    card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                     return card;
                 }).toList();
         model.addAttribute("millorValorats", millorValorats);

@@ -30,7 +30,7 @@ public class AutorController {
                      CardItem card = new CardItem();
                      card.setTitol(autor.getNom());
                      card.setUrl("/autor/" + autor.getId());
-                     card.setImatgeUrl("/img/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "fallback.png"));
+                     card.setImatgeUrl("/files/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "fallback.png"));
                      return card;
                 }).toList();
         model.addAttribute("autors", autors);
@@ -51,7 +51,7 @@ public class AutorController {
                         card.setTitol(llibre.getTitol());
                         card.setSubtitol(Integer.toString(llibre.getDataPublicacio().getYear()));
                         card.setUrl("/llibre/" + llibre.getIsbn());
-                        card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "fallback.png"));
+                        card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "fallback.png"));
                         return card;
                     }).toList();
         model.addAttribute("llibres", llibres);

@@ -9,7 +9,7 @@
             <h1 class="text-center my-4" th:text="${llibre.getTitol()}"></h1>
             <div class="row row-cols-1 row-cols-xl-2">
                 <div class="col col-xl-4">
-                    <img th:src="|/img/llibre/${llibre.getRutaImatge()}|" alt="" class="d-block mx-auto w-100 rounded shadow-sm">
+                    <img th:src="|/files/llibre/${llibre.getRutaImatge()}|" alt="" class="d-block mx-auto w-100 rounded shadow-sm">
                     <div class="mt-3">
                         <div th:replace="~{components/valoracio :: valoracio(stats=${llibre.getValoracioStats()})}"></div>
                     </div>

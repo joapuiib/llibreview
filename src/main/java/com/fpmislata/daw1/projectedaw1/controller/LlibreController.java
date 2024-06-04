@@ -32,7 +32,7 @@ public class LlibreController {
                      card.setTitol(llibre.getTitol());
                      card.setSubtitol("ISBN: " + llibre.getIsbn());
                      card.setUrl("/llibre/" + llibre.getIsbn());
-                     card.setImatgeUrl("/img/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
+                     card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
                      return card;
                 }).toList();
         model.addAttribute("llibres", llibres);
@@ -52,7 +52,7 @@ public class LlibreController {
                             CardItem card = new CardItem();
                             card.setTitol(autor.getNom());
                             card.setUrl("/autor/" + autor.getId());
-                            card.setImatgeUrl("/img/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "placeholder.png"));
+                            card.setImatgeUrl("/files/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "placeholder.png"));
                             return card;
                         }).toList();
         model.addAttribute("autors", autors);
