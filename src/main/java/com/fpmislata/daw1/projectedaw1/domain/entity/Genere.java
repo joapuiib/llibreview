@@ -40,4 +40,12 @@ public class Genere {
     public int hashCode() {
         return Objects.hash(id, nom);
     }
+
+    @Override
+    public String toString() {
+        return "Genere{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }

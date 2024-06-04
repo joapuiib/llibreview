@@ -1,5 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.integration.dao.jdbc;
 
+import com.fpmislata.daw1.projectedaw1.common.i18n.Language;
 import com.fpmislata.daw1.projectedaw1.data.GenereData;
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
@@ -12,6 +13,9 @@ import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.GenereReposit
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.List;
 
@@ -27,30 +31,41 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
             )
     );
 
-    private final List<Genere> GENERE_LIST = GenereData.GENERE_LIST;
     private final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
 
     @Nested
     class FindAll {
-        @Test
-        void givenAllGeneres_shouldReturnAllGeneres() {
+        @ParameterizedTest
+        @MethodSource("com.fpmislata.daw1.projectedaw1.util.LanguageUtils#languagesProvider")
+        void givenAllGeneres_shouldReturnAllGeneres(Language language) {
+            LocaleContextHolder.setLocale(language.getLocale());
+
+            List<Genere> expectedGenereList = GenereData.getGenereList(language);
             List<Genere> result = genereService.findAll();
-            assertEquals(GENERE_LIST, result);
+            assertEquals(expectedGenereList, result);
         }
     }
 
     @Nested
     class FindById {
-        @Test
-        void givenGenereId_shouldReturnGenere() {
-            Genere expectedGenere = GENERE_LIST.get(0);
+        @ParameterizedTest
+        @MethodSource("com.fpmislata.daw1.projectedaw1.util.LanguageUtils#languagesProvider")
+        void givenGenereId_shouldReturnGenere(Language language) {
+            LocaleContextHolder.setLocale(language.getLocale());
+            List<Genere> genereListByLanguage = GenereData.getGenereList(language);
+
+            Genere expectedGenere = genereListByLanguage.get(0);
             Genere result = genereService.findById(1);
             assertEquals(expectedGenere, result);
         }
 
-        @Test
-        void givenDifferentGenereId_shouldReturnDifferentGenere() {
-            Genere expectedGenere = GENERE_LIST.get(1);
+        @ParameterizedTest
+        @MethodSource("com.fpmislata.daw1.projectedaw1.util.LanguageUtils#languagesProvider")
+        void givenDifferentGenereId_shouldReturnDifferentGenere(Language language) {
+            LocaleContextHolder.setLocale(language.getLocale());
+            List<Genere> genereListByLanguage = GenereData.getGenereList(language);
+
+            Genere expectedGenere = genereListByLanguage.get(1);
             Genere result = genereService.findById(2);
             assertEquals(expectedGenere, result);
         }
@@ -71,18 +86,29 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
             assertEquals(List.of(), result);
         }
 
-        @Test
-        void givenLlibreWithSingleGenere_shouldReturnListSingleGenere() {
+        @ParameterizedTest
+        @MethodSource("com.fpmislata.daw1.projectedaw1.util.LanguageUtils#languagesProvider")
+        void givenLlibreWithSingleGenere_shouldReturnListSingleGenere(Language language) {
+            LocaleContextHolder.setLocale(language.getLocale());
+            List<Genere> genereListByLanguage = GenereData.getGenereList(language);
+
             Llibre llibre = LLIBRE_LIST.get(1);
-            List<Genere> expectedGenereList = List.of(GENERE_LIST.get(0));
+            List<Genere> expectedGenereList = List.of(genereListByLanguage.get(0));
             List<Genere> result = genereService.findByLlibre(llibre);
             assertEquals(expectedGenereList, result);
         }
 
-        @Test
-        void givenLlibreWithMultipleGeneres_shouldReturnListMultipleGeneres() {
+        @ParameterizedTest
+        @MethodSource("com.fpmislata.daw1.projectedaw1.util.LanguageUtils#languagesProvider")
+        void givenLlibreWithMultipleGeneres_shouldReturnListMultipleGeneres(Language language) {
+            LocaleContextHolder.setLocale(language.getLocale());
+            List<Genere> genereListByLanguage = GenereData.getGenereList(language);
+
             Llibre llibre = LLIBRE_LIST.get(0);
-            List<Genere> expectedGenereList = List.of(GENERE_LIST.get(0), GENERE_LIST.get(1));
+            List<Genere> expectedGenereList = List.of(
+                    genereListByLanguage.get(0),
+                    genereListByLanguage.get(1)
+            );
             List<Genere> result = genereService.findByLlibre(llibre);
             assertEquals(expectedGenereList, result);
         }
