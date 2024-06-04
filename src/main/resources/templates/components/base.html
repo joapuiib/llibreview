@@ -19,28 +19,29 @@
         <a class="navbar-brand" href="/">
             <span class="cafe-500 fw-bold">llib<span class="cafe-200">Review</span></span>
         </a>
-        <div class="collapse navbar-collapse" id="navbar-left">
-            <div class="navbar-nav me-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="main-navbar" class="collapse navbar-collapse">
+            <div id="navbar-left" class="navbar-nav me-auto">
                 <a class="nav-link" href="/llibre" th:text="#{llibres}"></a>
                 <a class="nav-link" href="/genere" th:text="#{generes}"></a>
                 <a class="nav-link" href="/autor" th:text="#{autors}"></a>
             </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-right">
             <!--/*@thymesVar id="user" type="com.fpmislata.daw1.projectedaw1.domain.entity.Usuari"*/-->
-            <div class="navbar-nav ms-auto" th:if="${session.user==null}">
+            <div id="navbar-right" class="navbar-nav ms-auto align-items-lg-center gap-lg-2" th:if="${session.user==null}">
                 <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> <span th:text="#{login}"></span></a>
+                <div th:unless="${session.user==null}" th:remove="tag">
+                    <a class="nav-link" th:href="|/usuari/${session.user.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${session.user.username}"></span></a>
+                    <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{logout}"></span></a>
+                </div>
+                <div th:replace="~{components/base :: lang-picker}"></div>
             </div>
-            <div class="navbar-nav ms-auto" th:unless="${session.user==null}">
-                <a class="nav-link" th:href="|/usuari/${session.user.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${session.user.username}"></span></a>
-                <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{logout}"></span></a>
-            </div>
-            <div th:replace="~{components/base :: lang-picker}"></div>
         </div>
     </div>
 </nav>
 
-<div th:fragment="lang-picker" class="dropdown ms-2">
+<div th:fragment="lang-picker" class="dropdown">
     <a class="dropdown-toggle" href="#" id="lang-picker" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span th:class="|m-0 fi fi-${lang.flag}|"></span></a>
 
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="lang-picker">
