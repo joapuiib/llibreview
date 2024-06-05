@@ -46,7 +46,7 @@
 <div th:fragment="lang-picker" class="dropdown">
     <a class="dropdown-toggle" href="#" id="lang-picker" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span th:class="|m-0 fi fi-${lang.flag}|"></span></a>
 
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="lang-picker">
+    <ul class="dropdown-menu position-absolute dropdown-menu-lg-end" aria-labelledby="lang-picker">
         <li th:each="avalilableLanguage : ${T(com.fpmislata.daw1.projectedaw1.common.i18n.Language).values()}">
             <a class="dropdown-item" th:href="|?lang=${avalilableLanguage.prefix}|">
                 <i th:class="|fi fi-${avalilableLanguage.flag} me-1|"></i>
