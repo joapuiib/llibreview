@@ -29,8 +29,10 @@
                 <a class="nav-link" href="/autor" th:text="#{autors}"></a>
             </div>
             <!--/*@thymesVar id="user" type="com.fpmislata.daw1.projectedaw1.domain.entity.Usuari"*/-->
-            <div id="navbar-right" class="navbar-nav ms-auto align-items-lg-center gap-lg-2" th:if="${session.user==null}">
-                <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> <span th:text="#{login}"></span></a>
+            <div id="navbar-right" class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <div th:if="${session.user==null}" th:remove="tag">
+                    <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user"></i> <span th:text="#{login}"></span></a>
+                </div>
                 <div th:unless="${session.user==null}" th:remove="tag">
                     <a class="nav-link" th:href="|/usuari/${session.user.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${session.user.username}"></span></a>
                     <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{logout}"></span></a>
