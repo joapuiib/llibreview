@@ -11,7 +11,7 @@
     <groupId>com.fpmislata.daw1</groupId>
     <artifactId>llibreview</artifactId>
     <name>llibreview</name>
-    <version>0.5</version>
+    <version>0.6</version>
     <description>llibreview</description>
     <properties>
         <java.version>17</java.version>
