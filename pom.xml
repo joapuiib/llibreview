@@ -89,6 +89,12 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-testing-junit</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
