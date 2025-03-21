@@ -79,7 +79,8 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
     class Create {
         @Test
         void givenNonExistentUsuari_shouldCreateUsuari() {
-            usuariService.create("newUser", "newUser@localhost", "newUser", "newUser");
+            Usuari newUsuari = new Usuari("newUser", "newUser@localhost");
+            usuariService.create(newUsuari, "newUser", "newUser");
             Usuari result = usuariService.findByUsername("newUser");
             assertAll(
                     () -> assertNotNull(result),
@@ -89,20 +90,25 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
         }
 
         @Test
-        void givenExistentUsuari_shouldNotCreateUsuari() {
-            Usuari expectedUsuari = Usuari_LIST.get(0);
-            assertThrows(RuntimeException.class, () -> usuariService.create(expectedUsuari.getUsername(), "newUser@localhost", "", ""));
+        void givenExistentUsername_shouldNotCreateUsuari() {
+            Usuari expectedUsuari = Usuari_LIST.getFirst().clone();
+            expectedUsuari.setEmail("newUser@localhost");
+
+            assertThrows(RuntimeException.class, () -> usuariService.create(expectedUsuari, "", ""));
         }
 
         @Test
         void givenExistentEmail_shouldNotCreateUsuari() {
-            Usuari expectedUsuari = Usuari_LIST.get(0);
-            assertThrows(RuntimeException.class, () -> usuariService.create("newUser", expectedUsuari.getEmail(), "", ""));
+            Usuari expectedUsuari = Usuari_LIST.getFirst().clone();
+            expectedUsuari.setUsername("newUser");
+
+            assertThrows(RuntimeException.class, () -> usuariService.create(expectedUsuari, "", ""));
         }
 
         @Test
         void givenNonMatchingPasswords_shouldNotCreateUsuari() {
-            assertThrows(RuntimeException.class, () -> usuariService.create("newUser", "newUser@localhost", "newUser", "newUser2"));
+            Usuari newUsuari = new Usuari("newUser", "newUser@localhost");
+            assertThrows(RuntimeException.class, () -> usuariService.create(newUsuari, "newUser", "newUser2"));
         }
     }
 

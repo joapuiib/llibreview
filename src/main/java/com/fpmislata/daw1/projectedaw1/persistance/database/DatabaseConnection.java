@@ -1,6 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.persistance.database;
 
-import com.fpmislata.daw1.projectedaw1.common.AppPropertiesReader;
+import com.fpmislata.daw1.projectedaw1.common.utils.AppPropertiesReader;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 

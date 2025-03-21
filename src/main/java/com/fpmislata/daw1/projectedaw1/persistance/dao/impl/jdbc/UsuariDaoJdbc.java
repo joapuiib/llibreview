@@ -66,14 +66,7 @@ public class UsuariDaoJdbc implements UsuariDao {
     public boolean login(String username, String password) {
         Usuari usuari = findByUsername(username);
 
-        String errorMessage = "No s'ha trobat l'usuari o la contrasenya és incorrecta.";
-        if (usuari == null) {
-            throw new RuntimeException(errorMessage);
-        }
-        boolean passwordMatch = EncryptionUtils.checkPassword(password, usuari.getContrasenyaHash());
-        if (!passwordMatch) {
-            throw new RuntimeException(errorMessage);
-        }
-        return true;
+        if (usuari == null) return false;
+        return EncryptionUtils.checkPassword(password, usuari.getContrasenyaHash());
     }
 }

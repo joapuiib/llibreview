@@ -23,7 +23,19 @@ public class Usuari {
         this.dataRegistre = dataRegistre;
     }
 
+    public Usuari(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
     public Usuari() {
+    }
+
+    private Usuari(Usuari other){
+        this.username = other.username;
+        this.email = other.email;
+        this.dataRegistre = other.dataRegistre;
+        this.contrasenyaHash = other.contrasenyaHash;
     }
 
     @Override
@@ -37,5 +49,9 @@ public class Usuari {
     @Override
     public int hashCode() {
         return Objects.hash(username, email, dataRegistre);
+    }
+
+    public Usuari clone(){
+        return new Usuari(this);
     }
 }

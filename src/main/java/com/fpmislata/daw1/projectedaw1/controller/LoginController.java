@@ -2,6 +2,7 @@ package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,15 +52,14 @@ public class LoginController {
 
         List<Alert> alerts = new ArrayList<>();
 
-        try {
-            usuariService.login(username, password);
+        boolean success = usuariService.login(username, password);
+        if (success) {
             return referer != null ? "redirect:" + referer : "redirect:/";
-        } catch (RuntimeException exception) {
-            alerts.add(new Alert("danger", exception.getMessage()));
         }
 
-        model.addAttribute("referer", referer);
+        alerts.add(new Alert("danger", "No s'ha trobat l'usuari o la contrasenya no és correcta."));
         model.addAttribute("alerts", alerts);
+        model.addAttribute("referer", referer);
         return "login/login";
     }
 
@@ -86,7 +86,8 @@ public class LoginController {
         List<Alert> alerts = new ArrayList<>();
 
         try {
-            usuariService.create(username, email, password, passwordConfirmation);
+            Usuari usuari = new Usuari(username, email);
+            usuariService.create(usuari, password, passwordConfirmation);
             alerts.add(new Alert("success", "L'usuari s'ha registrat correctament."));
         } catch (RuntimeException exception) {
             alerts.add(new Alert("danger", exception.getMessage()));

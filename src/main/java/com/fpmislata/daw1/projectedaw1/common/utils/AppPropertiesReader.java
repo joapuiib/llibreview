@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.common;
+package com.fpmislata.daw1.projectedaw1.common.utils;
 
 import lombok.extern.log4j.Log4j2;
 
