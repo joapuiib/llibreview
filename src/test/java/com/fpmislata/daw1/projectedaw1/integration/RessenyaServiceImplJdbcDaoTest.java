@@ -2,9 +2,7 @@ package com.fpmislata.daw1.projectedaw1.integration;
 
 import com.fpmislata.daw1.projectedaw1.data.RessenyaData;
 import com.fpmislata.daw1.projectedaw1.data.ValoracioData;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.RessenyaServiceImpl;
@@ -45,9 +43,9 @@ class RessenyaServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void whenValoracioHasRessenya_givenValoracio_shouldReturnRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.get(0);
+            Valoracio valoracio = VALORACIO_LIST.getFirst();
 
-            Ressenya expected = RESSENYA_LIST.get(0);
+            Ressenya expected = RESSENYA_LIST.getFirst();
             Ressenya result = ressenyaService.findByValoracio(valoracio);
 
             assertEquals(expected, result);
@@ -58,8 +56,8 @@ class RessenyaServiceImplJdbcDaoTest extends JdbcTest {
     class Save {
         @Test
         void whenRessenyaExists_givenRessenya_shouldUpdateRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.get(0);
-            Ressenya ressenya = RESSENYA_LIST.get(0).clone();
+            Valoracio valoracio = VALORACIO_LIST.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst().clone();
             ressenya.setComentari("Nou contingut de la ressenya");
 
             ressenyaService.save(ressenya);
@@ -71,14 +69,16 @@ class RessenyaServiceImplJdbcDaoTest extends JdbcTest {
         @Test
         void whenRessenyaNotExists_givenRessenya_shouldInsertRessenya() {
             Valoracio valoracio = VALORACIO_LIST.get(2);
-            Llibre llibre = valoracio.getLlibre();
-            Usuari usuari = valoracio.getUsuari();
-            Ressenya ressenya = new Ressenya(llibre, usuari, "Contingut de la ressenya", LocalDate.parse("2021-05-01"));
+            String isbn = valoracio.getIsbn();
+            String username = valoracio.getUsername();
+            Ressenya ressenya = new Ressenya(isbn, username, "Contingut de la ressenya", LocalDate.parse("2021-05-01"));
 
+            Ressenya prev = ressenyaService.findByValoracio(valoracio);
             ressenyaService.save(ressenya);
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
+            Ressenya after = ressenyaService.findByValoracio(valoracio);
 
-            assertEquals(ressenya, result);
+            assertNull(prev);
+            assertEquals(ressenya, after);
         }
     }
 
@@ -86,8 +86,8 @@ class RessenyaServiceImplJdbcDaoTest extends JdbcTest {
     class Delete {
         @Test
         void whenRessenyaExists_givenIsbnAndUsername_shouldDeleteRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.get(0);
-            Ressenya ressenya = RESSENYA_LIST.get(0);
+            Valoracio valoracio = VALORACIO_LIST.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
 
             ressenyaService.delete(ressenya.getIsbn(), ressenya.getUsername());
             Ressenya result = ressenyaService.findByValoracio(valoracio);
