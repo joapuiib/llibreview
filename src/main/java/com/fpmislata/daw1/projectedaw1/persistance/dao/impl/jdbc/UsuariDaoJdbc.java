@@ -3,8 +3,8 @@ package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper.UsuariRowMapper;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.UsuariRowMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

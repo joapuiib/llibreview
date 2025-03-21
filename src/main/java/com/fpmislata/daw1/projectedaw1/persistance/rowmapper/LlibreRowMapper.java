@@ -1,4 +1,4 @@
-package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper;
+package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 

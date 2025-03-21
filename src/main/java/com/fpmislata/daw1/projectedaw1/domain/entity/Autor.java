@@ -28,10 +28,6 @@ public class Autor {
     public Autor() {
     }
 
-    public List<Llibre> getLlibres() {
-        return LlibreIoc.createService().findByAutor(this);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

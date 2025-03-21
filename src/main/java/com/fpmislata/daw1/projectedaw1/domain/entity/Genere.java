@@ -23,11 +23,6 @@ public class Genere {
     public Genere() {
     }
 
-    public List<Llibre> getLlibres() {
-        llibres = LlibreIoc.createService().findByGenere(this);
-        return llibres;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

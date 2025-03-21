@@ -1,9 +1,7 @@
-package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper;
+package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
-import com.fpmislata.daw1.projectedaw1.common.i18n.Language;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.web.servlet.LocaleResolver;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

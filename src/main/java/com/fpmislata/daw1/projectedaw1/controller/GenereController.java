@@ -1,7 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
 import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
-import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
+import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
 import org.springframework.stereotype.Controller;
@@ -37,11 +37,11 @@ public class GenereController {
         Genere genere = genereService.findById(id);
         model.addAttribute("genere", genere);
 
-        List<CardItem> llibres = genere.getLlibres().stream()
+        List<Card> llibres = genere.getLlibres().stream()
                 // .sorted(Comparator.comparing(Autor::getNom))
                 .map(
                         llibre -> {
-                            CardItem card = new CardItem();
+                            Card card = new Card();
                             card.setTitol(llibre.getTitol());
                             card.setUrl("/llibre/" + llibre.getIsbn());
                             card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));

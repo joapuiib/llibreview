@@ -2,8 +2,8 @@ package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper.ValoracioRowMapper;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.ValoracioRowMapper;
 
 import java.sql.PreparedStatement;
 import java.util.List;

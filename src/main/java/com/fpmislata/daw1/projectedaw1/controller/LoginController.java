@@ -24,7 +24,7 @@ public class LoginController {
     private final UsuariService usuariService;
 
     public LoginController() {
-        usuariService = UsuariIoc.getUserService();
+        usuariService = UsuariIoc.createService();
     }
 
     @SuppressWarnings("SameReturnValue")

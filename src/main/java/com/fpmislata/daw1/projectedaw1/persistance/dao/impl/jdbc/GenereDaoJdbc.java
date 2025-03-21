@@ -2,8 +2,8 @@ package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper.GenereRowMapper;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.GenereRowMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

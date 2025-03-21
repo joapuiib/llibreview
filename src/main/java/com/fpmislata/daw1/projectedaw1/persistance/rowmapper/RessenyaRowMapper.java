@@ -1,7 +1,6 @@
-package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper;
+package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

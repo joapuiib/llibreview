@@ -46,7 +46,7 @@ public class Valoracio {
 
     public Usuari getUsuari(){
         if (usuari == null)
-            usuari =  UsuariIoc.getUserService().findByUsername(username);
+            usuari =  UsuariIoc.createService().findByUsername(username);
         return usuari;
     }
 

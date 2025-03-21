@@ -44,8 +44,7 @@ public class RessenyaController {
             return "redirect:/llibre/" + isbn;
         }
 
-
-        Valoracio valoracio = llibre.getValoracioFromUser(UserSession.getUser());
+        Valoracio valoracio = valoracioService.findByLlibreAndUser(llibre, UserSession.getUser());
         model.addAttribute("valoracio", valoracio);
         return "ressenya/ressenya";
     }
