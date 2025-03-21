@@ -17,12 +17,12 @@ public class ValoracioServiceImpl implements ValoracioService {
 
     @Override
     public Valoracio findByLlibreAndUser(Llibre llibre, Usuari usuari) {
-        return valoracioRepository.findByLlibreIsbnAndUsername(llibre.getIsbn(), usuari.getUsername());
+        return valoracioRepository.findByIsbnAndUsername(llibre.getIsbn(), usuari.getUsername());
     }
 
     @Override
     public List<Valoracio> findByLlibre(Llibre llibre) {
-        return valoracioRepository.findByLlibreIsbn(llibre.getIsbn());
+        return valoracioRepository.findByIsbn(llibre.getIsbn());
     }
 
     @Override

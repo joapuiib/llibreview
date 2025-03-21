@@ -1,8 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 
+import com.fpmislata.daw1.projectedaw1.data.GenereData;
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.data.AutorData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
@@ -28,6 +30,7 @@ class LlibreServiceImplTest {
 
     private final List<Llibre> llibreList = LlibreData.LLIBRE_LIST;
     private final List<Autor> autorList = AutorData.AUTOR_LIST;
+    private final List<Genere> genereList = GenereData.GENERE_LIST;
 
     @Nested
     class FindAll {
@@ -125,6 +128,96 @@ class LlibreServiceImplTest {
             when(llibreRepository.findByAutorId(autor.getId())).thenReturn(expected);
 
             List<Llibre> result = llibreService.findByAutor(autor);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindByGenere {
+        @Test
+        void givenGenereWithNoLlibres_shouldReturnEmptyList() {
+            Genere genere = genereList.get(2);
+            when(llibreRepository.findByGenereId(genere.getId())).thenReturn(List.of());
+
+            List<Llibre> result = llibreService.findByGenere(genere);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenGenereWithSingleLlibre_shouldReturnSingleLlibreByGenere() {
+            Genere genere = genereList.get(1);
+            List<Llibre> expected = List.of(llibreList.get(2));
+            when(llibreRepository.findByGenereId(genere.getId())).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findByGenere(genere);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenGenereWithMultipleLlibres_shouldReturnMultipleLlibresByGenere() {
+            Genere genere = genereList.get(0);
+            List<Llibre> expected = List.of(llibreList.get(1), llibreList.get(2));
+            when(llibreRepository.findByGenereId(genere.getId())).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findByGenere(genere);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindMostRead {
+        @Test
+        void givenN0_shouldReturnEmptyList() {
+            when(llibreRepository.findMostRead(0)).thenReturn(List.of());
+
+            List<Llibre> result = llibreService.findMostRead(0);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenN1_shouldReturn1MostRecentLlibres() {
+            List<Llibre> expected = List.of(llibreList.get(5));
+            when(llibreRepository.findMostRead(1)).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findMostRead(1);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenN2_shouldReturn2MostRecentLlibres() {
+            List<Llibre> expected = List.of(llibreList.get(5), llibreList.get(4));
+            when(llibreRepository.findMostRead(2)).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findMostRead(2);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindBestRated {
+        @Test
+        void givenN0_shouldReturnEmptyList() {
+            when(llibreRepository.findBestRated(0)).thenReturn(List.of());
+
+            List<Llibre> result = llibreService.findBestRated(0);
+            assertEquals(List.of(), result);
+        }
+
+        @Test
+        void givenN1_shouldReturn1MostRecentLlibres() {
+            List<Llibre> expected = List.of(llibreList.get(5));
+            when(llibreRepository.findBestRated(1)).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findBestRated(1);
+            assertEquals(expected, result);
+        }
+
+        @Test
+        void givenN2_shouldReturn2MostRecentLlibres() {
+            List<Llibre> expected = List.of(llibreList.get(5), llibreList.get(4));
+            when(llibreRepository.findBestRated(2)).thenReturn(expected);
+
+            List<Llibre> result = llibreService.findBestRated(2);
             assertEquals(expected, result);
         }
     }

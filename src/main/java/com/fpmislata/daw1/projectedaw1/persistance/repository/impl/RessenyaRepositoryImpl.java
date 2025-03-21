@@ -14,9 +14,7 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
 
 
     @Override
-    public Ressenya findByValoracio(Valoracio valoracio) {
-        String isbn = valoracio.getLlibre().getIsbn();
-        String username = valoracio.getUsuari().getUsername();
+    public Ressenya findByIsbnUsername(String isbn, String username) {
         return ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
     }
 

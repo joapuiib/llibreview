@@ -38,24 +38,6 @@ public class Valoracio {
     public Valoracio() {
     }
 
-    public Llibre getLlibre(){
-        if (llibre == null)
-            llibre =  LlibreIoc.createService().findByIsbn(isbn);
-        return llibre;
-    }
-
-    public Usuari getUsuari(){
-        if (usuari == null)
-            usuari =  UsuariIoc.createService().findByUsername(username);
-        return usuari;
-    }
-
-    public Ressenya getRessenya(){
-        if (ressenya == null)
-            ressenya = RessenyaIoc.createService().findByValoracio(this);
-        return ressenya;
-    }
-
     @Override
     public String toString() {
         return "Valoracio{" +

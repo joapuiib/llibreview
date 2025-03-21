@@ -13,12 +13,12 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
         this.valoracioDao = valoracioDao;
     }
     @Override
-    public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
+    public Valoracio findByIsbnAndUsername(String isbn, String username) {
         return valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
     }
 
     @Override
-    public List<Valoracio> findByLlibreIsbn(String isbn) {
+    public List<Valoracio> findByIsbn(String isbn) {
         return valoracioDao.findByLlibreIsbn(isbn);
     }
 

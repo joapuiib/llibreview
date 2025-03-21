@@ -35,7 +35,7 @@ class ValoracioServiceImplTest {
         void givenBookWithNoValoracios_thenReturnEmptyList() {
             Llibre llibre = llibreList.get(2);
             List<Valoracio> expected = List.of();
-            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            when(valoracioRepository.findByIsbn(llibre.getIsbn())).thenReturn(expected);
 
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
@@ -46,7 +46,7 @@ class ValoracioServiceImplTest {
         void givenBookWithSingleValoracios_thenReturnValoracioList() {
             Llibre llibre = llibreList.get(0);
             List<Valoracio> expected = List.of(valoracioList.get(0));
-            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            when(valoracioRepository.findByIsbn(llibre.getIsbn())).thenReturn(expected);
 
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
@@ -57,7 +57,7 @@ class ValoracioServiceImplTest {
         void givenBookWithMultipleValoracios_thenReturnValoracioList() {
             Llibre llibre = llibreList.get(1);
             List<Valoracio> expected = List.of(valoracioList.get(1), valoracioList.get(2));
-            when(valoracioRepository.findByLlibreIsbn(llibre.getIsbn())).thenReturn(expected);
+            when(valoracioRepository.findByIsbn(llibre.getIsbn())).thenReturn(expected);
 
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
 
