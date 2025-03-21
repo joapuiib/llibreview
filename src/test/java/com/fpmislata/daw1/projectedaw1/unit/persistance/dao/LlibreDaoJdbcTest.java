@@ -32,7 +32,7 @@ public class LlibreDaoJdbcTest extends JdbcTest {
         @Test
         void findByIsbn_shouldReturnLlibre() {
             Llibre result = llibreDao.findByIsbn("isbn1");
-            assertEquals(expectedLlibreList.get(0), result);
+            assertEquals(expectedLlibreList.getFirst(), result);
         }
 
         @Test
