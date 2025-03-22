@@ -40,12 +40,15 @@ public class RessenyaController {
         Llibre llibre = llibreService.findByIsbn(isbn);
         model.addAttribute("llibre", llibre);
 
+        ValoracioStats stats = new ValoracioStats(valoracioService.findByLlibre(llibre));
+        model.addAttribute("valoracioStats", stats);
+
         if(!UserSession.isUserLoggedIn()) {
             return "redirect:/llibre/" + isbn;
         }
 
         Valoracio valoracio = valoracioService.findByLlibreAndUser(llibre, UserSession.getUser());
-        model.addAttribute("valoracio", valoracio);
+        model.addAttribute("valoracioUsuari", valoracio);
         return "ressenya/ressenya";
     }
 

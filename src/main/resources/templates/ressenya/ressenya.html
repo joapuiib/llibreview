@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
 <!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
+<!--/*@thymesVar id="valoracioUsuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
+<!--/*@thymesVar id="valoracioStats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
     <head>
         <title th:text="#{la-teua-ressenya}"></title>
     </head>
@@ -16,7 +18,7 @@
                     <div class="flex-grow-1">
                         <div class="h5" th:text="${llibre.titol}"></div>
                         <div class="text-secondary" th:text="${llibre.dataPublicacio}"></div>
-                        <div class="d-flex align-items-center gap-2 mt-1" th:with="stats = ${llibre.valoracioStats}">
+                        <div class="d-flex align-items-center gap-2 mt-1" th:with="stats = ${valoracioStats}">
                             <div class="valoracio-value bg-cafe-500 fw-bold rounded-3 fs-6" th:text="${stats.count > 0} ? ${utils.round(stats.average, 1)} : '-'"></div>
                             <div class="text-secondary fs-7">
                                 <span th:text="${stats.count}"></span>
@@ -31,7 +33,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${llibre.getValoracioFromUser(session.user)})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
+                        <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${valoracioUsuari})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
                     </div>
                 </div>
                 <div class="mt-3">

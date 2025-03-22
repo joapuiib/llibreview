@@ -41,7 +41,7 @@
                         </dd>
                     </dl>
                     <div class="mt-3" th:unless="${session.user==null}">
-                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, valoracio=${llibre.getValoracioFromUser(session.user)})}"></div>
+                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, valoracio=${valoracioUsuari})}"></div>
                     </div>
                     <div th:if="${valoracionsAmbRessenya.size() > 0}" th:remove="tag">
                         <div th:replace="~{components/ressenyes :: ressenyes-destacades(valoracions=${valoracionsAmbRessenya})}" class=""></div>
