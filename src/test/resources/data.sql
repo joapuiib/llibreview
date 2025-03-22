@@ -27,10 +27,10 @@ insert into llibre_genere(isbn, id_genere) values
     ('isbn2', 1);
 
 insert into usuari(username, email, data_registre, password) values
-    ('user1', 'user1@localhost', '2021-01-01', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'),
-    ('user2', 'user2@localhost', '2021-01-01', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'),
-    ('user3', 'user3@localhost', '2021-01-01', '$2a$10$il0FptkiuLRtF7swrx7KoudhNtw0VIQHjWtX4.RNFzFA7l5TFIs.i'),
-    ('user4', 'user4@localhost', '2021-01-01', '$2a$10$6vcrnNp68l5RnW6Mh56CV.KBo8oM1xgY/Asb0vIYV/.3TwMVbhX5G');
+    ('user1', 'user1@localhost', '2021-01-01', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'), /* password: user1 */
+    ('user2', 'user2@localhost', '2021-01-01', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'), /* password: user2 */
+    ('user3', 'user3@localhost', '2021-01-01', '$2a$10$il0FptkiuLRtF7swrx7KoudhNtw0VIQHjWtX4.RNFzFA7l5TFIs.i'), /* password: user3 */
+    ('user4', 'user4@localhost', '2021-01-01', '$2a$10$6vcrnNp68l5RnW6Mh56CV.KBo8oM1xgY/Asb0vIYV/.3TwMVbhX5G'); /* password: user4 */
 
 insert into valoracio(isbn, username, data, puntuacio) values
     ('isbn1', 'user1', '2024-05-01', 7),

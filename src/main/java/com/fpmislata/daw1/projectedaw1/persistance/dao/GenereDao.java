@@ -7,4 +7,5 @@ import java.util.List;
 public interface GenereDao {
     Genere findById(int id);
     List<Genere> findAll();
+    List<Genere> findGeneresByLlibreIsbn(String isbn);
 }

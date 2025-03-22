@@ -8,9 +8,7 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.LlibreServiceImpl;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreGenereDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
@@ -24,9 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class LlibreServiceImplJdbcDaoTest extends JdbcTest {
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
-                    new LlibreDaoJdbc(),
-                    new EscriuDaoJdbc(),
-                    new LlibreGenereDaoJdbc()
+                    new LlibreDaoJdbc()
             )
     );
 
@@ -47,7 +43,7 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
     class FindById {
         @Test
         void givenLlibreIsbn_shouldReturnLlibre() {
-            Llibre expectedLlibre = LLIBRE_LIST.get(0);
+            Llibre expectedLlibre = LLIBRE_LIST.getFirst();
             Llibre result = llibreService.findByIsbn("isbn1");
             assertEquals(expectedLlibre, result);
         }
@@ -108,7 +104,7 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void givenAutorWithMultipleLlibres_shouldReturnMultipleLlibresByAutor() {
-            Autor autor = AUTOR_LIST.get(0);
+            Autor autor = AUTOR_LIST.getFirst();
             List<Llibre> result = llibreService.findByAutor(autor);
             List<Llibre> expected = List.of(LLIBRE_LIST.get(1), LLIBRE_LIST.get(2));
             assertEquals(expected, result);
@@ -128,13 +124,13 @@ class LlibreServiceImplJdbcDaoTest extends JdbcTest {
         void givenGenereWithSingleLlibre_shouldReturnSingleLlibreByAutor() {
             Genere genere = GENERE_LIST.get(1);
             List<Llibre> result = llibreService.findByGenere(genere);
-            List<Llibre> expected = List.of(LLIBRE_LIST.get(0));
+            List<Llibre> expected = List.of(LLIBRE_LIST.getFirst());
             assertEquals(expected, result);
         }
 
         @Test
         void givenGenereWithMultipleLlibres_shouldReturnMultipleLlibresByAutor() {
-            Genere genere = GENERE_LIST.get(0);
+            Genere genere = GENERE_LIST.getFirst();
             List<Llibre> result = llibreService.findByGenere(genere);
             List<Llibre> expected = List.of(LLIBRE_LIST.get(0), LLIBRE_LIST.get(1));
             assertEquals(expected, result);

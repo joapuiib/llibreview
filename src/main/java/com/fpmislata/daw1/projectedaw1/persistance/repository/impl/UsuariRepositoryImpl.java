@@ -23,7 +23,7 @@ public class UsuariRepositoryImpl implements UsuariRepository {
 
     @Override
     public void create(Usuari usuari, String password) {
-        usuariDao.create(usuari, password);
+        usuariDao.insert(usuari, password);
     }
 
     @Override

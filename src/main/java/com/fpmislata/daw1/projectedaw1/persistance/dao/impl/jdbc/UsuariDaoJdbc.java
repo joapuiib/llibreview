@@ -49,24 +49,26 @@ public class UsuariDaoJdbc implements UsuariDao {
     }
 
     @Override
-    public void create(Usuari usuari, String password) {
+    public int insert(Usuari usuari, String passwordHash) {
         String sql = "INSERT INTO usuari (username, email, data_registre, password) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, usuari.getUsername());
             preparedStatement.setString(2, usuari.getEmail());
             preparedStatement.setObject(3, usuari.getDataRegistre());
-            preparedStatement.setString(4, EncryptionUtils.hashPassword(password));
-            preparedStatement.executeUpdate();
+            // preparedStatement.setString(4, EncryptionUtils.hashPassword(passwordHash));
+            preparedStatement.setString(4, passwordHash);
+            return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
     @Override
-    public boolean login(String username, String password) {
+    public boolean login(String username, String passwordHash) {
         Usuari usuari = findByUsername(username);
 
         if (usuari == null) return false;
-        return EncryptionUtils.checkPassword(password, usuari.getContrasenyaHash());
+        // return EncryptionUtils.checkPassword(passwordHash, usuari.getContrasenyaHash());
+        return passwordHash.equals(usuari.getContrasenyaHash());
     }
 }

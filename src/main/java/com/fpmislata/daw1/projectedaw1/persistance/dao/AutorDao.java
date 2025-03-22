@@ -7,4 +7,5 @@ import java.util.List;
 public interface AutorDao {
     Autor findById(int id);
     List<Autor> findAll();
+    List<Autor> findAutorsByLlibreIsbn(String isbn);
 }

@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 import com.fpmislata.daw1.projectedaw1.data.AutorData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.AutorRepositoryImpl;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,8 +22,6 @@ class AutorRepositoryImplTest {
 
     @Mock
     private AutorDao autorDao;
-    @Mock
-    private EscriuDao escriuDao;
 
     @InjectMocks
     private AutorRepositoryImpl autorRepository;
@@ -85,7 +82,7 @@ class AutorRepositoryImplTest {
         @Test
         void findByIsbn_givenLlibreWithNoAutors_shouldReturnEmptyList() {
             String isbn = "0";
-            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(List.of());
+            when(autorDao.findAutorsByLlibreIsbn(isbn)).thenReturn(List.of());
 
             List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertTrue(result.isEmpty());
@@ -95,7 +92,7 @@ class AutorRepositoryImplTest {
         void findByIsbn_givenLlibreWithSingleAutor_shouldReturnAutors() {
             String isbn = "1";
             List<Autor> expectedAutors = List.of(autorList.getFirst());
-            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
+            when(autorDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
 
             List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedAutors, result);
@@ -105,7 +102,7 @@ class AutorRepositoryImplTest {
         void findByIsbn_givenLlibreWithMultipleAutors_shouldReturnAutors() {
             String isbn = "2";
             List<Autor> expectedAutors = List.of(autorList.get(0), autorList.get(1));
-            when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
+            when(autorDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
 
             List<Autor> result = autorRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedAutors, result);

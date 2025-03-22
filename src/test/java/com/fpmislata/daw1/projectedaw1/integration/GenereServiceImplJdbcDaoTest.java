@@ -8,7 +8,6 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.GenereServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.GenereDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.LlibreGenereDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.GenereRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
@@ -26,8 +25,7 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
 
     private final GenereService genereService = new GenereServiceImpl(
             new GenereRepositoryImpl(
-                    new GenereDaoJdbc(),
-                    new LlibreGenereDaoJdbc()
+                    new GenereDaoJdbc()
             )
     );
 
@@ -54,7 +52,7 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
             LocaleContextHolder.setLocale(language.getLocale());
             List<Genere> genereListByLanguage = GenereData.getGenereList(language);
 
-            Genere expectedGenere = genereListByLanguage.get(0);
+            Genere expectedGenere = genereListByLanguage.getFirst();
             Genere result = genereService.findById(1);
             assertEquals(expectedGenere, result);
         }
@@ -93,7 +91,7 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
             List<Genere> genereListByLanguage = GenereData.getGenereList(language);
 
             Llibre llibre = LLIBRE_LIST.get(1);
-            List<Genere> expectedGenereList = List.of(genereListByLanguage.get(0));
+            List<Genere> expectedGenereList = List.of(genereListByLanguage.getFirst());
             List<Genere> result = genereService.findByLlibre(llibre);
             assertEquals(expectedGenereList, result);
         }
@@ -104,7 +102,7 @@ class GenereServiceImplJdbcDaoTest extends JdbcTest {
             LocaleContextHolder.setLocale(language.getLocale());
             List<Genere> genereListByLanguage = GenereData.getGenereList(language);
 
-            Llibre llibre = LLIBRE_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
             List<Genere> expectedGenereList = List.of(
                     genereListByLanguage.get(0),
                     genereListByLanguage.get(1)

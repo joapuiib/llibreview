@@ -38,6 +38,13 @@ public class Valoracio {
     public Valoracio() {
     }
 
+    private Valoracio(Valoracio other) {
+        this.isbn = other.isbn;
+        this.username = other.username;
+        this.puntuacio = other.puntuacio;
+        this.data = other.data;
+    }
+
     @Override
     public String toString() {
         return "Valoracio{" +
@@ -59,5 +66,9 @@ public class Valoracio {
     @Override
     public int hashCode() {
         return Objects.hash(isbn, username, data, puntuacio);
+    }
+
+    public Valoracio clone() {
+        return new Valoracio(this);
     }
 }

@@ -41,4 +41,16 @@ public class GenereDaoJdbc implements GenereDao {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    @Override
+    public List<Genere> findGeneresByLlibreIsbn(String isbn) {
+        String sql = "SELECT * FROM genere g inner join llibre_genere lg on g.id_genere = lg.id_genere where lg.isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
+            ResultSet rs = preparedStatement.executeQuery();
+            return genereRowMapper.map(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }

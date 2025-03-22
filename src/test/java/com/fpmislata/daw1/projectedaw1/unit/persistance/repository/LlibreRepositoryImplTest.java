@@ -2,9 +2,7 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 
 import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.EscriuDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreGenereDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.LlibreRepositoryImpl;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,12 +21,6 @@ import static org.mockito.Mockito.when;
 class LlibreRepositoryImplTest {
     @Mock
     private LlibreDao llibreDao;
-
-    @Mock
-    private EscriuDao escriuDao;
-
-    @Mock
-    private LlibreGenereDao llibreGenereDao;
 
     @InjectMocks
     private LlibreRepositoryImpl llibreRepository;
@@ -80,7 +72,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenAutorIdWithNoLlibres_shouldReturnEmptyList() {
             List<Llibre> expected = List.of();
-            when(escriuDao.findLlibresByAutorId(3)).thenReturn(expected);
+            when(llibreDao.findLlibresByAutorId(3)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByAutorId(3);
             assertEquals(expected, result);
@@ -89,7 +81,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenAutorIdWithSingleLlibre_shouldReturnListWithSingleLlibre() {
             List<Llibre> expected = List.of(expectedLlibreList.get(2));
-            when(escriuDao.findLlibresByAutorId(2)).thenReturn(expected);
+            when(llibreDao.findLlibresByAutorId(2)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByAutorId(2);
             assertEquals(expected, result);
@@ -98,7 +90,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenAutorIdWithMultipleLlibres_shouldReturnListWithMultipleLlibres() {
             List<Llibre> expected = List.of(expectedLlibreList.get(1), expectedLlibreList.get(2));
-            when(escriuDao.findLlibresByAutorId(1)).thenReturn(expected);
+            when(llibreDao.findLlibresByAutorId(1)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByAutorId(1);
             assertEquals(expected, result);
@@ -110,7 +102,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenGenereIdWithNoLlibres_shouldReturnEmptyList() {
             List<Llibre> expected = List.of();
-            when(llibreGenereDao.findLlibresByGenereId(3)).thenReturn(expected);
+            when(llibreDao.findLlibresByGenereId(3)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByGenereId(3);
             assertEquals(expected, result);
@@ -119,7 +111,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenGenereIdWithSingleLlibre_shouldReturnListWithSingleLlibre() {
             List<Llibre> expected = List.of(expectedLlibreList.get(2));
-            when(llibreGenereDao.findLlibresByGenereId(2)).thenReturn(expected);
+            when(llibreDao.findLlibresByGenereId(2)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByGenereId(2);
             assertEquals(expected, result);
@@ -128,7 +120,7 @@ class LlibreRepositoryImplTest {
         @Test
         void givenGenereIdWithMultipleLlibres_shouldReturnListWithMultipleLlibres() {
             List<Llibre> expected = List.of(expectedLlibreList.get(1), expectedLlibreList.get(2));
-            when(llibreGenereDao.findLlibresByGenereId(1)).thenReturn(expected);
+            when(llibreDao.findLlibresByGenereId(1)).thenReturn(expected);
 
             List<Llibre> result = llibreRepository.findByGenereId(1);
             assertEquals(expected, result);

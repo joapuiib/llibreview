@@ -18,6 +18,20 @@ public class LlibreDaoJdbc implements LlibreDao {
         this.databaseConnection = DatabaseConnection.getInstance();
         this.llibreRowMapper = new LlibreRowMapper();
     }
+
+    @Override
+    public Llibre findByIsbn(String isbn) {
+        String sql = "SELECT * FROM llibre where isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Llibre> llibreList = llibreRowMapper.map(rs);
+            return llibreList.isEmpty() ? null : llibreList.getFirst();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     @Override
     public List<Llibre> findAll() {
         String sql = "SELECT * FROM llibre";
@@ -30,13 +44,24 @@ public class LlibreDaoJdbc implements LlibreDao {
     }
 
     @Override
-    public Llibre findByIsbn(String isbn) {
-        String sql = "SELECT * FROM llibre where isbn = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
-            preparedStatement.setString(1, isbn);
+    public List<Llibre> findLlibresByAutorId(int idAutor) {
+        String sql = "SELECT * FROM llibre l inner join escriu e on l.isbn = e.isbn where e.id_autor = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, idAutor);
             ResultSet rs = preparedStatement.executeQuery();
-            List<Llibre> llibreList = llibreRowMapper.map(rs);
-            return llibreList.isEmpty() ? null : llibreList.getFirst();
+            return llibreRowMapper.map(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Llibre> findLlibresByGenereId(int id) {
+        String sql = "SELECT * FROM llibre l inner join llibre_genere lg on l.isbn = lg.isbn where lg.id_genere = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            return llibreRowMapper.map(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

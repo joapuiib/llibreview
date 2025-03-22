@@ -59,7 +59,7 @@ class AutorServiceImplTest {
 
         @Test
         void findById_givenId_shouldReturnAutor() {
-            Autor expectedAutor = autorList.get(0);
+            Autor expectedAutor = autorList.getFirst();
             when(autorRepository.findById(expectedAutor.getId())).thenReturn(expectedAutor);
 
             Autor result = autorService.findById(expectedAutor.getId());

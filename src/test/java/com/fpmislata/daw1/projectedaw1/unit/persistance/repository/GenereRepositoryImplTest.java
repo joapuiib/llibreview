@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 import com.fpmislata.daw1.projectedaw1.data.GenereData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreGenereDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.GenereRepositoryImpl;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,8 +21,6 @@ class GenereRepositoryImplTest {
 
     @Mock
     private GenereDao genereDao;
-    @Mock
-    private LlibreGenereDao llibreGenereDao;
 
     @InjectMocks
     private GenereRepositoryImpl genereRepository;
@@ -84,7 +81,7 @@ class GenereRepositoryImplTest {
         @Test
         void findByIsbn_givenLlibreWithNoGeneres_shouldReturnEmptyList() {
             String isbn = "0";
-            when(llibreGenereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(List.of());
+            when(genereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(List.of());
 
             List<Genere> result = genereRepository.findByLlibreIsbn(isbn);
             assertTrue(result.isEmpty());
@@ -94,7 +91,7 @@ class GenereRepositoryImplTest {
         void findByIsbn_givenLlibreWithSingleGenere_shouldReturnGeneres() {
             String isbn = "1";
             List<Genere> expectedGeneres = List.of(genereList.getFirst());
-            when(llibreGenereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(expectedGeneres);
+            when(genereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(expectedGeneres);
 
             List<Genere> result = genereRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedGeneres, result);
@@ -104,7 +101,7 @@ class GenereRepositoryImplTest {
         void findByIsbn_givenLlibreWithMultipleGeneres_shouldReturnGeneres() {
             String isbn = "2";
             List<Genere> expectedGeneres = List.of(genereList.get(0), genereList.get(1));
-            when(llibreGenereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(expectedGeneres);
+            when(genereDao.findGeneresByLlibreIsbn(isbn)).thenReturn(expectedGeneres);
 
             List<Genere> result = genereRepository.findByLlibreIsbn(isbn);
             assertEquals(expectedGeneres, result);

@@ -6,7 +6,6 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.AutorServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.AutorDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.EscriuDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.AutorRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class AutorServiceImplJdbcDaoTest extends JdbcTest {
     private final AutorService autorService = new AutorServiceImpl(
             new AutorRepositoryImpl(
-                    new AutorDaoJdbc(), new EscriuDaoJdbc()
+                    new AutorDaoJdbc()
             )
     );
     public final List<Autor> AUTOR_LIST = AutorData.AUTOR_LIST;

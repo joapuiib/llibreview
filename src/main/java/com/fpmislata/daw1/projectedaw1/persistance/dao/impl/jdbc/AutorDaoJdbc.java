@@ -22,6 +22,19 @@ public class AutorDaoJdbc implements AutorDao {
     }
 
     @Override
+    public Autor findById(int id) {
+        String sql = "SELECT * FROM autor where id_autor = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Autor> autorList = autorRowMapper.map(rs);
+            return autorList.isEmpty() ? null : autorList.getFirst();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
     public List<Autor> findAll() {
         String sql = "SELECT * FROM autor";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
@@ -33,13 +46,12 @@ public class AutorDaoJdbc implements AutorDao {
     }
 
     @Override
-    public Autor findById(int id) {
-        String sql = "SELECT * FROM autor where id_autor = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
+    public List<Autor> findAutorsByLlibreIsbn(String isbn) {
+        String sql = "SELECT * FROM autor a inner join escriu e on a.id_autor = e.id_autor where e.isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
-            List<Autor> autorList = autorRowMapper.map(rs);
-            return autorList.isEmpty() ? null : autorList.getFirst();
+            return autorRowMapper.map(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
