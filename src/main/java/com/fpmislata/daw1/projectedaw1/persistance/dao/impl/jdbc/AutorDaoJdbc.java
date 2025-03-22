@@ -39,7 +39,7 @@ public class AutorDaoJdbc implements AutorDao {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             List<Autor> autorList = autorRowMapper.map(rs);
-            return autorList.isEmpty() ? null : autorList.get(0);
+            return autorList.isEmpty() ? null : autorList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

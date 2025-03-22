@@ -29,7 +29,7 @@ public class UsuariDaoJdbc implements UsuariDao {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             List<Usuari> usuariList = usuariRowMapper.map(rs);
-            return usuariList.isEmpty() ? null : usuariList.get(0);
+            return usuariList.isEmpty() ? null : usuariList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -42,7 +42,7 @@ public class UsuariDaoJdbc implements UsuariDao {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             List<Usuari> usuariList = usuariRowMapper.map(rs);
-            return usuariList.isEmpty() ? null : usuariList.get(0);
+            return usuariList.isEmpty() ? null : usuariList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

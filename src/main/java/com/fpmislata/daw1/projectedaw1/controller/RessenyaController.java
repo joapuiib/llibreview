@@ -81,6 +81,7 @@ public class RessenyaController {
         }
 
         if (comentari != null && !comentari.isEmpty()) {
+            // TODO: No es guarda correctament
             LocalDate now = LocalDate.now();
             Ressenya ressenya = new Ressenya(isbn, usuari.getUsername(), comentari, now);
             ressenyaService.save(ressenya);

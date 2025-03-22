@@ -32,7 +32,7 @@ public class AutorDaoJdbcTest extends JdbcTest {
         @Test
         void findById_shouldReturnAutor() {
             Autor result = autorDao.findById(1);
-            assertEquals(expectedAutorList.get(0), result);
+            assertEquals(expectedAutorList.getFirst(), result);
         }
 
         @Test

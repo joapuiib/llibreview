@@ -36,7 +36,7 @@ public class GenereDaoJdbc implements GenereDao {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             List<Genere> genereList = genereRowMapper.map(rs);
-            return genereList.isEmpty() ? null : genereList.get(0);
+            return genereList.isEmpty() ? null : genereList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

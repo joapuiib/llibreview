@@ -36,7 +36,7 @@ public class LlibreDaoJdbc implements LlibreDao {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             List<Llibre> llibreList = llibreRowMapper.map(rs);
-            return llibreList.isEmpty() ? null : llibreList.get(0);
+            return llibreList.isEmpty() ? null : llibreList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

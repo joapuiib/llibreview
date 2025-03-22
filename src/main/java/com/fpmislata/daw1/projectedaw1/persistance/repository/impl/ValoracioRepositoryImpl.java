@@ -28,12 +28,21 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
     }
 
     @Override
-    public void save(Valoracio valoracio) {
-        valoracioDao.save(valoracio);
+    public boolean exists(String isbn, String username) {
+        return this.findByIsbnAndUsername(isbn, username) != null;
     }
 
     @Override
-    public void delete(String isbn, String username) {
-        valoracioDao.delete(isbn, username);
+    public boolean save(Valoracio valoracio) {
+        if (this.exists(valoracio.getIsbn(), valoracio.getUsername())) {
+            return valoracioDao.update(valoracio) == 1;
+        } else {
+            return valoracioDao.insert(valoracio) == 1;
+        }
+    }
+
+    @Override
+    public boolean delete(String isbn, String username) {
+        return valoracioDao.delete(isbn, username) == 1;
     }
 }
