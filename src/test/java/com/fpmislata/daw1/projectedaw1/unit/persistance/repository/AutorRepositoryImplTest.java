@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AutorRepostoryImplTest {
+class AutorRepositoryImplTest {
 
     @Mock
     private AutorDao autorDao;
@@ -63,7 +63,7 @@ class AutorRepostoryImplTest {
 
         @Test
         void findById_givenId_shouldReturnAutor() {
-            Autor expectedAutor = autorList.get(0);
+            Autor expectedAutor = autorList.getFirst();
             when(autorDao.findById(expectedAutor.getId())).thenReturn(expectedAutor);
 
             Autor result = autorRepository.findById(expectedAutor.getId());
@@ -94,7 +94,7 @@ class AutorRepostoryImplTest {
         @Test
         void findByIsbn_givenLlibreWithSingleAutor_shouldReturnAutors() {
             String isbn = "1";
-            List<Autor> expectedAutors = List.of(autorList.get(0));
+            List<Autor> expectedAutors = List.of(autorList.getFirst());
             when(escriuDao.findAutorsByLlibreIsbn(isbn)).thenReturn(expectedAutors);
 
             List<Autor> result = autorRepository.findByLlibreIsbn(isbn);

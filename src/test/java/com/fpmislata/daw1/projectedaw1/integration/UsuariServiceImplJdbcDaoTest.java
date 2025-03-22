@@ -131,14 +131,20 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void givenIncorrectCredentials() {
-            assertThrows(RuntimeException.class, () -> usuariService.login("user1", "user2"));
-            assertNull(UserSession.getUser());
+            boolean success = usuariService.login("user1", "user2");
+            assertAll(
+                    () -> assertFalse(success),
+                    () -> assertNull(UserSession.getUser())
+            );
         }
 
         @Test
         void givenNonExistentUsername() {
-            assertThrows(RuntimeException.class, () -> usuariService.login("nonExistentUsername", "password"));
-            assertNull(UserSession.getUser());
+            boolean success = usuariService.login("nonExistentUsername", "password");
+            assertAll(
+                    () -> assertFalse(success),
+                    () -> assertNull(UserSession.getUser())
+            );
         }
     }
 }
