@@ -103,30 +103,4 @@ public class LlibreDaoJdbcTest extends JdbcTest {
             assertEquals(expected, result);
         }
     }
-
-    @Disabled("llibreDao::insert no s'ha implementat encara")
-    @Test
-    void insert_shouldInsertLlibre() {
-        Llibre llibre = new Llibre("7", "Llibre 7", "Resum 7", LocalDate.parse("2023-09-02"), 111, "imatge7.png");
-        boolean inserted = llibreDao.insert(llibre);
-        Llibre insertedLlibre = llibreDao.findByIsbn("7");
-
-        assertAll(
-            () -> assertTrue(inserted),
-            () -> assertEquals(llibre, insertedLlibre),
-            () -> assertEquals(7, llibreDao.findAll().size())
-        );
-    }
-
-    @Disabled("llibreDao::insert no s'ha implementat encara")
-    @Test
-    void insert_shouldThrowErrorIfLlibreExists() {
-        Llibre llibre = new Llibre();
-        llibre.setIsbn("1");
-
-        assertAll(
-                () -> assertThrows(RuntimeException.class, () -> llibreDao.insert(llibre)),
-                () -> assertEquals(6, llibreDao.findAll().size())
-        );
-    }
 }

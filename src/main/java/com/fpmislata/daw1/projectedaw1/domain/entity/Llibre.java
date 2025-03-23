@@ -1,6 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import lombok.Getter;
 import lombok.Setter;
 

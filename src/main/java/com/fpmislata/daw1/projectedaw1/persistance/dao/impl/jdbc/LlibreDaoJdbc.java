@@ -116,14 +116,4 @@ public class LlibreDaoJdbc implements LlibreDao {
             throw new RuntimeException(e.getMessage());
         }
     }
-
-    @Override
-    public boolean insert(Llibre llibre) {
-        throw new UnsupportedOperationException("LlibreDaoJdbc::insert no s'ha implementat encara");
-    }
-
-    @Override
-    public Llibre delete(String isbn) {
-        throw new UnsupportedOperationException("LlibreDaoJdbc::delete no s'ha implementat encara");
-    }
 }

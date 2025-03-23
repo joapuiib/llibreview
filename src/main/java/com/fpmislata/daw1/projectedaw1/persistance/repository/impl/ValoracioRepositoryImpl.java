@@ -7,6 +7,7 @@ import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ValoracioRepositoryImpl implements ValoracioRepository {
     private final ValoracioDao valoracioDao;
@@ -19,19 +20,21 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
     @Override
     public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
         Valoracio valoracio = valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
-        Ressenya ressenya = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
-        valoracio.setRessenya(ressenya);
+        if (valoracio != null) {
+            Ressenya ressenya = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
+            valoracio.setRessenya(ressenya);
+        }
         return valoracio;
     }
 
     @Override
     public List<Valoracio> findByIsbn(String isbn) {
-        List<Valoracio> valoracios = valoracioDao.findByLlibreIsbn(isbn);
-        for (Valoracio valoracio : valoracios) {
+        List<Valoracio> valoracions = valoracioDao.findByLlibreIsbn(isbn);
+        valoracions.stream().filter(Objects::nonNull).forEach(valoracio -> {
             Ressenya r = ressenyaDao.findByLlibreIsbnAndUsername(isbn, valoracio.getUsername());
             valoracio.setRessenya(r);
-        }
-        return valoracios;
+        });
+        return valoracions;
     }
 
     @Override

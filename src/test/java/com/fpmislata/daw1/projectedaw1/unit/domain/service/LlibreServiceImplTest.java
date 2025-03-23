@@ -46,7 +46,7 @@ class LlibreServiceImplTest {
     class FindById {
         @Test
         void givenLlibreIsbn_shouldReturnLlibre() {
-            Llibre expectedLlibre = llibreList.get(0);
+            Llibre expectedLlibre = llibreList.getFirst();
             when(llibreRepository.findByIsbn(expectedLlibre.getIsbn())).thenReturn(expectedLlibre);
 
             Llibre result = llibreService.findByIsbn("isbn1");
@@ -123,7 +123,7 @@ class LlibreServiceImplTest {
 
         @Test
         void givenAutorWithMultipleLlibres_shouldReturnMultipleLlibresByAutor() {
-            Autor autor = autorList.get(0);
+            Autor autor = autorList.getFirst();
             List<Llibre> expected = List.of(llibreList.get(1), llibreList.get(2));
             when(llibreRepository.findByAutorId(autor.getId())).thenReturn(expected);
 
@@ -155,7 +155,7 @@ class LlibreServiceImplTest {
 
         @Test
         void givenGenereWithMultipleLlibres_shouldReturnMultipleLlibresByGenere() {
-            Genere genere = genereList.get(0);
+            Genere genere = genereList.getFirst();
             List<Llibre> expected = List.of(llibreList.get(1), llibreList.get(2));
             when(llibreRepository.findByGenereId(genere.getId())).thenReturn(expected);
 
