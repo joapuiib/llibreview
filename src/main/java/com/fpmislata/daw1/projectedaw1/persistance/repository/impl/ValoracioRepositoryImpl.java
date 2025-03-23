@@ -18,10 +18,10 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
     }
     @Override
     public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
-        Valoracio v = valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
-        Ressenya r = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
-        v.setRessenya(r);
-        return v;
+        Valoracio valoracio = valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
+        Ressenya ressenya = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
+        valoracio.setRessenya(ressenya);
+        return valoracio;
     }
 
     @Override
