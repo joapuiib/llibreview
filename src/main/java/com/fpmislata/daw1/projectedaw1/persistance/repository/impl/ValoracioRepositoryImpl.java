@@ -1,6 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
+import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 
@@ -8,18 +10,28 @@ import java.util.List;
 
 public class ValoracioRepositoryImpl implements ValoracioRepository {
     private final ValoracioDao valoracioDao;
+    private final RessenyaDao ressenyaDao;
 
-    public ValoracioRepositoryImpl(ValoracioDao valoracioDao) {
+    public ValoracioRepositoryImpl(ValoracioDao valoracioDao, RessenyaDao ressenyaDao) {
         this.valoracioDao = valoracioDao;
+        this.ressenyaDao = ressenyaDao;
     }
     @Override
     public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
-        return valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
+        Valoracio v = valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
+        Ressenya r = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
+        v.setRessenya(r);
+        return v;
     }
 
     @Override
     public List<Valoracio> findByIsbn(String isbn) {
-        return valoracioDao.findByLlibreIsbn(isbn);
+        List<Valoracio> valoracios = valoracioDao.findByLlibreIsbn(isbn);
+        for (Valoracio valoracio : valoracios) {
+            Ressenya r = ressenyaDao.findByLlibreIsbnAndUsername(isbn, valoracio.getUsername());
+            valoracio.setRessenya(r);
+        }
+        return valoracios;
     }
 
     @Override

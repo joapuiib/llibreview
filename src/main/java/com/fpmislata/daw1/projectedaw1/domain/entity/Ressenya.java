@@ -1,7 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +13,6 @@ public class Ressenya {
     private String username;
     private String comentari;
     private LocalDate data;
-
-    private Valoracio valoracio;
 
     public Ressenya(String isbn, String username, String comentari, LocalDate data) {
         this.isbn = isbn;
@@ -37,7 +33,6 @@ public class Ressenya {
         this.username = other.username;
         this.comentari = other.comentari;
         this.data = other.data;
-        this.valoracio = other.valoracio;
     }
 
     public Ressenya() {
