@@ -19,11 +19,13 @@ public class LlibreController {
 
     private final LlibreService llibreService;
     private final AutorService autorService;
+    private final GenereService genereService;
     private final ValoracioService valoracioService;
 
     public LlibreController() {
         this.llibreService = LlibreIoc.createService();
         this.autorService = AutorIoc.createService();
+        this.genereService = GenereIoc.createService();
         this.valoracioService = ValoracioIoc.createService();
     }
 
@@ -45,7 +47,7 @@ public class LlibreController {
                 .map(AutorCardMapper::map).toList();
         model.addAttribute("autors", autors);
 
-        List<Genere> generes = llibre.getGeneres();
+        List<Genere> generes = genereService.findByLlibre(llibre);
         model.addAttribute("generes", generes);
 
         List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
