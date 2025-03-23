@@ -236,6 +236,11 @@ a:hover {
     height: 300px;
     width: 200px;
     overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+.card-item:hover {
+    text-decoration: none;
+    transform: scale(1.05);
 }
 
 img.card-item-img {
@@ -363,4 +368,11 @@ img.card-item-img {
 }
 .ressenya-llibre-cover {
     max-height: 200px;
+}
+
+dt {
+    margin-bottom: 0.5rem;
+}
+dd {
+    margin-bottom: 1rem;
 }
