@@ -4,6 +4,8 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+    # Tipus d'events sobre la pull request
+    types: [ 'opened', 'edited', 'reopened', 'synchronize', 'ready_for_review' ]
     branches: [ "main", "development" ]
   workflow_dispatch:
 
