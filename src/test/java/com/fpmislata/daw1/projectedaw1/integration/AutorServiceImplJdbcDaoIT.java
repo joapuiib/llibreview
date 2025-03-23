@@ -31,7 +31,7 @@ class AutorServiceImplJdbcDaoIT extends JdbcTest {
 
     @Test
     void findById_shouldReturnLlibre() {
-        Autor expectedAutor = AUTOR_LIST.get(0);
+        Autor expectedAutor = AUTOR_LIST.getFirst();
 
         Autor result = autorService.findById(expectedAutor.getId());
         assertEquals(expectedAutor, result);
@@ -66,7 +66,7 @@ class AutorServiceImplJdbcDaoIT extends JdbcTest {
         llibre.setIsbn("isbn2");
 
         List<Autor> expectedAutorList = List.of(
-                this.AUTOR_LIST.get(0)
+                this.AUTOR_LIST.getFirst()
         );
 
         List<Autor> result = autorService.findByLlibre(llibre);

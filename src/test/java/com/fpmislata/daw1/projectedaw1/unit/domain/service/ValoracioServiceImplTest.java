@@ -44,8 +44,8 @@ class ValoracioServiceImplTest {
 
         @Test
         void givenBookWithSingleValoracios_thenReturnValoracioList() {
-            Llibre llibre = llibreList.get(0);
-            List<Valoracio> expected = List.of(valoracioList.get(0));
+            Llibre llibre = llibreList.getFirst();
+            List<Valoracio> expected = List.of(valoracioList.getFirst());
             when(valoracioRepository.findByIsbn(llibre.getIsbn())).thenReturn(expected);
 
             List<Valoracio> result = valoracioService.findByLlibre(llibre);

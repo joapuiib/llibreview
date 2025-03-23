@@ -1,15 +1,14 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
-import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.UsuariRowMapper;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.UsuariRowMapper;
 
 public class UsuariDaoJdbc implements UsuariDao {
 
@@ -50,7 +49,10 @@ public class UsuariDaoJdbc implements UsuariDao {
 
     @Override
     public int insert(Usuari usuari, String passwordHash) {
-        String sql = "INSERT INTO usuari (username, email, data_registre, password_hash) VALUES (?, ?, ?, ?)";
+        String sql = """
+            INSERT INTO usuari (username, email, data_registre, password_hash)
+            VALUES (?, ?, ?, ?)
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, usuari.getUsername());
             preparedStatement.setString(2, usuari.getEmail());

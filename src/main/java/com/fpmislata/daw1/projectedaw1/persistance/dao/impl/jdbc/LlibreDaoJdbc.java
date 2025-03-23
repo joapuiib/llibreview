@@ -1,14 +1,14 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
-import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.LlibreRowMapper;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.LlibreRowMapper;
 
 public class LlibreDaoJdbc implements LlibreDao {
 
@@ -45,8 +45,13 @@ public class LlibreDaoJdbc implements LlibreDao {
 
     @Override
     public List<Llibre> findLlibresByAutorId(int idAutor) {
-        String sql = "SELECT * FROM llibre l inner join escriu e on l.isbn = e.isbn where e.id_autor = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        String sql = """
+            SELECT *
+            FROM llibre l
+            INNER JOIN escriu e ON l.isbn = e.isbn
+            WHERE e.id_autor = ?
+            """;
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, idAutor);
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.map(rs);
@@ -57,8 +62,13 @@ public class LlibreDaoJdbc implements LlibreDao {
 
     @Override
     public List<Llibre> findLlibresByGenereId(int id) {
-        String sql = "SELECT * FROM llibre l inner join llibre_genere lg on l.isbn = lg.isbn where lg.id_genere = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        String sql = """
+            SELECT *
+            FROM llibre l
+            INNER JOIN llibre_genere lg ON l.isbn = lg.isbn
+            WHERE lg.id_genere = ?
+            """;
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             return llibreRowMapper.map(rs);
@@ -82,13 +92,13 @@ public class LlibreDaoJdbc implements LlibreDao {
     @Override
     public List<Llibre> findMostRead(int n) {
         String sql = """
-            select l.*
-            from llibre l
-            inner join valoracio r on l.isbn = r.isbn
-            group by l.isbn
-            order by count(r.isbn) desc, l.titol, l.isbn
-            limit ?
-        """;
+            SELECT l.*
+            FROM llibre l
+            INNER JOIN valoracio r ON l.isbn = r.isbn
+            GROUP BY l.isbn
+            ORDER BY COUNT(r.isbn) DESC, l.titol, l.isbn
+            LIMIT ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
@@ -101,12 +111,12 @@ public class LlibreDaoJdbc implements LlibreDao {
     @Override
     public List<Llibre> findBestRated(int n) {
         String sql = """
-            select l.*
-            from llibre l
-            inner join valoracio v on l.isbn = v.isbn
-            group by l.isbn
-            order by avg(v.puntuacio) desc, l.titol, l.isbn
-            limit ?
+            SELECT l.*
+            FROM llibre l
+            INNER JOIN valoracio v ON l.isbn = v.isbn
+            GROUP BY l.isbn
+            ORDER BY AVG(v.puntuacio) DESC, l.titol, l.isbn
+            LIMIT ?
             """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setInt(1, n);

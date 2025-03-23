@@ -15,14 +15,14 @@ public class JdbcTest {
         if (!initialized) {
             connection.executeScript("schema.sql");
             connection.executeScript("data.sql");
-            connection.getConnection().setAutoCommit(false);
+            connection.setAutoCommit(false);
             initialized = true;
         }
     }
 
     @AfterEach
     void tearDown() throws SQLException {
-        connection.getConnection().rollback();
+        connection.rollback();
     }
 
 }

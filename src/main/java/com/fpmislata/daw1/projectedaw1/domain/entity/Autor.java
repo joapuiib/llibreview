@@ -1,12 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
+import java.time.LocalDate;
+import java.util.Objects;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
 
 @Setter
 @Getter
@@ -33,7 +31,11 @@ public class Autor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Autor autor = (Autor) o;
-        return id == autor.id && Objects.equals(nom, autor.nom) && Objects.equals(biografia, autor.biografia) && Objects.equals(dataNaixement, autor.dataNaixement) && Objects.equals(rutaImatge, autor.rutaImatge);
+        return id == autor.id
+                && Objects.equals(nom, autor.nom)
+                && Objects.equals(biografia, autor.biografia)
+                && Objects.equals(dataNaixement, autor.dataNaixement)
+                && Objects.equals(rutaImatge, autor.rutaImatge);
     }
 
     @Override

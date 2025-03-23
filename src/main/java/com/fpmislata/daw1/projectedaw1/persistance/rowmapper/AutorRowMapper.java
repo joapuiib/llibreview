@@ -1,9 +1,9 @@
 package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 
 public class AutorRowMapper extends RowMapper<Autor> {
     @Override

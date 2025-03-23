@@ -1,10 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -53,7 +53,10 @@ public class Ressenya {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ressenya ressenya = (Ressenya) o;
-        return Objects.equals(isbn, ressenya.isbn) && Objects.equals(username, ressenya.username) && Objects.equals(comentari, ressenya.comentari) && Objects.equals(data, ressenya.data);
+        return Objects.equals(isbn, ressenya.isbn)
+                && Objects.equals(username, ressenya.username)
+                && Objects.equals(comentari, ressenya.comentari)
+                && Objects.equals(data, ressenya.data);
     }
 
     @Override

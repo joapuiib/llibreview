@@ -16,6 +16,7 @@
     <properties>
         <java.version>22</java.version>
         <skip.ut>false</skip.ut>
+        <org.checkstyle.google.severity>error</org.checkstyle.google.severity>
     </properties>
     <dependencies>
         <dependency>
@@ -107,6 +108,24 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation> <!-- Use custom config if needed -->
+                    <consoleOutput>true</consoleOutput>
+                </configuration>
             </plugin>
         </plugins>
     </build>

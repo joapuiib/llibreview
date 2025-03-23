@@ -1,14 +1,15 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.AutorRowMapper;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
 public class AutorDaoJdbc implements AutorDao {
 
@@ -47,8 +48,16 @@ public class AutorDaoJdbc implements AutorDao {
 
     @Override
     public List<Autor> findAutorsByLlibreIsbn(String isbn) {
-        String sql = "SELECT * FROM autor a inner join escriu e on a.id_autor = e.id_autor where e.isbn = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        String sql = """
+            SELECT *
+            FROM autor a
+            INNER JOIN escriu e on a.id_autor = e.id_autor
+            WHERE e.isbn = ?
+            """;
+        try (
+                PreparedStatement preparedStatement = databaseConnection
+                        .prepareStatement(sql)
+        ) {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             return autorRowMapper.map(rs);

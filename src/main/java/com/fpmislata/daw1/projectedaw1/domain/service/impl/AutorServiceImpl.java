@@ -1,11 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.AutorRepository;
-
-import java.util.List;
 
 public class AutorServiceImpl implements AutorService {
     private final AutorRepository autorRepository;

@@ -7,7 +7,9 @@ public class AutorCardMapper {
         Card card = new Card();
         card.setTitol(autor.getNom());
         card.setUrl("/autor/" + autor.getId());
-        card.setImatgeUrl("/files/autor/" + (autor.getRutaImatge() != null ? autor.getRutaImatge() : "fallback.png"));
+        card.setImatgeUrl("/files/autor/" + (
+                autor.getRutaImatge() != null ? autor.getRutaImatge() : "fallback.png"
+            ));
         return card;
     }
 }

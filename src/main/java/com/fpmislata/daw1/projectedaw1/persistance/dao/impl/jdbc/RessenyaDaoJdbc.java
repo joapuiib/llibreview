@@ -1,12 +1,12 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
+import java.sql.PreparedStatement;
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.RessenyaRowMapper;
-
-import java.sql.PreparedStatement;
-import java.util.List;
 
 public class RessenyaDaoJdbc implements RessenyaDao {
 

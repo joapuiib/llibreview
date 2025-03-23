@@ -1,11 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -24,12 +24,19 @@ public class Llibre {
     public Llibre() {
     }
 
-    public Llibre(String isbn, String titol){
+    public Llibre(String isbn, String titol) {
         this.isbn = isbn;
         this.titol = titol;
     }
 
-    public Llibre(String isbn, String titol, String resum, LocalDate dataPublicacio, int nombrePagines, String rutaImatge) {
+    public Llibre(
+            String isbn,
+            String titol,
+            String resum,
+            LocalDate dataPublicacio,
+            int nombrePagines,
+            String rutaImatge
+    ) {
         this.isbn = isbn;
         this.titol = titol;
         this.resum = resum;

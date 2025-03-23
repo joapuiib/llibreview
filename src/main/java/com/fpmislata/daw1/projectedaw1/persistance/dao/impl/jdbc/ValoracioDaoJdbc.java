@@ -1,12 +1,13 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.ValoracioRowMapper;
-
-import java.sql.PreparedStatement;
-import java.util.List;
 
 public class ValoracioDaoJdbc implements ValoracioDao {
 
@@ -23,7 +24,8 @@ public class ValoracioDaoJdbc implements ValoracioDao {
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             preparedStatement.setString(2, username);
-            List<Valoracio> valoracioList = valoracioRowMapper.map(preparedStatement.executeQuery());
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Valoracio> valoracioList = valoracioRowMapper.map(rs);
             return valoracioList.isEmpty() ? null : valoracioList.getFirst();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -35,7 +37,8 @@ public class ValoracioDaoJdbc implements ValoracioDao {
         String sql = "SELECT * FROM valoracio where isbn = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
-            return valoracioRowMapper.map(preparedStatement.executeQuery());
+            ResultSet rs = preparedStatement.executeQuery();
+            return valoracioRowMapper.map(rs);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -46,7 +49,8 @@ public class ValoracioDaoJdbc implements ValoracioDao {
         String sql = "SELECT * FROM valoracio where username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
-            return valoracioRowMapper.map(preparedStatement.executeQuery());
+            ResultSet rs = preparedStatement.executeQuery();
+            return valoracioRowMapper.map(rs);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

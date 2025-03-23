@@ -1,10 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
-import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
-import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
-import com.fpmislata.daw1.projectedaw1.security.UserSession;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
+import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
+import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
 @Controller
 public class LoginController {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
     private final UsuariService usuariService;
 
     public LoginController() {

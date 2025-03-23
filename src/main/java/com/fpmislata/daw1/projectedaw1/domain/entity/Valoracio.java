@@ -1,13 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -60,7 +57,10 @@ public class Valoracio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Valoracio valoracio1 = (Valoracio) o;
-        return puntuacio == valoracio1.puntuacio && Objects.equals(isbn, valoracio1.isbn) && Objects.equals(username, valoracio1.username) && Objects.equals(data, valoracio1.data);
+        return puntuacio == valoracio1.puntuacio
+                && Objects.equals(isbn, valoracio1.isbn)
+                && Objects.equals(username, valoracio1.username)
+                && Objects.equals(data, valoracio1.data);
     }
 
     @Override

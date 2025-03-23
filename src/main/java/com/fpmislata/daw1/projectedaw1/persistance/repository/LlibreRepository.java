@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
-
 import java.util.List;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 
 public interface LlibreRepository {
 

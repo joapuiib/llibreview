@@ -1,14 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
-import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
-import com.fpmislata.daw1.projectedaw1.domain.entity.*;
-import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
-import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
-import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
-import com.fpmislata.daw1.projectedaw1.security.UserSession;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
+import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
+import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
+import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
+import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
 @Controller
 public class RessenyaController {
@@ -43,7 +48,7 @@ public class RessenyaController {
         ValoracioStats stats = new ValoracioStats(valoracioService.findByLlibre(llibre));
         model.addAttribute("valoracioStats", stats);
 
-        if(!UserSession.isUserLoggedIn()) {
+        if (!UserSession.isUserLoggedIn()) {
             return "redirect:/llibre/" + isbn;
         }
 
@@ -97,7 +102,7 @@ public class RessenyaController {
                          RedirectAttributes redirectAttributes) {
         List<Alert> alerts = new ArrayList<>();
 
-        if(!UserSession.isUserLoggedIn()) {
+        if (!UserSession.isUserLoggedIn()) {
             return "redirect:/llibre/" + isbn;
         }
 

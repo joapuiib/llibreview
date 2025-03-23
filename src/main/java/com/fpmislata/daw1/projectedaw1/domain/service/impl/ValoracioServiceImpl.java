@@ -1,12 +1,12 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
-
-import java.util.List;
 
 public class ValoracioServiceImpl implements ValoracioService {
     private final ValoracioRepository valoracioRepository;
@@ -17,7 +17,10 @@ public class ValoracioServiceImpl implements ValoracioService {
 
     @Override
     public Valoracio findByLlibreAndUser(Llibre llibre, Usuari usuari) {
-        return valoracioRepository.findByLlibreIsbnAndUsername(llibre.getIsbn(), usuari.getUsername());
+        return valoracioRepository.findByLlibreIsbnAndUsername(
+                llibre.getIsbn(),
+                usuari.getUsername()
+        );
     }
 
     @Override

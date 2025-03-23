@@ -1,9 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.LlibreRepository;
-import java.util.List;
 
 public class LlibreRepositoryImpl implements LlibreRepository {
     private final LlibreDao llibreDao;

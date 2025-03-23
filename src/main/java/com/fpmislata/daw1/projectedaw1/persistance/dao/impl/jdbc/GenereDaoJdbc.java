@@ -1,14 +1,14 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
-import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.GenereRowMapper;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.GenereRowMapper;
 
 public class GenereDaoJdbc implements GenereDao {
 
@@ -44,8 +44,13 @@ public class GenereDaoJdbc implements GenereDao {
 
     @Override
     public List<Genere> findGeneresByLlibreIsbn(String isbn) {
-        String sql = "SELECT * FROM genere g inner join llibre_genere lg on g.id_genere = lg.id_genere where lg.isbn = ?";
-        try (PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(sql)) {
+        String sql = """
+            SELECT *
+            FROM genere g
+            INNER JOIN llibre_genere lg ON g.id_genere = lg.id_genere
+            WHERE lg.isbn = ?
+            """;
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             return genereRowMapper.map(rs);

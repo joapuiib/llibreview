@@ -1,11 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -36,7 +36,7 @@ public class Usuari {
         this(null, null, null, null);
     }
 
-    private Usuari(Usuari other){
+    private Usuari(Usuari other) {
         this.username = other.username;
         this.email = other.email;
         this.dataRegistre = other.dataRegistre;
@@ -48,7 +48,9 @@ public class Usuari {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuari usuari = (Usuari) o;
-        return Objects.equals(username, usuari.username) && Objects.equals(email, usuari.email) && Objects.equals(dataRegistre, usuari.dataRegistre);
+        return Objects.equals(username, usuari.username)
+                && Objects.equals(email, usuari.email)
+                && Objects.equals(dataRegistre, usuari.dataRegistre);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class Usuari {
         return Objects.hash(username, email, dataRegistre);
     }
 
-    public Usuari clone(){
+    public Usuari clone() {
         return new Usuari(this);
     }
 }

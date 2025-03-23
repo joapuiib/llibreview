@@ -1,9 +1,9 @@
 package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 
 public class RessenyaRowMapper extends RowMapper<Ressenya> {
     @Override

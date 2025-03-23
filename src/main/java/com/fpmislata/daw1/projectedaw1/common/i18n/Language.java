@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.common.i18n;
 
-import lombok.Getter;
-
 import java.util.Locale;
+
+import lombok.Getter;
 
 @Getter
 public enum Language {

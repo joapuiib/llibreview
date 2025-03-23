@@ -9,7 +9,7 @@ public abstract class RowMapper<E> {
     public abstract E mapItem(ResultSet rs) throws SQLException;
 
     public List<E> map(ResultSet rs) throws SQLException {
-        if(rs ==  null) {
+        if (rs ==  null) {
             return null;
         }
         List<E> userList = new ArrayList<>();

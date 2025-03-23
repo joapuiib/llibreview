@@ -59,7 +59,7 @@ class GenereServiceImplTest {
 
         @Test
         void findById_givenId_shouldReturnGenere() {
-            Genere expectedGenere = genereList.get(0);
+            Genere expectedGenere = genereList.getFirst();
             when(genereRepository.findById(expectedGenere.getId())).thenReturn(expectedGenere);
 
             Genere result = genereService.findById(expectedGenere.getId());

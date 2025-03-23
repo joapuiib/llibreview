@@ -1,9 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.security;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.Setter;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 
 public class UserSession {
     @Getter
@@ -27,7 +28,7 @@ public class UserSession {
     public static Usuari getUser() {
         try {
             return (Usuari) getAttribute(USER_KEY);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             session.invalidate();
         }
         return null;

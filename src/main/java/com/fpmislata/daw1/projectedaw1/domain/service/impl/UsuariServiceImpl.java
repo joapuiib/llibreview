@@ -1,12 +1,12 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
+import java.time.LocalDate;
+
 import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.UsuariRepository;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
-
-import java.time.LocalDate;
 
 public class UsuariServiceImpl implements UsuariService {
     private final UsuariRepository usuariRepository;
@@ -44,8 +44,9 @@ public class UsuariServiceImpl implements UsuariService {
     public boolean login(String username, String password) {
         Usuari usuari = usuariRepository.findByUsername(username);
 
-        boolean logged = usuari != null && EncryptionUtils.checkPassword(password, usuari.getPasswordHash());
-        if (logged){
+        boolean logged = usuari != null
+                && EncryptionUtils.checkPassword(password, usuari.getPasswordHash());
+        if (logged) {
             Usuari currentUsuari = usuariRepository.findByUsername(username);
             UserSession.setUser(currentUsuari);
         }
