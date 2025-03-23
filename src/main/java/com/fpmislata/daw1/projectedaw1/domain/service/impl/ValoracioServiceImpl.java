@@ -17,7 +17,7 @@ public class ValoracioServiceImpl implements ValoracioService {
 
     @Override
     public Valoracio findByLlibreAndUser(Llibre llibre, Usuari usuari) {
-        return valoracioRepository.findByIsbnAndUsername(llibre.getIsbn(), usuari.getUsername());
+        return valoracioRepository.findByLlibreIsbnAndUsername(llibre.getIsbn(), usuari.getUsername());
     }
 
     @Override

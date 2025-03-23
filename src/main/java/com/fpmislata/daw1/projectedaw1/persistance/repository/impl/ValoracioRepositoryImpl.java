@@ -13,7 +13,7 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
         this.valoracioDao = valoracioDao;
     }
     @Override
-    public Valoracio findByIsbnAndUsername(String isbn, String username) {
+    public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
         return valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
     }
 
@@ -29,7 +29,7 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
 
     @Override
     public boolean exists(String isbn, String username) {
-        return this.findByIsbnAndUsername(isbn, username) != null;
+        return this.findByLlibreIsbnAndUsername(isbn, username) != null;
     }
 
     @Override
