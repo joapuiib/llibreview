@@ -13,29 +13,34 @@ public class Usuari {
     private String username;
     private String email;
     private LocalDate dataRegistre;
-    private String contrasenyaHash;
+    private String passwordHash;
 
     private List<Rol> roles;
 
-    public Usuari(String username, String email, LocalDate dataRegistre) {
+    public Usuari(String username, String email, LocalDate dataRegistre, String passwordHash) {
         this.username = username;
         this.email = email;
         this.dataRegistre = dataRegistre;
+        this.passwordHash = passwordHash;
+    }
+
+    public Usuari(String username, String email, LocalDate dataRegistre) {
+        this(username, email, dataRegistre, null);
     }
 
     public Usuari(String username, String email) {
-        this.username = username;
-        this.email = email;
+        this(username, email, null, null);
     }
 
     public Usuari() {
+        this(null, null, null, null);
     }
 
     private Usuari(Usuari other){
         this.username = other.username;
         this.email = other.email;
         this.dataRegistre = other.dataRegistre;
-        this.contrasenyaHash = other.contrasenyaHash;
+        this.passwordHash = other.passwordHash;
     }
 
     @Override

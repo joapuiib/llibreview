@@ -33,15 +33,15 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
     class FindByUsername {
         @Test
         void givenUsername_shouldReturnUser() {
-            Usuari expectedUsuari = Usuari_LIST.get(0);
-            Usuari result = usuariService.findByUsername("user1");
+            Usuari expectedUsuari = Usuari_LIST.getFirst();
+            Usuari result = usuariService.findByUsername(expectedUsuari.getUsername());
             assertEquals(expectedUsuari, result);
         }
 
         @Test
         void givenDifferentUsername_shouldReturnDifferentUser() {
             Usuari expectedUsuari = Usuari_LIST.get(1);
-            Usuari result = usuariService.findByUsername("user2");
+            Usuari result = usuariService.findByUsername(expectedUsuari.getUsername());
             assertEquals(expectedUsuari, result);
         }
 
@@ -56,21 +56,21 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
     class FindByEmail {
         @Test
         void givenEmail_shouldReturnUser() {
-            Usuari expectedUsuari = Usuari_LIST.get(0);
-            Usuari result = usuariService.findByEmail("user1@localhost");
+            Usuari expectedUsuari = Usuari_LIST.getFirst();
+            Usuari result = usuariService.findByEmail(expectedUsuari.getEmail());
             assertEquals(expectedUsuari, result);
         }
 
         @Test
         void givenDifferentEmail_shouldReturnDifferentUser() {
             Usuari expectedUsuari = Usuari_LIST.get(1);
-            Usuari result = usuariService.findByEmail("user2@localhost");
+            Usuari result = usuariService.findByEmail(expectedUsuari.getEmail());
             assertEquals(expectedUsuari, result);
         }
 
         @Test
         void givenNonExistentEmail_shouldReturnNull() {
-            Usuari result = usuariService.findByEmail("nonExistentEmail");
+            Usuari result = usuariService.findByEmail("nonExistentEmail@localhost");
             assertNull(result);
         }
     }
@@ -122,11 +122,14 @@ class UsuariServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void givenCorrectCredentials() {
-            Usuari expectedLoggedUsuari = UsuariData.USUARI_LIST.get(0);
-            usuariService.login("user1", "user1");
+            Usuari expectedLoggedUsuari = UsuariData.USUARI_LIST.getFirst();
+            boolean success = usuariService.login("user1", "user1");
 
             Usuari actualLoggedUsuari = UserSession.getUser();
-            assertEquals(expectedLoggedUsuari, actualLoggedUsuari);
+            assertAll(
+                    () -> assertTrue(success),
+                    () -> assertEquals(expectedLoggedUsuari, actualLoggedUsuari)
+            );
         }
 
         @Test

@@ -35,7 +35,7 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
     class FindByLlibreAndUser {
         @Test
         void whenLlibreHasNoValoracions_givenLlibreAndUser_shouldReturnNull() {
-            Llibre llibre = LLIBRE_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
             Usuari usuari = USUARI_LIST.get(2);
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertNull(result);
@@ -43,9 +43,9 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void whenLlibreValoracions_givenLlibreAndUser_shouldReturnValoracio() {
-            Llibre llibre = LLIBRE_LIST.get(0);
-            Usuari usuari = USUARI_LIST.get(0);
-            Valoracio expectedValoracio = VALORACIO_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.getFirst();
+            Valoracio expectedValoracio = VALORACIO_LIST.getFirst();
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertEquals(expectedValoracio, result);
         }
@@ -65,8 +65,8 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void whenLlibreSingleValoracio_givenLlibre_shouldReturnListWithSingleValoracio() {
-            Llibre llibre = LLIBRE_LIST.get(0);
-            List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(0));
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.getFirst());
             List<Valoracio> result = valoracioService.findByLlibre(llibre);
             assertEquals(expectedValoracions, result);
         }
@@ -102,8 +102,8 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
 
         @Test
         void whenUserMultipleValoracions_givenUser_shouldReturnListWithMultipleValoracions() {
-            Usuari usuari = USUARI_LIST.get(0);
-            List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(0), VALORACIO_LIST.get(1));
+            Usuari usuari = USUARI_LIST.getFirst();
+            List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.getFirst(), VALORACIO_LIST.get(1));
             List<Valoracio> result = valoracioService.findByUser(usuari);
             assertEquals(expectedValoracions, result);
         }
@@ -113,20 +113,24 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
     class Save {
         @Test
         void whenValoracioNotExists_givenValoracio_shouldSaveValoracio() {
-            Llibre llibre = LLIBRE_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
             Usuari usuari = USUARI_LIST.get(2);
             Valoracio valoracio = new Valoracio(llibre, usuari, 5, LocalDate.parse("2024-05-01"));
+
             valoracioService.save(valoracio);
+
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertEquals(valoracio, result);
         }
 
         @Test
         void whenValoracioExists_givenValoracio_shouldUpdateValoracio() {
-            Llibre llibre = LLIBRE_LIST.get(0);
-            Usuari usuari = USUARI_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.getFirst();
             Valoracio valoracio = new Valoracio(llibre, usuari, 5, LocalDate.parse("2024-05-01"));
+
             valoracioService.save(valoracio);
+
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertEquals(valoracio, result);
         }
@@ -136,9 +140,11 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
     class Delete {
         @Test
         void whenValoracioExists_givenLlibreAndUser_shouldDeleteValoracio() {
-            Llibre llibre = LLIBRE_LIST.get(0);
-            Usuari usuari = USUARI_LIST.get(0);
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.getFirst();
+
             valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
+
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertNull(result);
         }
@@ -147,7 +153,9 @@ class ValoracioServiceImplJdbcDaoTest extends JdbcTest {
         void whenValoracioNotExists_givenLlibreAndUser_shouldDoNothing() {
             Llibre llibre = LLIBRE_LIST.get(2);
             Usuari usuari = USUARI_LIST.get(2);
+
             valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
+
             Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
             assertNull(result);
         }

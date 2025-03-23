@@ -6,5 +6,4 @@ public interface UsuariRepository {
     Usuari findByUsername(String username);
     Usuari findByEmail(String email);
     boolean create(Usuari usuari, String password);
-    boolean login(String username, String password);
 }

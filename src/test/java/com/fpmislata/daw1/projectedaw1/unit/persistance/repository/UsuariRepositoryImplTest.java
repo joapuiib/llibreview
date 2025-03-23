@@ -114,27 +114,4 @@ class UsuariRepositoryImplTest {
             );
         }
     }
-
-    @Nested
-    class Login {
-        @Test
-        void givenUsernameAndMatchingPassword_shouldReturnTrue() {
-            Usuari expectedUsuari = usuariList.getFirst();
-            String passwordHash = "passwordHash";
-            when(usuariDao.login(expectedUsuari.getUsername(), passwordHash)).thenReturn(true);
-
-            boolean result = usuariRepository.login(expectedUsuari.getUsername(), passwordHash);
-            assertTrue(result);
-        }
-
-        @Test
-        void givenUsernameAndDifferentPassword_shouldReturnFalse() {
-            Usuari expectedUsuari = usuariList.getFirst();
-            String passwordHash = "differentPasswordHash";
-            when(usuariDao.login(expectedUsuari.getUsername(), passwordHash)).thenReturn(false);
-
-            boolean result = usuariRepository.login(expectedUsuari.getUsername(), passwordHash);
-            assertFalse(result);
-        }
-    }
 }

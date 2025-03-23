@@ -83,21 +83,4 @@ public class UsuariDaoJdbcTest extends JdbcTest {
             assertThrows(RuntimeException.class, () -> userDao.insert(userList.getFirst(), "passwordHash"));
         }
     }
-
-    @Nested
-    class Login {
-        @Test
-        void givenCorrectCredentials_shouldReturnTrue() {
-            String passwordHash = "$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2";
-            String username = userList.getFirst().getUsername();
-            boolean result = userDao.login(username, passwordHash);
-            assertTrue(result);
-        }
-
-        @Test
-        void givenIncorrectCredentials_shouldReturnFalse() {
-            boolean result = userDao.login(userList.getFirst().getUsername(), "incorrect");
-            assertFalse(result);
-        }
-    }
 }

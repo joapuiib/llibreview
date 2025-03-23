@@ -25,9 +25,4 @@ public class UsuariRepositoryImpl implements UsuariRepository {
     public boolean create(Usuari usuari, String password) {
         return usuariDao.insert(usuari, password) == 1;
     }
-
-    @Override
-    public boolean login(String username, String password) {
-        return usuariDao.login(username, password);
-    }
 }

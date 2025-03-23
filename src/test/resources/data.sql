@@ -26,7 +26,7 @@ insert into llibre_genere(isbn, id_genere) values
     ('isbn1', 2),
     ('isbn2', 1);
 
-insert into usuari(username, email, data_registre, password) values
+insert into usuari(username, email, data_registre, password_hash) values
     ('user1', 'user1@localhost', '2021-01-01', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'), /* password: user1 */
     ('user2', 'user2@localhost', '2021-01-01', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'), /* password: user2 */
     ('user3', 'user3@localhost', '2021-01-01', '$2a$10$il0FptkiuLRtF7swrx7KoudhNtw0VIQHjWtX4.RNFzFA7l5TFIs.i'), /* password: user3 */

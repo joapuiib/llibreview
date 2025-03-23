@@ -1,5 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.UsuariRepository;
@@ -34,13 +35,16 @@ public class UsuariServiceImpl implements UsuariService {
             throw new RuntimeException("Ja hi ha un usuari associat a aquest correu electrònic.");
         }
 
+        String passwordHash = EncryptionUtils.hashPassword(password);
         usuari.setDataRegistre(LocalDate.now());
-        usuariRepository.create(usuari, password);
+        usuariRepository.create(usuari, passwordHash);
     }
 
     @Override
     public boolean login(String username, String password) {
-        boolean logged = usuariRepository.login(username, password);
+        Usuari usuari = usuariRepository.findByUsername(username);
+
+        boolean logged = usuari != null && EncryptionUtils.checkPassword(password, usuari.getPasswordHash());
         if (logged){
             Usuari currentUsuari = usuariRepository.findByUsername(username);
             UserSession.setUser(currentUsuari);

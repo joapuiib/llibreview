@@ -1,5 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.data.UsuariData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.UsuariServiceImpl;
@@ -74,12 +75,20 @@ class UsuariServiceImplTest {
         @Test
         void givenValidUsuari_shouldCreateUsuari() {
             Usuari usuari = usuariList.getFirst().clone();
+            String password = "1234";
+            String passwordHash = "1234hash";
+
             when(usuariRepository.findByUsername(usuari.getUsername())).thenReturn(null);
             when(usuariRepository.findByEmail(usuari.getEmail())).thenReturn(null);
 
-            usuariService.create(usuari, "1234", "1234");
+            try (MockedStatic<EncryptionUtils> _ = mockStatic(EncryptionUtils.class)) {
+                when(EncryptionUtils.hashPassword(password)).thenReturn(passwordHash);
 
-            verify(usuariRepository).create(usuari, "1234");
+                usuariService.create(usuari, password, password);
+
+                // Check that the password has been hashed
+                verify(usuariRepository).create(usuari, passwordHash);
+            }
         }
 
         @Test
@@ -112,12 +121,19 @@ class UsuariServiceImplTest {
         @Test
         void givenValidCredentials_shouldLogin() {
             Usuari usuari = usuariList.getFirst();
-            when(usuariRepository.login(usuari.getUsername(), "1234")).thenReturn(true);
+            String password = "1234";
+            String passwordHash = usuari.getPasswordHash();
+
             when(usuariRepository.findByUsername(usuari.getUsername())).thenReturn(usuari);
 
-            // Mock the static method of UserSession
-            try (MockedStatic<UserSession> mockedUserSession = mockStatic(UserSession.class)) {
-                boolean correct = usuariService.login(usuari.getUsername(), "1234");
+            // Mock the static method of UserSession and EncrytionUtils
+            try (
+                    MockedStatic<UserSession> mockedUserSession = mockStatic(UserSession.class);
+                    MockedStatic<EncryptionUtils> _ = mockStatic(EncryptionUtils.class)
+            ) {
+                when(EncryptionUtils.checkPassword(password, passwordHash)).thenReturn(true);
+
+                boolean correct = usuariService.login(usuari.getUsername(), password);
 
                 assertAll(
                         () -> assertTrue(correct),
@@ -129,10 +145,18 @@ class UsuariServiceImplTest {
         @Test
         void givenInvalidCredentials_shouldReturnFalse() {
             Usuari usuari = usuariList.getFirst();
-            when(usuariRepository.login(usuari.getUsername(), "1234")).thenReturn(false);
+            String password = "1234";
+            String passwordHash = usuari.getPasswordHash();
 
-            try (MockedStatic<UserSession> mockedUserSession = mockStatic(UserSession.class)) {
-                boolean correct = usuariService.login(usuari.getUsername(), "1234");
+            when(usuariRepository.findByUsername(usuari.getUsername())).thenReturn(usuari);
+
+            try (
+                    MockedStatic<UserSession> mockedUserSession = mockStatic(UserSession.class);
+                    MockedStatic<EncryptionUtils> _ = mockStatic(EncryptionUtils.class)
+            ) {
+                when(EncryptionUtils.checkPassword(password, passwordHash)).thenReturn(false);
+
+                boolean correct = usuariService.login(usuari.getUsername(), password);
 
                 assertAll(
                         () -> assertFalse(correct),

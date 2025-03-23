@@ -41,7 +41,7 @@ create table usuari (
     username varchar(100) primary key,
     email varchar(100) not null unique,
     data_registre date not null,
-    password varchar(200) not null
+    password_hash varchar(200) not null
     -- id_rol int,
     -- foreign key (id_rol) references rol (id_rol)
 );
