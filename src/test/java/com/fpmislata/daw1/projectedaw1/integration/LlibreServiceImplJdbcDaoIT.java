@@ -19,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class LlibreServiceImplJdbcDaoTest extends JdbcTest {
+class LlibreServiceImplJdbcDaoIT extends JdbcTest {
     private final LlibreService llibreService = new LlibreServiceImpl(
             new LlibreRepositoryImpl(
                     new LlibreDaoJdbc()

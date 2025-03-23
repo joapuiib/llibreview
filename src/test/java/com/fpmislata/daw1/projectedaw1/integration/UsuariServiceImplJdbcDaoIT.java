@@ -20,7 +20,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class UsuariServiceImplJdbcDaoTest extends JdbcTest {
+class UsuariServiceImplJdbcDaoIT extends JdbcTest {
     private final UsuariService usuariService = new UsuariServiceImpl(
             new UsuariRepositoryImpl(
                     new UsuariDaoJdbc()

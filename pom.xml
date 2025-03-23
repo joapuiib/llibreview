@@ -15,6 +15,7 @@
     <description>llibreview</description>
     <properties>
         <java.version>22</java.version>
+        <skip.ut>false</skip.ut>
     </properties>
     <dependencies>
         <dependency>
@@ -88,7 +89,24 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
-                <version>2.22.0</version>
+                <version>3.5.2</version>
+                <configuration>
+                    <skipTests>${skip.ut}</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

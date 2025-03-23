@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class AutorServiceImplJdbcDaoTest extends JdbcTest {
+class AutorServiceImplJdbcDaoIT extends JdbcTest {
     private final AutorService autorService = new AutorServiceImpl(
             new AutorRepositoryImpl(
                     new AutorDaoJdbc()

@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(MockitoExtension.class)
-class RessenyaServiceImplJdbcDaoTest extends JdbcTest {
+class RessenyaServiceImplJdbcDaoIT extends JdbcTest {
     private final RessenyaService ressenyaService =  new RessenyaServiceImpl(
             new RessenyaRepositoryImpl(
                     new RessenyaDaoJdbc()

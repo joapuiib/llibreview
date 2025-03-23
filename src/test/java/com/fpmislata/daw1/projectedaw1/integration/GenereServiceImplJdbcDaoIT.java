@@ -21,7 +21,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class GenereServiceImplJdbcDaoTest extends JdbcTest {
+class GenereServiceImplJdbcDaoIT extends JdbcTest {
 
     private final GenereService genereService = new GenereServiceImpl(
             new GenereRepositoryImpl(
