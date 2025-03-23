@@ -1,10 +1,10 @@
 <!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
 <!--/*@thymesVar id="session" type="com.fpmislata.daw1.projectedaw1.security.UserSession"*/-->
-<div th:fragment="ressenya(valoracio)" class="p-3 shadow" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user == valoracio.usuari}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
+<div th:fragment="ressenya(valoracio)" class="ressenya p-3 shadow rounded border border-cafe-200" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user.username == valoracio.username}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
     <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
             <div class="d-flex gap-2 align-items-end">
-                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${valoracio.usuari.username}"></span></div>
+                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${valoracio.username}"></span></div>
                 <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
             </div>
         </div>
@@ -22,8 +22,8 @@
             <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div th:if="${is_owner}" th:remove="tag">
-            <a th:href="|/ressenya/${valoracio.llibre.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
-            <a th:href="|/ressenya/${valoracio.llibre.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
+            <a th:href="|/ressenya/${valoracio.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
+            <a th:href="|/ressenya/${valoracio.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
 </div>

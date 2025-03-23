@@ -12,21 +12,21 @@ public class UsuariIoc {
     private static UsuariRepository usuariRepository;
     private static UsuariDao usuariDao;
 
-    public static UsuariService getUserService() {
+    public static UsuariService createService() {
         if (usuariService == null) {
-            usuariService = new UsuariServiceImpl(getUserRepository());
+            usuariService = new UsuariServiceImpl(createRepository());
         }
         return usuariService;
     }
 
-    public static UsuariRepository getUserRepository() {
+    public static UsuariRepository createRepository() {
         if (usuariRepository == null) {
-            usuariRepository = new UsuariRepositoryImpl(getUserDao());
+            usuariRepository = new UsuariRepositoryImpl(createDao());
         }
         return usuariRepository;
     }
 
-    public static UsuariDao getUserDao() {
+    public static UsuariDao createDao() {
         if (usuariDao == null) {
             usuariDao = new UsuariDaoJdbc();
         }

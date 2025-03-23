@@ -1,6 +1,11 @@
+<!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
+<!--/*@thymesVar id="autors" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Autor>"*/-->
+<!--/*@thymesVar id="generes" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Genere>"*/-->
+<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
+<!--/*@thymesVar id="valoracionsAmbRessenya" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio>"*/-->
+<!--/*@thymesVar id="valoracioUsuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
-<!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
     <head>
         <title th:text="${llibre.getTitol()}"></title>
     </head>
@@ -11,12 +16,12 @@
                 <div class="col col-xl-4">
                     <img th:src="|/files/llibre/${llibre.getRutaImatge()}|" alt="" class="d-block mx-auto w-100 rounded shadow-sm">
                     <div class="mt-3">
-                        <div th:replace="~{components/valoracio :: valoracio(stats=${llibre.getValoracioStats()})}"></div>
+                        <div th:replace="~{components/valoracio :: valoracio(stats=${stats})}"></div>
                     </div>
                     <div class="mt-3" th:unless="${session.user==null}">
                         <form th:action="@{/valoracio}" method="post">
                             <input type="hidden" name="isbn" th:value="${isbn}">
-                            <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${llibre.getValoracioFromUser(session.user)})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
+                            <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${valoracioUsuari})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
                             <button class="btn btn-primary mt-2" type="submit">Valora</button>
                         </form>
                     </div>
@@ -41,7 +46,7 @@
                         </dd>
                     </dl>
                     <div class="mt-3" th:unless="${session.user==null}">
-                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, valoracio=${llibre.getValoracioFromUser(session.user)})}"></div>
+                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, valoracio=${valoracioUsuari})}"></div>
                     </div>
                     <div th:if="${valoracionsAmbRessenya.size() > 0}" th:remove="tag">
                         <div th:replace="~{components/ressenyes :: ressenyes-destacades(valoracions=${valoracionsAmbRessenya})}" class=""></div>

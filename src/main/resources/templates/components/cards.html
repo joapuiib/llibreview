@@ -1,5 +1,5 @@
 <div th:fragment="card(card)" class="card-item">
-    <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.CardItem"*/-->
+    <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.card.Card"*/-->
     <a th:href="${card.getUrl()}">
         <img th:src="${card.getImatgeUrl()}" alt="" class="d-block mw-100 card-item-img mx-auto">
         <div class="card-item-description">
@@ -10,7 +10,7 @@
 </div>
 
 <div th:fragment="card-container(cards, classes)" class="card-container d-flex flex-wrap gap-3" th:classappend="${classes} ?: ''">
-    <!--/*@thymesVar id="cards" type="List<com.fpmislata.daw1.projectedaw1.controller.components.CardItem>"*/-->
+    <!--/*@thymesVar id="cards" type="List<com.fpmislata.daw1.projectedaw1.controller.components.card.Card>"*/-->
     <div th:each="card: ${cards}" class="">
         <div th:replace="~{components/cards :: card(card=${card})}"></div>
     </div>

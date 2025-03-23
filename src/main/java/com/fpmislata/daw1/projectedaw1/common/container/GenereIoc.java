@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.common.container;
 import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.GenereServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.GenereDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.LlibreGenereDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.GenereDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.GenereRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.GenereRepositoryImpl;
@@ -23,8 +22,7 @@ public class GenereIoc {
     public static GenereRepository createRepository() {
         if (genereRepository == null) {
             GenereDao genereDao = createDao();
-            LlibreGenereDao llibreGenereDao = LlibreGenereIoc.createDao();
-            genereRepository = new GenereRepositoryImpl(genereDao, llibreGenereDao);
+            genereRepository = new GenereRepositoryImpl(genereDao);
         }
         return genereRepository;
     }

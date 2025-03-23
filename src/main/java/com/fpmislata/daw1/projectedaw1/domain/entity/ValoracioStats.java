@@ -1,9 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import lombok.Getter;
-
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import lombok.Getter;
 
 @Getter
 public class ValoracioStats {
@@ -17,6 +18,13 @@ public class ValoracioStats {
         this.count = 0;
         this.average = 0;
         this.histogram = new HashMap<>();
+    }
+
+    public ValoracioStats(List<Valoracio> valoracions) {
+        this();
+
+        for (Valoracio valoracio : valoracions)
+            addValoracio(valoracio);
     }
 
     public void addValoracio(Valoracio valoracio) {
@@ -42,8 +50,8 @@ public class ValoracioStats {
     /**
      * Retorna el percentatge de valoracions amb la puntuació donada respecte
      * al màxim de registres d'una puntuació.
-     * @param puntuacio
-     * @return
+     * @param puntuacio Puntuació (1-10)
+     * @return Percentatge de valoracions amb la puntuació donada.
      */
     public double getPercentatgePuntuacio(int puntuacio) {
         if (count == 0) return 0;

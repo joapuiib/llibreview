@@ -1,60 +1,65 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
-import com.fpmislata.daw1.projectedaw1.controller.components.CardItem;
-import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
+import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
+import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
+import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 
 @Log4j2
 @Controller
 public class MainController {
 
     private final LlibreService llibreService;
+    private final ValoracioService valoracioService;
 
     public MainController() {
         this.llibreService = LlibreIoc.createService();
+        this.valoracioService = ValoracioIoc.createService();
     }
+
 
     @SuppressWarnings("SameReturnValue")
     @GetMapping("/")
     public String index(Model model) {
-        List<CardItem> ultimsLlibres = llibreService.findLatest(4).stream().map(
-                llibre -> {
-                     CardItem card = new CardItem();
-                     card.setTitol(llibre.getTitol());
-                     card.setSubtitol(llibre.getDataPublicacio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                     card.setUrl("/llibre/" + llibre.getIsbn());
-                     card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
-                     return card;
-                }).toList();
+        List<Card> ultimsLlibres = llibreService.findLatest(4).stream().map(
+                llibre -> LlibreCardMapper.map(
+                        llibre,
+                        llibre.getDataPublicacio().format(
+                                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                        )
+                )
+        ).toList();
         model.addAttribute("ultimsLlibres", ultimsLlibres);
 
-        List<CardItem> mesLlegits = llibreService.findMostRead(4).stream().map(
+        List<Card> mesLlegits = llibreService.findMostRead(4).stream().map(
                 llibre -> {
-                    CardItem card = new CardItem();
-                    card.setTitol(llibre.getTitol());
-                    card.setSubtitol("Lectors: " + llibre.getValoracioStats().getCount());
-                    card.setUrl("/llibre/" + llibre.getIsbn());
-                    card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
-                    return card;
+                    List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
+                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
+                    return LlibreCardMapper.map(llibre, "Lectors: " + valoracioStats.getCount());
                 }).toList();
         model.addAttribute("mesLlegits", mesLlegits);
 
-        List<CardItem> millorValorats = llibreService.findBestRated(4).stream().map(
+        List<Card> millorValorats = llibreService.findBestRated(4).stream().map(
                 llibre -> {
-                    CardItem card = new CardItem();
-                    card.setTitol(llibre.getTitol());
-                    card.setSubtitol("Valoració: " + String.format("%.1f", llibre.getValoracioStats().getAverage()));
-                    card.setUrl("/llibre/" + llibre.getIsbn());
-                    card.setImatgeUrl("/files/llibre/" + (llibre.getRutaImatge() != null ? llibre.getRutaImatge() : "placeholder.png"));
-                    return card;
+                    List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
+                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
+                    return LlibreCardMapper.map(
+                            llibre,
+                            String.format("Valoració: %.1f", valoracioStats.getAverage())
+                    );
                 }).toList();
         model.addAttribute("millorValorats", millorValorats);
 

@@ -1,14 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
-import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -22,61 +19,30 @@ public class Llibre {
 
     private List<Autor> autors;
     private List<Genere> generes;
-    private List<Valoracio> valoracios;
+    private List<Valoracio> valoracions;
 
     public Llibre() {
     }
 
-    public Llibre(String isbn, String titol){
+    public Llibre(String isbn, String titol) {
         this.isbn = isbn;
         this.titol = titol;
     }
 
-    public Llibre(String isbn, String titol, String resum, LocalDate dataPublicacio, int nombrePagines, String rutaImatge) {
+    public Llibre(
+            String isbn,
+            String titol,
+            String resum,
+            LocalDate dataPublicacio,
+            int nombrePagines,
+            String rutaImatge
+    ) {
         this.isbn = isbn;
         this.titol = titol;
         this.resum = resum;
         this.dataPublicacio = dataPublicacio;
         this.nombrePagines = nombrePagines;
         this.rutaImatge = rutaImatge;
-    }
-
-    public List<Autor> getAutors() {
-        if (autors == null)
-            autors =  AutorIoc.createService().findByLlibre(this);
-        return autors;
-    }
-
-    public void addAutor(Autor autor) {
-        autors.add(autor);
-    }
-
-    public List<Genere> getGeneres() {
-        if (generes == null)
-            generes = GenereIoc.createService().findByLlibre(this);
-        return generes;
-    }
-
-    public void addGenere(Genere genere) {
-        generes.add(genere);
-    }
-
-    public List<Valoracio> getValoracios() {
-        if (valoracios == null)
-            valoracios = ValoracioIoc.createService().findByLlibre(this);
-        return valoracios;
-    }
-
-    public Valoracio getValoracioFromUser(Usuari usuari){
-        return ValoracioIoc.createService().findByLlibreAndUser(this, usuari);
-    }
-
-    public ValoracioStats getValoracioStats() {
-        ValoracioStats valoracioStats = new ValoracioStats();
-        for (Valoracio valoracio : getValoracios()) {
-            valoracioStats.addValoracio(valoracio);
-        }
-        return valoracioStats;
     }
 
     @Override

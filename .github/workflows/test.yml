@@ -1,0 +1,44 @@
+name: Test Java with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # Tipus d'events sobre la pull request
+    types: [ 'opened', 'edited', 'reopened', 'synchronize', 'ready_for_review' ]
+    branches: [ "main", "development" ]
+  workflow_dispatch:
+
+jobs:
+  unit-test:
+    if: github.event_name != 'push' && github.event.pull_request.draft == false
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Unit Tests with Maven
+      run: mvn --batch-mode test
+
+  integration-test:
+    needs: unit-test
+    if: github.event_name == 'push' || github.event.pull_request.draft == false
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Integration Tests with Maven
+      run: mvn --batch-mode verify -Dskip.ut=true

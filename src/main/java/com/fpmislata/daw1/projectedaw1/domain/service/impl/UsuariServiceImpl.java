@@ -1,11 +1,12 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
+import java.time.LocalDate;
+
+import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.UsuariService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.UsuariRepository;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
-
-import java.time.LocalDate;
 
 public class UsuariServiceImpl implements UsuariService {
     private final UsuariRepository usuariRepository;
@@ -25,29 +26,31 @@ public class UsuariServiceImpl implements UsuariService {
     }
 
     @Override
-    public void create(String username, String email, String password, String passwordConfirmation) {
+    public void create(Usuari usuari, String password, String passwordConfirmation) {
         if (!password.equals(passwordConfirmation)) {
             throw new RuntimeException("Les contrasenyes no coincideixen.");
-        } else if (findByUsername(username) != null) {
+        } else if (findByUsername(usuari.getUsername()) != null) {
             throw new RuntimeException("Ja hi ha un usuari amb aquest nom d'usuari.");
-        } else if (findByEmail(email) != null) {
+        } else if (findByEmail(usuari.getEmail()) != null) {
             throw new RuntimeException("Ja hi ha un usuari associat a aquest correu electrònic.");
         }
 
-        Usuari usuari = new Usuari();
-        usuari.setUsername(username);
-        usuari.setEmail(email);
+        String passwordHash = EncryptionUtils.hashPassword(password);
         usuari.setDataRegistre(LocalDate.now());
-        usuariRepository.create(usuari, password);
+        usuariRepository.create(usuari, passwordHash);
     }
 
     @Override
-    public void login(String username, String password) {
-        boolean logged = usuariRepository.login(username, password);
-        if (logged){
-            Usuari currentUsuari = findByUsername(username);
+    public boolean login(String username, String password) {
+        Usuari usuari = usuariRepository.findByUsername(username);
+
+        boolean logged = usuari != null
+                && EncryptionUtils.checkPassword(password, usuari.getPasswordHash());
+        if (logged) {
+            Usuari currentUsuari = usuariRepository.findByUsername(username);
             UserSession.setUser(currentUsuari);
         }
+        return logged;
     }
 
 }

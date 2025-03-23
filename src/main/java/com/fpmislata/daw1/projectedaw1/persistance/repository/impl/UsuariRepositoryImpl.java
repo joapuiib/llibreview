@@ -22,12 +22,7 @@ public class UsuariRepositoryImpl implements UsuariRepository {
     }
 
     @Override
-    public void create(Usuari usuari, String password) {
-        usuariDao.create(usuari, password);
-    }
-
-    @Override
-    public boolean login(String username, String password) {
-        return usuariDao.login(username, password);
+    public boolean create(Usuari usuari, String password) {
+        return usuariDao.insert(usuari, password) == 1;
     }
 }

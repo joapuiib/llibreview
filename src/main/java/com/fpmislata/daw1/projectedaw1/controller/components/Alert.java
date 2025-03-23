@@ -13,7 +13,7 @@ public class Alert {
     public Alert() {
     }
 
-    public Alert(String type, String message) {
+    public Alert(final String type, final String message) {
         this.type = type;
         this.message = message;
     }

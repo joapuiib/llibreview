@@ -1,15 +1,14 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import com.fpmislata.daw1.projectedaw1.common.utils.EncryptionUtils;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.database.DatabaseConnection;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.rowmapper.UsuariRowMapper;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
+import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
+import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
+import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.UsuariRowMapper;
 
 public class UsuariDaoJdbc implements UsuariDao {
 
@@ -29,7 +28,7 @@ public class UsuariDaoJdbc implements UsuariDao {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             List<Usuari> usuariList = usuariRowMapper.map(rs);
-            return usuariList.isEmpty() ? null : usuariList.get(0);
+            return usuariList.isEmpty() ? null : usuariList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -42,38 +41,27 @@ public class UsuariDaoJdbc implements UsuariDao {
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             List<Usuari> usuariList = usuariRowMapper.map(rs);
-            return usuariList.isEmpty() ? null : usuariList.get(0);
+            return usuariList.isEmpty() ? null : usuariList.getFirst();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
     @Override
-    public void create(Usuari usuari, String password) {
-        String sql = "INSERT INTO usuari (username, email, data_registre, password) VALUES (?, ?, ?, ?)";
+    public int insert(Usuari usuari, String passwordHash) {
+        String sql = """
+            INSERT INTO usuari (username, email, data_registre, password_hash)
+            VALUES (?, ?, ?, ?)
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, usuari.getUsername());
             preparedStatement.setString(2, usuari.getEmail());
             preparedStatement.setObject(3, usuari.getDataRegistre());
-            preparedStatement.setString(4, EncryptionUtils.hashPassword(password));
-            preparedStatement.executeUpdate();
+            // preparedStatement.setString(4, EncryptionUtils.hashPassword(passwordHash));
+            preparedStatement.setString(4, passwordHash);
+            return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
-    }
-
-    @Override
-    public boolean login(String username, String password) {
-        Usuari usuari = findByUsername(username);
-
-        String errorMessage = "No s'ha trobat l'usuari o la contrasenya és incorrecta.";
-        if (usuari == null) {
-            throw new RuntimeException(errorMessage);
-        }
-        boolean passwordMatch = EncryptionUtils.checkPassword(password, usuari.getContrasenyaHash());
-        if (!passwordMatch) {
-            throw new RuntimeException(errorMessage);
-        }
-        return true;
     }
 }
