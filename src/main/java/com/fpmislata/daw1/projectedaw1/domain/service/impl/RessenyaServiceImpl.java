@@ -16,7 +16,7 @@ public class RessenyaServiceImpl implements RessenyaService {
     public Ressenya findByValoracio(Valoracio valoracio) {
         String isbn = valoracio.getIsbn();
         String username = valoracio.getUsername();
-        return ressenyaRepository.findByIsbnUsername(isbn, username);
+        return ressenyaRepository.findByLlibreIsbnAndUsername(isbn, username);
     }
 
     @Override

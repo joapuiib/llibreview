@@ -3,7 +3,6 @@ package com.fpmislata.daw1.projectedaw1.unit.domain.service;
 import com.fpmislata.daw1.projectedaw1.data.RessenyaData;
 import com.fpmislata.daw1.projectedaw1.data.ValoracioData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.RessenyaServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
@@ -37,7 +36,7 @@ class RessenyaServiceImplTest {
         @Test
         void givenNoRessenyaForValoracio_shouldReturnNull() {
             Valoracio valoracio = valoracioList.getFirst();
-            when(ressenyaRepository.findByIsbnUsername(valoracio.getIsbn(), valoracio.getUsername())).thenReturn(null);
+            when(ressenyaRepository.findByLlibreIsbnAndUsername(valoracio.getIsbn(), valoracio.getUsername())).thenReturn(null);
 
             Ressenya result = ressenyaService.findByValoracio(valoracio);
             assertNull(result);
@@ -47,7 +46,7 @@ class RessenyaServiceImplTest {
         void givenRessenyaForValoracio_shouldReturnRessenya() {
             Ressenya expectedRessenya = ressenyaList.getFirst();
             Valoracio valoracio = valoracioList.getFirst();
-            when(ressenyaRepository.findByIsbnUsername(valoracio.getIsbn(), valoracio.getUsername())).thenReturn(expectedRessenya);
+            when(ressenyaRepository.findByLlibreIsbnAndUsername(valoracio.getIsbn(), valoracio.getUsername())).thenReturn(expectedRessenya);
 
             Ressenya result = ressenyaService.findByValoracio(valoracio);
             assertSame(expectedRessenya, result);

@@ -13,7 +13,7 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
 
 
     @Override
-    public Ressenya findByIsbnUsername(String isbn, String username) {
+    public Ressenya findByLlibreIsbnAndUsername(String isbn, String username) {
         return ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
     }
 
