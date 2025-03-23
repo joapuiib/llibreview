@@ -33,7 +33,7 @@ insert into llibre_genere(isbn, id_genere) values
     ('9788497937306', 3),
     ('9788497937856', 3);
 
-insert into usuari(username, email, data_registre, password) values
+insert into usuari(username, email, data_registre, password_hash) values
     ('admin', 'admin@localhost', '2022-03-01', '$2a$10$L1puu5aXVN8bP4Zk1t70fedZajz/mL3doeetBfAYuvna46I2DRL9K'),
     ('user1', 'user1@localhost', '2024-05-20', '$2a$10$7P2f2u72PfbOGJtL7CQTruW5WZ0.cgT9jUbnbfo.2wvE.gaaYVvn2'),
     ('user2', 'user2@localhost', '2024-05-20', '$2a$10$6wkDziA7C5460lfnzdXWbuLdSHUz.m8McydWD3ToZfBgOgE7nPQE.'),
