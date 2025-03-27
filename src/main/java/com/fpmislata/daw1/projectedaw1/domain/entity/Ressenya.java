@@ -14,6 +14,16 @@ public class Ressenya {
     private String comentari;
     private LocalDate data;
 
+    private Valoracio valoracio;
+
+    public Ressenya(String isbn, String username, String comentari, LocalDate data, Valoracio valoracio) {
+        this.isbn = isbn;
+        this.username = username;
+        this.comentari = comentari;
+        this.data = data;
+        this.valoracio = valoracio;
+    }
+
     public Ressenya(String isbn, String username, String comentari, LocalDate data) {
         this.isbn = isbn;
         this.username = username;
@@ -33,6 +43,7 @@ public class Ressenya {
         this.username = other.username;
         this.comentari = other.comentari;
         this.data = other.data;
+        this.valoracio = other.valoracio.clone();
     }
 
     public Ressenya() {

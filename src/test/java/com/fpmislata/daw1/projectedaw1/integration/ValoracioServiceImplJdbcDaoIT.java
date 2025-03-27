@@ -8,9 +8,7 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.ValoracioServiceImpl;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.RessenyaDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.ValoracioDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.RessenyaRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.ValoracioRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
@@ -26,9 +24,6 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
     private final ValoracioService valoracioService = new ValoracioServiceImpl(
             new ValoracioRepositoryImpl(
                     new ValoracioDaoJdbc()
-            ),
-            new RessenyaRepositoryImpl(
-                    new RessenyaDaoJdbc()
             )
     );
 
@@ -37,12 +32,12 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
     private final List<Valoracio> VALORACIO_LIST = ValoracioData.VALORACIO_LIST;
 
     @Nested
-    class FindByLlibreAndUser {
+    class FindByLlibreAndUsuari {
         @Test
         void whenLlibreHasNoValoracions_givenLlibreAndUser_shouldReturnNull() {
             Llibre llibre = LLIBRE_LIST.getFirst();
             Usuari usuari = USUARI_LIST.get(2);
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertNull(result);
         }
 
@@ -51,7 +46,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
             Llibre llibre = LLIBRE_LIST.getFirst();
             Usuari usuari = USUARI_LIST.getFirst();
             Valoracio expectedValoracio = VALORACIO_LIST.getFirst();
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertEquals(expectedValoracio, result);
         }
     }
@@ -92,7 +87,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
             Usuari usuari = USUARI_LIST.get(2);
             List<Valoracio> expected = List.of();
 
-            List<Valoracio> result = valoracioService.findByUser(usuari);
+            List<Valoracio> result = valoracioService.findByUsuari(usuari);
 
             assertEquals(expected, result);
         }
@@ -101,7 +96,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
         void whenUserSingleValoracio_givenUser_shouldReturnListWithSingleValoracio() {
             Usuari usuari = USUARI_LIST.get(1);
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.get(2));
-            List<Valoracio> result = valoracioService.findByUser(usuari);
+            List<Valoracio> result = valoracioService.findByUsuari(usuari);
             assertEquals(expectedValoracions, result);
         }
 
@@ -109,7 +104,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
         void whenUserMultipleValoracions_givenUser_shouldReturnListWithMultipleValoracions() {
             Usuari usuari = USUARI_LIST.getFirst();
             List<Valoracio> expectedValoracions = List.of(VALORACIO_LIST.getFirst(), VALORACIO_LIST.get(1));
-            List<Valoracio> result = valoracioService.findByUser(usuari);
+            List<Valoracio> result = valoracioService.findByUsuari(usuari);
             assertEquals(expectedValoracions, result);
         }
     }
@@ -124,7 +119,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
 
             valoracioService.save(valoracio);
 
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertEquals(valoracio, result);
         }
 
@@ -136,7 +131,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
 
             valoracioService.save(valoracio);
 
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertEquals(valoracio, result);
         }
     }
@@ -150,7 +145,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
 
             valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
 
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertNull(result);
         }
 
@@ -161,7 +156,7 @@ class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
 
             valoracioService.delete(llibre.getIsbn(), usuari.getUsername());
 
-            Valoracio result = valoracioService.findByLlibreAndUser(llibre, usuari);
+            Valoracio result = valoracioService.findByLlibreAndUsuari(llibre, usuari);
             assertNull(result);
         }
     }

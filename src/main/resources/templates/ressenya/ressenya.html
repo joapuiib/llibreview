@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
 <!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
-<!--/*@thymesVar id="valoracioUsuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
 <!--/*@thymesVar id="valoracioStats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
     <head>
         <title th:text="#{la-teua-ressenya}"></title>
     </head>
     <body>
-        <main class="" th:with="ressenya = ${valoracio?.ressenya}">
+        <main class="">
             <h1 class="text-center my-4" th:text="#{la-teua-ressenya}"></h1>
             <form th:action="@{/ressenya}" method="post">
                 <input type="hidden" name="isbn" th:value="${llibre.isbn}">
@@ -33,7 +32,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${valoracioUsuari})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
+                        <div th:replace="~{components/valoracio :: my-valoracio(isbn=${llibre.isbn}, valoracio=${ressenya.valoracio})}" class="mt-5 d-flex justify-content-between align-items-center"></div>
                     </div>
                 </div>
                 <div class="mt-3">

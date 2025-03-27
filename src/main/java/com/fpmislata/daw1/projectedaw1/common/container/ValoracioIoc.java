@@ -2,10 +2,8 @@ package com.fpmislata.daw1.projectedaw1.common.container;
 
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.ValoracioServiceImpl;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.ValoracioDaoJdbc;
-import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.ValoracioRepositoryImpl;
 
@@ -17,8 +15,7 @@ public class ValoracioIoc {
     public static ValoracioService createService() {
         if (valoracioService == null) {
             ValoracioRepository valoracioRepository = createRepository();
-            RessenyaRepository ressenyaRepository = RessenyaIoc.createRepository();
-            valoracioService = new ValoracioServiceImpl(valoracioRepository, ressenyaRepository);
+            valoracioService = new ValoracioServiceImpl(valoracioRepository);
         }
         return valoracioService;
     }

@@ -52,8 +52,8 @@ public class RessenyaController {
             return "redirect:/llibre/" + isbn;
         }
 
-        Valoracio valoracio = valoracioService.findByLlibreAndUser(llibre, UserSession.getUser());
-        model.addAttribute("valoracioUsuari", valoracio);
+        Ressenya ressenya = ressenyaService.findByLlibreAndUsuari(llibre, UserSession.getUser());
+        model.addAttribute("ressenya", ressenya);
         return "ressenya/ressenya";
     }
 
@@ -71,7 +71,7 @@ public class RessenyaController {
 
         Usuari usuari = Objects.requireNonNull(UserSession.getUser());
         Llibre llibre = llibreService.findByIsbn(isbn);
-        Valoracio oldValoracio = valoracioService.findByLlibreAndUser(llibre, usuari);
+        Valoracio oldValoracio = valoracioService.findByLlibreAndUsuari(llibre, usuari);
 
         if (valoracio == -1) {
             valoracioService.delete(isbn, usuari.getUsername());
@@ -107,7 +107,10 @@ public class RessenyaController {
         }
 
         Usuari usuari = Objects.requireNonNull(UserSession.getUser());
-        ressenyaService.delete(isbn, usuari.getUsername());
+        Llibre llibre = llibreService.findByIsbn(isbn);
+        Ressenya ressenya = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
+        ressenyaService.delete(ressenya);
+
         alerts.add(new Alert("success", "S'ha eliminat la ressenya"));
         redirectAttributes.addFlashAttribute("alerts", alerts);
         return "redirect:/llibre/" + isbn;
