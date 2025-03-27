@@ -11,30 +11,18 @@ import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepositor
 
 public class ValoracioRepositoryImpl implements ValoracioRepository {
     private final ValoracioDao valoracioDao;
-    private final RessenyaDao ressenyaDao;
 
-    public ValoracioRepositoryImpl(ValoracioDao valoracioDao, RessenyaDao ressenyaDao) {
+    public ValoracioRepositoryImpl(ValoracioDao valoracioDao) {
         this.valoracioDao = valoracioDao;
-        this.ressenyaDao = ressenyaDao;
     }
     @Override
     public Valoracio findByLlibreIsbnAndUsername(String isbn, String username) {
-        Valoracio valoracio = valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
-        if (valoracio != null) {
-            Ressenya ressenya = ressenyaDao.findByLlibreIsbnAndUsername(isbn, username);
-            valoracio.setRessenya(ressenya);
-        }
-        return valoracio;
+        return valoracioDao.findByLlibreIsbnAndUsername(isbn, username);
     }
 
     @Override
     public List<Valoracio> findByIsbn(String isbn) {
-        List<Valoracio> valoracions = valoracioDao.findByLlibreIsbn(isbn);
-        valoracions.stream().filter(Objects::nonNull).forEach(valoracio -> {
-            Ressenya r = ressenyaDao.findByLlibreIsbnAndUsername(isbn, valoracio.getUsername());
-            valoracio.setRessenya(r);
-        });
-        return valoracions;
+        return valoracioDao.findByLlibreIsbn(isbn);
     }
 
     @Override

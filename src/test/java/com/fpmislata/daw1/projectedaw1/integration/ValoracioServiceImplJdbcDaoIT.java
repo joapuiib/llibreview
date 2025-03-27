@@ -10,6 +10,7 @@ import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.ValoracioServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.RessenyaDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.ValoracioDaoJdbc;
+import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.RessenyaRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.ValoracioRepositoryImpl;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
 import org.junit.jupiter.api.Nested;
@@ -24,7 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class ValoracioServiceImplJdbcDaoIT extends JdbcTest {
     private final ValoracioService valoracioService = new ValoracioServiceImpl(
             new ValoracioRepositoryImpl(
-                    new ValoracioDaoJdbc(),
+                    new ValoracioDaoJdbc()
+            ),
+            new RessenyaRepositoryImpl(
                     new RessenyaDaoJdbc()
             )
     );

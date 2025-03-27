@@ -5,6 +5,7 @@ import com.fpmislata.daw1.projectedaw1.domain.service.impl.ValoracioServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.ValoracioDaoJdbc;
+import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.ValoracioRepositoryImpl;
 
@@ -16,7 +17,8 @@ public class ValoracioIoc {
     public static ValoracioService createService() {
         if (valoracioService == null) {
             ValoracioRepository valoracioRepository = createRepository();
-            valoracioService = new ValoracioServiceImpl(valoracioRepository);
+            RessenyaRepository ressenyaRepository = RessenyaIoc.createRepository();
+            valoracioService = new ValoracioServiceImpl(valoracioRepository, ressenyaRepository);
         }
         return valoracioService;
     }
@@ -24,8 +26,7 @@ public class ValoracioIoc {
     private static ValoracioRepository createRepository() {
         if (valoracioRepository == null) {
             ValoracioDao valoracioDao = createDao();
-            RessenyaDao ressenyaDao = RessenyaIoc.createDao();
-            valoracioRepository = new ValoracioRepositoryImpl(valoracioDao, ressenyaDao);
+            valoracioRepository = new ValoracioRepositoryImpl(valoracioDao);
         }
         return valoracioRepository;
     }
