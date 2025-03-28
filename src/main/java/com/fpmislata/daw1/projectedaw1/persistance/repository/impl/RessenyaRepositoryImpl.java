@@ -1,5 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
+import java.util.List;
+
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
@@ -18,6 +20,16 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
     }
 
     @Override
+    public List<Ressenya> findByLlibreIsbn(String isbn) {
+        return ressenyaDao.findByLlibreIsbn(isbn);
+    }
+
+    @Override
+    public List<Ressenya> findByUsername(String username) {
+        return ressenyaDao.findByUsername(username);
+    }
+
+    @Override
     public boolean exists(String isbn, String username) {
         return ressenyaDao.findByLlibreIsbnAndUsername(isbn, username) != null;
     }
@@ -32,7 +44,9 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
     }
 
     @Override
-    public boolean delete(String isbn, String username) {
+    public boolean delete(Ressenya ressenya) {
+        String isbn = ressenya.getIsbn();
+        String username = ressenya.getUsername();
         return ressenyaDao.delete(isbn, username) == 1;
     }
 }

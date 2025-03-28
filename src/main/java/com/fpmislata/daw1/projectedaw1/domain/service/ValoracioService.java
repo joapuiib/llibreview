@@ -7,9 +7,9 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 
 public interface ValoracioService {
-    Valoracio findByLlibreAndUser(Llibre llibre, Usuari usuari);
+    Valoracio findByLlibreAndUsuari(Llibre llibre, Usuari usuari);
     List<Valoracio> findByLlibre(Llibre llibre);
-    List<Valoracio> findByUser(Usuari usuari);
+    List<Valoracio> findByUsuari(Usuari usuari);
     void save(Valoracio valoracio);
     void delete(String isbn, String username);
 }

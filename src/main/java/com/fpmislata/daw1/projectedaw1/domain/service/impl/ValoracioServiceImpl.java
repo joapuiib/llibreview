@@ -16,21 +16,26 @@ public class ValoracioServiceImpl implements ValoracioService {
     }
 
     @Override
-    public Valoracio findByLlibreAndUser(Llibre llibre, Usuari usuari) {
+    public Valoracio findByLlibreAndUsuari(Llibre llibre, Usuari usuari) {
+        String isbn = llibre.getIsbn();
+        String username = usuari.getUsername();
+
         return valoracioRepository.findByLlibreIsbnAndUsername(
-                llibre.getIsbn(),
-                usuari.getUsername()
+                isbn,
+                username
         );
     }
 
     @Override
     public List<Valoracio> findByLlibre(Llibre llibre) {
-        return valoracioRepository.findByIsbn(llibre.getIsbn());
+        String isbn = llibre.getIsbn();
+        return valoracioRepository.findByIsbn(isbn);
     }
 
     @Override
-    public List<Valoracio> findByUser(Usuari usuari) {
-        return valoracioRepository.findByUsername(usuari.getUsername());
+    public List<Valoracio> findByUsuari(Usuari usuari) {
+        String username = usuari.getUsername();
+        return valoracioRepository.findByUsername(username);
     }
 
     @Override

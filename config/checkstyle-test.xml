@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+
+    <module name="TreeWalker">
+        <!-- Comprova si l'identació del codi és correcta -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="4"/>
+            <property name="arrayInitIndent" value="4"/>
+        </module>
+
+        <!-- Comprova si hi ha espais en blanc entre els operadors, paraula clau, etc. -->
+        <module name="WhitespaceAround"/>
+
+        <!-- Comprova que l'espaiat entre els paràmetre és correcte -->
+        <module name="MethodParamPad"/>
+
+        <!-- Comprova que la notació és correcta -->
+        <module name="TypeName"/> <!-- Notació de classes UpperCamelCase -->
+        <module name="MethodName"/> <!-- Notació de mètodes lowerCamelCase -->
+        <!-- Allow underscores for test methods -->
+        <module name="MethodName">
+            <property name="format" value="^(given_.*_when_.*_then_.*|test.*)$"/>
+            <property name="applyTo" value=".*Test"/>
+        </module>
+
+        <module name="LocalVariableName"/> <!-- Notació de variables lowerCamelCase -->
+        <module name="ConstantName"/> <!-- Notació de constants UPPER_CASE -->
+
+        <!-- Comprova que no hi ha parèntesis innecessaris -->
+        <module name="UnnecessaryParentheses"/>
+
+        <!-- Comprova que no hi ha wildcard imports (*) -->
+        <module name="AvoidStarImport"/>
+        <!-- Comprova que no hi ha imports innecessaris -->
+        <module name="UnusedImports"/>
+        <!-- Comprova que l'ordre dels imports és correcte -->
+        <module name="ImportOrder">
+            <property name="ordered" value="true"/> <!-- Enforces ordering -->
+            <property name="separated" value="true"/> <!-- Requires blank lines between groups -->
+            <property name="sortStaticImportsAlphabetically" value="true"/> <!-- Sorts static imports first -->
+            <property name="groups" value="java,*,com"/> <!-- Defines import order groups: java, 3rd party, projecte -->
+        </module>
+
+        <!-- Comprova que hi ha una línia en blanc entre la deficinició del paquet, els imports i el codi -->
+        <module name="EmptyLineSeparator">
+            <property name="tokens" value="PACKAGE_DEF, IMPORT"/>
+        </module>
+
+    </module>
+
+    <!-- Comprova que no hi ha tabuladors en el codi -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- Comprova que les línia no superin els 100 caràcters -->
+    <module name="LineLength">
+        <property name="max" value="100"/>
+        <property name="ignorePattern" value="^package.*|^import.*|^ *//.*|^ *$"/>
+    </module>
+
+    <!-- Comprova que no hi ha espais en blanc al final de les línies -->
+    <module name="RegexpSingleline">
+        <property name="format" value=".*\s+$"/>
+        <property name="message" value="Trailing whitespace detected"/>
+        <property name="ignoreCase" value="true"/>
+    </module>
+</module>

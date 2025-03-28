@@ -20,7 +20,7 @@ public class RessenyaIoc {
         return ressenyaService;
     }
 
-    private static RessenyaRepository createRepository() {
+    public static RessenyaRepository createRepository() {
         if (ressenyaRepository == null) {
             RessenyaDao ressenyaDao = createDao();
             ressenyaRepository = new RessenyaRepositoryImpl(ressenyaDao);

@@ -17,11 +17,11 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
@@ -45,15 +45,16 @@ public class RessenyaController {
         Llibre llibre = llibreService.findByIsbn(isbn);
         model.addAttribute("llibre", llibre);
 
-        ValoracioStats stats = new ValoracioStats(valoracioService.findByLlibre(llibre));
-        model.addAttribute("valoracioStats", stats);
+        List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
+        EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracions);
+        model.addAttribute("estadistiquesValoracio", estadistiques);
 
         if (!UserSession.isUserLoggedIn()) {
             return "redirect:/llibre/" + isbn;
         }
 
-        Valoracio valoracio = valoracioService.findByLlibreAndUser(llibre, UserSession.getUser());
-        model.addAttribute("valoracioUsuari", valoracio);
+        Ressenya ressenya = ressenyaService.findByLlibreAndUsuari(llibre, UserSession.getUser());
+        model.addAttribute("ressenya", ressenya);
         return "ressenya/ressenya";
     }
 
@@ -71,7 +72,7 @@ public class RessenyaController {
 
         Usuari usuari = Objects.requireNonNull(UserSession.getUser());
         Llibre llibre = llibreService.findByIsbn(isbn);
-        Valoracio oldValoracio = valoracioService.findByLlibreAndUser(llibre, usuari);
+        Valoracio oldValoracio = valoracioService.findByLlibreAndUsuari(llibre, usuari);
 
         if (valoracio == -1) {
             valoracioService.delete(isbn, usuari.getUsername());
@@ -107,7 +108,10 @@ public class RessenyaController {
         }
 
         Usuari usuari = Objects.requireNonNull(UserSession.getUser());
-        ressenyaService.delete(isbn, usuari.getUsername());
+        Llibre llibre = llibreService.findByIsbn(isbn);
+        Ressenya ressenya = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
+        ressenyaService.delete(ressenya);
+
         alerts.add(new Alert("success", "S'ha eliminat la ressenya"));
         redirectAttributes.addFlashAttribute("alerts", alerts);
         return "redirect:/llibre/" + isbn;

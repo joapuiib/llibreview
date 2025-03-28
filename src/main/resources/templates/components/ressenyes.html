@@ -1,10 +1,10 @@
-<!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
+<!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya"*/-->
 <!--/*@thymesVar id="session" type="com.fpmislata.daw1.projectedaw1.security.UserSession"*/-->
-<div th:fragment="ressenya(valoracio)" class="ressenya p-3 shadow rounded border border-cafe-200" th:with="ressenya = ${valoracio.ressenya}, is_owner=${session.user != null and session.user.username == valoracio.username}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
+<div th:fragment="ressenya(ressenya)" class="ressenya p-3 shadow rounded border border-cafe-200" th:with="valoracio = ${ressenya.valoracio}, is_owner=${session.user != null and session.user.username == ressenya.username}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
     <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
             <div class="d-flex gap-2 align-items-end">
-                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${valoracio.username}"></span></div>
+                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${ressenya.username}"></span></div>
                 <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
             </div>
         </div>
@@ -22,31 +22,31 @@
             <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div th:if="${is_owner}" th:remove="tag">
-            <a th:href="|/ressenya/${valoracio.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
-            <a th:href="|/ressenya/${valoracio.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
+            <a th:href="|/ressenya/${ressenya.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
+            <a th:href="|/ressenya/${ressenya.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
 </div>
 
-<!--/*@thymesVar id="valoracions" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio>"*/-->
-<div th:fragment="ressenyes-destacades(valoracions)" class="ressenyes-container mt-4">
+<!--/*@thymesVar id="ressenyes" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya>"*/-->
+<div th:fragment="ressenyes-destacades(ressenyes)" class="ressenyes-container mt-4">
     <p class="h5" th:text="#{ressenyes-destacades}"></p>
-    <div th:each="valoracio: ${valoracions}" th:remove="tag">
+    <div th:each="ressenya: ${ressenyes}" th:remove="tag">
         <div class="mb-2">
-            <div th:replace="~{components/ressenyes :: ressenya(valoracio=${valoracio})}" class=""></div>
+            <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya})}" class=""></div>
         </div>
     </div>
-    <div class="text-center mt-2" th:if="${valoracions.size() > 2}">
+    <div class="text-center mt-2" th:if="${ressenyes.size() > 2}">
         <a class="text-decoration-none fw-bold" href="" th:text="#{veure-totes-ressenyes}"></a>
     </div>
 </div>
 
 
-<!--/*@thymesVar id="valoracio" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
-<div th:fragment="ressenya-usuari(isbn, valoracio)" th:with="ressenya=${valoracio?.ressenya}" class="">
+<!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya"*/-->
+<div th:fragment="ressenya-usuari(isbn, ressenya)" th:with="valoracio=${ressenya.valoracio}" class="">
     <div class="h5" th:text="#{la-teua-ressenya}"></div>
     <div th:unless="${ressenya == null}" th:remove="tag">
-        <div th:replace="~{components/ressenyes :: ressenya(valoracio=${valoracio})}" class=""></div>
+        <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya})}" class=""></div>
     </div>
 
     <div th:if="${ressenya == null}" th:remove="tag">

@@ -1,7 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.repository;
 
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.data.RessenyaData;
+import com.fpmislata.daw1.projectedaw1.data.UsuariData;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.impl.RessenyaRepositoryImpl;
 import org.junit.jupiter.api.Nested;
@@ -26,13 +30,15 @@ class RessenyaRepositoryImplTest {
     @InjectMocks
     private RessenyaRepositoryImpl ressenyaRepository;
 
-    private final List<Ressenya> ressenyaList = RessenyaData.RESSENYA_LIST;
+    private static final List<Ressenya> RESSENYA_LIST = RessenyaData.RESSENYA_LIST;
+    private static final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
+    private static final List<Usuari> USUARI_LIST = UsuariData.USUARI_LIST;
 
     @Nested
     class FindByLlibreIsbnAndUsername {
         @Test
         void givenExistingRessenya_shouldReturnRessenya() {
-            Ressenya expected = ressenyaList.getFirst();
+            Ressenya expected = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(expected.getIsbn(), expected.getUsername())).thenReturn(expected);
 
             Ressenya result = ressenyaRepository.findByLlibreIsbnAndUsername(expected.getIsbn(), expected.getUsername());
@@ -51,10 +57,64 @@ class RessenyaRepositoryImplTest {
     }
 
     @Nested
+    class FindByLlibre {
+        @Test
+        void whenLlibreHasNoRessenyes_shouldReturnEmptyList() {
+            Llibre llibre = LLIBRE_LIST.get(1);
+            List<Ressenya> expected = List.of();
+
+            String isbn = llibre.getIsbn();
+            when(ressenyaDao.findByLlibreIsbn(isbn)).thenReturn(expected);
+
+            List<Ressenya> result = ressenyaRepository.findByLlibreIsbn(isbn);
+            assertTrue(result.isEmpty());
+        }
+
+        @Test
+        void whenLlibreHasRessenyes_shouldReturnRessenyes() {
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            List<Ressenya> expected = List.of(RESSENYA_LIST.getFirst());
+
+            String isbn = llibre.getIsbn();
+            when(ressenyaDao.findByLlibreIsbn(isbn)).thenReturn(expected);
+
+            List<Ressenya> result = ressenyaRepository.findByLlibreIsbn(isbn);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
+    class FindByUsuari {
+        @Test
+        void whenUsuariHasNoRessenyes_shouldReturnEmptyList() {
+            Usuari usuari = USUARI_LIST.get(1);
+            List<Ressenya> expected = List.of();
+
+            String username = usuari.getUsername();
+            when(ressenyaDao.findByUsername(username)).thenReturn(expected);
+
+            List<Ressenya> result = ressenyaRepository.findByUsername(username);
+            assertTrue(result.isEmpty());
+        }
+
+        @Test
+        void whenUsuariHasRessenyes_shouldReturnRessenyes() {
+            Usuari usuari = USUARI_LIST.getFirst();
+            List<Ressenya> expected = RESSENYA_LIST;
+
+            String username = usuari.getUsername();
+            when(ressenyaDao.findByUsername(username)).thenReturn(expected);
+
+            List<Ressenya> result = ressenyaRepository.findByUsername(username);
+            assertEquals(expected, result);
+        }
+    }
+
+    @Nested
     class Exists {
         @Test
         void givenExistingRessenya_shouldReturnTrue() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(ressenya);
 
             boolean result = ressenyaRepository.exists(ressenya.getIsbn(), ressenya.getUsername());
@@ -76,7 +136,7 @@ class RessenyaRepositoryImplTest {
     class Save {
         @Test
         void givenNewRessenya_shouldInsertAndReturnTrue() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(null);
             when(ressenyaDao.insert(ressenya)).thenReturn(1);
 
@@ -89,7 +149,7 @@ class RessenyaRepositoryImplTest {
 
         @Test
         void givenNewRessenya_whenNoInserted_shouldReturnFalse() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(null);
             when(ressenyaDao.insert(ressenya)).thenReturn(0);
 
@@ -102,7 +162,7 @@ class RessenyaRepositoryImplTest {
 
         @Test
         void givenExistingRessenya_shouldUpdateAndReturnTrue() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(ressenya);
             when(ressenyaDao.update(ressenya)).thenReturn(1);
 
@@ -115,7 +175,7 @@ class RessenyaRepositoryImplTest {
 
         @Test
         void givenExistingRessenya_whenNoUpdated_shouldReturnFalse() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.findByLlibreIsbnAndUsername(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(ressenya);
             when(ressenyaDao.update(ressenya)).thenReturn(0);
 
@@ -131,10 +191,10 @@ class RessenyaRepositoryImplTest {
     class Delete {
         @Test
         void givenExistingRessenya_shouldDeleteAndReturnTrue() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.delete(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(1);
 
-            boolean result = ressenyaRepository.delete(ressenya.getIsbn(), ressenya.getUsername());
+            boolean result = ressenyaRepository.delete(ressenya);
             assertAll(
                     () -> assertTrue(result),
                     () -> verify(ressenyaDao).delete(ressenya.getIsbn(), ressenya.getUsername())
@@ -143,10 +203,10 @@ class RessenyaRepositoryImplTest {
 
         @Test
         void givenNonExistingRessenya_shouldReturnFalse() {
-            Ressenya ressenya = ressenyaList.getFirst();
+            Ressenya ressenya = RESSENYA_LIST.getFirst();
             when(ressenyaDao.delete(ressenya.getIsbn(), ressenya.getUsername())).thenReturn(0);
 
-            boolean result = ressenyaRepository.delete(ressenya.getIsbn(), ressenya.getUsername());
+            boolean result = ressenyaRepository.delete(ressenya);
             assertAll(
                     () -> assertFalse(result),
                     () -> verify(ressenyaDao).delete(ressenya.getIsbn(), ressenya.getUsername())

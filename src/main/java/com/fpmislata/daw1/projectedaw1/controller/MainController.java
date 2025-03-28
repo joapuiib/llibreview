@@ -13,8 +13,8 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 
@@ -47,18 +47,18 @@ public class MainController {
         List<Card> mesLlegits = llibreService.findMostRead(4).stream().map(
                 llibre -> {
                     List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
-                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
-                    return LlibreCardMapper.map(llibre, "Lectors: " + valoracioStats.getCount());
+                    EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracions);
+                    return LlibreCardMapper.map(llibre, "Lectors: " + estadistiques.getCount());
                 }).toList();
         model.addAttribute("mesLlegits", mesLlegits);
 
         List<Card> millorValorats = llibreService.findBestRated(4).stream().map(
                 llibre -> {
                     List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
-                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
+                    EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracions);
                     return LlibreCardMapper.map(
                             llibre,
-                            String.format("Valoració: %.1f", valoracioStats.getAverage())
+                            String.format("Valoració: %.1f", estadistiques.getAverage())
                     );
                 }).toList();
         model.addAttribute("millorValorats", millorValorats);

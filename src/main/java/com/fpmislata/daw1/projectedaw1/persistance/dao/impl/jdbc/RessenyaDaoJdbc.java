@@ -1,6 +1,7 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
@@ -19,12 +20,57 @@ public class RessenyaDaoJdbc implements RessenyaDao {
 
     @Override
     public Ressenya findByLlibreIsbnAndUsername(String isbn, String username) {
-        String sql = "SELECT * FROM ressenya where isbn = ? and username = ?";
+        String sql = """
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.isbn = ? AND r.username = ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             preparedStatement.setString(2, username);
-            List<Ressenya> valoracioList = ressenyaRowMapper.map(preparedStatement.executeQuery());
-            return valoracioList.isEmpty() ? null : valoracioList.getFirst();
+            ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return ressenyaRowMapper.mapItem(rs);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Ressenya> findByLlibreIsbn(String isbn) {
+        String sql = """
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.isbn = ?
+            """;
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
+            ResultSet rs = preparedStatement.executeQuery();
+            return ressenyaRowMapper.map(rs);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Ressenya> findByUsername(String username) {
+        String sql = """
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.username = ?
+            """;
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            return ressenyaRowMapper.map(rs);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -16,7 +16,6 @@ public class Valoracio {
 
     private Llibre llibre;
     private Usuari usuari;
-    private Ressenya ressenya;
 
     public Valoracio(String isbn, String username, int puntuacio, LocalDate data) {
         this.isbn = isbn;

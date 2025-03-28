@@ -1,17 +1,19 @@
 package com.fpmislata.daw1.projectedaw1.unit.persistance.dao;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import com.fpmislata.daw1.projectedaw1.data.AutorData;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.AutorDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.AutorDaoJdbc;
 import com.fpmislata.daw1.projectedaw1.util.JdbcTest;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class AutorDaoJdbcTest extends JdbcTest {
     private final AutorDao autorDao = new AutorDaoJdbc();

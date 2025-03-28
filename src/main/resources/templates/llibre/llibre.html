@@ -1,8 +1,9 @@
 <!--/*@thymesVar id="llibre" type="com.fpmislata.daw1.projectedaw1.domain.entity.Llibre"*/-->
 <!--/*@thymesVar id="autors" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Autor>"*/-->
 <!--/*@thymesVar id="generes" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Genere>"*/-->
-<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
-<!--/*@thymesVar id="valoracionsAmbRessenya" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio>"*/-->
+<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio"*/-->
+<!--/*@thymesVar id="ressenyes" type="List<com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya>"*/-->
+<!--/*@thymesVar id="ressenyaUsuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
 <!--/*@thymesVar id="valoracioUsuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio"*/-->
 <!DOCTYPE html>
 <html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
@@ -46,10 +47,10 @@
                         </dd>
                     </dl>
                     <div class="mt-3" th:unless="${session.user==null}">
-                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, valoracio=${valoracioUsuari})}"></div>
+                        <div th:replace="~{components/ressenyes :: ressenya-usuari(isbn=${isbn}, ressenya=${ressenyaUsuari})}"></div>
                     </div>
-                    <div th:if="${valoracionsAmbRessenya.size() > 0}" th:remove="tag">
-                        <div th:replace="~{components/ressenyes :: ressenyes-destacades(valoracions=${valoracionsAmbRessenya})}" class=""></div>
+                    <div th:if="${ressenyes.size() > 0}" th:remove="tag">
+                        <div th:replace="~{components/ressenyes :: ressenyes-destacades(ressenyes=${ressenyes})}" class=""></div>
                     </div>
                 </div>
             </div>

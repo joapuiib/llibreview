@@ -1,9 +1,11 @@
 package com.fpmislata.daw1.projectedaw1.integration;
 
+import com.fpmislata.daw1.projectedaw1.data.LlibreData;
 import com.fpmislata.daw1.projectedaw1.data.RessenyaData;
-import com.fpmislata.daw1.projectedaw1.data.ValoracioData;
+import com.fpmislata.daw1.projectedaw1.data.UsuariData;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
-import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.impl.RessenyaServiceImpl;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc.RessenyaDaoJdbc;
@@ -17,8 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class RessenyaServiceImplJdbcDaoIT extends JdbcTest {
@@ -28,26 +29,26 @@ class RessenyaServiceImplJdbcDaoIT extends JdbcTest {
             )
     );
 
-    private final List<Valoracio> VALORACIO_LIST = ValoracioData.VALORACIO_LIST;
+    private final List<Llibre> LLIBRE_LIST = LlibreData.LLIBRE_LIST;
+    private final List<Usuari> USUARI_LIST = UsuariData.USUARI_LIST;
     private final List<Ressenya> RESSENYA_LIST = RessenyaData.RESSENYA_LIST;
 
     @Nested
-    class FindByValoracio {
+    class FindByLlibreAndUser {
         @Test
-        void whenValoracioHasNoRessenya_givenValoracio_shouldReturnNull() {
-            Valoracio valoracio = VALORACIO_LIST.get(2);
-
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
+        void whenLlibreHasNoValoracions_givenLlibreAndUser_shouldReturnNull() {
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.get(2);
+            Ressenya result = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
             assertNull(result);
         }
 
         @Test
-        void whenValoracioHasRessenya_givenValoracio_shouldReturnRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.getFirst();
-
+        void whenLlibreValoracions_givenLlibreAndUser_shouldReturnValoracio() {
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.getFirst();
             Ressenya expected = RESSENYA_LIST.getFirst();
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
-
+            Ressenya result = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
             assertEquals(expected, result);
         }
     }
@@ -56,29 +57,38 @@ class RessenyaServiceImplJdbcDaoIT extends JdbcTest {
     class Save {
         @Test
         void whenRessenyaExists_givenRessenya_shouldUpdateRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.getFirst();
-            Ressenya ressenya = RESSENYA_LIST.getFirst().clone();
-            ressenya.setComentari("Nou contingut de la ressenya");
+            Llibre llibre = LLIBRE_LIST.getFirst();
+            Usuari usuari = USUARI_LIST.getFirst();
+            Ressenya prevRessenya = RESSENYA_LIST.getFirst();
+            Ressenya newRessenya = prevRessenya.clone();
+            newRessenya.setComentari("Nou contingut de la ressenya");
 
-            ressenyaService.save(ressenya);
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
+            Ressenya prev = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
+            ressenyaService.save(newRessenya);
+            Ressenya result = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
 
-            assertEquals(ressenya, result);
+            assertAll(
+                    () -> assertEquals(prevRessenya, prev),
+                    () -> assertEquals(newRessenya, result)
+            );
         }
 
         @Test
         void whenRessenyaNotExists_givenRessenya_shouldInsertRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.get(2);
-            String isbn = valoracio.getIsbn();
-            String username = valoracio.getUsername();
+            Llibre llibre = LLIBRE_LIST.get(1);
+            Usuari usuari = USUARI_LIST.get(1);
+            String isbn = llibre.getIsbn();
+            String username = usuari.getUsername();
             Ressenya ressenya = new Ressenya(isbn, username, "Contingut de la ressenya", LocalDate.parse("2021-05-01"));
 
-            Ressenya prev = ressenyaService.findByValoracio(valoracio);
+            Ressenya prev = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
             ressenyaService.save(ressenya);
-            Ressenya after = ressenyaService.findByValoracio(valoracio);
+            Ressenya after = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
 
-            assertNull(prev);
-            assertEquals(ressenya, after);
+            assertAll(
+                    () -> assertNull(prev),
+                    () -> assertEquals(ressenya, after)
+            );
         }
     }
 
@@ -86,23 +96,21 @@ class RessenyaServiceImplJdbcDaoIT extends JdbcTest {
     class Delete {
         @Test
         void whenRessenyaExists_givenIsbnAndUsername_shouldDeleteRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.getFirst();
+            Llibre llibre = LLIBRE_LIST.get(1);
+            Usuari usuari = USUARI_LIST.get(1);
             Ressenya ressenya = RESSENYA_LIST.getFirst();
 
-            ressenyaService.delete(ressenya.getIsbn(), ressenya.getUsername());
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
+            ressenyaService.delete(ressenya);
+            Ressenya result = ressenyaService.findByLlibreAndUsuari(llibre, usuari);
 
             assertNull(result);
         }
 
         @Test
         void whenRessenyaNotExists_givenIsbnAndUsername_shouldNotDeleteRessenya() {
-            Valoracio valoracio = VALORACIO_LIST.get(2);
-
-            ressenyaService.delete(valoracio.getIsbn(), valoracio.getUsername());
-            Ressenya result = ressenyaService.findByValoracio(valoracio);
-
-            assertNull(result);
+            Ressenya ressenya = new Ressenya("isbn3", "user3", "Contingut de la ressenya", LocalDate.parse("2021-05-01"));
+            boolean result = ressenyaService.delete(ressenya);
+            assertFalse(result);
         }
     }
 }
