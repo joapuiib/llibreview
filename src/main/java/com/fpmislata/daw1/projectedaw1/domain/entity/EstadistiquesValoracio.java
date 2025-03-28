@@ -7,20 +7,20 @@ import java.util.Map;
 import lombok.Getter;
 
 @Getter
-public class ValoracioStats {
+public class EstadistiquesValoracio {
     private int count;
     private double average;
 
     private final Map<Integer, Integer> histogram;
 
 
-    public ValoracioStats() {
+    public EstadistiquesValoracio() {
         this.count = 0;
         this.average = 0;
         this.histogram = new HashMap<>();
     }
 
-    public ValoracioStats(List<Valoracio> valoracions) {
+    public EstadistiquesValoracio(List<Valoracio> valoracions) {
         this();
 
         for (Valoracio valoracio : valoracions)

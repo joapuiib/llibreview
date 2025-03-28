@@ -54,7 +54,7 @@ public class LlibreController {
         model.addAttribute("generes", generes);
 
         List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
-        model.addAttribute("stats", new ValoracioStats(valoracions));
+        model.addAttribute("stats", new EstadistiquesValoracio(valoracions));
 
         List<Ressenya> ressenyes = ressenyaService.findByLlibre(llibre);
         model.addAttribute("ressenyes", ressenyes);

@@ -3,6 +3,7 @@ package com.fpmislata.daw1.projectedaw1.controller;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 
@@ -47,18 +47,18 @@ public class MainController {
         List<Card> mesLlegits = llibreService.findMostRead(4).stream().map(
                 llibre -> {
                     List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
-                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
-                    return LlibreCardMapper.map(llibre, "Lectors: " + valoracioStats.getCount());
+                    EstadistiquesValoracio estadistiquesValoracio = new EstadistiquesValoracio(valoracions);
+                    return LlibreCardMapper.map(llibre, "Lectors: " + estadistiquesValoracio.getCount());
                 }).toList();
         model.addAttribute("mesLlegits", mesLlegits);
 
         List<Card> millorValorats = llibreService.findBestRated(4).stream().map(
                 llibre -> {
                     List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
-                    ValoracioStats valoracioStats = new ValoracioStats(valoracions);
+                    EstadistiquesValoracio estadistiquesValoracio = new EstadistiquesValoracio(valoracions);
                     return LlibreCardMapper.map(
                             llibre,
-                            String.format("Valoració: %.1f", valoracioStats.getAverage())
+                            String.format("Valoració: %.1f", estadistiquesValoracio.getAverage())
                     );
                 }).toList();
         model.addAttribute("millorValorats", millorValorats);

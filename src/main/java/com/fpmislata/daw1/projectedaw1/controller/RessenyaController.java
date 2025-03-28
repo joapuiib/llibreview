@@ -21,7 +21,7 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats;
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
@@ -45,8 +45,8 @@ public class RessenyaController {
         Llibre llibre = llibreService.findByIsbn(isbn);
         model.addAttribute("llibre", llibre);
 
-        ValoracioStats stats = new ValoracioStats(valoracioService.findByLlibre(llibre));
-        model.addAttribute("valoracioStats", stats);
+        EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracioService.findByLlibre(llibre));
+        model.addAttribute("estadistiquesValoracio", estadistiques);
 
         if (!UserSession.isUserLoggedIn()) {
             return "redirect:/llibre/" + isbn;

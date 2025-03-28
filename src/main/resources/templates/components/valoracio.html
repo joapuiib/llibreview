@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
+<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio"*/-->
 <div th:fragment="valoracio-chart(stats)" class="valoracio-chart">
     <div class="d-flex align-items-center valoracio-bar" th:each="i : ${#numbers.sequence(10, 1, -1)}">
         <div class="valoracio-bar-label me-1"><span th:text="${i}"></span> <i class="fa fa-star"></i></div>
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.ValoracioStats"*/-->
+<!--/*@thymesVar id="stats" type="com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio"*/-->
 <div th:fragment="valoracio(stats)" class="valoracio-container bg-cafe-100 border border-cafe-500 rounded-3">
     <div class="d-flex flex-row flex-md-column flex-xl-row">
         <div class="flex-grow-1 order-0 order-md-1 order-xl-0">
