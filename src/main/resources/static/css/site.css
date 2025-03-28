@@ -220,9 +220,6 @@ p {
 a {
     text-decoration: none;
 }
-a:hover {
-    text-decoration: underline;
-}
 
 .mx-n3 {
     margin-left: -1rem;

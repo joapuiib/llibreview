@@ -48,12 +48,13 @@
 }
 .date-line .line {
     flex-grow: 1;
-    height: 2px;
-    background-color: black;
+    height: 1px;
+    background-color: var(--bs-body-color);
 }
 .date-line .date {
     position: absolute;
     left: 0;
     background-color: var(--white);
     padding: 0 0.5rem;
+    font-size: 0.8rem;
 }

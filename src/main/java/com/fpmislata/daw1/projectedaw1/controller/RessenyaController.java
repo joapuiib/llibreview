@@ -1,18 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
@@ -26,6 +13,18 @@ import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class RessenyaController {
@@ -54,7 +53,12 @@ public class RessenyaController {
         }
 
         Ressenya ressenya = ressenyaService.findByLlibreAndUsuari(llibre, UserSession.getUser());
+        Valoracio valoracio = ressenya != null ?
+                ressenya.getValoracio() :
+                valoracioService.findByLlibreAndUsuari(llibre, UserSession.getUser());
+
         model.addAttribute("ressenya", ressenya);
+        model.addAttribute("valoracio", valoracio);
         return "ressenya/ressenya";
     }
 

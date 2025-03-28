@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
             <div class="d-flex gap-2 align-items-end">
-                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${ressenya.username}"></span></div>
+                <div class="ressenya-title fw-medium"><a th:href="|/usuari/${ressenya.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${ressenya.username}"></span></a></div>
                 <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
             </div>
         </div>
@@ -43,7 +43,7 @@
 
 
 <!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya"*/-->
-<div th:fragment="ressenya-usuari(isbn, ressenya)" th:with="valoracio=${ressenya.valoracio}" class="">
+<div th:fragment="ressenya-usuari(isbn, ressenya)" th:with="valoracio=${ressenya?.valoracio}" class="">
     <div class="h5" th:text="#{la-teua-ressenya}"></div>
     <div th:unless="${ressenya == null}" th:remove="tag">
         <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya})}" class=""></div>
