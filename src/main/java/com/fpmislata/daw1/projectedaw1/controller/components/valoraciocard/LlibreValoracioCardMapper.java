@@ -12,6 +12,7 @@ public class LlibreValoracioCardMapper {
             Valoracio valoracio
     ) {
         ValoracioCard card = new ValoracioCard();
+        card.setData(valoracio.getData());
         card.setUrl("/llibre/" + llibre.getIsbn());
 
         String imatgeUrl = Objects.requireNonNullElse(

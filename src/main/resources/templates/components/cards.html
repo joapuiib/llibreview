@@ -11,7 +11,7 @@
 
 <div th:fragment="card-container(cards, classes)" class="card-container d-flex flex-wrap gap-3" th:classappend="${classes} ?: ''">
     <!--/*@thymesVar id="cards" type="List<com.fpmislata.daw1.projectedaw1.controller.components.card.Card>"*/-->
-    <div th:each="card: ${cards}" class="">
+    <div th:each="card: ${cards}" class="" th:remove="tag">
         <div th:replace="~{components/cards :: card(card=${card})}"></div>
     </div>
 </div>

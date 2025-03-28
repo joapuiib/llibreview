@@ -1,11 +1,59 @@
 .valoracio-card {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    transition: transform 0.2s ease-in-out;
+    padding: 0 0.5rem;
 }
-.puntuacio-box {
+.valoracio-card .card-item:hover {
+    transform: unset;
+}
+.valoracio-card:hover {
+    transform: scale(1.05);
+}
+
+.valoracio-card__puntuacio-container {
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(50%) translateX(-50%);
+}
+
+.valoracio-card__puntuacio {
     border: 1px solid var(--white);
+    border-radius: 1rem;
+    color: var(--white);
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 1.5rem;
 }
-.valoracio-card-average {
+.valoracio-card__puntuacio:hover {
+    cursor: help;
+}
+.valoracio-card__puntuacio.average {
     background-color: var(--cafe-500);
 }
-.valoracio-card-puntuacio {
+.valoracio-card__puntuacio.puntuacio {
     background-color: #990000;
+}
+
+.date-line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.date-line .line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: black;
+}
+.date-line .date {
+    position: absolute;
+    left: 0;
+    background-color: var(--white);
+    padding: 0 0.5rem;
 }
