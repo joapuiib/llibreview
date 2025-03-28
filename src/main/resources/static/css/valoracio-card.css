@@ -1,0 +1,11 @@
+.valoracio-card {
+}
+.puntuacio-box {
+    border: 1px solid var(--white);
+}
+.valoracio-card-average {
+    background-color: var(--cafe-500);
+}
+.valoracio-card-puntuacio {
+    background-color: #990000;
+}

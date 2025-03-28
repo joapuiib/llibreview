@@ -1,10 +1,10 @@
 <div th:fragment="card(card)" class="card-item">
     <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.card.Card"*/-->
-    <a th:href="${card.getUrl()}">
-        <img th:src="${card.getImatgeUrl()}" alt="" class="d-block mw-100 card-item-img mx-auto">
+    <a th:href="${card.url}">
+        <img th:src="${card.imatgeUrl}" alt="" class="d-block mw-100 card-item-img mx-auto">
         <div class="card-item-description">
-            <p th:text="${card.getTitol()}" class="card-item-titol"></p>
-            <p th:text="${card.getSubtitol()}" class="card-item-subtitol"></p>
+            <p th:text="${card.titol}" class="card-item-titol"></p>
+            <p th:text="${card.subtitol}" class="card-item-subtitol"></p>
         </div>
     </a>
 </div>

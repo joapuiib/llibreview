@@ -23,7 +23,8 @@
                     <div class="text-secondary" th:text="#{ressenyes}"></div>
                 </div>
 
-                <section>
+                <section class="mt-4">
+                    <h2 th:text="#{valoracions_usuari}" class="text-start mb-3"></h2>
                     <div th:replace="~{components/valoracio-cards :: valoracio-card-container(cards=${valoracioCards}, classes='justify-content-start')}"></div>
                 </section>
             </div>

@@ -1,8 +1,12 @@
-<div th:fragment="valoracio-card(card)" class="card-item">
+<div th:fragment="valoracio-card(card)" class="valoracio-card">
     <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard"*/-->
-    <a th:href="${card.url}">
-        <img th:src="${card.imatgeUrl}" alt="" class="d-block mw-100 card-item-img mx-auto">
-    </a>
+    <div class="card-item">
+        <a th:href="${card.url}">
+            <img th:src="${card.imatgeUrl}" alt="" class="d-block mw-100 card-item-img mx-auto">
+        </a>
+    </div>
+    <div class="puntuacio-box valoracio-card-average" th:text="${utils.round(card.mitjana, 1)}"></div>
+    <div class="puntuacio-box valoracio-card-puntuacio" th:text="${utils.round(card.puntuacio, 1)}"></div>
 </div>
 
 <div th:fragment="valoracio-card-container(cards, classes)" class="card-container d-flex flex-wrap gap-3" th:classappend="${classes} ?: ''">

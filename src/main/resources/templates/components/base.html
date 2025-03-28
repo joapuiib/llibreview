@@ -3,9 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link th:rel="stylesheet" th:href="@{/css/flag-icons.css}">
     <link th:rel="stylesheet" th:href="@{/css/site.css}">
-    <link th:replace="~{components/base :: generes}">
     <link th:rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script th:replace="~{components/base :: jquery}"></script>
@@ -63,8 +61,6 @@
     </a>
     <p th:text="#{llicencia}"></p>
 </footer>
-
-<link th:fragment="generes" th:rel="stylesheet" th:href="@{/css/genere.css}">
 
 <script th:fragment="jquery" th:src="@{/js/jquery.min.js}"></script>
 <script th:fragment="popper" th:src="@{/js/popper.min.js}"></script>

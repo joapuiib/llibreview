@@ -9,15 +9,15 @@ public class ValoracioCard {
     private String url;
     private String imatgeUrl;
     private double mitjana;
-    private double valoracio;
+    private double puntuacio;
 
     public ValoracioCard() {
     }
 
-    public ValoracioCard(String url, String imatgeUrl, double mitjana, double valoracio) {
+    public ValoracioCard(String url, String imatgeUrl, double mitjana, double puntuacio) {
         this.url = url;
         this.imatgeUrl = imatgeUrl;
         this.mitjana = mitjana;
-        this.valoracio = valoracio;
+        this.puntuacio = puntuacio;
     }
 }

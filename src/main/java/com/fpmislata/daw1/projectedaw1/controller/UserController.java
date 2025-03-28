@@ -4,6 +4,7 @@ import com.fpmislata.daw1.projectedaw1.common.container.*;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.AutorCardMapper;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
+import com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.LlibreValoracioCardMapper;
 import com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard;
 import com.fpmislata.daw1.projectedaw1.domain.entity.*;
 import com.fpmislata.daw1.projectedaw1.domain.service.*;
@@ -47,12 +48,7 @@ public class UserController {
                     String isbn = valoracio.getIsbn();
                     Llibre llibre = llibreService.findByIsbn(isbn);
                     double mitjanaValoracions = valoracioService.getMitjanaByLlibre(llibre);
-                    return new ValoracioCard(
-                            "/llibre/" + isbn,
-                            llibre.getRutaImatge(),
-                            mitjanaValoracions,
-                            valoracio.getPuntuacio()
-                    );
+                    return LlibreValoracioCardMapper.map(llibre, mitjanaValoracions, valoracio);
                 }
         ).toList();
         model.addAttribute("valoracioCards", valoracioCards);
