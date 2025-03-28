@@ -35,6 +35,12 @@ public class RessenyaServiceImpl implements RessenyaService {
     }
 
     @Override
+    public int countByUsuari(Usuari usuari) {
+        String username = usuari.getUsername();
+        return ressenyaRepository.countByUsername(username);
+    }
+
+    @Override
     public boolean save(Ressenya ressenya) {
         return ressenyaRepository.save(ressenya);
     }

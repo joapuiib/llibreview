@@ -1,0 +1,32 @@
+<!--/*@thymesVar id="usuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Usuari"*/-->
+<!--/*@thymesVar id="estadistiques" type="com.fpmislata.daw1.projectedaw1.domain.entity.Estadistiques"*/-->
+<!--/*@thymesVar id="nombreRessenyes" type="int"*/-->
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+    <head>
+        <title th:text="${usuari.username}"></title>
+    </head>
+    <body>
+        <main class="">
+            <h1 class="text-center my-4"><i class="fa-solid fa-circle-user"></i> <span th:text="${usuari.username}"></span></h1>
+            <div class="row text-center">
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${estadistiques.count > 0} ? ${utils.round(estadistiques.average, 1)} : '-'"></div>
+                    <div class="text-secondary" th:text="#{mitjana-valoracions}"></div>
+                </div>
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${estadistiques.count}"></div>
+                    <div class="text-secondary" th:text="#{valoracions}"></div>
+                </div>
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${nombreRessenyes}"></div>
+                    <div class="text-secondary" th:text="#{ressenyes}"></div>
+                </div>
+
+                <section>
+                    <div th:replace="~{components/valoracio-cards :: valoracio-card-container(cards=${valoracioCards}, classes='justify-content-start')}"></div>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>

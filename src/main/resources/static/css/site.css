@@ -23,6 +23,7 @@
     --white: var(--cafe-50);
     --bs-link-color-rgb: var(--cafe-500-rgb);
     --bs-link-hover-color-rgb: var(--cafe-700-rgb);
+    --bs-primary-rgb: var(--cafe-500-rgb);
 }
 
 .bg-white {

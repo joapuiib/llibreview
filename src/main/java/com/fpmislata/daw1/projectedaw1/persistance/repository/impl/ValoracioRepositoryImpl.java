@@ -23,6 +23,11 @@ public class ValoracioRepositoryImpl implements ValoracioRepository {
     }
 
     @Override
+    public double getMitjanaByLlibreIsbn(String isbn) {
+        return valoracioDao.getMitjanaByLlibreIsbn(isbn);
+    }
+
+    @Override
     public List<Valoracio> findByUsername(String username) {
         return valoracioDao.findByUsername(username);
     }

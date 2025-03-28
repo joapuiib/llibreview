@@ -10,6 +10,7 @@ public interface RessenyaService {
     Ressenya findByLlibreAndUsuari(Llibre llibre, Usuari usuari);
     List<Ressenya> findByLlibre(Llibre llibre);
     List<Ressenya> findByUsuari(Usuari usuari);
+    int countByUsuari(Usuari usuari);
     boolean save(Ressenya ressenya);
     boolean delete(Ressenya ressenya);
 }

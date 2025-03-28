@@ -8,6 +8,7 @@ public interface RessenyaRepository {
     Ressenya findByLlibreIsbnAndUsername(String isbn, String username);
     List<Ressenya> findByLlibreIsbn(String isbn);
     List<Ressenya> findByUsername(String username);
+    int countByUsername(String username);
     boolean exists(String isbn, String username);
     boolean save(Ressenya ressenya);
     boolean delete(Ressenya ressenya);

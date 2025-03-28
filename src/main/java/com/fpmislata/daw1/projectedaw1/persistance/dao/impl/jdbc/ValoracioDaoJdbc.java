@@ -45,6 +45,19 @@ public class ValoracioDaoJdbc implements ValoracioDao {
     }
 
     @Override
+    public double getMitjanaByLlibreIsbn(String isbn) {
+        String sql = "SELECT AVG(puntuacio) AS mitjana FROM valoracio where isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getDouble("mitjana");
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
     public List<Valoracio> findByUsername(String username) {
         String sql = "SELECT * FROM valoracio where username = ?";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {

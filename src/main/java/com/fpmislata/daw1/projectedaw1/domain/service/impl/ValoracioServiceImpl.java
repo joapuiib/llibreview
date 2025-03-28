@@ -33,6 +33,12 @@ public class ValoracioServiceImpl implements ValoracioService {
     }
 
     @Override
+    public double getMitjanaByLlibre(Llibre llibre) {
+        String isbn = llibre.getIsbn();
+        return valoracioRepository.getMitjanaByLlibreIsbn(isbn);
+    }
+
+    @Override
     public List<Valoracio> findByUsuari(Usuari usuari) {
         String username = usuari.getUsername();
         return valoracioRepository.findByUsername(username);

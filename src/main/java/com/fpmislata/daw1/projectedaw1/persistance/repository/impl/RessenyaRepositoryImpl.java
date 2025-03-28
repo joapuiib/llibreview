@@ -30,6 +30,11 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
     }
 
     @Override
+    public int countByUsername(String username) {
+        return ressenyaDao.countByUsername(username);
+    }
+
+    @Override
     public boolean exists(String isbn, String username) {
         return ressenyaDao.findByLlibreIsbnAndUsername(isbn, username) != null;
     }

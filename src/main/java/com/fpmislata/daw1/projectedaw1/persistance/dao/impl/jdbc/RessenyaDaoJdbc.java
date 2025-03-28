@@ -77,6 +77,19 @@ public class RessenyaDaoJdbc implements RessenyaDao {
     }
 
     @Override
+    public int countByUsername(String username) {
+        String sql = "SELECT COUNT(*) as count FROM ressenya WHERE username = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getInt("count");
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
     public int insert(Ressenya ressenya) {
         String sql = "INSERT INTO ressenya (isbn, username, comentari, data) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
