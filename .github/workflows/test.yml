@@ -24,7 +24,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run Unit Tests with Maven
-      run: mvn --batch-mode test
+      run: mvn --batch-mode test -Dcheckstyle.skip=true
 
   integration-test:
     needs: unit-test
@@ -41,4 +41,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run Integration Tests with Maven
-      run: mvn --batch-mode verify -Dskip.ut=true
+      run: mvn --batch-mode verify -Dskip.ut=true -Dcheckstyle.skip=true

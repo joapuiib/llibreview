@@ -26,6 +26,12 @@
         <!-- Comprova que la notació és correcta -->
         <module name="TypeName"/> <!-- Notació de classes UpperCamelCase -->
         <module name="MethodName"/> <!-- Notació de mètodes lowerCamelCase -->
+        <!-- Allow underscores for test methods -->
+        <module name="MethodName">
+            <property name="format" value="^(given_.*_when_.*_then_.*|test.*)$"/>
+            <property name="applyTo" value=".*Test"/>
+        </module>
+
         <module name="LocalVariableName"/> <!-- Notació de variables lowerCamelCase -->
         <module name="ConstantName"/> <!-- Notació de constants UPPER_CASE -->
 

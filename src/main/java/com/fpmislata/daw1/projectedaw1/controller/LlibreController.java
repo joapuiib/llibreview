@@ -2,17 +2,30 @@ package com.fpmislata.daw1.projectedaw1.controller;
 
 import java.util.List;
 
-import com.fpmislata.daw1.projectedaw1.common.container.*;
-import com.fpmislata.daw1.projectedaw1.domain.entity.*;
-import com.fpmislata.daw1.projectedaw1.domain.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
+import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.AutorCardMapper;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Genere;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
+import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
+import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
+import com.fpmislata.daw1.projectedaw1.domain.service.GenereService;
+import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
+import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
 
 @Controller

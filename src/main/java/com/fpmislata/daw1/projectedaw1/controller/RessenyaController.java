@@ -17,11 +17,11 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.Alert;
+import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
@@ -45,7 +45,8 @@ public class RessenyaController {
         Llibre llibre = llibreService.findByIsbn(isbn);
         model.addAttribute("llibre", llibre);
 
-        EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracioService.findByLlibre(llibre));
+        List<Valoracio> valoracions = valoracioService.findByLlibre(llibre);
+        EstadistiquesValoracio estadistiques = new EstadistiquesValoracio(valoracions);
         model.addAttribute("estadistiquesValoracio", estadistiques);
 
         if (!UserSession.isUserLoggedIn()) {

@@ -16,7 +16,13 @@ public class Ressenya {
 
     private Valoracio valoracio;
 
-    public Ressenya(String isbn, String username, String comentari, LocalDate data, Valoracio valoracio) {
+    public Ressenya(
+            String isbn,
+            String username,
+            String comentari,
+            LocalDate data,
+            Valoracio valoracio
+    ) {
         this.isbn = isbn;
         this.username = username;
         this.comentari = comentari;

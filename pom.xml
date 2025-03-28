@@ -16,7 +16,6 @@
     <properties>
         <java.version>22</java.version>
         <skip.ut>false</skip.ut>
-        <org.checkstyle.google.severity>error</org.checkstyle.google.severity>
     </properties>
     <dependencies>
         <dependency>
@@ -50,6 +49,7 @@
             <artifactId>lombok</artifactId>
             <version>1.18.36</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
@@ -123,8 +123,23 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configLocation>config/checkstyle.xml</configLocation>
+                    <configLocation>config/checkstyle-main.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.36</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>

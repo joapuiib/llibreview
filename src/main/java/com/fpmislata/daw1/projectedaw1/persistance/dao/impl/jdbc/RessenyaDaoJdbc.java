@@ -21,12 +21,12 @@ public class RessenyaDaoJdbc implements RessenyaDao {
     @Override
     public Ressenya findByLlibreIsbnAndUsername(String isbn, String username) {
         String sql = """
-        SELECT r.*, v.puntuacio, v.data AS valoracio_data
-        FROM ressenya r
-        INNER JOIN valoracio v
-            ON r.isbn = v.isbn AND r.username = v.username
-        WHERE r.isbn = ? AND r.username = ?
-        """;
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.isbn = ? AND r.username = ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             preparedStatement.setString(2, username);
@@ -43,12 +43,12 @@ public class RessenyaDaoJdbc implements RessenyaDao {
     @Override
     public List<Ressenya> findByLlibreIsbn(String isbn) {
         String sql = """
-        SELECT r.*, v.puntuacio, v.data AS valoracio_data
-        FROM ressenya r
-        INNER JOIN valoracio v
-            ON r.isbn = v.isbn AND r.username = v.username
-        WHERE r.isbn = ?
-        """;
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.isbn = ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
@@ -61,12 +61,12 @@ public class RessenyaDaoJdbc implements RessenyaDao {
     @Override
     public List<Ressenya> findByUsername(String username) {
         String sql = """
-        SELECT r.*, v.puntuacio, v.data AS valoracio_data
-        FROM ressenya r
-        INNER JOIN valoracio v
-            ON r.isbn = v.isbn AND r.username = v.username
-        WHERE r.username = ?
-        """;
+            SELECT r.*, v.puntuacio, v.data AS valoracio_data
+            FROM ressenya r
+            INNER JOIN valoracio v
+                ON r.isbn = v.isbn AND r.username = v.username
+            WHERE r.username = ?
+            """;
         try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();

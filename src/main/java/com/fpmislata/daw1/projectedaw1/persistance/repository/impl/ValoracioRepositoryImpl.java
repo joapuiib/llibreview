@@ -1,11 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
 import java.util.List;
-import java.util.Objects;
 
-import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
-import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
 
