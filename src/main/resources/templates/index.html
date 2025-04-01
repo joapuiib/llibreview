@@ -6,11 +6,11 @@
     <body>
         <main class="container">
             <h3 class="text-center my-4" th:text="#{ultims-llibres}"></h3>
-            <div th:replace="~{components/cards :: card-container(cards=${ultimsLlibres}, classes=justify-content-center)}"></div>
+            <div th:replace="~{components/cards :: card-container(cards=${ultimsLlibres}, classes='justify-content-center hover')}"></div>
             <h3 class="text-center my-4" th:text="#{mes-llegits}"></h3>
-            <div th:replace="~{components/cards :: card-container(cards=${mesLlegits}, classes=justify-content-center)}"></div>
+            <div th:replace="~{components/cards :: card-container(cards=${mesLlegits}, classes='justify-content-center hover')}"></div>
             <h3 class="text-center my-4" th:text="#{millor-valorats}"></h3>
-            <div th:replace="~{components/cards :: card-container(cards=${millorValorats}, classes=justify-content-center)}"></div>
+            <div th:replace="~{components/cards :: card-container(cards=${millorValorats}, classes='justify-content-center hover')}"></div>
         </main>
     </body>
 </html>

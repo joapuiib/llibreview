@@ -1,10 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
+
+import java.util.List;
 
 public class RessenyaRepositoryImpl implements RessenyaRepository {
     private final RessenyaDao ressenyaDao;
@@ -27,6 +27,11 @@ public class RessenyaRepositoryImpl implements RessenyaRepository {
     @Override
     public List<Ressenya> findByUsername(String username) {
         return ressenyaDao.findByUsername(username);
+    }
+
+    @Override
+    public int countByUsername(String username) {
+        return ressenyaDao.countByUsername(username);
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.common.utils;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
-import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class AppPropertiesReader {

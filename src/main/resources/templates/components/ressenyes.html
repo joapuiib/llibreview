@@ -1,29 +1,43 @@
 <!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya"*/-->
+<div th:fragment="ressenya-with-username(ressenya)" th:remove="tag">
+    <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya}, includeUser=true, card=null)}" class=""></div>
+</div>
+
+<!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.controller.components.ressenya.RessenyaCard"*/-->
+<div th:fragment="ressenya-with-llibre-cover(ressenya_card)" th:remove="tag">
+    <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya_card.ressenya}, includeUser=false, card=${ressenya_card.card})}" class=""></div>
+</div>
+
 <!--/*@thymesVar id="session" type="com.fpmislata.daw1.projectedaw1.security.UserSession"*/-->
-<div th:fragment="ressenya(ressenya)" class="ressenya p-3 shadow rounded border border-cafe-200" th:with="valoracio = ${ressenya.valoracio}, is_owner=${session.user != null and session.user.username == ressenya.username}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
-    <div class="d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-            <div class="d-flex gap-2 align-items-end">
-                <div class="ressenya-title fw-medium"><i class="fa-solid fa-circle-user"></i> <span th:text="${ressenya.username}"></span></div>
-                <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
+<div th:fragment="ressenya(ressenya, includeUser, card)" class="ressenya p-3 shadow rounded border border-cafe-200 d-flex flex-nowrap gap-3" th:with="valoracio = ${ressenya.valoracio}, is_owner=${session.user != null and session.user.username == ressenya.username}" th:classappend="${false} ? 'bg-info bg-opacity-25'">
+    <div class="" th:if="${(card ?: null) != null}">
+        <div th:replace="~{components/cards :: card(card=${card})}"></div>
+    </div>
+    <div class="flex-grow-1 d-flex flex-column">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="d-flex gap-2 align-items-end">
+                    <div class="ressenya-title fw-medium" th:if="${includeUser ?: true}"><a th:href="|/usuari/${ressenya.username}|"><i class="fa-solid fa-circle-user"></i> <span th:text="${ressenya.username}"></span></a></div>
+                    <div class="ressenya-data text-secondary" th:text="${#temporals.format(ressenya.data, 'dd/MM/yyyy')}"></div>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center gap-2">
+                <div th:replace="~{components/valoracio :: valoracio-stars(valoracio=${valoracio.getPuntuacio})}"></div>
+                <div class="valoracio-value bg-cafe-500 fw-bold rounded-3" th:text="${valoracio.getPuntuacio}"></div>
             </div>
         </div>
-        <div class="d-flex flex-row align-items-center gap-2">
-            <div th:replace="~{components/valoracio :: valoracio-stars(valoracio=${valoracio.getPuntuacio})}"></div>
-            <div class="valoracio-value bg-cafe-500 fw-bold rounded-3" th:text="${valoracio.getPuntuacio}"></div>
-        </div>
-    </div>
-    <div class="mt-2" th:text="${ressenya.comentari}"></div>
-    <hr class="my cafe-500 opacity-50">
-    <div class="ressenya-footer d-flex justify-content-end align-items-center gap-1">
-        <div th:unless="${is_owner}" th:remove="tag">
-            <div th:text="#{ressenya-es-util}"></div>
-            <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
-            <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div th:if="${is_owner}" th:remove="tag">
-            <a th:href="|/ressenya/${ressenya.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
-            <a th:href="|/ressenya/${ressenya.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
+        <div class="mt-2 flex-grow-1" th:text="${ressenya.comentari}"></div>
+        <hr class="my cafe-500 opacity-50">
+        <div class="ressenya-footer d-flex justify-content-end align-items-center gap-1">
+            <div th:unless="${is_owner}" th:remove="tag">
+                <div th:text="#{ressenya-es-util}"></div>
+                <button class="btn btn-outline-success p-1 active disabled"><i class="fa-solid fa-thumbs-up"></i></button>
+                <button class="btn btn-outline-danger p-1 disabled"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div th:if="${is_owner}" th:remove="tag">
+                <a th:href="|/ressenya/${ressenya.isbn}|" class="btn btn-outline-primary p-1" th:title="#{modifica-ressenya}"><i class="fa-solid fa-edit"></i></a>
+                <a th:href="|/ressenya/${ressenya.isbn}/delete|" class="btn btn-outline-danger p-1" th:title="#{elimina-ressenya}"><i class="fa-solid fa-trash"></i></a>
+            </div>
         </div>
     </div>
 </div>
@@ -33,7 +47,7 @@
     <p class="h5" th:text="#{ressenyes-destacades}"></p>
     <div th:each="ressenya: ${ressenyes}" th:remove="tag">
         <div class="mb-2">
-            <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya})}" class=""></div>
+            <div th:replace="~{components/ressenyes :: ressenya-with-username(ressenya=${ressenya})}" class=""></div>
         </div>
     </div>
     <div class="text-center mt-2" th:if="${ressenyes.size() > 2}">
@@ -43,10 +57,10 @@
 
 
 <!--/*@thymesVar id="ressenya" type="com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya"*/-->
-<div th:fragment="ressenya-usuari(isbn, ressenya)" th:with="valoracio=${ressenya.valoracio}" class="">
+<div th:fragment="ressenya-usuari(isbn, ressenya)" th:with="valoracio=${ressenya?.valoracio}" class="">
     <div class="h5" th:text="#{la-teua-ressenya}"></div>
     <div th:unless="${ressenya == null}" th:remove="tag">
-        <div th:replace="~{components/ressenyes :: ressenya(ressenya=${ressenya})}" class=""></div>
+        <div th:replace="~{components/ressenyes :: ressenya-with-username(ressenya=${ressenya})}" class=""></div>
     </div>
 
     <div th:if="${ressenya == null}" th:remove="tag">

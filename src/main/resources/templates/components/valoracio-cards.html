@@ -1,0 +1,30 @@
+<div th:fragment="valoracio-card(card, previousDate)" class="mb-2">
+    <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard"*/-->
+    <div class="date-line">
+        <div class="line"></div>
+        <div class="date text-secondary" th:text="${#temporals.format(card.data, 'dd/MM/yyyy')}" th:if="${previousDate == null or !card.data.equals(previousDate)}"></div>
+    </div>
+
+    <div class="valoracio-card">
+        <div class="valoracio-card__header">
+        </div>
+        <a th:href="${card.url}">
+            <div class="card-item">
+                <img th:src="${card.imatgeUrl}" alt="" class="d-block mw-100 card-item-img mx-auto">
+            </div>
+            <div class="valoracio-card__puntuacio-container">
+                <div class="valoracio-card__puntuacio puntuacio" th:text="${utils.round(card.puntuacio, 1)}" th:title="#{valoracio-usuari}"></div>
+                <div class="valoracio-card__puntuacio average" th:text="${utils.round(card.mitjana, 1)}" th:title="#{mitjana-valoracions}"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div th:fragment="valoracio-card-container(cards, classes)" class="valoracio-card-container d-flex flex-wrap" th:classappend="${classes} ?: ''">
+    <!--/*@thymesVar id="cards" type="List<com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard>"*/-->
+    <div th:each="card, i: ${cards}" class="" th:remove="tag">
+        <th:block th:with="previousDate=${i.index > 0 ? cards[i.index - 1].data : null}">
+            <div th:replace="~{components/valoracio-cards :: valoracio-card(card=${card}, previousDate=${previousDate})}"></div>
+        </th:block>
+    </div>
+</div>

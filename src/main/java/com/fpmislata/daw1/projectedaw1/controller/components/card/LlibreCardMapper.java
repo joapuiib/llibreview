@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.controller.components.card;
 
-import java.util.Objects;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+
+import java.util.Objects;
 
 public class LlibreCardMapper {
     public static Card map(Llibre llibre, String subtitol) {

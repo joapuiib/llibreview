@@ -1,8 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao;
 
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+
+import java.util.List;
 
 public interface LlibreDao {
     Llibre findByIsbn(String isbn);

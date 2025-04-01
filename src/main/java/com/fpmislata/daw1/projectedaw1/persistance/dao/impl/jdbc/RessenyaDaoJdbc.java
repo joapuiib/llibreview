@@ -1,13 +1,13 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.RessenyaDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.RessenyaRowMapper;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
 
 public class RessenyaDaoJdbc implements RessenyaDao {
 
@@ -71,6 +71,19 @@ public class RessenyaDaoJdbc implements RessenyaDao {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             return ressenyaRowMapper.map(rs);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public int countByUsername(String username) {
+        String sql = "SELECT COUNT(*) as count FROM ressenya WHERE username = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getInt("count");
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

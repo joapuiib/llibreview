@@ -1,0 +1,47 @@
+<!--/*@thymesVar id="usuari" type="com.fpmislata.daw1.projectedaw1.domain.entity.Usuari"*/-->
+<!--/*@thymesVar id="estadistiques" type="com.fpmislata.daw1.projectedaw1.domain.entity.Estadistiques"*/-->
+<!--/*@thymesVar id="nombreRessenyes" type="int"*/-->
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::title}, ~{::main})}">
+    <head>
+        <title th:text="${usuari.username}"></title>
+    </head>
+    <body>
+        <main class="">
+            <h1 class="text-center my-4"><i class="fa-solid fa-circle-user"></i> <span th:text="${usuari.username}"></span></h1>
+            <div class="row text-center">
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${estadistiques.count > 0} ? ${utils.round(estadistiques.average, 1)} : '-'"></div>
+                    <div class="text-secondary" th:text="#{mitjana-valoracions}"></div>
+                </div>
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${estadistiques.count}"></div>
+                    <div class="text-secondary" th:text="#{valoracions}"></div>
+                </div>
+                <div class="col">
+                    <div class="fs-4 fw-bold text-primary" th:text="${ressenyes.size()}"></div>
+                    <div class="text-secondary" th:text="#{ressenyes}"></div>
+                </div>
+            </div>
+
+            <section class="mt-5">
+                <h2 th:text="#{valoracions-usuari}" class="text-start mb-3"></h2>
+                <div th:replace="~{components/valoracio-cards :: valoracio-card-container(cards=${valoracioCards}, classes='justify-content-start hover')}"></div>
+            </section>
+
+            <section class="mt-5">
+                <h2 th:text="#{ressenyes}" class="text-start mb-3"></h2>
+                <div th:if="${ressenyes.size() > 0}">
+                    <div th:each="ressenya_card: ${ressenyes}" th:remove="tag">
+                        <div class="mb-2">
+                            <div th:replace="~{components/ressenyes :: ressenya-with-llibre-cover(ressenya_card=${ressenya_card})}" class=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div th:unless="${ressenyes.size() > 0}" th:remove="tag">
+                    <p th:text="#{no-escrit-ressenyes}"></p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

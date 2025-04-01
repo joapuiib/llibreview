@@ -1,9 +1,9 @@
 package com.fpmislata.daw1.projectedaw1.persistance.rowmapper;
 
+import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 
 public class LlibreRowMapper extends RowMapper<Llibre> {
     @Override

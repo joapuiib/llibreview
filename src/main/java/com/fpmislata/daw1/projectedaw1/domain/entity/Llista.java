@@ -1,10 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter

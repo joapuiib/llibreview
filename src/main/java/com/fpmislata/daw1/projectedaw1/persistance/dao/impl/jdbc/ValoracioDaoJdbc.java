@@ -1,13 +1,13 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.ValoracioRowMapper;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
 
 public class ValoracioDaoJdbc implements ValoracioDao {
 
@@ -39,6 +39,19 @@ public class ValoracioDaoJdbc implements ValoracioDao {
             preparedStatement.setString(1, isbn);
             ResultSet rs = preparedStatement.executeQuery();
             return valoracioRowMapper.map(rs);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public double getMitjanaByLlibreIsbn(String isbn) {
+        String sql = "SELECT AVG(puntuacio) AS mitjana FROM valoracio where isbn = ?";
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(sql)) {
+            preparedStatement.setString(1, isbn);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getDouble("mitjana");
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

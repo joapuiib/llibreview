@@ -1,5 +1,8 @@
 package com.fpmislata.daw1.projectedaw1.persistance.database;
 
+import com.fpmislata.daw1.projectedaw1.common.utils.AppPropertiesReader;
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,10 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import lombok.extern.log4j.Log4j2;
-
-import com.fpmislata.daw1.projectedaw1.common.utils.AppPropertiesReader;
 
 
 @Log4j2

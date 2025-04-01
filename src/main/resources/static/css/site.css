@@ -1,3 +1,8 @@
+@import "cards.css";
+@import "valoracio-card.css";
+@import "genere.css";
+@import "flag-icons.css";
+
 :root {
     --cafe-50: #f9f6f1;
     --cafe-50-rgb: 249, 246, 241;
@@ -23,6 +28,7 @@
     --white: var(--cafe-50);
     --bs-link-color-rgb: var(--cafe-500-rgb);
     --bs-link-hover-color-rgb: var(--cafe-700-rgb);
+    --bs-primary-rgb: var(--cafe-500-rgb);
 }
 
 .bg-white {
@@ -214,9 +220,6 @@ p {
 a {
     text-decoration: none;
 }
-a:hover {
-    text-decoration: underline;
-}
 
 .mx-n3 {
     margin-left: -1rem;
@@ -227,64 +230,6 @@ a:hover {
 }
 .fs-8 {
     font-size: 0.8rem;
-}
-
-.card-item {
-    box-shadow: 2px 3px 4px #BBBBBB;
-    border-radius: 5px;
-    position: relative;
-    height: 300px;
-    width: 200px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-.card-item:hover {
-    text-decoration: none;
-    transform: scale(1.05);
-}
-
-img.card-item-img {
-    width: 100%;
-    height: auto;
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.card-item-description {
-    display: block;
-    position: absolute;
-    text-align: center;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    min-height: 60px;
-    background: var(--cafe-600);
-    opacity: 0.9;
-    text-wrap: pretty;
-    margin: 0;
-    padding: 4px;
-}
-
-.card-item-description p {
-    margin: 0;
-}
-.card-item a {
-    text-decoration: unset;
-    color: var(--white);
-}
-.card-item-titol {
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
-}
-.card-item-subtitol {
-    font-size: 0.8em;
 }
 
 .text-justify {
