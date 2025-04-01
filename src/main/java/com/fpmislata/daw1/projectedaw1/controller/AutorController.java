@@ -1,13 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import java.util.Comparator;
-import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.controller.components.card.AutorCardMapper;
@@ -17,6 +9,13 @@ import com.fpmislata.daw1.projectedaw1.domain.entity.Autor;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.service.AutorService;
 import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 public class AutorController {

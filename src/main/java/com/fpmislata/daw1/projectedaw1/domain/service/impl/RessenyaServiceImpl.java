@@ -1,12 +1,12 @@
 package com.fpmislata.daw1.projectedaw1.domain.service.impl;
 
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Llibre;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Ressenya;
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.RessenyaRepository;
+
+import java.util.List;
 
 public class RessenyaServiceImpl implements RessenyaService {
     private final RessenyaRepository ressenyaRepository;

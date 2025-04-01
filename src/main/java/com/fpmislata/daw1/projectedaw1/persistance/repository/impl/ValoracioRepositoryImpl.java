@@ -1,10 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.persistance.repository.impl;
 
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Valoracio;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.ValoracioDao;
 import com.fpmislata.daw1.projectedaw1.persistance.repository.ValoracioRepository;
+
+import java.util.List;
 
 public class ValoracioRepositoryImpl implements ValoracioRepository {
     private final ValoracioDao valoracioDao;

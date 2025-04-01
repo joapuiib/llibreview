@@ -1,12 +1,5 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
-import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.fpmislata.daw1.projectedaw1.common.container.AutorIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.GenereIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
@@ -27,6 +20,12 @@ import com.fpmislata.daw1.projectedaw1.domain.service.LlibreService;
 import com.fpmislata.daw1.projectedaw1.domain.service.RessenyaService;
 import com.fpmislata.daw1.projectedaw1.domain.service.ValoracioService;
 import com.fpmislata.daw1.projectedaw1.security.UserSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 public class LlibreController {

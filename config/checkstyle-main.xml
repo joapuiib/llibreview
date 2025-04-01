@@ -41,7 +41,7 @@
             <property name="ordered" value="true"/> <!-- Enforces ordering -->
             <property name="separated" value="true"/> <!-- Requires blank lines between groups -->
             <property name="sortStaticImportsAlphabetically" value="true"/> <!-- Sorts static imports first -->
-            <property name="groups" value="java,*,com"/> <!-- Defines import order groups: java, 3rd party, projecte -->
+            <property name="groups" value="*,java"/> <!-- Defines import order groups: java, 3rd party, projecte -->
         </module>
 
         <!-- Comprova que hi ha una línia en blanc entre la deficinició del paquet, els imports i el codi -->

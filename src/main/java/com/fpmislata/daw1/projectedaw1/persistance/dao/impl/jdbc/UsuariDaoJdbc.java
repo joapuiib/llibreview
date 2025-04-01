@@ -1,14 +1,14 @@
 package com.fpmislata.daw1.projectedaw1.persistance.dao.impl.jdbc;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 import com.fpmislata.daw1.projectedaw1.domain.entity.Usuari;
 import com.fpmislata.daw1.projectedaw1.persistance.dao.UsuariDao;
 import com.fpmislata.daw1.projectedaw1.persistance.database.DatabaseConnection;
 import com.fpmislata.daw1.projectedaw1.persistance.rowmapper.UsuariRowMapper;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 public class UsuariDaoJdbc implements UsuariDao {
 

@@ -1,11 +1,10 @@
 package com.fpmislata.daw1.projectedaw1.common.utils;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
+import com.fpmislata.daw1.projectedaw1.common.i18n.Language;
 import org.springframework.stereotype.Component;
 
-import com.fpmislata.daw1.projectedaw1.common.i18n.Language;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @SuppressWarnings("unused")
 @Component
