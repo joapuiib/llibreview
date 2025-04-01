@@ -43,7 +43,7 @@
                         </dd>
                         <dt th:text="#{autors}"></dt>
                         <dd>
-                            <div th:replace="~{components/cards :: card-container(cards=${autors}, classes='justify-content-start')}"></div>
+                            <div th:replace="~{components/cards :: card-container(cards=${autors}, classes='justify-content-start hover')}"></div>
                         </dd>
                     </dl>
                     <div class="mt-3" th:unless="${session.user==null}">

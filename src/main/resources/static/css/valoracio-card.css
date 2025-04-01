@@ -5,10 +5,7 @@
     transition: transform 0.2s ease-in-out;
     padding: 0 0.5rem;
 }
-.valoracio-card .card-item:hover {
-    transform: unset;
-}
-.valoracio-card:hover {
+.valoracio-card-container.hover .valoracio-card:hover {
     transform: scale(1.05);
 }
 
@@ -49,7 +46,8 @@
 .date-line .line {
     flex-grow: 1;
     height: 1px;
-    background-color: var(--bs-body-color);
+    --bs-text-opacity: 1;
+    background-color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity));
 }
 .date-line .date {
     position: absolute;

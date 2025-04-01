@@ -2,7 +2,7 @@
     <!--/*@thymesVar id="card" type="com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard"*/-->
     <div class="date-line">
         <div class="line"></div>
-        <div class="date" th:text="${#temporals.format(card.data, 'dd/MM/yyyy')}" th:if="${previousDate == null or !card.data.equals(previousDate)}"></div>
+        <div class="date text-secondary" th:text="${#temporals.format(card.data, 'dd/MM/yyyy')}" th:if="${previousDate == null or !card.data.equals(previousDate)}"></div>
     </div>
 
     <div class="valoracio-card">

@@ -4,6 +4,9 @@ import com.fpmislata.daw1.projectedaw1.common.container.LlibreIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.RessenyaIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.UsuariIoc;
 import com.fpmislata.daw1.projectedaw1.common.container.ValoracioIoc;
+import com.fpmislata.daw1.projectedaw1.controller.components.card.Card;
+import com.fpmislata.daw1.projectedaw1.controller.components.card.LlibreCardMapper;
+import com.fpmislata.daw1.projectedaw1.controller.components.ressenya.RessenyaCard;
 import com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.LlibreValoracioCardMapper;
 import com.fpmislata.daw1.projectedaw1.controller.components.valoraciocard.ValoracioCard;
 import com.fpmislata.daw1.projectedaw1.domain.entity.EstadistiquesValoracio;
@@ -62,8 +65,15 @@ public class UserController {
                 .toList();
         model.addAttribute("valoracioCards", valoracioCards);
 
-        int nombreRessenyes = ressenyaService.countByUsuari(usuari);
-        model.addAttribute("nombreRessenyes", nombreRessenyes);
+        List<RessenyaCard> ressenyes = ressenyaService.findByUsuari(usuari).stream().map(
+                ressenya -> {
+                    String isbn = ressenya.getIsbn();
+                    Llibre llibre = llibreService.findByIsbn(isbn);
+                    Card llibreCard = LlibreCardMapper.map(llibre, null);
+                    return RessenyaCard.map(ressenya, llibreCard);
+                }
+        ).toList();
+        model.addAttribute("ressenyes", ressenyes);
 
         return "user/user";
     }
