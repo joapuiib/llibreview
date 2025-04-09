@@ -10,6 +10,7 @@
 ![Bootstrap](docs/img/bootstrap.svg)
 ![HTML5](docs/img/html5.svg)
 ![CSS3](docs/img/css3.svg)
+![Docker](docs/img/docker.svg)
 
 llibReview és una pàgina web de consulta de llibres i autors,
 que permet als usuaris crear i compartir llistes personalizades
@@ -27,3 +28,17 @@ els coneixements adquirits en tots els mòduls professionals del curs.
 - Tests unitàris i d'integració amb JUnit, Mockito i bases de dades H2.
 - Persistència de dades amb MariaDB.
 - Desplegament en Amazon Web Services.
+
+
+## Vols veure el projecte en marxa?
+Per veure el projecte en marxa, segueix les instruccions següents:
+
+- Clona el repositori al teu dispositiu.
+- Assegura't de tindre [Docker][docker] instal·lat.
+- Inicia el projecte utilitzant Docker Compose:
+
+    ```bash
+    docker compose up
+    ```
+
+[docker]: https://www.docker.com/
