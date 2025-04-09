@@ -31,7 +31,7 @@ els coneixements adquirits en tots els mòduls professionals del curs.
 
 
 ## Vols veure el projecte en marxa?
-Per veure el projecte en marxa, segueix les instruccions següents:
+Segueix les següents instruccions:
 
 - Clona el repositori al teu dispositiu.
 - Assegura't de tindre [Docker][docker] instal·lat.
