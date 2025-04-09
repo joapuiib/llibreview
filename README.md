@@ -41,4 +41,7 @@ Per veure el projecte en marxa, segueix les instruccions següents:
     docker compose up
     ```
 
+- Espera a què els contenidors s'inicien.
+- Accedeix a l'aplicació mitjançant el navegador web a `http://localhost:8080`.
+
 [docker]: https://www.docker.com/
