@@ -1,5 +1,6 @@
 package com.fpmislata.daw1.projectedaw1.controller;
 
+import com.fpmislata.daw1.projectedaw1.common.utils.AppPropertiesReader;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +22,9 @@ public class FilesController {
 
     private static final Logger LOG = LoggerFactory.getLogger(FilesController.class);
 
-    @Value("${files.directory}")
-    private String filesDirectory;
+    private final String filesDirectory;
     public FilesController() {
+        filesDirectory = AppPropertiesReader.getProperty("files.directory");
     }
 
     @GetMapping("/files/**")
