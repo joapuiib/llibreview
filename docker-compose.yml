@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: llibreview-mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: llibreview
+      MARIADB_USER: myuser
+      MARIADB_PASSWORD: mypassword
+      MARIADB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./docs/sql:/docker-entrypoint-initdb.d
+
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p$$MARIADB_ROOT_PASSWORD" ]
+      interval: 2s
+      timeout: 10s
+
+  app:
+    build: .
+    container_name: llibreview-app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - APP_DATASOURCE_URL=jdbc:mysql://db:3306/llibreview
+      - APP_DATASOURCE_USERNAME=myuser
+      - APP_DATASOURCE_PASSWORD=mypassword
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mariadb_data:
